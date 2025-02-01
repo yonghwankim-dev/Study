@@ -1,0 +1,246 @@
+{
+  "main": {
+    "id": "88a2e969e01b5998",
+    "type": "split",
+    "children": [
+      {
+        "id": "36396638edcfc5a9",
+        "type": "split",
+        "children": [
+          {
+            "id": "00f517f111012aa3",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "d28e5ba62a328e18",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "컨테이너 서비스를 위한 도커 활용"
+                }
+              }
+            ]
+          },
+          {
+            "id": "cadf64185b7dd810",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "99df296da5a11010",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch03",
+                      "focus": false,
+                      "profile": {
+                        "args": [],
+                        "executable": "/bin/zsh",
+                        "name": "",
+                        "platforms": {
+                          "darwin": true
+                        },
+                        "pythonExecutable": "python3",
+                        "restoreHistory": true,
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": "integrated",
+                        "useWin32Conhost": true
+                      },
+                      "serial": {
+                        "columns": 150,
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch03 % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m../../../.DS_Store\r\n\u001b[8C../../.DS_Store\r\n\u001b[8C../\r\n\r\n\u001b[0mnothing added to commit but untracked files present (use \"git add\" to track)\r\nyonghwankim@gim-yonghwan-ui-MacBookAir ch03 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % ls\r\nch03\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Docker % ls -al\r\ntotal 24\r\ndrwxr-xr-x  10 yonghwankim  staff   320 Feb  1 13:20 .\r\ndrwxr-xr-x  28 yonghwankim  staff   896 Feb  1 13:20 ..\r\n-rw-r--r--@  1 yonghwankim  staff  6148 Feb  1 13:20 .DS_Store\r\n-rw-r--r--   1 yonghwankim  staff   324 Feb  1 13:15 README.md\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 docker-compose\r\ndrwxr-xr-x@  5 yonghwankim  staff   160 Feb  1 13:23 docker_container_build_up\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 mysql-server컨테이너생성\r\ndrwxr-xr-x   4 yonghwankim  staff   128 Feb  1 13:15 도커명령어활용\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 도커설치\r\ndrwxr-xr-x   4 yonghwankim  staff   128 Feb  1 13:15 컨테이너서비스\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Docker % git cd ..\r\ngit: 'cd' is not a git command. See 'git --help'.\r\n\r\nThe most similar command is\r\n\u001b[8Cadd\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Docker % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Study % ls\r\nAlgorithm\u001b[31CHttpNetwork\u001b[29COS\r\nBootstrap\u001b[31CHttpNetworkBasic\u001b[24CREADME.md\r\nComputerStructure\u001b[23CJSP\u001b[37CSpring\r\nDataStructure\u001b[27CJava\u001b[36CSpringBoot\r\nDesignPattern\u001b[27CJavaScript\u001b[30CTIL\r\nDocker\u001b[34CJquery\u001b[34C객체지향의사실과오해\r\nEffectiveJava\u001b[27CMyBatis\u001b[33C실습으로배우는AWS핵심서비스\r\nGIT\u001b[37CNetwork\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Study % ls -al\r\ntotal 32\r\ndrwxr-xr-x  28 yonghwankim  staff   896 Feb  1 13:20 .\r\ndrwxr-xr-x  24 yonghwankim  staff   768 Feb  1 13:15 ..\r\n-rw-r--r--@  1 yonghwankim  staff  8196 Feb  1 13:20 .DS_Store\r\ndrwxr-xr-x  12 yonghwankim  staff   384 Feb  1 13:25 .git\r\ndrwxr-xr-x   7 yonghwankim  staff   224 Feb  1 13:15 .idea\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 Algorithm\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 Bootstrap\r\ndrwxr-xr-x   6 yonghwankim  staff   192 Feb  1 13:15 ComputerStructure\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 DataStructure\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 DesignPattern\r\ndrwxr-xr-x  10 yonghwankim  staff   320 Feb  1 13:20 Docker\r\ndrwxr-xr-x   5 yonghwankim  staff   160 Feb  1 13:15 EffectiveJava\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 GIT\r\ndrwxr-xr-x  11 yonghwankim  staff   352 Feb  1 13:15 HttpNetwork\r\ndrwxr-xr-x  32 yonghwankim  staff  1024 Feb  1 13:15 HttpNetworkBasic\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 JSP\r\ndrwxr-xr-x   4 yonghwankim  staff   128 Feb  1 13:15 Java\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 JavaScript\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 Jquery\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 MyBatis\r\ndrwxr-xr-x   6 yonghwankim  staff   192 Feb  1 13:15 Network\r\ndrwxr-xr-x   8 yonghwankim  staff   256 Feb  1 13:15 OS\r\n-rw-r--r--   1 yonghwankim  staff  1219 Feb  1 13:15 README.md\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 Spring\r\ndrwxr-xr-x   3 yonghwankim  staff    96 Feb  1 13:15 SpringBoot\r\ndrwxr-xr-x   4 yonghwankim  staff   128 Feb  1 13:15 TIL\r\ndrwxr-xr-x   7 yonghwankim  staff   224 Feb  1 13:15 객체지향의사실과오해\r\ndrwxr-xr-x  17 yonghwankim  staff   544 Feb  1 13:15 실습으로배우는AWS핵심서비스\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Study % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m.DS_Store\r\n\u001b[8CDocker/.DS_Store\r\n\u001b[8CDocker/docker_container_build_up/\r\n\r\n\u001b[0mnothing added to commit but untracked files present (use \"git add\" to track)\r\nyonghwankim@gim-yonghwan-ui-MacBookAir Study % git add .",
+                        "rows": 19
+                      }
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "Terminal: zsh"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9c4f3d5e23d49e72",
+    "type": "split",
+    "children": [
+      {
+        "id": "764f83b2c8cd79d6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e0b9894d289c64ab",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "7dc581254ab5397a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "252fea27e432c083",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "1d2d935eeff87666",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9a90734bc01e9a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "99f0cb2418388b23",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "컨테이너 서비스를 위한 도커 활용 의 백링크"
+            }
+          },
+          {
+            "id": "e6b3a547fe69bd97",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "컨테이너 서비스를 위한 도커 활용 의 나가는 링크"
+            }
+          },
+          {
+            "id": "b346ee0dea98f918",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "e2a3e0b90edc2eea",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "컨테이너 서비스를 위한 도커 활용 의 개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "terminal:Open terminal": false
+    }
+  },
+  "active": "99df296da5a11010",
+  "lastOpenFiles": [
+    "ch03/컨테이너 서비스를 위한 도커 활용.md",
+    "ch03/무제.md",
+    "ch03/img/image 150.png",
+    "ch03/img/image 144.png",
+    "ch03/img/image 178.png",
+    "ch03/img/image 3.png",
+    "ch03/img/image 26.png",
+    "ch03/img/image 32.png",
+    "ch03/img/image 33.png",
+    "ch03/img/image.png",
+    "ch03/img/image 27.png",
+    "ch03/img/image 179.png",
+    "ch03/img",
+    "환영합니다!.md",
+    "ch03"
+  ]
+}
