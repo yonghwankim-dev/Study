@@ -4,16 +4,29 @@
     "type": "split",
     "children": [
       {
-        "id": "cea4efa0e31a918f",
+        "id": "a5d49fbef084d7f1",
         "type": "split",
         "children": [
           {
-            "id": "29701e8224f7f3da",
+            "id": "7500a93ce3130f6b",
             "type": "tabs",
-            "dimension": 74.33333333333333,
             "children": [
               {
-                "id": "1db8a71fd55a3b45",
+                "id": "eea729a9afb27f90",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "컨테이너 서비스를 위한 도커 활용"
+                }
+              },
+              {
+                "id": "2c272a2f38831c99",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
@@ -26,15 +39,15 @@
                   "title": "컨테이너 서비스를 위한 도커 활용"
                 }
               }
-            ]
+            ],
+            "currentTab": 1
           },
           {
-            "id": "ef8e791de4a83d16",
+            "id": "e03ff19104d3da89",
             "type": "tabs",
-            "dimension": 25.666666666666664,
             "children": [
               {
-                "id": "a1577163eb956c0c",
+                "id": "8e17bf07d3391f97",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
@@ -65,8 +78,8 @@
                       },
                       "serial": {
                         "columns": 117,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch03 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % cd img \r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % ls\r\nimage 1.png\u001b[5Cimage 122.png\u001b[3Cimage 146.png\u001b[3Cimage 17.png\u001b[4Cimage 30.png\u001b[4Cimage 54.png\u001b[4Cimage 78.png\r\nimage 10.png\u001b[4Cimage 123.png\u001b[3Cimage 147.png\u001b[3Cimage 170.png\u001b[3Cimage 31.png\u001b[4Cimage 55.png\u001b[4Cimage 79.png\r\nimage 100.png\u001b[3Cimage 124.png\u001b[3Cimage 148.png\u001b[3Cimage 171.png\u001b[3Cimage 32.png\u001b[4Cimage 56.png\u001b[4Cimage 8.png\r\nimage 101.png\u001b[3Cimage 125.png\u001b[3Cimage 149.png\u001b[3Cimage 172.png\u001b[3Cimage 33.png\u001b[4Cimage 57.png\u001b[4Cimage 80.png\r\nimage 102.png\u001b[3Cimage 126.png\u001b[3Cimage 15.png\u001b[4Cimage 173.png\u001b[3Cimage 34.png\u001b[4Cimage 58.png\u001b[4Cimage 81.png\r\nimage 103.png\u001b[3Cimage 127.png\u001b[3Cimage 150.png\u001b[3Cimage 174.png\u001b[3Cimage 35.png\u001b[4Cimage 59.png\u001b[4Cimage 82.png\r\nimage 104.png\u001b[3Cimage 128.png\u001b[3Cimage 151.png\u001b[3Cimage 175.png\u001b[3Cimage 36.png\u001b[4Cimage 6.png\u001b[5Cimage 83.png\r\nimage 105.png\u001b[3Cimage 129.png\u001b[3Cimage 152.png\u001b[3Cimage 176.png\u001b[3Cimage 37.png\u001b[4Cimage 60.png\u001b[4Cimage 84.png\r\nimage 106.png\u001b[3Cimage 13.png\u001b[4Cimage 153.png\u001b[3Cimage 177.png\u001b[3Cimage 38.png\u001b[4Cimage 61.png\u001b[4Cimage 85.png\r\nimage 107.png\u001b[3Cimage 130.png\u001b[3Cimage 154.png\u001b[3Cimage 178.png\u001b[3Cimage 39.png\u001b[4Cimage 62.png\u001b[4Cimage 86.png\r\nimage 108.png\u001b[3Cimage 131.png\u001b[3Cimage 155.png\u001b[3Cimage 179.png\u001b[3Cimage 4.png\u001b[5Cimage 63.png\u001b[4Cimage 87.png\r\nimage 109.png\u001b[3Cimage 132.png\u001b[3Cimage 156.png\u001b[3Cimage 18.png\u001b[4Cimage 40.png\u001b[4Cimage 64.png\u001b[4Cimage 88.png\r\nimage 11.png\u001b[4Cimage 133.png\u001b[3Cimage 157.png\u001b[3Cimage 180.png\u001b[3Cimage 41.png\u001b[4Cimage 65.png\u001b[4Cimage 89.png\r\nimage 110.png\u001b[3Cimage 134.png\u001b[3Cimage 158.png\u001b[3Cimage 19.png\u001b[4Cimage 42.png\u001b[4Cimage 66.png\u001b[4Cimage 9.png\r\nimage 111.png\u001b[3Cimage 135.png\u001b[3Cimage 159.png\u001b[3Cimage 2.png\u001b[5Cimage 43.png\u001b[4Cimage 67.png\u001b[4Cimage 90.png\r\nimage 112.png\u001b[3Cimage 136.png\u001b[3Cimage 16.png\u001b[4Cimage 20.png\u001b[4Cimage 44.png\u001b[4Cimage 68.png\u001b[4Cimage 91.png\r\nimage 113.png\u001b[3Cimage 137.png\u001b[3Cimage 160.png\u001b[3Cimage 21.png\u001b[4Cimage 45.png\u001b[4Cimage 69.png\u001b[4Cimage 92.png\r\nimage 114.png\u001b[3Cimage 138.png\u001b[3Cimage 161.png\u001b[3Cimage 22.png\u001b[4Cimage 46.png\u001b[4Cimage 7.png\u001b[5Cimage 93.png\r\nimage 115.png\u001b[3Cimage 139.png\u001b[3Cimage 162.png\u001b[3Cimage 23.png\u001b[4Cimage 47.png\u001b[4Cimage 70.png\u001b[4Cimage 94.png\r\nimage 116.png\u001b[3Cimage 14.png\u001b[4Cimage 163.png\u001b[3Cimage 24.png\u001b[4Cimage 48.png\u001b[4Cimage 71.png\u001b[4Cimage 95.png\r\nimage 117.png\u001b[3Cimage 140.png\u001b[3Cimage 164.png\u001b[3Cimage 25.png\u001b[4Cimage 49.png\u001b[4Cimage 72.png\u001b[4Cimage 96.png\r\nimage 118.png\u001b[3Cimage 141.png\u001b[3Cimage 165.png\u001b[3Cimage 26.png\u001b[4Cimage 5.png\u001b[5Cimage 73.png\u001b[4Cimage 97.png\r\nimage 119.png\u001b[3Cimage 142.png\u001b[3Cimage 166.png\u001b[3Cimage 27.png\u001b[4Cimage 50.png\u001b[4Cimage 74.png\u001b[4Cimage 98.png\r\nimage 12.png\u001b[4Cimage 143.png\u001b[3Cimage 167.png\u001b[3Cimage 28.png\u001b[4Cimage 51.png\u001b[4Cimage 75.png\u001b[4Cimage 99.png\r\nimage 120.png\u001b[3Cimage 144.png\u001b[3Cimage 168.png\u001b[3Cimage 29.png\u001b[4Cimage 52.png\u001b[4Cimage 76.png\u001b[4Cimage.png\r\nimage 121.png\u001b[3Cimage 145.png\u001b[3Cimage 169.png\u001b[3Cimage 3.png\u001b[5Cimage 53.png\u001b[4Cimage 77.png\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % rename\r\nzsh: command not found: rename\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % find . -type f -name \"image *.png\" -exec bash -c 'mv \"$0\" \"${0// /-}\"' {} \\;\r\n\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % find . -type f -name \"image-*.png\" -exec bash -c 'mv \"$0\" \"${0//- / }\"' {} \\;\r\n\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % ㅣㄴ\r\nzsh: command not found: ㅣㄴ\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % ls\r\nimage-1.png\u001b[5Cimage-122.png\u001b[3Cimage-146.png\u001b[3Cimage-17.png\u001b[4Cimage-30.png\u001b[4Cimage-54.png\u001b[4Cimage-78.png\r\nimage-10.png\u001b[4Cimage-123.png\u001b[3Cimage-147.png\u001b[3Cimage-170.png\u001b[3Cimage-31.png\u001b[4Cimage-55.png\u001b[4Cimage-79.png\r\nimage-100.png\u001b[3Cimage-124.png\u001b[3Cimage-148.png\u001b[3Cimage-171.png\u001b[3Cimage-32.png\u001b[4Cimage-56.png\u001b[4Cimage-8.png\r\nimage-101.png\u001b[3Cimage-125.png\u001b[3Cimage-149.png\u001b[3Cimage-172.png\u001b[3Cimage-33.png\u001b[4Cimage-57.png\u001b[4Cimage-80.png\r\nimage-102.png\u001b[3Cimage-126.png\u001b[3Cimage-15.png\u001b[4Cimage-173.png\u001b[3Cimage-34.png\u001b[4Cimage-58.png\u001b[4Cimage-81.png\r\nimage-103.png\u001b[3Cimage-127.png\u001b[3Cimage-150.png\u001b[3Cimage-174.png\u001b[3Cimage-35.png\u001b[4Cimage-59.png\u001b[4Cimage-82.png\r\nimage-104.png\u001b[3Cimage-128.png\u001b[3Cimage-151.png\u001b[3Cimage-175.png\u001b[3Cimage-36.png\u001b[4Cimage-6.png\u001b[5Cimage-83.png\r\nimage-105.png\u001b[3Cimage-129.png\u001b[3Cimage-152.png\u001b[3Cimage-176.png\u001b[3Cimage-37.png\u001b[4Cimage-60.png\u001b[4Cimage-84.png\r\nimage-106.png\u001b[3Cimage-13.png\u001b[4Cimage-153.png\u001b[3Cimage-177.png\u001b[3Cimage-38.png\u001b[4Cimage-61.png\u001b[4Cimage-85.png\r\nimage-107.png\u001b[3Cimage-130.png\u001b[3Cimage-154.png\u001b[3Cimage-178.png\u001b[3Cimage-39.png\u001b[4Cimage-62.png\u001b[4Cimage-86.png\r\nimage-108.png\u001b[3Cimage-131.png\u001b[3Cimage-155.png\u001b[3Cimage-179.png\u001b[3Cimage-4.png\u001b[5Cimage-63.png\u001b[4Cimage-87.png\r\nimage-109.png\u001b[3Cimage-132.png\u001b[3Cimage-156.png\u001b[3Cimage-18.png\u001b[4Cimage-40.png\u001b[4Cimage-64.png\u001b[4Cimage-88.png\r\nimage-11.png\u001b[4Cimage-133.png\u001b[3Cimage-157.png\u001b[3Cimage-180.png\u001b[3Cimage-41.png\u001b[4Cimage-65.png\u001b[4Cimage-89.png\r\nimage-110.png\u001b[3Cimage-134.png\u001b[3Cimage-158.png\u001b[3Cimage-19.png\u001b[4Cimage-42.png\u001b[4Cimage-66.png\u001b[4Cimage-9.png\r\nimage-111.png\u001b[3Cimage-135.png\u001b[3Cimage-159.png\u001b[3Cimage-2.png\u001b[5Cimage-43.png\u001b[4Cimage-67.png\u001b[4Cimage-90.png\r\nimage-112.png\u001b[3Cimage-136.png\u001b[3Cimage-16.png\u001b[4Cimage-20.png\u001b[4Cimage-44.png\u001b[4Cimage-68.png\u001b[4Cimage-91.png\r\nimage-113.png\u001b[3Cimage-137.png\u001b[3Cimage-160.png\u001b[3Cimage-21.png\u001b[4Cimage-45.png\u001b[4Cimage-69.png\u001b[4Cimage-92.png\r\nimage-114.png\u001b[3Cimage-138.png\u001b[3Cimage-161.png\u001b[3Cimage-22.png\u001b[4Cimage-46.png\u001b[4Cimage-7.png\u001b[5Cimage-93.png\r\nimage-115.png\u001b[3Cimage-139.png\u001b[3Cimage-162.png\u001b[3Cimage-23.png\u001b[4Cimage-47.png\u001b[4Cimage-70.png\u001b[4Cimage-94.png\r\nimage-116.png\u001b[3Cimage-14.png\u001b[4Cimage-163.png\u001b[3Cimage-24.png\u001b[4Cimage-48.png\u001b[4Cimage-71.png\u001b[4Cimage-95.png\r\nimage-117.png\u001b[3Cimage-140.png\u001b[3Cimage-164.png\u001b[3Cimage-25.png\u001b[4Cimage-49.png\u001b[4Cimage-72.png\u001b[4Cimage-96.png\r\nimage-118.png\u001b[3Cimage-141.png\u001b[3Cimage-165.png\u001b[3Cimage-26.png\u001b[4Cimage-5.png\u001b[5Cimage-73.png\u001b[4Cimage-97.png\r\nimage-119.png\u001b[3Cimage-142.png\u001b[3Cimage-166.png\u001b[3Cimage-27.png\u001b[4Cimage-50.png\u001b[4Cimage-74.png\u001b[4Cimage-98.png\r\nimage-12.png\u001b[4Cimage-143.png\u001b[3Cimage-167.png\u001b[3Cimage-28.png\u001b[4Cimage-51.png\u001b[4Cimage-75.png\u001b[4Cimage-99.png\r\nimage-120.png\u001b[3Cimage-144.png\u001b[3Cimage-168.png\u001b[3Cimage-29.png\u001b[4Cimage-52.png\u001b[4Cimage-76.png\u001b[4Cimage.png\r\nimage-121.png\u001b[3Cimage-145.png\u001b[3Cimage-169.png\u001b[3Cimage-3.png\u001b[5Cimage-53.png\u001b[4Cimage-77.png\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % find . -type f -name \"image-*.png\" -exec bash -c 'mv \"$0\" \"${0//- / }\"' {} \\;\r\n\r\nyonghwankim@gim-yonghwan-ui-MacBookAir img % cd ..     \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add/rm <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/app.json\r\n\u001b[8Cmodified:   .obsidian/community-plugins.json\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   ch03/.DS_Store\r\n\u001b[8Cdeleted:    ch03/img/image 1.png\r\n\u001b[8Cdeleted:    ch03/img/image 10.png\r\n\u001b[8Cdeleted:    ch03/img/image 100.png\r\n\u001b[8Cdeleted:    ch03/img/image 101.png\r\n\u001b[8Cdeleted:    ch03/img/image 102.png\r\n\u001b[8Cdeleted:    ch03/img/image 103.png\r\n\u001b[8Cdeleted:    ch03/img/image 104.png\r\n\u001b[8Cdeleted:    ch03/img/image 105.png\r\n\u001b[8Cdeleted:    ch03/img/image 106.png\r\n\u001b[8Cdeleted:    ch03/img/image 107.png\r\n\u001b[8Cdeleted:    ch03/img/image 108.png\r\n\u001b[8Cdeleted:    ch03/img/image 109.png\r\n\u001b[8Cdeleted:    ch03/img/image 11.png\r\n\u001b[8Cdeleted:    ch03/img/image 110.png\r\n\u001b[8Cdeleted:    ch03/img/image 111.png\r\n\u001b[8Cdeleted:    ch03/img/image 112.png\r\n\u001b[8Cdeleted:    ch03/img/image 113.png\r\n\u001b[8Cdeleted:    ch03/img/image 114.png\r\n\u001b[8Cdeleted:    ch03/img/image 115.png\r\n\u001b[8Cdeleted:    ch03/img/image 116.png\r\n\u001b[8Cdeleted:    ch03/img/image 117.png\r\n\u001b[8Cdeleted:    ch03/img/image 118.png\r\n\u001b[8Cdeleted:    ch03/img/image 119.png\r\n\u001b[8Cdeleted:    ch03/img/image 12.png\r\n\u001b[8Cdeleted:    ch03/img/image 120.png\r\n\u001b[8Cdeleted:    ch03/img/image 121.png\r\n\u001b[8Cdeleted:    ch03/img/image 122.png\r\n\u001b[8Cdeleted:    ch03/img/image 123.png\r\n\u001b[8Cdeleted:    ch03/img/image 124.png\r\n\u001b[8Cdeleted:    ch03/img/image 125.png\r\n\u001b[8Cdeleted:    ch03/img/image 126.png\r\n\u001b[8Cdeleted:    ch03/img/image 127.png\r\n\u001b[8Cdeleted:    ch03/img/image 128.png\r\n\u001b[8Cdeleted:    ch03/img/image 129.png\r\n\u001b[8Cdeleted:    ch03/img/image 13.png\r\n\u001b[8Cdeleted:    ch03/img/image 130.png\r\n\u001b[8Cdeleted:    ch03/img/image 131.png\r\n\u001b[8Cdeleted:    ch03/img/image 132.png\r\n\u001b[8Cdeleted:    ch03/img/image 133.png\r\n\u001b[8Cdeleted:    ch03/img/image 134.png\r\n\u001b[8Cdeleted:    ch03/img/image 135.png\r\n\u001b[8Cdeleted:    ch03/img/image 136.png\r\n\u001b[8Cdeleted:    ch03/img/image 137.png\r\n\u001b[8Cdeleted:    ch03/img/image 138.png\r\n\u001b[8Cdeleted:    ch03/img/image 139.png\r\n\u001b[8Cdeleted:    ch03/img/image 14.png\r\n\u001b[8Cdeleted:    ch03/img/image 140.png\r\n\u001b[8Cdeleted:    ch03/img/image 141.png\r\n\u001b[8Cdeleted:    ch03/img/image 142.png\r\n\u001b[8Cdeleted:    ch03/img/image 143.png\r\n\u001b[8Cdeleted:    ch03/img/image 144.png\r\n\u001b[8Cdeleted:    ch03/img/image 145.png\r\n\u001b[8Cdeleted:    ch03/img/image 146.png\r\n\u001b[8Cdeleted:    ch03/img/image 147.png\r\n\u001b[8Cdeleted:    ch03/img/image 148.png\r\n\u001b[8Cdeleted:    ch03/img/image 149.png\r\n\u001b[8Cdeleted:    ch03/img/image 15.png\r\n\u001b[8Cdeleted:    ch03/img/image 150.png\r\n\u001b[8Cdeleted:    ch03/img/image 151.png\r\n\u001b[8Cdeleted:    ch03/img/image 152.png\r\n\u001b[8Cdeleted:    ch03/img/image 153.png\r\n\u001b[8Cdeleted:    ch03/img/image 154.png\r\n\u001b[8Cdeleted:    ch03/img/image 155.png\r\n\u001b[8Cdeleted:    ch03/img/image 156.png\r\n\u001b[8Cdeleted:    ch03/img/image 157.png\r\n\u001b[8Cdeleted:    ch03/img/image 158.png\r\n\u001b[8Cdeleted:    ch03/img/image 159.png\r\n\u001b[8Cdeleted:    ch03/img/image 16.png\r\n\u001b[8Cdeleted:    ch03/img/image 160.png\r\n\u001b[8Cdeleted:    ch03/img/image 161.png\r\n\u001b[8Cdeleted:    ch03/img/image 162.png\r\n\u001b[8Cdeleted:    ch03/img/image 163.png\r\n\u001b[8Cdeleted:    ch03/img/image 164.png\r\n\u001b[8Cdeleted:    ch03/img/image 165.png\r\n\u001b[8Cdeleted:    ch03/img/image 166.png\r\n\u001b[8Cdeleted:    ch03/img/image 167.png\r\n\u001b[8Cdeleted:    ch03/img/image 168.png\r\n\u001b[8Cdeleted:    ch03/img/image 169.png\r\n\u001b[8Cdeleted:    ch03/img/image 17.png\r\n\u001b[8Cdeleted:    ch03/img/image 170.png\r\n\u001b[8Cdeleted:    ch03/img/image 171.png\r\n\u001b[8Cdeleted:    ch03/img/image 172.png\r\n\u001b[8Cdeleted:    ch03/img/image 173.png\r\n\u001b[8Cdeleted:    ch03/img/image 174.png\r\n\u001b[8Cdeleted:    ch03/img/image 175.png\r\n\u001b[8Cdeleted:    ch03/img/image 176.png\r\n\u001b[8Cdeleted:    ch03/img/image 177.png\r\n\u001b[8Cdeleted:    ch03/img/image 178.png\r\n\u001b[8Cdeleted:    ch03/img/image 179.png\r\n\u001b[8Cdeleted:    ch03/img/image 18.png\r\n\u001b[8Cdeleted:    ch03/img/image 180.png\r\n\u001b[8Cdeleted:    ch03/img/image 19.png\r\n\u001b[8Cdeleted:    ch03/img/image 2.png\r\n\u001b[8Cdeleted:    ch03/img/image 20.png\r\n\u001b[8Cdeleted:    ch03/img/image 21.png\r\n\u001b[8Cdeleted:    ch03/img/image 22.png\r\n\u001b[8Cdeleted:    ch03/img/image 23.png\r\n\u001b[8Cdeleted:    ch03/img/image 24.png\r\n\u001b[8Cdeleted:    ch03/img/image 25.png\r\n\u001b[8Cdeleted:    ch03/img/image 26.png\r\n\u001b[8Cdeleted:    ch03/img/image 27.png\r\n\u001b[8Cdeleted:    ch03/img/image 28.png\r\n\u001b[8Cdeleted:    ch03/img/image 29.png\r\n\u001b[8Cdeleted:    ch03/img/image 3.png\r\n\u001b[8Cdeleted:    ch03/img/image 30.png\r\n\u001b[8Cdeleted:    ch03/img/image 31.png\r\n\u001b[8Cdeleted:    ch03/img/image 32.png\r\n\u001b[8Cdeleted:    ch03/img/image 33.png\r\n\u001b[8Cdeleted:    ch03/img/image 34.png\r\n\u001b[8Cdeleted:    ch03/img/image 35.png\r\n\u001b[8Cdeleted:    ch03/img/image 36.png\r\n\u001b[8Cdeleted:    ch03/img/image 37.png\r\n\u001b[8Cdeleted:    ch03/img/image 38.png\r\n\u001b[8Cdeleted:    ch03/img/image 39.png\r\n\u001b[8Cdeleted:    ch03/img/image 4.png\r\n\u001b[8Cdeleted:    ch03/img/image 40.png\r\n\u001b[8Cdeleted:    ch03/img/image 41.png\r\n\u001b[8Cdeleted:    ch03/img/image 42.png\r\n\u001b[8Cdeleted:    ch03/img/image 43.png\r\n\u001b[8Cdeleted:    ch03/img/image 44.png\r\n\u001b[8Cdeleted:    ch03/img/image 45.png\r\n\u001b[8Cdeleted:    ch03/img/image 46.png\r\n\u001b[8Cdeleted:    ch03/img/image 47.png\r\n\u001b[8Cdeleted:    ch03/img/image 48.png\r\n\u001b[8Cdeleted:    ch03/img/image 49.png\r\n\u001b[8Cdeleted:    ch03/img/image 5.png\r\n\u001b[8Cdeleted:    ch03/img/image 50.png\r\n\u001b[8Cdeleted:    ch03/img/image 51.png\r\n\u001b[8Cdeleted:    ch03/img/image 52.png\r\n\u001b[8Cdeleted:    ch03/img/image 53.png\r\n\u001b[8Cdeleted:    ch03/img/image 54.png\r\n\u001b[8Cdeleted:    ch03/img/image 55.png\r\n\u001b[8Cdeleted:    ch03/img/image 56.png\r\n\u001b[8Cdeleted:    ch03/img/image 57.png\r\n\u001b[8Cdeleted:    ch03/img/image 58.png\r\n\u001b[8Cdeleted:    ch03/img/image 59.png\r\n\u001b[8Cdeleted:    ch03/img/image 6.png\r\n\u001b[8Cdeleted:    ch03/img/image 60.png\r\n\u001b[8Cdeleted:    ch03/img/image 61.png\r\n\u001b[8Cdeleted:    ch03/img/image 62.png\r\n\u001b[8Cdeleted:    ch03/img/image 63.png\r\n\u001b[8Cdeleted:    ch03/img/image 64.png\r\n\u001b[8Cdeleted:    ch03/img/image 65.png\r\n\u001b[8Cdeleted:    ch03/img/image 66.png\r\n\u001b[8Cdeleted:    ch03/img/image 67.png\r\n\u001b[8Cdeleted:    ch03/img/image 68.png\r\n\u001b[8Cdeleted:    ch03/img/image 69.png\r\n\u001b[8Cdeleted:    ch03/img/image 7.png\r\n\u001b[8Cdeleted:    ch03/img/image 70.png\r\n\u001b[8Cdeleted:    ch03/img/image 71.png\r\n\u001b[8Cdeleted:    ch03/img/image 72.png\r\n\u001b[8Cdeleted:    ch03/img/image 73.png\r\n\u001b[8Cdeleted:    ch03/img/image 74.png\r\n\u001b[8Cdeleted:    ch03/img/image 75.png\r\n\u001b[8Cdeleted:    ch03/img/image 76.png\r\n\u001b[8Cdeleted:    ch03/img/image 77.png\r\n\u001b[8Cdeleted:    ch03/img/image 78.png\r\n\u001b[8Cdeleted:    ch03/img/image 79.png\r\n\u001b[8Cdeleted:    ch03/img/image 8.png\r\n\u001b[8Cdeleted:    ch03/img/image 80.png\r\n\u001b[8Cdeleted:    ch03/img/image 81.png\r\n\u001b[8Cdeleted:    ch03/img/image 82.png\r\n\u001b[8Cdeleted:    ch03/img/image 83.png\r\n\u001b[8Cdeleted:    ch03/img/image 84.png\r\n\u001b[8Cdeleted:    ch03/img/image 85.png\r\n\u001b[8Cdeleted:    ch03/img/image 86.png\r\n\u001b[8Cdeleted:    ch03/img/image 87.png\r\n\u001b[8Cdeleted:    ch03/img/image 88.png\r\n\u001b[8Cdeleted:    ch03/img/image 89.png\r\n\u001b[8Cdeleted:    ch03/img/image 9.png\r\n\u001b[8Cdeleted:    ch03/img/image 90.png\r\n\u001b[8Cdeleted:    ch03/img/image 91.png\r\n\u001b[8Cdeleted:    ch03/img/image 92.png\r\n\u001b[8Cdeleted:    ch03/img/image 93.png\r\n\u001b[8Cdeleted:    ch03/img/image 94.png\r\n\u001b[8Cdeleted:    ch03/img/image 95.png\r\n\u001b[8Cdeleted:    ch03/img/image 96.png\r\n\u001b[8Cdeleted:    ch03/img/image 97.png\r\n\u001b[8Cdeleted:    ch03/img/image 98.png\r\n\u001b[8Cdeleted:    ch03/img/image 99.png\r\n\u001b[8Cdeleted:    ch03/img/image.png\r\n\u001b[8Cmodified:   \"ch03/\\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244\\353\\245\\274 \\354\\234\\204\\355\\225\\234 \\353\\217\\204\\354\\273\\244 \\355\\231\\234\\354\\232\\251.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m.obsidian/plugins/obsidian-paste-image-rename/\r\n\u001b[8C.obsidian/plugins/templater-obsidian/\r\n\u001b[8Cimg/\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % ",
-                        "rows": 6
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch03 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % ls\r\nTemplates\u001b[7Cch03\u001b[12Cch04\u001b[12Cimg\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git status\u001b[1B\u001b[77D",
+                        "rows": 19
                       }
                     }
                   },
@@ -151,7 +164,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -161,7 +173,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "컨테이너 서비스를 위한 도커 활용 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -207,8 +219,19 @@
               "icon": "lucide-list",
               "title": "컨테이너 서비스를 위한 도커 활용 의 개요"
             }
+          },
+          {
+            "id": "e98893292de1b848",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -224,22 +247,26 @@
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
       "terminal:Open terminal": false,
-      "templater-obsidian:Templater": false
+      "templater-obsidian:Templater": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "a1577163eb956c0c",
+  "active": "8e17bf07d3391f97",
   "lastOpenFiles": [
     "ch03/컨테이너 서비스를 위한 도커 활용.md",
-    "img/image-181.png",
-    "img/image-0.png",
-    "img/image-1.png",
-    "img/image-167.png",
-    "img/image-150.png",
-    "img/image-144.png",
-    "img/image-178.png",
-    "img/image-3.png",
-    "img/image-26.png",
-    "img/image-32.png",
+    "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
+    "ch04",
+    "ch04",
+    "img/image-446.png",
+    "img/image-445.png",
+    "img/image-444.png",
+    "img/image-443.png",
+    "img/image-442.png",
+    "img/image-441.png",
+    "img/image-440.png",
+    "img/image-439.png",
+    "img/image-438.png",
+    "img/image-437.png",
     "img",
     "Templates/image-name.js",
     "Templates/image-name.js.md",
