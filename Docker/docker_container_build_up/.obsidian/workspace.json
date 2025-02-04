@@ -4,39 +4,94 @@
     "type": "split",
     "children": [
       {
-        "id": "7500a93ce3130f6b",
-        "type": "tabs",
+        "id": "1083196904bcf6f1",
+        "type": "split",
         "children": [
           {
-            "id": "eea729a9afb27f90",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
-                "mode": "source",
-                "source": false
+            "id": "7500a93ce3130f6b",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "eea729a9afb27f90",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "컨테이너 서비스를 위한 도커 활용"
+                }
               },
-              "icon": "lucide-file",
-              "title": "컨테이너 서비스를 위한 도커 활용"
-            }
+              {
+                "id": "2c272a2f38831c99",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "컨테이너 환경 구성을 위한 Dockerfile 구성"
+                }
+              }
+            ],
+            "currentTab": 1
           },
           {
-            "id": "2c272a2f38831c99",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "컨테이너 환경 구성을 위한 Dockerfile 구성"
-            }
+            "id": "715c35086847a7a8",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "69c2721a276a7f96",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch04",
+                      "focus": false,
+                      "profile": {
+                        "args": [],
+                        "executable": "/bin/zsh",
+                        "name": "",
+                        "platforms": {
+                          "darwin": true
+                        },
+                        "pythonExecutable": "python3",
+                        "restoreHistory": true,
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": "integrated",
+                        "useWin32Conhost": true
+                      },
+                      "serial": {
+                        "columns": 71,
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch04 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\ngOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch04/\\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\355\\231\\230\\352\\262\\275 \\352\\265\\254\\354\\204\\261\\354\\235\\204 \\354\\234\\204\\355\\225\\234 Dockerfile \\352\\265\\254\\354\\204\\261.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mimg/image-447.png\r\n\u001b[8Cimg/image-448.png\r\n\u001b[8Cimg/image-449.png\r\n\u001b[8Cimg/image-450.png\r\n\u001b[8Cimg/image-451.png\r\n\u001b[8Cimg/image-452.png\r\n\u001b[8Cimg/image-453.png\r\n\u001b[8Cimg/image-454.png\r\n\u001b[8Cimg/image-455.png\r\n\u001b[8Cimg/image-456.png\r\n\u001b[8Cimg/image-457.png\r\n\u001b[8Cimg/image-458.png\r\n\u001b[8Cimg/image-459.png\r\n\u001b[8Cimg/image-460.png\r\n\u001b[8Cimg/image-461.png\r\n\u001b[8Cimg/image-462.png\r\n\u001b[8Cimg/image-463.png\r\n\u001b[8Cimg/image-464.png\r\n\u001b[8Cimg/image-465.png\r\n\u001b[8Cimg/image-466.png\r\n\u001b[8Cimg/image-467.png\r\n\u001b[8Cimg/image-468.png\r\n\u001b[8Cimg/image-469.png\r\n\u001b[8Cimg/image-470.png\r\n\u001b[8Cimg/image-471.png\r\n\u001b[8Cimg/image-472.png\r\n\u001b[8Cimg/image-473.png\r\n\u001b[8Cimg/image-474.png\r\n\u001b[8Cimg/image-475.png\r\n\u001b[8Cimg/image-476.png\r\n\u001b[8Cimg/image-477.png\r\n\u001b[8Cimg/image-478.png\r\n\u001b[8Cimg/image-479.png\r\n\u001b[8Cimg/image-480.png\r\n\u001b[8Cimg/image-481.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nadd .\r\ngi\u001b[7;1m%\u001b[0m                                                                    \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % gitg\r\nit \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nad",
+                        "rows": 16
+                      }
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "Terminal: zsh"
+                }
+              }
+            ]
           }
         ],
-        "currentTab": 1
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -197,22 +252,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "2c272a2f38831c99",
+  "active": "69c2721a276a7f96",
   "lastOpenFiles": [
-    "ch03/컨테이너 서비스를 위한 도커 활용.md",
     "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
+    "img/image-481.png",
+    "img/image-480.png",
+    "img/image-479.png",
+    "img/image-478.png",
+    "img/image-477.png",
+    "img/image-476.png",
+    "img/image-475.png",
+    "img/image-474.png",
+    "img/image-473.png",
+    "img/image-472.png",
+    "ch03/컨테이너 서비스를 위한 도커 활용.md",
     "ch04",
     "ch04",
-    "img/image-446.png",
-    "img/image-445.png",
-    "img/image-444.png",
-    "img/image-443.png",
-    "img/image-442.png",
-    "img/image-441.png",
-    "img/image-440.png",
-    "img/image-439.png",
-    "img/image-438.png",
-    "img/image-437.png",
     "img",
     "Templates/image-name.js",
     "Templates/image-name.js.md",
