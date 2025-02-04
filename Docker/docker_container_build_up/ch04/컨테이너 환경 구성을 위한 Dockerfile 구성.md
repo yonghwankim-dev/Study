@@ -191,7 +191,710 @@ COPY ./app
 위와 같이 작업 영역 전체를 COPY하는 것은 비효율적입니다.
 
 #### ADD
+ADD 명령문은 호스트 환경의 파일이나 디렉토리를 이미지 안에 복사하는 방법만이 아니라 URL 주소를 이용하여 다운로드 받아 이미지에 넣을수도 있고, 압축파일(tar, tar.gz)인 경우에는 지정한 경로에 압축 해제하여 이미지에 넣을 수 있습니다.
+ADD 명령문은 빌드 컨텍스트에 포함되지 않는 외부 디렉토리의 파일은 이미지에 복사하여 넣을 수 없습니다. **디렉토리를 이미지에 추가할 때는 `/`로 끝나야 합니다.**
+
+**사용방법**
+```Dockerfile
+ADD index.html /usr/share/nginx/html
+ADD http://example.com/view/customer.tar.gz /workspace/data/
+ADD website.tar.gz /var/www/html
+```
+
+#### ENV
+이미지에 환경 변수를 설정합니다. Dockerfile에서 ENV를 설정하면 RUN, WORKDIR 등에서 환경변수를 이용해서 반복을 피할 수 있습니다.
+
+**사용방법**
+```Dockerfile
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV PATH /usr/local/nginx/bin:$PATH
+ENV Python 3.9
+```
+
+**사용예시**
+RUN이나 WORKDIR 등의 이미지 파일 안에서 ENV 명령문으로 설정한 환경 변수를 사용하기 위해서는 `$환경변수명` 을 사용해야 합니다.
+```Dockerfile
+ENV NODE_VERSION v15.1.0
+RUN curl -SLO "http://nodejs.org/dist/$NODE_VESION/node-$NODE_VERSION-linux-x64.tar.gz" \
+&& tar -xzf "node-$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
+&& rm "node-$NODE_VERSION-linux-x64.tar.gz"
+```
+
+#### EXPOSE
+컨테이너에서 외부로의 접근을 노출할 **포트와 프로토콜을 설정합니다.** docker run 명령어로 컨테이너 실행시 추가적으로 포트를 추가할 수 있습니다.
+
+**사용방법**
+```Dockerfile
+EXPOSE 80
+EXPOSE 80/tcp
+EXPOSE 443
+EXPOSE 8080/udp
+```
+
+#### VOLUME
+볼륨을 이미지 빌드시 미리 설정합니다. VOLUME으로 지정된 컨테이너의 경로는 볼륨의 기본 경로 /var/lib/docker와 자동으로 연결됩니다.
+
+**사용방법**
+```Dockerfile
+VOLUME /var/log
+VOLUME /var/www/html
+VOLUME /etc/nginx
+VOLUME ["/project"]
+```
+
+#### USER
+컨테이너의 기본 사용자는 `root`입니다. 애플레킹션이 권한 없이 서비스를 실행할 수 있으면 USER를 통해 다른 사용자로 변경해서 사용이 가능합니다.
+
+**사용방법**
+```Dockerfile
+RUN ["useradd", "kevinlee"]
+USER kevinlee
+RUN ["/bin/bash", "-c", "date"]
+```
+
+#### WORKDIR
+컨테이너 안에서 작업할 경로(디렉토리) 설정하기 위해서 사용합니다. WORKDIR 명령문을 설정하면 RUN, CMD< ENTRYPOINT, COPY, ADD 명령문은 해당 디렉토리를 기준으로 실행합니다. 지정한 경로가 없으면 자동 생성되고, 컨테이너 실행 이후에 컨테이너 접속하면 WORKDIR 명령문으로 지정한 경로로 접속합니다.
+
+**사용방법**
+```Dockerfile
+WORKDIR /workspace
+WORKDIR /usr/share/nginx/html
+WORKDIR /go/src/app
+```
+
+#### ARG
+docker build 명령어를 실행하는 시점에 변수 값을 전달하기 위해서 `--build-arg=인자`  옵션을 사용합니다.
+비밀키, 계정 비밀번호 같은 **시크릿 정보를 사용시 이미지에 그대로 존재해서 노출될 위험이 있기 때문에 주의해야 합니다.**
+
+**사용방법**
+이미지 파일에 ARG 명령문 정의
+```Dockerfile
+# Dockerfile에 ARG 변수를 정의
+ARG db_name
+```
+
+이미지 파일을 기반으로 이미지를 빌드하는 경우에 `--build-arg` 옵션을 이용하여 인자 값을 전달합니다.
+```shell
+docker build --build-arg db_name=jpub_db .
+```
+
+입력받은 변수값을 다음과 같이 명령에 사용합니다.
+```Dockerfile
+CMD db_start.sh -h 127.0.0.1 -d ${db_name}
+```
+
+#### ONBULID
+베이스 이미지가 빌드될 때는 실행되지 않지만, 해당 이미지를 기반으로 다른 Dockerfile이 빌드될때 실행되는 명령어입니다.
+
+ONBUILD를 사용한 베이스 이미지(base.Dockerfile)
+```Dockerfile
+# 베이스 이미지
+FROM node:18
+
+# 하위 이미지에서 실행될 명령어 (트리거)
+ONBUILD COPY package.json /app/
+ONBUILD RUN npm install
+```
+
+베이스 이미지를 사용하는 실제 Dockerfile
+```Dockerfile
+# base.Dockerfile을 기반으로 하는 새로운 Dockerfile
+FROM my-base-image
+
+# `ONBUILD` 명령어가 실행됨
+COPY . /app/
+CMD ["node", "server.js"]
+```
+- my-base-image가 빌드할때는 ONBUILD가 실행되지 않음
+- my-base-image 기반으로 빌드시 ONBUILD 명령문에 정의된 명령문 실행
+
+ONBUILD 명령문을 사용하는 이유는 반복적으로 사용할 베이스 이미지에서 공통 작업을 자동화할 때 유용합니다.
+
+#### STOPSIGNAL
+기본적으로 docker stop 명령어 실행시 컨테이너에게 SIGTERM을 보내서 정상적으로 정지하도록 합니다. 이때 다른 시그널을 전달하고자 하는 경우에 STOPSIGNAL 명령문을 사용합니다.
+
+**사용방법**
+```Dockerfile
+STOPSIGNAL SIGKILL
+```
+
+#### HEALTHCHECK
+컨테이너의 프로세스 상태를 체크하고자 하는 경우에 사용합니다.
+
+HEALTHCHECK는 하나의 명령문만 유효하고 여러개 작성하면 마지막에 선언된 HEATHCHECK 명령문만 적용됩니다.
+
+**HEALTHCHECK 옵션**
+
+| 옵션             | 설명       | 기본값 |
+| -------------- | -------- | --- |
+| --interval=(초) | 헬스 체크 간격 | 30s |
+| --timeout=(초)  | 타임 아웃    | 30s |
+| --retries=N    | 타임 아웃 횟수 | 3   |
+
+**HEALTHCHECK 상태 코드**
+
+| EIXT 코드      | 설명                   |
+| ------------ | -------------------- |
+| 0: success   | 컨테이너 정상 상태           |
+| 1: unhealthy | 컨테이너 올바르게 작동하지 않는 상태 |
+| 2: starting  | 예약된 코드               |
+docker ps 명령어를 이용하여 STATUS 컬럼에서 확인 가능합니다.
+
+**사용방법**
+1분 마다 CMD에 있는 명령을 실행하여 3초 이상 소요되면 한번의 실패로 간주하고 5번  실패시 컨테이너의 상태는 "unhealthy"로 변경됩니다.
+```Dockerfile
+HEALTHCHECK --interval=1m --timout=3s --retries=5 \
+	CMD curl -f http://localhost || exit 1
+```
+curl -f 옵션은 HTTP 요청이 실패(4xx, 5xx)하는 경우에 오류 메시지를 출력하지 않고 종료 코드(1)를 반환합니다.
+http://localhost에 성공하면 exit 0이 되고 오류시 exit 1이 됩니다.
+
+#### SHELL
+Dockerfile 내부에서 사용할 기본 쉘을 지정하는 경우에 사용합니다. 기본값으로 "/bin/sh"가 설정됩니다.
+
+**사용방법**
+```Dockerfile
+SHELL ["/bin/bash", "-c"]
+RUN echo "Docker world!"
+```
+
+### 4.2.2 이미지 생성을 위한 Dockerfile 빌드
+#### 이미지 빌드
+docker build 명령어를 사용하여 Dockerfile을 가지고 이미지를 빌드할 수 있습니다. 명령어 형식은 다음과 같습니다.
+```shell
+docker build [OPTIONS] 이미지명:[태그] 경로 | URL | 압축파일(tar | tar.gz)
+```
+- 옵션
+	- -t(tag) : 이미지에 태그를 지정하는 경우에 추가합니다. (예: app:1.0)
+	- -f(file) : Dockerfile이 아닌 다른 파일명을 사용하는 경우에 추가합니다.
+		- 예: -f Dockerfile_nginx
+- 이미지명:[태그]
+	- 이미지 이름과 태그 설정
+	- 태그는 생략 가능, 생략하게 되면 latest로 표시
+	- 태그는 버전 관리 차원으로 고려해야 합니다.
+		- 예: my-nginx-image:1.19_v1.0
+- 경로
+	- 디렉토리 단위의 개발을 권장하였고, 현재 경로에 Dockerfile이 있따면 "."을 사용합니다. 또는 Dockerfile이 있는 절대 경로를 작성해도 됩니다.
+- URL
+	- Dockerfile이 포함된 깃허브 URL을 제공하는 경우에 사용할 수 있습니다.
+	- 예: docker build -t phpserver:2.0 github.com/brayanlee/docker-phpserver
+- 압축 파일
+	- 압축 파일 안에 Dockerfile이 포함되어 있는 경우에 사용할 수 있습니다.
+	- 예: docker build -f apple/Dockerfile http://server/appl.tar.gz
+		- 위 압축 파일의 appl 디렉토리 안에 있는 Dockerfile을 이미지 빌드에 사용합니다.
+
+#### 왜 Dockerfile이 필요한가?
+우리는 신규 서비스에 사용할 애플리케이션 서버 구성이 필요합니다. 우리는 서버를 세팅하고 개발 팀에서 요청한 것들을 준비할 것입니다. 운영체제, 환경 설정, 애플리케이션 서비스 테스트까지 거쳐서 개발팀에서 받은 웹 소스를 넣고 배포합니다. 
+우리는 위와 같은 과정을 컨테이너를 실행시킨 다음에 하나하나 설치하고 실행할 수 있습니다.
+하지만 위와 같은 과정은 사람이 하나씩 수행하기 복잡하고 시간이 많이 소요됩니다.
+
+위와 같은 문제를 해결하기 위해서 Dockerfile을 사용합니다.
+
+다음 방법들은 서버를 직접 구축하는 것과, 컨테이너를 실행시킨 다음에 서버를 세팅하는 방법, 마지막으로 Dockerfile을 이용해서 이미지를 생성하는 방법을 비교한 것입니다.
+##### 방법1: 서버를 직접 구축
+서버를 직접 구축해봅니다. 우선은 httpd 패키지를 설치하고 80번 포트가 열려있는지 확인합니다.
+```shell
+sudo yum update
+sudo yum -y install httpd
+sudo service httpd start
+sudo service httpd status
+# httpd가 사용하는 80번 포트가 열렸는지 확인
+sudo netstat -nlp | grep 80
+```
+![[img/image-447.png]]
+
+연결 확인을 위해서 curl 명령어로 요청을 날려봅니다.
+```shell
+curl localhost:80
+```
+![[img/image-448.png]]
+
+메인 페이지를 간단하게 변경하고 테스트해봅니다.
+```shell
+cd /var/www/html/
+vim index.html
+```
+
+index.html
+```
+<h1>Welcome to my webserver!</h1>
+```
+
+```shell
+curl localhost:80
+```
+![[img/image-449.png]]
+
+웹 프로그래밍을 위해서 PHP를 설치합니다.
+```shell
+sudo yum -y install php php-cli php-common php-mysql
+sudo systemctl start httpd
+sudo systemctl enable httpd
+```
+
+다음 경로로 이동해서 index.php 파일을 작성합니다.
+```shell
+cd /var/www/html
+vim index.php
+```
+
+index.php
+```text
+<?php
+	phpinfo();
+?>
+```
+
+curl 명령어를 이용하여 index.php 파일을 요청합니다.
+```shell
+curl localhost/index.php
+```
+![[img/image-450.png]]
+
+호스트 운영체제에서 위와 같은 방법으로 httpd와 php를 직접 설치하여 서버를 실행시켜 보았습니다. 이러한 인프라 작업은 규모가 클수록 인프라 구성 관리에 부담이 늘어납니다.
+
+#### 방법2: 컨테이너를 실행 시킨 다음에 서버를 구축하는 방법
+우선은 docker 프로세스를 이용하여 ubuntu 컨테이너를 생성합니다.
+```shell
+docker run -it -d --name=myweb -p 8080:80 ubuntu:14.04
+docker exec -it myweb bash
+```
+
+방법1에서와 같이 컨테이너 환경에서 동일하게 httpd와 php를 설치합니다.
+```shell
+apt-get update
+apt-get install -y apache2
+service apache2 start
+```
+
+두번째 터미널을 이용하여 호스트 운영체제에서 서버 요청을 날려봅니다.
+```shell
+curl localhost:8080
+```
+![[img/image-451.png]]
+실행 결과 정상적으로 apache2 홈페이지에서 랜더링 되었습니다.
+
+첫번째 터미널에서 vim을 이용하여 나만의 index.html을 생성합니다.
+```shell
+mv /var/www/html/index.html /var/www/html/index.html.org
+vim /var/www/html/index.html
+```
+
+index.html
+```html
+<h1> Hello, Docker application.</h1>
+```
+
+두번째 터미널에서 다시 확인합니다.
+```shell
+curl localhost:8080
+```
+![[img/image-452.png]]
+정상적으로 변경이 완료되었습니다.
+
+첫번째 터미널에서 컨테이너 안에서 PHP 설치하고 phpinfo() 함수로 확인합니다.
+```shell
+apt-get -y install php5
+vi /var/www/html/index.php
+```
+
+index.php
+```php
+<?php
+	phpinfo();
+?>
+```
+
+컨테이너 안에서 apache2 서비스를 재시작합니다.
+```shell
+service apache2 restart
+```
+
+두번째 터미널에서 php 웹 페이지를 확인합니다.
+![[img/image-453.png]]
+
+myweb 컨테이너의 상태를 확인해봅니다.
+```shell
+docker ps
+```
+![[img/image-454.png]]
+
+컨테이너에서 변경한 모든 내용을 이미지로 저장한 . 뒤컨테이너로 실행해봅니다.
+```shell
+docker commit myweb myphpapp:1.0
+```
+![[img/image-455.png]]
+
+도커 이미지를 확인해봅니다.
+```shell
+docker images
+```
+![[img/image-456.png]]
+
+커밋한 이미지(myphpapp:1.0)를 기반으로 phpapp 컨테이너를 실행합니다. 그전에 실행한 myweb은 종료합니다.
+```shell
+docker stop myweb
+docker rm myweb
+docker run -it -d --name=phpapp -p "8080:80" myphpapp:1.0
+```
+
+```shell
+curl localhost:8080
+```
+![[img/image-457.png]]
+실행 결과를 보면 서버로부터 아무 응답이 없습니다. 이는 apache2 프로세스가 실행되고 있지 않기 때문입니다.
+
+직접 phpapp 컨테이너로 접속하여 apache2 서비스를 시작하고 다시 시도해봅니다.
+```shell
+docker exec -it phpapp bash
+```
+![[img/image-458.png]]
+
+```
+service apache2 start
+```
+
+다시 호스트 운영체제에서 curl 명령어를 이용하여 요청해봅니다.
+```
+curl localhost:8080
+```
+![[img/image-459.png]]
+
+위와 같이 컨테이너에 접속하여 apache2 프로세스를 다시 실행시켜서 정상적인 결과가 나왔지만, 매번 아파치 서비스를 수동으로 시작해야 한다면 매우 번거로울 것입니다.
+
+위와 같은 문제를 해결하기 위해서는 생성한 베이스 이미지가 컨테이너 실행시 자동으로 아파치 서비스를 실행한다면 편할 것입니다. 이를 위해서 Dockerfile의 CMD를 활용합니다.
+
+그러기 위해서는 호스트 운영체제에서 phpapp 디렉토리를 생성하고 해당 디렉토리로 이동합니다.
+```shell
+mkdir phpapp
+cd phpapp
+```
+
+phpapp 디렉토리 안에서 Dockerfile을 생성합니다.
+```shell
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+FROM myphpapp:1.0
+MAINTAINER nemo <yonghwankim.dev@gmail.com>
+EXPOSE 80
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+```
+
+Dockerfile을 이용하여 이미지 빌드합니다.
+```shell
+docker build -t myphpapp:2.0 .
+```
+
+이미지 빌드 결과를 확인합니다.
+```shell
+docker images | grep myphpapp
+```
+![[img/image-460.png]]
+
+현재 실행중인 myphpapp:1.0 컨테이너를 제거합니다.
+```shell
+docker stop phpapp
+docker rm phpapp
+```
+
+docker run 명령어를 이용하여 myphpapp:2.0 이미지를 기반으로 컨테이너를 실행합니다.
+```shell
+docker run -it -d --name=phpapp -p 8080:80 myphpapp:2.0
+```
+
+curl 명령어를 이용하여 테스트해봅니다.
+```shell
+curl localhost:8080
+```
+![[img/image-461.png]]
+실행 결과를 보면 별도의 아파치 프로세스를 실행하지 않고도 정상적으로 출력되는 것을 볼수 있습니다. 이는 컨테이너 실행시 CMD 명령문에 의해서 자동 실행된 것이기 때문입니다.
+
+문제점
+- 이번 작업도 사용자 의존성을 가지고 docker commit을 이용하여 이미지를 생성하였습니다.  다시 Dockerfile로 다시 빌드하는 문제점을 갖고 있습니다.
+
+#### 방법3: Dockerfile을 이용한 방법
+인프라 구성 정보를 코드로 관리하면 애플리케이션 개발시 버전 관리 차원의 소스 코드 관리 가능해져서 변경 이력을 관리할 수 있습니다. 대표적으로 git이 존재합니다. 이처럼 **인프라 구성을 코드로 관리하는 것이 Dockerfile을 사용하는 이유**입니다.
+
+phpapp2 디렉토리를 생성하고 해당 디렉토리로 이동해서 Dockerfile을 생성합니다.
+```shell
+mkdir phpapp2
+cd phpapp2
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+# 베이스 이미지 설정
+FROM ubuntu:14.04
+# Dockerfile 작성자에 대한 정보 기록
+MAINTAINER nemo <yonghwankim.dev@gmail.com>
+# 생성하려는 이미지에 대한 설명 작성
+LABEL title "IaC, PHP application"
+# 필요한 패키지 설치
+RUN apt-get update && apt-get -y install apache2 php5 git curl ssh wget
+# apache2 환경 변수 설정 다음 값은 apache2 기본값
+ENV APACHE2_RUN_USER www-data \
+	APACHE2_RUN_GROUP www-data \
+	APACHE2_LOG_DIR /var/log/apache2 \
+	APACHE2_WEB_DIR /var/www/html \
+	APACHE2_PID_FILE /var/run/apache2/apache2.pid
+# 기본 웹 페이지 생성
+RUN echo 'Hello, Docker Application.' > /var/www/html/index.html
+# 테스트 PHP 웹 페이지 생성
+RUN echo '<?php phpinfo(); ?>' > /var/www/html/index.php
+# 80번 포트 노출
+EXPOSE 80
+# RUN, CMD, ENTRYPOINT의 명령어 실행되는 기준 디렉토리 설정
+WORKDIR /var/www/html
+# 이미지가 컨테이너로 실행 시 아파치 서비스를 자동 실행
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+```
+
+Dockerfile을 기준으로 myphpapp:3.0 이미지를 생성합니다.
+```shell
+docker build -t myphpapp:3.0 .
+```
+
+myphpapp:3.0 이미지를 기반으로 컨테이너를 실행합니다.
+```shell
+docker run -it -d --name=phpapp3 -p 8080:80 myphpapp:3.0
+docker ps
+```
+![[img/image-462.png]]
 
 
+8080포트가 LISTEN 상태인지 확인합니다.
+```shell
+sudo netstat -nlp | grep 8080
+```
 
+
+8080포트에 매핑된 PID를 가지고 조회해봅니다.
+```shell
+ps  -ef | grep {PID}
+```
+![[img/image-463.png]]
+
+curl 명령어를 이용하여 localhost:8080 으로 요청을 날려봅니다.
+```shell
+curl localhost:8080
+```
+![[img/image-464.png]]
+
+php 파일도 요청해봅니다.
+```shell
+curl localhost:8080/index.php
+```
+![[img/image-465.png]]
+
+생성한 이미지를 조회해봅니다.
+```shell
+docker image inspect myphpapp:3.0
+```
+![[img/image-466.png]]
+- RepoTags : myphpapp:3.0이 포함되어 있습니다.
+
+![[img/image-467.png]]
+- AUthor : nemo <yonghwankim.dev@gmail.com>로 설정되어 있습니다.
+
+![[img/image-468.png]]
+- Config.ExposedPorts : 80/tcp 포트로 설정되어 있습니다.
+- Env : APACHE2_RUN_USER, APACHE2_RUN_GROUP, APACHE2_LOG_DIR, APACHE2_WEB_DIR, APACHE2_PID_FILE 환경변수가 설정되어 있습니다.
+
+![[img/image-469.png]]
+- Cmd: apache2ctl 프로세스를 시작합니다.
+- WorkingDir : /var/www/html 디렉토리로 설정되어 있습니다.
+- Labels.title : "IaC, PHP application"이라고 설정되어 있습니다.
+
+### 4.2.3 이미지 빌드 과정
+#### Dockerfile 작성 라이프 사이클
+Dockerfile을 기반으로 이미지 빌드시 주의할 것은 사용자와의 대화식 처리가 아닌 자동화된 빌드여야 한다는 점입니다.
+
+python_lab 디렉토리 생성 및 이동 후 Dockerfile 파일을 생성합니다.
+```shell
+mkdir python_lab
+cd python_lab
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+FROM ubuntu:18.04
+RUN apt-get install python
+```
+
+Dockerfile을 기반으로 mypyapp:1.0 이미지를 빌드합니다.
+```shell
+docker build -t mypyapp:1.0 .
+```
+![[img/image-470.png]]
+
+위 실행 결과를 보면 이미지 빌드에 실패하였습니다. 이미지 빌드에 실패한 원인은 python 패키지를 찾지 못하였기 때문입니다. 패키지를 찾지 못한 이유는 ubuntu 기반의 이미지 생성시 반드시 apt-get update를 사전에 수행하여 최신 패키지 목록을 유지해야 하기 때문입니다.
+
+다시 Dockerfile을 수정합니다.
+```Dockerfile
+FROM ubuntu:18.04
+RUN apt-get update
+RUN apt-get install python
+```
+
+docker build 명령어를 이용하여 수정된 Dockerfile를 기반으로 이미지를 빌드합니다.
+```
+docker build -t mypyapp:1.0 .
+```
+![[img/image-471.png]]
+위 실행 결과를 보면 python 패키지 설치 도중에 정말 설치할것인지 한번 물어보는 구문에서 Abort 되어 이미지 빌드에 실패하였습니다.
+
+위와 같은 문제를 해결하기 위해서는 apt-get install 명령어 설치시 -y 옵션을 추가해야 합니다.
+```Dockerfile
+FROM ubuntu:18.04
+RUN apt-get update
+RUN apt-get install -y python
+```
+
+다시 이미지 빌드합니다.
+```shell
+docker build -t mypyapp:1.0 .
+```
+![[img/image-472.png]]
+위 실행결과를 보면 정상적으로 mypyapp 이미지가 빌드되었습니다.
+
+##### 빌드 컨텍스트
+- docker build를 실행하는 현재 작업 중인 디렉토리를 **빌드 컨텍스트**라고 부릅니다. 
+- 도커에서는 Dockerfile을 이용하여 이미지 빌드시 빈 디렉토리에서 생성하여 빌드하는 것을 권장합니다. 
+- -f 옵션으로 Dockerfile이 존재하는 다른 경로 지정도 가능합니다. 해당 옵션으로 빌드하게 되면 빌드 컨텍스트는 Dockerfile 위치와 상과없이 현재 디렉토리의 모든 파일과 디렉토리의 컨텐츠는 빌드 컨텍스트에 포함됩니다.  
+- 만약 빌드 컨텍스트에서 제외하고 싶은 대상이 있다면 `.dockerignore` 파일에 작성하여야 합니다.
+- 도커 데몬은 Dockerfile 빌드 시작시 Dockerfile에 포함된 모든 내용을 읽어서 유효성 검사를 수행합니다. 에러가 있으면 에러를 출력합니다.
+
+예를 들어 Dockerfile이 다음과 같습니다. RUN 명령문에서 오타가 발생하여 RUNN으로 명시하고 빌드해보겠습니다.
+```Dockerfile
+FROM ubuntu:18.04
+RUNN apt-get update
+RUN apt-get install -y python
+```
+
+```shell
+docker build -t mypyapp:1.0 .
+```
+![[img/image-473.png]]
+실행 결과를 보면 2번째 줄에서 에러가 발생한 것을 볼수 있습니다. 심지어 RUN 명령문 아니냐고 메시지를 출력합니다. 이와 같이 도커 데몬은 이미지 빌드시 유효성 검사도 같이 수행한다는 것을 알수 있습니다.
+
+이번에는 appimage 디렉토리를 생성하고 Dockerfile을 appimage 디렉토리로 이동시키겠습니다. 하지만 현재 위치는 python_lab 디렉토리에 위치합니다.
+```shell
+mkdir appimage && mv Dockerfile ./appimage
+```
+
+그런 다음에 도커 이미지 빌드시 -f 옵션을 사용하여 Dockerfile을 지정하여 이미지를 빌드해보겠습니다.
+```shell
+docker build -t mypyapp:1.0 -f ./appimage/Dockerfile .
+```
+![[img/image-474.png]]
+다른 경로에 있는 Dockerfile을 -f 옵션으로 지정해서 이미지를 빌드해도 동일하게 빌드 컨텍스트로 전달하여 빌드합니다.
+
+#### 이미지 빌드 과정
+다음 실습은 Nginx를 포함하는 이미지 빌드 과정입니다.
+
+appimage 디렉토리를 생성하고 해당 디렉토리로 이동합니다. 그리고 해당 디렉토리 안에서 Dockerfile_nginx 파일을 생성합니다.
+```shell
+mkdir appimage
+cd appimage
+vim Dockerfile_nginx
+```
+
+Dockerfile_nginx
+```Dockerfile
+# 베이스 이미지 설정
+FROM ubuntu:latest
+# 작성자 정보 설정
+MAINTAINER "nemo <yonghwankim.dev@gamil.com>"
+# 필요 패키지 설치
+RUN apt-get update && apt-get install -y nginx curl vim
+# nginx 기본 웹 페이지 작성
+RUN echo 'Docker Container Application.' > /var/www/html/index.html
+# 80 포트 노출
+EXPOSE 80
+# 컨테이너 시작시 nginx 데몬 자동 실행
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+위 Dockerfile_nginx를 가지고 이미지를 빌드합니다.
+```shell
+docker build -f Dockerfile_nginx -t webapp:1.0 .
+```
+![[img/image-475.png]]
+
+동일한 이미지를 두번째 태그하여 빌드해봅니다.
+```
+docker build -f Dockerfile_nginx -t webapp:2.0 .
+```
+![[img/image-476.png]]
+위 실행 결과를 보면 2번째 3번째 단계인 RUN 명령문이 캐시된 것을 볼수 있습니다. 이것을 **빌드 캐시** 라고 합니다. docker build 명령어 수행시 빠른 빌드를 위해서 이미지 캐시를 사용합니다. `--no-cache`옵션을 이용해서 캐시를 사용하지 않을 수 있습니다. `--cache-from`을 이용해서 다른 이미지로부터 빌드 캐시를 사용해서 빌드할두 있습니다.
+
+도커 18.09 버전에 Buildkit이 추가되어 이미지 빌드에 향상된 기능을 제공합니다. 기능은 다음과 같습니다.
+- 빌드 과정을 병렬 처리해서 더 빠른 빌드 제공
+- 사용하지 않은 빌드 단계를 찾아서 비활성화
+- 노출하면 안되는 정보가 포함되는 경우 비밀 구축이 가능
+- 빌드 주우 빌드 정보에 따라 변경된 파일만 잔송
+- 자동 빌드시 빌드 캐시의 우선순위를 정함
+
+#### 실습: Buildkit 적용
+Buildkit을 사용하려면 환경 변수 `DOCKER_BUILDKIT = 1`을 설정해야 합니다.
+```shell
+export DOCKER_BUILDKIT=1
+```
+![[img/image-477.png]]
+
+Dockerfile_nginx 파일을 이용하여 이미지를 빌드합니다.
+```shell
+docker build -f Dockerfile_nginx -t webapp:4.0 .
+```
+![[img/image-478.png]]
+
+또는 다음과 같이 이미지 빌드할 수 있습니다.
+```shell
+DOCKER_BUILDKIT=1 docker build -f Dockerfile_nginx -t webapp:5.0 .
+```
+![[img/image-479.png]]
+
+출력 결과를 보고서 형태로 볼 수 있습니다.
+```shell
+docker build -f Dockerfile_nginx -t webapp:6.0 --progress=plain .
+```
+![[img/image-480.png]]
+![[img/image-481.png]]
+
+
+# 4.3 Dockerfile을 활용한 다양한 이미지 생성
+Dockerfile은 임시 컨테이너를 생성하고 파일에 명시된 명령어를 실행한 다음에 읽기 전용 이미지 레이어를 생성합니다. 이러한 생성-실행-읽기 전용 이미지 생성하는 과정을 반복하여 이미지를 빌드합니다.
+
+예를 들어 다음과 같은 Dockerfile이 존재합니다.
+```Dockerfile
+FROM ubuntu:20.04
+COPY app.py /app
+RUN apt-get update && apt-get -y install python python-pip
+RUN pip install -r requirements.txt
+CMD python /app/app.py
+```
+
+위 Dockerfile의 더 빠른 빌드를 위한 개선사항은 다음과 같습니다.
+1. Ubuntu 대신 알파인 리눅스(Alpine Linux)와 같이 용량이 작은 리눅스 선택하세요. 또한 알파인 리눅스 기반에 파이썬이 이미 설치되어 있다면 빌드 성능을 향상시킬수 있습니다.
+2. COPY에 사용된 소스 코드 복사는 RUN 명령어를 사용한 파이썬과 파이프와 같은 패키짖 ㅗㅇ속성 설치 이후에 작성하세요. 만약 COPY 명령문이 변경되면 그 이후의 모든 레이어의 빌드 캐시는 무효화되기 때문에 다시 레이어 빌드가 발생합니다.
+
+다음은 개선사항을 반영한 Dockerfile입니다.
+```Dockerfile
+FROM python:3.9.2-alpine
+RUN apt-get update && apt-get -y install python python-pip
+RUN pip install -r requirements.txt
+COPY app.py /app
+CMD python /app/app.py
+```
+
+최적화된 Dockerfile을 통해서 빌드를 수행하면 명령문에 따른 일기 전용 이미지 레이어가 생성됩니다. 그리고 추가되는 변경 사항을 위해서 끄기 가능한 컨테이너 레이어를 임시로 추가하여 새 파일을 추가하고 수정하게 됩니다. 이러한 과정으로 생성된 이미지 레이어는 /var/lib/docker 디렉토리 아래에 추가됩니다.
+
+위와 같이 생성한 이미지로 여러개의 컨테이너를 실행해도 읽기 전용 이미지 레이어는 보존되며 컨테이너마다 병합된 스냅숏 형태로 제공합니다.
+
+### 4.3.1 다양한 방법의 Dockerfile 작성
 
