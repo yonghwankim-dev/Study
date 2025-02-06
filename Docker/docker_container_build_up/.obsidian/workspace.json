@@ -4,57 +4,42 @@
     "type": "split",
     "children": [
       {
-        "id": "1083196904bcf6f1",
+        "id": "2865448c6a5fb28b",
         "type": "split",
         "children": [
           {
-            "id": "7500a93ce3130f6b",
+            "id": "b4deeb7c531534fc",
             "type": "tabs",
             "children": [
               {
-                "id": "eea729a9afb27f90",
+                "id": "e67d8dbcfd9a9791",
                 "type": "leaf",
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                    "file": "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "컨테이너 서비스를 위한 도커 활용"
-                }
-              },
-              {
-                "id": "2c272a2f38831c99",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "컨테이너 환경 구성을 위한 Dockerfile 구성"
+                  "title": "도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포"
                 }
               }
-            ],
-            "currentTab": 1
+            ]
           },
           {
-            "id": "715c35086847a7a8",
+            "id": "c10465359806e159",
             "type": "tabs",
             "children": [
               {
-                "id": "69c2721a276a7f96",
+                "id": "7645105c68af35f5",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
                   "type": "terminal:terminal",
                   "state": {
                     "terminal:terminal": {
-                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch04",
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch05",
                       "focus": false,
                       "profile": {
                         "args": [],
@@ -78,8 +63,8 @@
                       },
                       "serial": {
                         "columns": 71,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch04 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\ngOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch04/\\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\355\\231\\230\\352\\262\\275 \\352\\265\\254\\354\\204\\261\\354\\235\\204 \\354\\234\\204\\355\\225\\234 Dockerfile \\352\\265\\254\\354\\204\\261.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mimg/image-447.png\r\n\u001b[8Cimg/image-448.png\r\n\u001b[8Cimg/image-449.png\r\n\u001b[8Cimg/image-450.png\r\n\u001b[8Cimg/image-451.png\r\n\u001b[8Cimg/image-452.png\r\n\u001b[8Cimg/image-453.png\r\n\u001b[8Cimg/image-454.png\r\n\u001b[8Cimg/image-455.png\r\n\u001b[8Cimg/image-456.png\r\n\u001b[8Cimg/image-457.png\r\n\u001b[8Cimg/image-458.png\r\n\u001b[8Cimg/image-459.png\r\n\u001b[8Cimg/image-460.png\r\n\u001b[8Cimg/image-461.png\r\n\u001b[8Cimg/image-462.png\r\n\u001b[8Cimg/image-463.png\r\n\u001b[8Cimg/image-464.png\r\n\u001b[8Cimg/image-465.png\r\n\u001b[8Cimg/image-466.png\r\n\u001b[8Cimg/image-467.png\r\n\u001b[8Cimg/image-468.png\r\n\u001b[8Cimg/image-469.png\r\n\u001b[8Cimg/image-470.png\r\n\u001b[8Cimg/image-471.png\r\n\u001b[8Cimg/image-472.png\r\n\u001b[8Cimg/image-473.png\r\n\u001b[8Cimg/image-474.png\r\n\u001b[8Cimg/image-475.png\r\n\u001b[8Cimg/image-476.png\r\n\u001b[8Cimg/image-477.png\r\n\u001b[8Cimg/image-478.png\r\n\u001b[8Cimg/image-479.png\r\n\u001b[8Cimg/image-480.png\r\n\u001b[8Cimg/image-481.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nadd .\r\ngi\u001b[7;1m%\u001b[0m                                                                    \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % gitg\r\nit \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nad",
-                        "rows": 16
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch05 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\ngOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/plugins/obsidian-plugin-toc/data.json\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch04/\\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\355\\231\\230\\352\\262\\275 \\352\\265\\254\\354\\204\\261\\354\\235\\204 \\354\\234\\204\\355\\225\\234 Dockerfile \\352\\265\\254\\354\\204\\261.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mch05/\r\n\u001b[8Cimg/image-482.png\r\n\u001b[8Cimg/image-483.png\r\n\u001b[8Cimg/image-484.png\r\n\u001b[8Cimg/image-485.png\r\n\u001b[8Cimg/image-486.png\r\n\u001b[8Cimg/image-487.png\r\n\u001b[8Cimg/image-488.png\r\n\u001b[8Cimg/image-489.png\r\n\u001b[8Cimg/image-490.png\r\n\u001b[8Cimg/image-491.png\r\n\u001b[8Cimg/image-492.png\r\n\u001b[8Cimg/image-493.png\r\n\u001b[8Cimg/image-494.png\r\n\u001b[8Cimg/image-495.png\r\n\u001b[8Cimg/image-496.png\r\n\u001b[8Cimg/image-497.png\r\n\u001b[8Cimg/image-498.png\r\n\u001b[8Cimg/image-499.png\r\n\u001b[8Cimg/image-500.png\r\n\u001b[8Cimg/image-501.png\r\n\u001b[8Cimg/image-502.png\r\n\u001b[8Cimg/image-503.png\r\n\u001b[8Cimg/image-504.png\r\n\u001b[8Cimg/image-505.png\r\n\u001b[8Cimg/image-506.png\r\n\u001b[8Cimg/image-507.png\r\n\u001b[8Cimg/image-508.png\r\n\u001b[8Cimg/image-509.png\r\n\u001b[8Cimg/image-510.png\r\n\u001b[8Cimg/image-511.png\r\n\u001b[8Cimg/image-512.png\r\n\u001b[8Cimg/image-513.png\r\n\u001b[8Cimg/image-514.png\r\n\u001b[8Cimg/image-515.png\r\n\u001b[8Cimg/image-516.png\r\n\u001b[8Cimg/image-517.png\r\n\u001b[8Cimg/image-518.png\r\n\u001b[8Cimg/image-519.png\r\n\u001b[8Cimg/image-520.png\r\n\u001b[8Cimg/image-521.png\r\n\u001b[8Cimg/image-522.png\r\n\u001b[8Cimg/image-523.png\r\n\u001b[8Cimg/image-524.png\r\n\u001b[8Cimg/image-525.png\r\n\u001b[8Cimg/image-526.png\r\n\u001b[8Cimg/image-527.png\r\n\u001b[8Cimg/image-528.png\r\n\u001b[8Cimg/image-529.png\r\n\u001b[8Cimg/image-530.png\r\n\u001b[8Cimg/image-531.png\r\n\u001b[8Cimg/image-532.png\r\n\u001b[8Cimg/image-533.png\r\n\u001b[8Cimg/image-534.png\r\n\u001b[8Cimg/image-535.png\r\n\u001b[8Cimg/image-536.png\r\n\u001b[8Cimg/image-537.png\r\n\u001b[8Cimg/image-538.png\r\n\u001b[8Cimg/image-539.png\r\n\u001b[8Cimg/image-540.png\r\n\u001b[8Cimg/image-541.png\r\n\u001b[8Cimg/image-542.png\r\n\u001b[8Cimg/image-543.png\r\n\u001b[8Cimg/image-544.png\r\n\u001b[8Cimg/image-545.png\r\n\u001b[8Cimg/image-546.png\r\n\u001b[8Cimg/image-547.png\r\n\u001b[8Cimg/image-548.png\r\n\u001b[8Cimg/image-549.png\r\n\u001b[8Cimg/image-550.png\r\n\u001b[8Cimg/image-551.png\r\n\u001b[8Cimg/image-552.png\r\n\u001b[8Cimg/image-553.png\r\n\u001b[8Cimg/image-554.png\r\n\u001b[8Cimg/image-555.png\r\n\u001b[8Cimg/image-556.png\r\n\u001b[8Cimg/image-557.png\r\n\u001b[8Cimg/image-558.png\r\n\u001b[8Cimg/image-559.png\r\n\u001b[8Cimg/image-560.png\r\n\u001b[8Cimg/image-561.png\r\n\u001b[8Cimg/image-562.png\r\n\u001b[8Cimg/image-563.png\r\n\u001b[8Cimg/image-564.png\r\n\u001b[8Cimg/image-565.png\r\n\u001b[8Cimg/image-566.png\r\n\u001b[8Cimg/image-567.png\r\n\u001b[8Cimg/image-568.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nadd .",
+                        "rows": 18
                       }
                     }
                   },
@@ -252,19 +237,21 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "69c2721a276a7f96",
+  "active": "7645105c68af35f5",
   "lastOpenFiles": [
+    "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
+    "img/image-568.png",
+    "img/image-567.png",
+    "img/image-566.png",
+    "img/image-565.png",
+    "img/image-564.png",
+    "img/image-563.png",
+    "img/image-562.png",
+    "img/image-561.png",
+    "img/image-560.png",
+    "img/image-559.png",
     "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
-    "img/image-481.png",
-    "img/image-480.png",
-    "img/image-479.png",
-    "img/image-478.png",
-    "img/image-477.png",
-    "img/image-476.png",
-    "img/image-475.png",
-    "img/image-474.png",
-    "img/image-473.png",
-    "img/image-472.png",
+    "ch05",
     "ch03/컨테이너 서비스를 위한 도커 활용.md",
     "ch04",
     "ch04",

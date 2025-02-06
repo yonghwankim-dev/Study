@@ -1,3 +1,20 @@
+- [[#4.1 코드로 개발하는 컨테이너 인프라, Dockerfile|4.1 코드로 개발하는 컨테이너 인프라, Dockerfile]]
+	- [[#4.1 코드로 개발하는 컨테이너 인프라, Dockerfile#4.1.1 Iac와 Dockerfile|4.1.1 Iac와 Dockerfile]]
+	- [[#4.1 코드로 개발하는 컨테이너 인프라, Dockerfile#4.1.2 최적의 Dockerfile 만들기|4.1.2 최적의 Dockerfile 만들기]]
+- [[#4.2 Dockerfile 명령어와 이미지 빌드|4.2 Dockerfile 명령어와 이미지 빌드]]
+	- [[#4.2 Dockerfile 명령어와 이미지 빌드#4.2.1 Dockerfile 명령어|4.2.1 Dockerfile 명령어]]
+	- [[#4.2 Dockerfile 명령어와 이미지 빌드#4.2.2 이미지 생성을 위한 Dockerfile 빌드|4.2.2 이미지 생성을 위한 Dockerfile 빌드]]
+	- [[#4.2 Dockerfile 명령어와 이미지 빌드#4.2.3 이미지 빌드 과정|4.2.3 이미지 빌드 과정]]
+- [[#4.3 Dockerfile을 활용한 다양한 이미지 생성|4.3 Dockerfile을 활용한 다양한 이미지 생성]]
+	- [[#4.3 Dockerfile을 활용한 다양한 이미지 생성#4.3.1 다양한 방법의 Dockerfile 작성|4.3.1 다양한 방법의 Dockerfile 작성]]
+- [[#4.4 깃허브를 활용한 Dockerfile 코드 공유|4.4 깃허브를 활용한 Dockerfile 코드 공유]]
+	- [[#4.4 깃허브를 활용한 Dockerfile 코드 공유#4.4.1 깃허브 사용|4.4.1 깃허브 사용]]
+	- [[#4.4 깃허브를 활용한 Dockerfile 코드 공유#4.4.2 도커 허브의 자동화된 빌드와 깃허브|4.4.2 도커 허브의 자동화된 빌드와 깃허브]]
+- [[#4.5 개별 이미지 저장을 위한 Private Registry 구성|4.5 개별 이미지 저장을 위한 Private Registry 구성]]
+	- [[#4.5 개별 이미지 저장을 위한 Private Registry 구성#4.5.1 도커 레지스트리 컨테이너|4.5.1 도커 레지스트리 컨테이너]]
+	- [[#4.5 개별 이미지 저장을 위한 Private Registry 구성#4.5.2 도커 레지스트리 웹 GUI 컨테이너|4.5.2 도커 레지스트리 웹 GUI 컨테이너]]
+	- [[#4.5 개별 이미지 저장을 위한 Private Registry 구성#4.5.3 오픈 소스 컨테이너 레지스트리 소개|4.5.3 오픈 소스 컨테이너 레지스트리 소개]]
+
 # 4.1 코드로 개발하는 컨테이너 인프라, Dockerfile
 ## 4.1.1 Iac와 Dockerfile
 Dockerfile은 서버의 환경을 코드로 구성하는 방법입니다. Dockerfile 방법은 Iac 개념에서 출발합니다. Iac(Infrastructure as Code)는 인프라를 코드로 개발한다는 개념입니다. Iac가 필요한 이유는 다음과 같습니다.
@@ -24,7 +41,7 @@ Dockerfile은 서버의 환경을 코드로 구성하는 방법입니다. Docker
 	- 예를 들어 불필요한 ubuntu:20.04와 같은 이미지 기반을 사용하기 등이 있습니다. 너무 무겁고 불필요한 패키지가 많습니다.
 
 # 4.2 Dockerfile 명령어와 이미지 빌드
-### 4.2.1 Dockerfile 명령어
+## 4.2.1 Dockerfile 명령어
 #### FROM
 - 필수 명령어
 - 이미지의 베이스 이미지를 지정합니다.
@@ -358,7 +375,7 @@ SHELL ["/bin/bash", "-c"]
 RUN echo "Docker world!"
 ```
 
-### 4.2.2 이미지 생성을 위한 Dockerfile 빌드
+## 4.2.2 이미지 생성을 위한 Dockerfile 빌드
 #### 이미지 빌드
 docker build 명령어를 사용하여 Dockerfile을 가지고 이미지를 빌드할 수 있습니다. 명령어 형식은 다음과 같습니다.
 ```shell
@@ -709,7 +726,7 @@ docker image inspect myphpapp:3.0
 - WorkingDir : /var/www/html 디렉토리로 설정되어 있습니다.
 - Labels.title : "IaC, PHP application"이라고 설정되어 있습니다.
 
-### 4.2.3 이미지 빌드 과정
+## 4.2.3 이미지 빌드 과정
 #### Dockerfile 작성 라이프 사이클
 Dockerfile을 기반으로 이미지 빌드시 주의할 것은 사용자와의 대화식 처리가 아닌 자동화된 빌드여야 한다는 점입니다.
 
@@ -896,5 +913,718 @@ CMD python /app/app.py
 
 위와 같이 생성한 이미지로 여러개의 컨테이너를 실행해도 읽기 전용 이미지 레이어는 보존되며 컨테이너마다 병합된 스냅숏 형태로 제공합니다.
 
-### 4.3.1 다양한 방법의 Dockerfile 작성
+## 4.3.1 다양한 방법의 Dockerfile 작성
+#### 실습: 쉘 스크립트를 이용한 환경 구성
+- Ubuntu:18.04 버전을 베이스 이미지로 지정하고 apache2 패키지를 설치합니다.
+- 필요한 환경 구성을 쉘 스크립트로 생성하고, 컨테이너가 실행시 셸을 실행합니다.
+- 이미지 빌드시 Buildkit을 이용하면 여러 단계를 병렬 처리하기 때문에 기존의 docker build 방식보다 이미지 생성속도가 빠릅니다.
+
+webapp1 디렉토리를 생성 및 해당 디렉토리로 이동하고 Dockerfile을 생성합니다.
+```Dockerfile
+mkdir webapp1
+cd webapp1
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+# 베이스 이미지 설정
+FROM ubuntu:18.04
+# apache2 패키지 설치
+RUN apt-get update && apt-get -y install apache2
+# 웹 기본 페이지를 생성
+RUN echo 'Docker COntainer Application.' > /var/www/html/index.html
+# 필요한 작업 경로 생성
+RUN mkdir /webapp
+# apache2에 필요한 환경 변수, 디렉토리, 서비스 실행 등의 정보를 쉘 스크립트에 작성하고 실행 권한을 부여
+RUN echo '. /etc/apache2/envvars' > /webapp/run_http.sh && \
+    echo 'mkdir -p /var/run/apache2' >> /webapp/run_http.sh && \
+    echo 'mkdir -p /var/lock/apache2' >> /webapp/run_http.sh && \
+    echo '/usr/sbin/apache2 -D FOREGROUND' >> /webapp/run_http.sh && \
+    chmod 744 /webapp/run_http.sh
+# 80번 포트 설정
+EXPOSE 80
+# RUN 명령어로 작성된 쉘 스크립트를 컨테이너가 실행시 동작한다
+CMD /webapp/run_http.sh
+```
+- . /etc/apache2/envars 명령어에서 점(.)은 source 명령어와 같은 기능을 수행합니다.
+
+buildkit을 이용하여 이미지 빌드를 수행한다
+```shell
+DOCKER_BUILDKIT=1 docker build -t webapp:7.0 .
+```
+![[img/image-482.png]]
+
+webapp:7.0 이미지 정보를 조회합니다.
+```shell
+docker image history webapp:7.0
+```
+![[img/image-483.png]]
+실행 결과를 보면 Dockerfile에 명세된 명령문들이 포함된 것을 볼수 있습니다.
+
+webapp:7.0 이미지를 기반으로 컨테이너를 실행합니다.
+```shell
+docker run -it -d --name=webapp07 -p 8080:80 webapp:7.0
+docker ps
+```
+![[img/image-484.png]]
+![[img/image-485.png]]
+
+curl 명령어를 이용하여 webapp07 서버에 요청을 날려봅니다.
+```shell
+curl localhost:8080
+```
+![[img/image-486.png]]
+
+#### 실습: ADD 명령어의 자동 압축 해제 기능 활용
+- git clone 명령어를 이용하여 압축 파일로 되어 있는 웹 소스를 다운로드합니다.
+- Ubuntu:14.04을 베이스 이미지로 설정
+- 필요한 패키지 설치
+- ADD 명령어에 다운로드한 압축 파일(*.tar.gz)을 지정합니다.
+
+github에서 웹 소스 압축 파일을 내려받습니다.
+```shell
+git clone https://github.com/brayanlee/webapp.git
+```
+![[img/image-487.png]]
+실행 결과를 보면 webapp 디렉토리에 압축파일이 저장되어 있습니다.
+
+webapp 디렉토리의 이름을 webapp2로 변경하고 디렉토리로 이동합니다.
+```shell
+mv webapp webapp2
+cd webapp2
+ls
+```
+![[img/image-488.png]]
+
+웹 소스와 분리된 디렉토리에 Dockerfile을 생성합니다.
+```shell
+mkdir dockerfiles
+cd dockerfiles
+vim Dockerfile
+```
+![[img/image-489.png]]
+
+Dockerfile
+```Dockerfile
+# 베이스 이미지 설정
+FROM ubuntu:14.04
+# 작성자 정보 입력
+MAINTAINER "nemo <yonghwankim.dev@gmail.com>"
+# 이미지 설명
+LABEL "purpose"="container web application practices."
+# apt 업데이트 후 필요한 패키지 설치
+RUN apt-get update && apt-get -y install apache2 vim curl
+# 다운로드한 웹 소스 압축 파일을 아파치의 기본 웹 페이지 경로에 복사
+# ADD 명령어는 압축 파일을 해제하여 경로에 복사하는 장점이 있음
+ADD webapp.tar.gz /var/www/html
+# 작업 디렉토리 설정
+WORKDIR /var/www/html
+# 80번 포트 설정
+EXPOSE 80
+# 컨테이너 실행시 자동으로 아파치 데몬 실행
+CMD /usr/sbin/apachectl -D FOREGROUND
+```
+
+디렉토리를 이동하여 webapp.tar.gz 파일이 존재하는 webapp2 디렉토리로 이동합니다.
+```shell
+cd ..
+```
+![[img/image-490.png]]
+
+빌드킷을 이용하여 이미지를 빌드하기 위해서 DOCKER_BUILDKIT=1을 설정합니다.
+```shell
+export DOCKER_BUILDKIT=1
+```
+![[img/image-491.png]]
+
+docker build를 이용하여 이미지를 빌드합니다.
+```shell
+docker build -t webapp:8.0 -f ./dockerfiles/Dockerfile .
+```
+
+webapp:8.0 이미지 정보를 확인합니다.
+```shell
+docker image history webapp:8.0
+```
+![[img/image-492.png]]
+실행 결과를 보면 Dockerfile에 명세된 명령문들이 작성되어 있습니다.
+
+빌드한 이미지를 기반으로 컨테이너를 실행합니다.
+```shell
+docker run -it -d --name=webapp08 -p 8080:80 webapp:8.0
+```
+![[img/image-493.png]]
+
+curl 명령어를 이용하여 요청을 날려봅니다.
+```shell
+curl localhost:8080
+```
+![[img/image-494.png]]
+
+실행한 컨테이너로 배시쉘로 접속한 다음에 /var/www/html 디렉토리의 파일 목록을 확인합니다.
+```shell
+docker exec -it webapp08 bash
+```
+![[img/image-495.png]]
+
+#### 실습: 이미지 용량 절감을 위한 실습
+- 이전 실습과 유사항 이미지 생성
+- apt를 이용한 패키지 업데이트와 설치시 남게되는 캐시를 제거하여 생성되는 이미지의 용량이 감소됨을 확인합니다.
+- 캐시 삭제 관련 명령 : apt-get clean, apt-get autoremove, rm -rfv ~
+
+webapp3 디렉토리를 생성하고 해당 디렉토리로 이동합니다.
+```shell
+mkdir webapp3
+cd webapp3
+vim index.html
+```
+
+index.html
+```html
+<h1> hello docker conatiner application </h1>
+```
+
+Dockerfile을 생성합니다.
+```shell
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+# 베이스 이미지 설정
+FROM ubuntu:14.04
+# 작성자 정보 입력
+MAINTAINER "nemo <yonghwankim.dev@gmail.com>"
+# 이미지 설명
+LABEL "purpose"="webserver practice"
+# apt 업데이트 후 필요 패키지 설치
+# 이후 사용했던 apt 캐시를 모두 삭제
+# -qq 옵션은 quiet 옵션의 2단계로 로깅 정보를 삭제
+# --no-install-recommends 옵션을 통해 apt가 자동으로 권장 패키지 설치하지 않게하여 필요한 패키지만 설치
+RUN apt-get update && \
+    apt-get install apache2 -y -qq --no-install-recommends && \
+    apt-get clean -y && \
+	apt-get autoremove -y && \
+    rm -rfv /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# 작업 디렉토리 설정
+WORKDIR /var/www/html
+# WORKDIR을 통해 이동된 경로에 호스트 파일인 index.html을 복사
+ADD index.html .
+# 80 포트 설정
+EXPOSE 80
+# 컨테이너 실행시 자동으로 아파치 데몬 실행
+CMD apachectl -D FOREGROUND
+```
+
+DOCKER_BUILDKIT 환경 변수 설정합니다.
+```shell
+export DOCKER_BUILDKIT=1
+```
+
+Dockerfile을 기반으로 이미지를 생성합니다.
+```shell
+docker build -t webapp:9.0 .
+```
+![[img/image-496.png]]
+
+생성한 이미지 정보를 출력합니다.
+```shell
+docker image history webapp:9.0
+```
+![[img/image-497.png]]
+
+webapp:9.0 이미지를 기반으로 컨테이너를 실행합니다.
+```shell
+docker run -it -d --name=webapp09 -p 8080:80 webapp:9.0
+```
+![[img/image-498.png]]
+
+curl 명령어로 서버에 요청을 날려봅니다.
+```shell
+curl localhost:8080
+```
+![[img/image-499.png]]
+실행 결과를 보면 정상적으로 페이지가 출력되었습니다.
+
+Dockerfile RUN 명령문에 사용된 용량을 줄이는 방법은 다음과 같았습니다.
+- apt-get clean : 설치에 사용된 패키지 라이브러리, 임시 파일, 오래된 파일 삭제
+- apt-get autoremove : 다른 패키지들의 종속성을 충족시키기 위해 자동으로 설치된 패키지를 삭제
+- rm -rfv /tmp/* /var/lib/apt/lists/* /var/tmp/* : apt와 연관된 캐시 파일 모두 삭제
+
+이미지 사이즈를 보면  8.0과 9.0의 차이는 약 60MB 정도의 차이를 보입니다. 
+![[img/image-501.png]]
+
+![[img/image-500.png]]
+
+도커 이미지 레이어의 효율성 검증 도구로 **다이브(Dive)**가 있습니다. 도커 이미지 레이어의 콘텐츠를 보여주고 크기를 줄일수 있는 방법을 제공합니다.
+
+우선은 다이브 이미지를 다운로드합니다.
+```shell
+docker pull wagoodman/dive:latest
+```
+
+webapp:9.0은 dive1에서 다시 빌드하고, webapp:10.0은 dive2에서 다시 빌드합니다.
+```shell
+mkdir dive1 dive2
+cp Dockerfile dive1
+cp index.html dive1
+cd dive1
+```
+
+다음 dive 컨테이너를 실행시킵니다.
+```shell
+docker run -it --rm \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v "$(pwd)":"$(pwd)" \
+-w "$(pwd)" \
+-v "$HOME/.dive.yaml":"$HOME/.dive.yaml" \
+wagoodman/dive:latest build -t lab2-webapp:9.0 .
+```
+![[img/image-502.png]]
+
+이번에는 dive2 디렉토리에 Dockerfile과 index.html을 복사한 다음에 실행해보겠습니다.
+```shell
+cp Dockerfile dive2
+cp index.html dive2
+cd dive2
+```
+
+dive 컨테이너를 실행해봅니다.
+```shell
+docker run -it --rm \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v "$(pwd)":"$(pwd)" \
+-w "$(pwd)" \
+-v "$HOME/.dive.yaml":"$HOME/.dive.yaml" \
+wagoodman/dive:latest build -t lab2-webapp:10.0 .
+```
+
+![[img/image-503.png]]
+
+이미지 효율성 점수는 /tmp 디렉토리, apt나 yum을 통해 생성된 캐시 파일 등을 확인하여 점수화한 것입니다.
+이 비교 같은 경우에는 이미지 사이즈에 변화가 없지만, 하다보면 캐시 파일과 같은 이유로 사이즈가 늘어날수 도 있습니다.
+
+#### 실습: 파이썬 웹 프레임워크인 플라스크를 이용한 마이크로 웹 프레임워크 구축 실습
+- 플라스크(Flask)는 파이썬의 또 다른 웹 프레임워크인 장고(Django) 프레임워크와 비교해서 간결하고 가볍습니다. 언제든 확장 모듈을 포함하여 데이터베이스 등의 요구사항을 처리하며 개발할 수 있습니다.
+- 쿠버네티스를 이용한 플라스크 서버 구축시 사전에 도커를 이용해 테스트합니다.
+- 파이썬 이미지를 베이스 이미지로 지정하고, 필요한 패키지를 설치합니다.
+- 파이썬 코드로 플라스크 애플리케이션을 생성합니다.
+
+py_flask 디렉토리를 생성하고 해당 디렉토리로 이동합니다.
+```shell
+mkdir py_flask
+cd py_flask
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+# 베이스 이밎 설정
+FROM python:3.8-alpine
+# 업데이트 후 필요한 패키지 설치
+RUN apk update && apk add --no-cache bash
+RUN apk add --update build-base python3-dev py-pip
+# 플라스크 환경 변수 생성
+ENV LIBRARY_PATH=/lib:/usr/lib
+ENV FLASK_APP=py_app
+ENV FLASK_ENV=development
+# 포트 9000 설정
+EXPOSE 9000
+# 작업 디렉토리 설정
+WORKDIR /py_app
+COPY ./app/ .
+# requirements.txt 목록에 있는 모듈 설치
+RUN pip install -r requirements.txt
+# py_app.py 코드를 인수로 받아 실행
+ENTRYPOINT ["python"]
+CMD ["py_app.py"]
+```
+
+도커 이미지 빌드시 여러가지 Python 라이브러리가 사용됩니다. 이때 pip(Python 패키지들을 위한 패키지 매니저)를 이용해 하나하나 설치하지 않기 위해 requirements.txt를 이용해 한번에 설치해줍니다. 플라스크를 작성합니다. 다음 작업은 py_flask 디렉토리안에서 수행합니다.
+```shell
+mkdir app
+cd app
+vim requirements.txt
+```
+
+requirements.txt
+```txt
+Flask==1.1.2
+Jinja2<3.1
+itsdangerous<2.0
+Werkzeug<1.0
+```
+
+그 다음에 플라스크 애플리케이션 코드를 작성합니다.
+```shell
+vim py_app.py
+```
+
+py_app.py
+```python
+# 플라스크 모듈 불러오기
+from flask import Flask
+# 플라스크 애플리케이션 생성 코드 작성. py_app.py 파일 실행시 py_app 모듈이 실행되는 것이기 때문에 __name__에 py_app이 전달
+py_app = Flask(__name__)
+
+# 특정 주소에 접속하면 바로 다음 줄에 있는 python_flask() 함수를 호출하는 플라스크의 데코레이터이다
+@py_app.route('/')
+def python_flask():
+	return """
+	<h1 style="text-align:center;">Docker container application Python & Flask</h1>
+	<p style="text-align:center;">This is micro web framework for running Flask inside Docker.</p>
+	"""
+
+# 프로그램 시작시 아래 코드 실행. 플라스크의 기본 포트를 9000으로 설정
+if __name__ == '__main__':
+	py_app.run(host='0.0.0.0', port=9000, debug=True)
+```
+
+py_flask 디렉토리로 이동한 다음에 dockerignore 파일을 추가합니다. 이미지 안에 Dockerfile이 복사되지 않도록 .dockerignore 파일을 작성합니다. Dockerfile이 복사되지는 않지만 의도하여 추가하였습니다.
+```shell
+cd ..
+vim .dockerignore
+```
+
+.dockerignore
+```dockerignore
+Dockerfile
+```
+![[img/image-504.png]]
+
+tree 도구를 설치한 다음에 애플리케이션의 전체 구조를 확인합니다.
+```shell
+sudo yum install -y tree
+tree -a
+```
+![[img/image-505.png]]
+
+빌드킷을 이용해서 이미지를 빌드합니다.
+```shell
+DOCKER_BUILDKIT=1 docker build -t py_flask:1.0 .
+```
+
+생성된 이미지 정보 확인한 뒤 컨테이너 테스트를 수행합니다.
+```shell
+docker images | grep py_flask
+```
+![[img/image-506.png]]
+
+```
+docker image history py_flask:1.0
+```
+![[img/image-507.png]]
+
+컨테이너를 실행한다음에 9000번 포트로 요청을 날려봅니다.
+```shell
+docker run -it -d --name="py_app" -p 9000:9000 \
+-v ${PWD}/app:/py_app \
+py_flask:1.0
+```
+
+![[img/image-508.png]]
+
+```shell
+curl localhost:9000
+```
+![[img/image-509.png]]
+실행 결과를 보면 정상적으로 작성한 html을 출력하는 것을 볼수 있습니다.
+
+#### 실습: 빌드 의존성 제거와 이미지 경량화를 위한 다단계 빌드 실습
+- 다단계 빌드(multi-stage builds)는 FROM 명령을 이용해서 여러 단계의 빌드 과정을 만들고 다른 단계에 AS를 이용해 이름을 부여할 수 있습니다.
+- 다른 단계에서 생성된 결과중 애플리케이션에 필요한 데이터만 가져올 수 있어서 이미지를 경량화할 수 있습니다.
+- 다단계 빌드로 작성된 이미지는 모든 빌드 의존성이 하나의 환경에 포함되므로 빌드 의존성을 제거할 수 있습니다.
+	- 보통 애플리케이션을 빌드하기 위해서는 다음과 같은 의존성이 필요합니다.
+		- gcc, make, pip, node, maven
+	- 기존 방식에서는 빌드 도구와 런타임 파일이 모두 포함되어 있기 때문에 이미지가 커지고 보안 취약점이 증가합니다.
+
+우선은 실습을 하기 위해서 전용 디렉토리를 생성합니다.
+```shell
+mkdir goapp
+cd goapp
+# 웹 화면엣 호스트명과 컨테이너 IP를 출력하는 Go 언어 코드 작성
+vim goapp.go
+```
+
+goapp.go
+```go
+package main
+
+import(
+    "fmt"
+	"os"
+	"log"
+	"net"
+	"net/http"
+)
+func gohandler(w http.ResponseWriter, r *http.Request){
+	name, err := os.Hostname()
+	if err != nil {
+		fmt.Printf("error: %v\n", err)
+		return
+	}
+	fmt.Fprintln(w, "Hostname: ", name)
+
+	addr, err := net.LookupHost(name)
+	if err != nil {
+		fmt.Printf("error: %v\n", err)
+		return
+	}
+	fmt.Fprintln(w, "IP: ", addr)
+}
+func main(){
+	fmt.Fprintln(os.Stdout, "Go!!! Go Application .....")
+	http.HandleFunc("/", gohandler)
+	log.Fatal(http.ListenAndServe(":9090", nil))
+}
+```
+
+Dockerfile을 작성합니다.
+```shell
+vim Dockerfile
+```
+
+Dockerfile
+```Dockerfile
+# 베이스 이미지 설정, AS 절 부분에 단계 이름을 설정
+FROM golang:1.15-alpine3.12 AS gobuilder-stage
+# 작성자와 설명 작성
+MAINTAINER nemo <yonghwankim.dev@gmail.com>
+LABEL "purpose"="Service Deployment using Multi-stage builds."
+# 작업 디렉토리 설정
+WORKDIR /usr/src/goapp
+# 현재 디렉토리의 goapp.go 파이릉ㄹ 이미지 내부의 현재 경로(/usr/src/goapp)에 복사
+COPY goapp.go .
+# Go 언어 환경 변수 지정하고 /usr/local/bin 경로에 gostart 실행 파일 생성
+# CGO_ENABLED=0 : cgo 비활성화. 스크래치(scratch) 이미지에는 C 바이너리가 없기 때문에 cgo를 비활성화한 후 빌드해야 한다
+# GOOS=linux GOARCH=amd64: OS와 아키텍처 설정
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /usr/local/bin/gostart
+
+# 두번째 Dockerfile 작성 단계. 베이스 이미지 설정
+# 마지막 컨테이너느 실행 단계로써 일반적으로 단계명을 명시하지 않음
+FROM scratch AS runtime-stage
+# 첫번째 단계 이름을 --from 옵션에 넣으면 해당 단계로부터 파일을 가져와서 복사한다
+COPY --from=gobuilder-stage /usr/local/bin/gostart /usr/local/bin/gostart
+# 컨테이너 실행시 파일을 실행
+CMD ["/usr/local/bin/gostart"]
+```
+
+Dockerfile을 가지고 이미지를 빌드합니다.
+```shell
+DOCKER_BUILDKIT=1 docker build -t goapp:1.0 .
+```
+![[img/image-510.png]]
+
+빌드한 이미지 정보를 조회합니다.
+```shell
+docker images goapp
+```
+![[img/image-511.png]]
+
+컨테이너를 생성해서 서비스를 확인합니다.
+```shell
+docker run --name goapp-deploy \
+-p 9090:9090 -d \
+-h goapp-container \
+goapp:1.0
+```
+![[img/image-512.png]]
+
+```shell
+curl localhost:9090
+```
+![[img/image-513.png]]
+
+본인 도커 허브에 업로드합니다.
+```shell
+docker image tag goapp:1.0 nemo1107/goapp:1.0
+docker login
+docker push nemo1107/goapp:1.0
+```
+![[img/image-514.png]]
+
+위 실습에서 Dockerfile의 첫번째 단계를 **빌더 스테이지(builder stage)**라고 부릅니다. 두번째 단계에서 빌드된 실행 파일을 --from 옵션을 이용해서 복사합니다. 그러면 두번째 단계에서는 빌드 의존성을 제거하고 실행 의존성 만으로 실행할 수 있습니다.
+
+# 4.4 깃허브를 활용한 Dockerfile 코드 공유
+
+이번절에서는 깃허브를 이용해서 생성한 Dockerfile을 공유하고 관리하는 방법을 소개합니다.
+
+## 4.4.1 깃허브 사용
+- 깃허브 계정 회원가입
+- jpub-docker 저장소 생성
+- 실습 4-1의 Dockerfile을 작성하고 저장소로 커밋 수행
+- 저장소의 HTTPS URL 클론 복사
+
+jpub-docker 저장소 생성
+![[img/image-515.png]]
+
+저장소 내에서 Dockerfile 작성 후 커밋
+![[img/image-516.png]]
+![[img/image-517.png]]
+
+git clone 명령어를 이용하여 저장소를 다운로드받습니다.
+```shell
+git clone https://github.com/yonghwankim-dev/jpub-docker.git
+```
+![[img/image-518.png]]
+
+다운로드한 자료를 확인해봅니다.
+```shell
+cd jpub-docker
+ls
+cat Dockerfile
+```
+![[img/image-519.png]]
+![[img/image-520.png]]
+
+다운로드받은 Dockerfile을 이용하여 이미지를 빌드해봅니다.
+```shell
+docker build -t github-build:1.0 .
+```
+![[img/image-521.png]]
+
+```shell
+docker images github-build:1.0
+```
+![[img/image-522.png]]
+실행 결과를 보면 정상적으로 이미지가 빌드되었습니다.
+
+위 실습과 같이 Github 사이트를 이용하면 Dockerfile을 저장소에 원격으로 저장해두고 git 명령어를 이용하여 다운로드하여 빌드할수 있습니다.
+
+## 4.4.2 도커 허브의 자동화된 빌드와 깃허브
+도커 서브의 자동화 빌드가 21년 1월부터 유료화로 인해서 생략합니다.
+
+# 4.5 개별 이미지 저장을 위한 Private Registry 구성
+이번절에서는 빌드가 완료된 이미지를 회사 인프라 서버나 개인 용도의 저장소에 저장하는 Private Registory에 대해서 알아봅니다. 도커 허브 저장소가 있는데, 개인 용도의 저장소에 저장하는 이유는 도커 허브 저장소는 기본적으로 public 저장소이기 때문입니다. 도커 허브 저장소에서 프라이빗은 하나만 무료로 지원되고 그 이상은 유료입니다.
+
+Docker Private Registry는 자체적으로 운영하는 도커 이미지 저장소입니다. 공식 Docker Hub와 달리 기업이나 개인이 Private Network 내에서 안전하게 Docker 이미지를 관리할 수 있도록 합니다.
+
+## 4.5.1 도커 레지스트리 컨테이너
+도커 허브에서는 Private Registry 구성을 위해서 **registry 이미지**를 제공합니다. registry 이미지를 컨테이너로 실행하고 . 그안에 이미지를 로컬에 저장하는 방식입니다. 해당 이미지를 기반으로 한 컨테이너는 단순한 텍스트 방식만 지원하기 때문에 웹으로 검색하기 위해서는 GUI 인터페이스를 제공하는 다른 컨테이너와 결합해서 사용해야 합니다.
+
+![[img/image-526.png]]
+
+로컬 터미널에서 docker search 명령어를 이용해서 registry 이미지를 검색해봅니다.
+![[img/image-527.png]]
+실행 결과를 보면 제일 위의 registry가 오피셜한 이미지인 것을 알수 있습니다.
+
+registry 이미지를 내려받습니다.
+```shell
+docker pull registry
+docker images registry
+```
+![[img/image-528.png]]
+실행 결과를 보면 이미지의 사이즈가 25MB로써 굉장히 작은 것을 볼수 있습니다. 이미지를 저장하는 용도이기 때문에 다른 기능은 포함되어 있지 않고 도커 REgistry HTTP API V2가 구현되어 있습니다.
+
+docker 설정파일에서 daemon.json 파일을 작성합니다.
+```shell
+sudo vim /etc/docker/daemon.json
+```
+
+daemon.json
+```json
+{
+	"insecure-registries": ["3.35.207.14:5000"]
+}
+```
+
+도커 정보를 출력하여 Insecure Registries에 추가한 IP 및 포트가 출력되는지 확인합니다.
+```shell
+docker info
+```
+![[img/image-529.png]]
+
+Private Registry를 위한 컨테이너를 실행합니다. 볼륨 설정, 포트 연결, 자동 재시작 옵션을 사용합니다.
+```shell
+docker run -d \
+-v /home/ec2-user/registry_data:/var/lib/registry \
+-p 5000:5000 \
+--restart=always \
+--name=local-registry \
+registry
+```
+![[img/image-530.png]]
+
+컨테이너와 호스트가 포트로 잘 연결되었는지 확인합니다.
+```shell
+sudo netstat -nlp | grep 5000
+```
+![[img/image-531.png]]
+- tcp 기준 PID가 1599619인것을 확인합니다.
+
+도커 프록시 정보를 확인합니다.
+```shell
+ps -ef | grep 1599619 | grep -v grep
+```
+![[img/image-532.png]]
+실행 결과를 보면 5000포트에 컨테이너와 연결된 것을 확인하였습니다.
+
+저장소를 curl 명령어를 이용하여 조회해봅니다.
+```shell
+curl -XGET localhost:5000/v2/_catalog
+```
+![[img/image-533.png]]
+실행 결과를 보면 아직 아무 저장소도 없는 것을 확인할 수 있습니다.
+
+4.3절의 실습4-5에서 생성했던 goapp 이미지를 Private Registry에 업로드합니다.
+```shell
+docker image tag goapp:1.0 3.35.207.14:5000/goapp:1.0
+```
+
+태그한 이미지를 도커 허브에 푸시합니다.
+```
+docker push 3.35.207.14:5000/goapp:1.0
+```
+- ec2 인스턴스에서 수행하는 경우 5000번 포트에 대해서 보안 그룹의 인바운드 규칙을 추가해야 합니다.
+![[img/image-534.png]]
+
+업로드된 이미지와 태그를 조회합니다.
+```shell
+curl -XGET localhost:5000/v2/_catalog
+```
+![[img/image-535.png]]
+실행 결과를 보면 방금 푸시한 goapp 저장소가 있습니다.
+
+태그 목록을 요청해봅니다.
+```shell
+curl -XGET localhost:5000/v2/goapp/tags/list
+```
+![[img/image-536.png]]
+실행 결과 1.0 태그가 있습니다.
+
+이번에는 ec2 인스턴스가 아닌 다른 호스트 운영체제(mac)에서 Private Registry에 있는 goapp:1.0 이미지를 다운로드 받아보겠습니다.
+```shell
+docker pull 3.35.207.14:5000/goapp:1.0
+```
+
+## 4.5.2 도커 레지스트리 웹 GUI 컨테이너
+hyper/docker-registry-web 이미지를 이용해서 GUI 웹을 제공합니다.
+
+```shell
+docker pull hyper/docker-registry-web
+```
+![[img/image-537.png]]
+
+docker-registry-web 컨테이너를 실행합니다.
+```shell
+docker run -it -d --name=registry-web -p 8080:8080 \
+--link local-registry \
+-e REGISTRY_URL=http://3.35.207.14:5000/v2 \
+-e REGISTRY_NAME=3.35.207.100:5000 \
+--restart=always \
+hyper/docker-registry-web
+```
+
+웹 브라우저에서 http://3.35.207.100:8080 으로 접속해서 확인합니다.
+![[img/image-538.png]]
+![[img/image-539.png]]
+실행 결과를 보면 이미지와 태그를 쉽게 확인할 수 있습니다.
+
+## 4.5.3 오픈 소스 컨테이너 레지스트리 소개
+CNCF(https://landscape.cncf.io/)에는 오픈소스로 등록된 Container Registry 프로젝트가 소개되어 있습니다. 다음 페이지는 우리가 사용한 도커 레지스트리와 함께 사용 가능한 Container Registry 도구를 보여줍니다.
+![[img/image-540.png]]
+위 오픈소스 중에서 하버(HARBOR)는 웹 기반 GUI를 제공하고 사용자 인증 및 이미지 암호화 기능을 제공합니다.
+
+
 
