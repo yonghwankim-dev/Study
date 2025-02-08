@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "2865448c6a5fb28b",
+        "id": "177d1b3c77556d61",
         "type": "split",
         "children": [
           {
@@ -17,29 +17,29 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
+                    "file": "ch06/AWS 클라우드를 활용한 컨테이너 서비스 배포.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포"
+                  "title": "AWS 클라우드를 활용한 컨테이너 서비스 배포"
                 }
               }
             ]
           },
           {
-            "id": "c10465359806e159",
+            "id": "43d3bbc446e41475",
             "type": "tabs",
             "children": [
               {
-                "id": "7645105c68af35f5",
+                "id": "5059458fffc440fd",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
                   "type": "terminal:terminal",
                   "state": {
                     "terminal:terminal": {
-                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch05",
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up",
                       "focus": false,
                       "profile": {
                         "args": [],
@@ -63,7 +63,7 @@
                       },
                       "serial": {
                         "columns": 71,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch05 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\ngOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/plugins/obsidian-plugin-toc/data.json\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch04/\\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\355\\231\\230\\352\\262\\275 \\352\\265\\254\\354\\204\\261\\354\\235\\204 \\354\\234\\204\\355\\225\\234 Dockerfile \\352\\265\\254\\354\\204\\261.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mch05/\r\n\u001b[8Cimg/image-482.png\r\n\u001b[8Cimg/image-483.png\r\n\u001b[8Cimg/image-484.png\r\n\u001b[8Cimg/image-485.png\r\n\u001b[8Cimg/image-486.png\r\n\u001b[8Cimg/image-487.png\r\n\u001b[8Cimg/image-488.png\r\n\u001b[8Cimg/image-489.png\r\n\u001b[8Cimg/image-490.png\r\n\u001b[8Cimg/image-491.png\r\n\u001b[8Cimg/image-492.png\r\n\u001b[8Cimg/image-493.png\r\n\u001b[8Cimg/image-494.png\r\n\u001b[8Cimg/image-495.png\r\n\u001b[8Cimg/image-496.png\r\n\u001b[8Cimg/image-497.png\r\n\u001b[8Cimg/image-498.png\r\n\u001b[8Cimg/image-499.png\r\n\u001b[8Cimg/image-500.png\r\n\u001b[8Cimg/image-501.png\r\n\u001b[8Cimg/image-502.png\r\n\u001b[8Cimg/image-503.png\r\n\u001b[8Cimg/image-504.png\r\n\u001b[8Cimg/image-505.png\r\n\u001b[8Cimg/image-506.png\r\n\u001b[8Cimg/image-507.png\r\n\u001b[8Cimg/image-508.png\r\n\u001b[8Cimg/image-509.png\r\n\u001b[8Cimg/image-510.png\r\n\u001b[8Cimg/image-511.png\r\n\u001b[8Cimg/image-512.png\r\n\u001b[8Cimg/image-513.png\r\n\u001b[8Cimg/image-514.png\r\n\u001b[8Cimg/image-515.png\r\n\u001b[8Cimg/image-516.png\r\n\u001b[8Cimg/image-517.png\r\n\u001b[8Cimg/image-518.png\r\n\u001b[8Cimg/image-519.png\r\n\u001b[8Cimg/image-520.png\r\n\u001b[8Cimg/image-521.png\r\n\u001b[8Cimg/image-522.png\r\n\u001b[8Cimg/image-523.png\r\n\u001b[8Cimg/image-524.png\r\n\u001b[8Cimg/image-525.png\r\n\u001b[8Cimg/image-526.png\r\n\u001b[8Cimg/image-527.png\r\n\u001b[8Cimg/image-528.png\r\n\u001b[8Cimg/image-529.png\r\n\u001b[8Cimg/image-530.png\r\n\u001b[8Cimg/image-531.png\r\n\u001b[8Cimg/image-532.png\r\n\u001b[8Cimg/image-533.png\r\n\u001b[8Cimg/image-534.png\r\n\u001b[8Cimg/image-535.png\r\n\u001b[8Cimg/image-536.png\r\n\u001b[8Cimg/image-537.png\r\n\u001b[8Cimg/image-538.png\r\n\u001b[8Cimg/image-539.png\r\n\u001b[8Cimg/image-540.png\r\n\u001b[8Cimg/image-541.png\r\n\u001b[8Cimg/image-542.png\r\n\u001b[8Cimg/image-543.png\r\n\u001b[8Cimg/image-544.png\r\n\u001b[8Cimg/image-545.png\r\n\u001b[8Cimg/image-546.png\r\n\u001b[8Cimg/image-547.png\r\n\u001b[8Cimg/image-548.png\r\n\u001b[8Cimg/image-549.png\r\n\u001b[8Cimg/image-550.png\r\n\u001b[8Cimg/image-551.png\r\n\u001b[8Cimg/image-552.png\r\n\u001b[8Cimg/image-553.png\r\n\u001b[8Cimg/image-554.png\r\n\u001b[8Cimg/image-555.png\r\n\u001b[8Cimg/image-556.png\r\n\u001b[8Cimg/image-557.png\r\n\u001b[8Cimg/image-558.png\r\n\u001b[8Cimg/image-559.png\r\n\u001b[8Cimg/image-560.png\r\n\u001b[8Cimg/image-561.png\r\n\u001b[8Cimg/image-562.png\r\n\u001b[8Cimg/image-563.png\r\n\u001b[8Cimg/image-564.png\r\n\u001b[8Cimg/image-565.png\r\n\u001b[8Cimg/image-566.png\r\n\u001b[8Cimg/image-567.png\r\n\u001b[8Cimg/image-568.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nadd .",
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\ngOn branch main\r\nYour branch is ahead of 'origin/main' by 1 commit.\r\n  (use \"git push\" to publish your local commits)\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/community-plugins.json\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch05/\\353\\217\\204\\354\\273\\244 \\354\\273\\264\\355\\217\\254\\354\\246\\210 \\353\\217\\204\\352\\265\\254\\353\\245\\274 \\354\\235\\264\\354\\232\\251\\355\\225\\234 \\353\\213\\244\\354\\244\\221 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\225\\240\\355\\224\\214\\353\\246\\254\\354\\274\\200\\354\\235\\264\\354\\205\\230 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m.obsidian/plugins/table-extended/\r\n\u001b[8Cch06/\r\n\u001b[8Cimg/image-569.png\r\n\u001b[8Cimg/image-570.png\r\n\u001b[8Cimg/image-571.png\r\n\u001b[8Cimg/image-572.png\r\n\u001b[8Cimg/image-573.png\r\n\u001b[8Cimg/image-574.png\r\n\u001b[8Cimg/image-575.png\r\n\u001b[8Cimg/image-576.png\r\n\u001b[8Cimg/image-577.png\r\n\u001b[8Cimg/image-578.png\r\n\u001b[8Cimg/image-579.png\r\n\u001b[8Cimg/image-580.png\r\n\u001b[8Cimg/image-581.png\r\n\u001b[8Cimg/image-582.png\r\n\u001b[8Cimg/image-583.png\r\n\u001b[8Cimg/image-584.png\r\n\u001b[8Cimg/image-585.png\r\n\u001b[8Cimg/image-586.png\r\n\u001b[8Cimg/image-587.png\r\n\u001b[8Cimg/image-588.png\r\n\u001b[8Cimg/image-589.png\r\n\u001b[8Cimg/image-590.png\r\n\u001b[8Cimg/image-591.png\r\n\u001b[8Cimg/image-592.png\r\n\u001b[8Cimg/image-593.png\r\n\u001b[8Cimg/image-594.png\r\n\u001b[8Cimg/image-595.png\r\n\u001b[8Cimg/image-596.png\r\n\u001b[8Cimg/image-597.png\r\n\u001b[8Cimg/image-598.png\r\n\u001b[8Cimg/image-599.png\r\n\u001b[8Cimg/image-600.png\r\n\u001b[8Cimg/image-601.png\r\n\u001b[8Cimg/image-602.png\r\n\u001b[8Cimg/image-603.png\r\n\u001b[8Cimg/image-604.png\r\n\u001b[8Cimg/image-605.png\r\n\u001b[8Cimg/image-606.png\r\n\u001b[8Cimg/image-607.png\r\n\u001b[8Cimg/image-608.png\r\n\u001b[8Cimg/image-609.png\r\n\u001b[8Cimg/image-610.png\r\n\u001b[8Cimg/image-611.png\r\n\u001b[8Cimg/image-612.png\r\n\u001b[8Cimg/image-613.png\r\n\u001b[8Cimg/image-614.png\r\n\u001b[8Cimg/image-615.png\r\n\u001b[8Cimg/image-616.png\r\n\u001b[8Cimg/image-617.png\r\n\u001b[8Cimg/image-618.png\r\n\u001b[8Cimg/image-619.png\r\n\u001b[8Cimg/image-620.png\r\n\u001b[8Cimg/image-621.png\r\n\u001b[8Cimg/image-622.png\r\n\u001b[8Cimg/image-623.png\r\n\u001b[8Cimg/image-624.png\r\n\u001b[8Cimg/image-625.png\r\n\u001b[8Cimg/image-626.png\r\n\u001b[8Cimg/image-627.png\r\n\u001b[8Cimg/image-628.png\r\n\u001b[8Cimg/image-629.png\r\n\u001b[8Cimg/image-630.png\r\n\u001b[8Cimg/image-631.png\r\n\u001b[8Cimg/image-632.png\r\n\u001b[8Cimg/image-633.png\r\n\u001b[8Cimg/image-634.png\r\n\u001b[8Cimg/image-635.png\r\n\u001b[8Cimg/image-636.png\r\n\u001b[8Cimg/image-637.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\n",
                         "rows": 18
                       }
                     }
@@ -237,20 +237,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "7645105c68af35f5",
+  "active": "5059458fffc440fd",
   "lastOpenFiles": [
-    "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
-    "img/image-568.png",
-    "img/image-567.png",
-    "img/image-566.png",
-    "img/image-565.png",
-    "img/image-564.png",
-    "img/image-563.png",
-    "img/image-562.png",
-    "img/image-561.png",
-    "img/image-560.png",
-    "img/image-559.png",
+    "ch06/AWS 클라우드를 활용한 컨테이너 서비스 배포.md",
+    "img/image-637.png",
+    "img/image-636.png",
+    "img/image-635.png",
+    "img/image-634.png",
+    "img/image-633.png",
+    "img/image-632.png",
+    "img/image-631.png",
+    "img/image-630.png",
+    "img/image-629.png",
+    "img/image-628.png",
     "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
+    "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
+    "ch06",
     "ch05",
     "ch03/컨테이너 서비스를 위한 도커 활용.md",
     "ch04",
