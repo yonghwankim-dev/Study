@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "0a054a2524ce1844",
+        "id": "418d9b34ef1c4363",
         "type": "split",
         "children": [
           {
@@ -17,29 +17,29 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "ch02/도커 설치.md",
+                    "file": "ch01/클라우드 컴퓨팅.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "도커 설치"
+                  "title": "클라우드 컴퓨팅"
                 }
               }
             ]
           },
           {
-            "id": "cdcd21455f60a6eb",
+            "id": "156bf1a8286b82ec",
             "type": "tabs",
             "children": [
               {
-                "id": "d7196a1aade6eb7e",
+                "id": "f7fee833adb00dfe",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
                   "type": "terminal:terminal",
                   "state": {
                     "terminal:terminal": {
-                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch02",
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch01",
                       "focus": false,
                       "profile": {
                         "args": [],
@@ -63,7 +63,7 @@
                       },
                       "serial": {
                         "columns": 117,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch02 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git add .\r\ng\u001b[7;1m%\u001b[0m                                                                                                                   \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git commit -m \"commit\"\r\n[main c96ff91] commit\r\n 3 files changed, 113 insertions(+), 186 deletions(-)\r\n create mode 100644 Docker/docker_container_build_up/img/image-750.png\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git push\r\nEnumerating objects: 17, done.\r\nCounting objects: 100% (17/17), done.\r\nDelta compression using up to 8 threads\r\nCompressing objects: 100% (8/8), done.\r\nWriting objects: 100% (9/9), 2.21 KiB | 2.21 MiB/s, done.\r\nTotal 9 (delta 5), reused 0 (delta 0), pack-reused 0\r\nremote: Resolving deltas: 100% (5/5), completed with 5 local objects.\r\nTo https://github.com/yonghwankim-dev/Study.git\r\n   3984df8..c96ff91  main -> main\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/workspace.json\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git add .",
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch01 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git add ",
                         "rows": 21
                       }
                     }
@@ -237,25 +237,26 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d7196a1aade6eb7e",
+  "active": "f7fee833adb00dfe",
   "lastOpenFiles": [
+    "ch01/클라우드 컴퓨팅.md",
+    "img/image-753.png",
+    "img/image-752.png",
+    "img/image-751.png",
+    "appendix/도커 스웜 모드 클러스터 활용.md",
+    "ch01",
     "ch02/도커 설치.md",
     "ch06/AWS 클라우드를 활용한 컨테이너 서비스 배포.md",
     "img/image-750.png",
     "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
     "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
     "ch03/컨테이너 서비스를 위한 도커 활용.md",
-    "appendix/도커 스웜 모드 클러스터 활용.md",
     "img/image-749.png",
     "img/image-748.png",
     "img/image-747.png",
     "img/image-746.png",
     "img/image-745.png",
     "img/image-744.png",
-    "img/image-743.png",
-    "img/image-742.png",
-    "img/image-741.png",
-    "무제",
     "appendix",
     "ch06",
     "ch05",
