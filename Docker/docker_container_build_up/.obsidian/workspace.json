@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "177d1b3c77556d61",
+        "id": "4d42d10b159072a2",
         "type": "split",
         "children": [
           {
@@ -17,29 +17,29 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "ch06/AWS 클라우드를 활용한 컨테이너 서비스 배포.md",
+                    "file": "appendix/도커 스웜 모드 클러스터 활용.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "AWS 클라우드를 활용한 컨테이너 서비스 배포"
+                  "title": "도커 스웜 모드 클러스터 활용"
                 }
               }
             ]
           },
           {
-            "id": "43d3bbc446e41475",
+            "id": "c28f3ba18881a401",
             "type": "tabs",
             "children": [
               {
-                "id": "5059458fffc440fd",
+                "id": "e89431e324edc81e",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
                   "type": "terminal:terminal",
                   "state": {
                     "terminal:terminal": {
-                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up",
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/appendix",
                       "focus": false,
                       "profile": {
                         "args": [],
@@ -63,7 +63,7 @@
                       },
                       "serial": {
                         "columns": 71,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\ngOn branch main\r\nYour branch is ahead of 'origin/main' by 1 commit.\r\n  (use \"git push\" to publish your local commits)\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/community-plugins.json\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch05/\\353\\217\\204\\354\\273\\244 \\354\\273\\264\\355\\217\\254\\354\\246\\210 \\353\\217\\204\\352\\265\\254\\353\\245\\274 \\354\\235\\264\\354\\232\\251\\355\\225\\234 \\353\\213\\244\\354\\244\\221 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\225\\240\\355\\224\\214\\353\\246\\254\\354\\274\\200\\354\\235\\264\\354\\205\\230 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m.obsidian/plugins/table-extended/\r\n\u001b[8Cch06/\r\n\u001b[8Cimg/image-569.png\r\n\u001b[8Cimg/image-570.png\r\n\u001b[8Cimg/image-571.png\r\n\u001b[8Cimg/image-572.png\r\n\u001b[8Cimg/image-573.png\r\n\u001b[8Cimg/image-574.png\r\n\u001b[8Cimg/image-575.png\r\n\u001b[8Cimg/image-576.png\r\n\u001b[8Cimg/image-577.png\r\n\u001b[8Cimg/image-578.png\r\n\u001b[8Cimg/image-579.png\r\n\u001b[8Cimg/image-580.png\r\n\u001b[8Cimg/image-581.png\r\n\u001b[8Cimg/image-582.png\r\n\u001b[8Cimg/image-583.png\r\n\u001b[8Cimg/image-584.png\r\n\u001b[8Cimg/image-585.png\r\n\u001b[8Cimg/image-586.png\r\n\u001b[8Cimg/image-587.png\r\n\u001b[8Cimg/image-588.png\r\n\u001b[8Cimg/image-589.png\r\n\u001b[8Cimg/image-590.png\r\n\u001b[8Cimg/image-591.png\r\n\u001b[8Cimg/image-592.png\r\n\u001b[8Cimg/image-593.png\r\n\u001b[8Cimg/image-594.png\r\n\u001b[8Cimg/image-595.png\r\n\u001b[8Cimg/image-596.png\r\n\u001b[8Cimg/image-597.png\r\n\u001b[8Cimg/image-598.png\r\n\u001b[8Cimg/image-599.png\r\n\u001b[8Cimg/image-600.png\r\n\u001b[8Cimg/image-601.png\r\n\u001b[8Cimg/image-602.png\r\n\u001b[8Cimg/image-603.png\r\n\u001b[8Cimg/image-604.png\r\n\u001b[8Cimg/image-605.png\r\n\u001b[8Cimg/image-606.png\r\n\u001b[8Cimg/image-607.png\r\n\u001b[8Cimg/image-608.png\r\n\u001b[8Cimg/image-609.png\r\n\u001b[8Cimg/image-610.png\r\n\u001b[8Cimg/image-611.png\r\n\u001b[8Cimg/image-612.png\r\n\u001b[8Cimg/image-613.png\r\n\u001b[8Cimg/image-614.png\r\n\u001b[8Cimg/image-615.png\r\n\u001b[8Cimg/image-616.png\r\n\u001b[8Cimg/image-617.png\r\n\u001b[8Cimg/image-618.png\r\n\u001b[8Cimg/image-619.png\r\n\u001b[8Cimg/image-620.png\r\n\u001b[8Cimg/image-621.png\r\n\u001b[8Cimg/image-622.png\r\n\u001b[8Cimg/image-623.png\r\n\u001b[8Cimg/image-624.png\r\n\u001b[8Cimg/image-625.png\r\n\u001b[8Cimg/image-626.png\r\n\u001b[8Cimg/image-627.png\r\n\u001b[8Cimg/image-628.png\r\n\u001b[8Cimg/image-629.png\r\n\u001b[8Cimg/image-630.png\r\n\u001b[8Cimg/image-631.png\r\n\u001b[8Cimg/image-632.png\r\n\u001b[8Cimg/image-633.png\r\n\u001b[8Cimg/image-634.png\r\n\u001b[8Cimg/image-635.png\r\n\u001b[8Cimg/image-636.png\r\n\u001b[8Cimg/image-637.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\n",
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir appendix % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nadd .\r\ngit o\u001b[7;1m%\u001b[0m                                                                 \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % gitg\r\nic\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\ncommi  \r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git \r\nstatus\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges to be committed:\r\n  (use \"git restore --staged <file>...\" to unstage)\r\n\u001b[8C\u001b[32mmodified:   .obsidian/workspace.json\r\n\u001b[8Cnew file:   \"appendix/\\353\\217\\204\\354\\273\\244 \\354\\212\\244\\354\\233\\234 \\353\\252\\250\\353\\223\\234 \\355\\201\\264\\353\\237\\254\\354\\212\\244\\355\\204\\260 \\355\\231\\234\\354\\232\\251.md\"\r\n\u001b[8Cmodified:   \"ch06/AWS \\355\\201\\264\\353\\235\\274\\354\\232\\260\\353\\223\\234\\353\\245\\274 \\355\\231\\234\\354\\232\\251\\355\\225\\234 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\u001b[8Cnew file:   img/image-638.png\r\n\u001b[8Cnew file:   img/image-639.png\r\n\u001b[8Cnew file:   img/image-640.png\r\n\u001b[8Cnew file:   img/image-641.png\r\n\u001b[8Cnew file:   img/image-642.png\r\n\u001b[8Cnew file:   img/image-643.png\r\n\u001b[8Cnew file:   img/image-644.png\r\n\u001b[8Cnew file:   img/image-645.png\r\n\u001b[8Cnew file:   img/image-646.png\r\n\u001b[8Cnew file:   img/image-647.png\r\n\u001b[8Cnew file:   img/image-648.png\r\n\u001b[8Cnew file:   img/image-649.png\r\n\u001b[8Cnew file:   img/image-650.png\r\n\u001b[8Cnew file:   img/image-651.png\r\n\u001b[8Cnew file:   img/image-652.png\r\n\u001b[8Cnew file:   img/image-653.png\r\n\u001b[8Cnew file:   img/image-654.png\r\n\u001b[8Cnew file:   img/image-655.png\r\n\u001b[8Cnew file:   img/image-656.png\r\n\u001b[8Cnew file:   img/image-657.png\r\n\u001b[8Cnew file:   img/image-658.png\r\n\u001b[8Cnew file:   img/image-659.png\r\n\u001b[8Cnew file:   img/image-660.png\r\n\u001b[8Cnew file:   img/image-661.png\r\n\u001b[8Cnew file:   img/image-662.png\r\n\u001b[8Cnew file:   img/image-663.png\r\n\u001b[8Cnew file:   img/image-664.png\r\n\u001b[8Cnew file:   img/image-665.png\r\n\u001b[8Cnew file:   img/image-666.png\r\n\u001b[8Cnew file:   img/image-667.png\r\n\u001b[8Cnew file:   img/image-668.png\r\n\u001b[8Cnew file:   img/image-669.png\r\n\u001b[8Cnew file:   img/image-670.png\r\n\u001b[8Cnew file:   img/image-671.png\r\n\u001b[8Cnew file:   img/image-672.png\r\n\u001b[8Cnew file:   img/image-673.png\r\n\u001b[8Cnew file:   img/image-674.png\r\n\u001b[8Cnew file:   img/image-675.png\r\n\u001b[8Cnew file:   img/image-676.png\r\n\u001b[8Cnew file:   img/image-677.png\r\n\u001b[8Cnew file:   img/image-678.png\r\n\u001b[8Cnew file:   img/image-679.png\r\n\u001b[8Cnew file:   img/image-680.png\r\n\u001b[8Cnew file:   img/image-681.png\r\n\u001b[8Cnew file:   img/image-682.png\r\n\u001b[8Cnew file:   img/image-683.png\r\n\u001b[8Cnew file:   img/image-684.png\r\n\u001b[8Cnew file:   img/image-685.png\r\n\u001b[8Cnew file:   img/image-686.png\r\n\u001b[8Cnew file:   img/image-687.png\r\n\u001b[8Cnew file:   img/image-688.png\r\n\u001b[8Cnew file:   img/image-689.png\r\n\u001b[8Cnew file:   img/image-690.png\r\n\u001b[8Cnew file:   img/image-691.png\r\n\u001b[8Cnew file:   img/image-692.png\r\n\u001b[8Cnew file:   img/image-693.png\r\n\u001b[8Cnew file:   img/image-694.png\r\n\u001b[8Cnew file:   img/image-695.png\r\n\u001b[8Cnew file:   img/image-696.png\r\n\u001b[8Cnew file:   img/image-697.png\r\n\u001b[8Cnew file:   img/image-698.png\r\n\u001b[8Cnew file:   img/image-699.png\r\n\u001b[8Cnew file:   img/image-700.png\r\n\u001b[8Cnew file:   img/image-701.png\r\n\u001b[8Cnew file:   img/image-702.png\r\n\u001b[8Cnew file:   img/image-703.png\r\n\u001b[8Cnew file:   img/image-704.png\r\n\u001b[8Cnew file:   img/image-705.png\r\n\u001b[8Cnew file:   img/image-706.png\r\n\u001b[8Cnew file:   img/image-707.png\r\n\u001b[8Cnew file:   img/image-708.png\r\n\u001b[8Cnew file:   img/image-709.png\r\n\u001b[8Cnew file:   img/image-710.png\r\n\u001b[8Cnew file:   img/image-711.png\r\n\u001b[8Cnew file:   img/image-712.png\r\n\u001b[8Cnew file:   img/image-713.png\r\n\u001b[8Cnew file:   img/image-714.png\r\n\u001b[8Cnew file:   img/image-715.png\r\n\u001b[8Cnew file:   img/image-716.png\r\n\u001b[8Cnew file:   img/image-717.png\r\n\u001b[8Cnew file:   img/image-718.png\r\n\u001b[8Cnew file:   img/image-719.png\r\n\u001b[8Cnew file:   img/image-720.png\r\n\u001b[8Cnew file:   img/image-721.png\r\n\u001b[8Cnew file:   img/image-722.png\r\n\u001b[8Cnew file:   img/image-723.png\r\n\u001b[8Cnew file:   img/image-724.png\r\n\u001b[8Cnew file:   img/image-725.png\r\n\u001b[8Cnew file:   img/image-726.png\r\n\u001b[8Cnew file:   img/image-727.png\r\n\u001b[8Cnew file:   img/image-728.png\r\n\u001b[8Cnew file:   img/image-729.png\r\n\u001b[8Cnew file:   img/image-730.png\r\n\u001b[8Cnew file:   img/image-731.png\r\n\u001b[8Cnew file:   img/image-732.png\r\n\u001b[8Cnew file:   img/image-733.png\r\n\u001b[8Cnew file:   img/image-734.png\r\n\u001b[8Cnew file:   img/image-735.png\r\n\u001b[8Cnew file:   img/image-736.png\r\n\u001b[8Cnew file:   img/image-737.png\r\n\u001b[8Cnew file:   img/image-738.png\r\n\u001b[8Cnew file:   img/image-739.png\r\n\u001b[8Cnew file:   img/image-740.png\r\n\u001b[8Cnew file:   img/image-741.png\r\n\u001b[8Cnew file:   img/image-742.png\r\n\u001b[8Cnew file:   img/image-743.png\r\n\u001b[8Cnew file:   img/image-744.png\r\n\u001b[8Cnew file:   img/image-745.png\r\n\u001b[8Cnew file:   img/image-746.png\r\n\u001b[8Cnew file:   img/image-747.png\r\n\u001b[8Cnew file:   img/image-748.png\r\n\u001b[8Cnew file:   img/image-749.png\r\n\r\n\u001b[0mChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   .obsidian/workspace.json\r\n\r\n\u001b[0myonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % gi",
                         "rows": 18
                       }
                     }
@@ -237,19 +237,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "5059458fffc440fd",
+  "active": "e89431e324edc81e",
   "lastOpenFiles": [
+    "appendix/도커 스웜 모드 클러스터 활용.md",
+    "img/image-749.png",
+    "img/image-748.png",
+    "img/image-747.png",
+    "img/image-746.png",
+    "img/image-745.png",
+    "img/image-744.png",
+    "img/image-743.png",
+    "img/image-742.png",
+    "img/image-741.png",
+    "img/image-740.png",
     "ch06/AWS 클라우드를 활용한 컨테이너 서비스 배포.md",
-    "img/image-637.png",
-    "img/image-636.png",
-    "img/image-635.png",
-    "img/image-634.png",
-    "img/image-633.png",
-    "img/image-632.png",
-    "img/image-631.png",
-    "img/image-630.png",
-    "img/image-629.png",
-    "img/image-628.png",
+    "무제",
+    "appendix",
     "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
     "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
     "ch06",
@@ -264,7 +267,6 @@
     "Templates",
     "ch03/무제.md",
     "img/img",
-    "환영합니다!.md",
-    "ch03"
+    "환영합니다!.md"
   ]
 }
