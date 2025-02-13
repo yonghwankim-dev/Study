@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "48170b59fc6e524f",
+        "id": "09d7a1b1d7cd8be4",
         "type": "split",
         "children": [
           {
@@ -17,29 +17,29 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "ch03/컨테이너 서비스를 위한 도커 활용.md",
+                    "file": "ch01/클라우드 컴퓨팅.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "컨테이너 서비스를 위한 도커 활용"
+                  "title": "클라우드 컴퓨팅"
                 }
               }
             ]
           },
           {
-            "id": "edc6dff1912bd418",
+            "id": "c0b24c3d81a9e9fc",
             "type": "tabs",
             "children": [
               {
-                "id": "a8427e2c7d4ac641",
+                "id": "1fa625db34385813",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
                   "type": "terminal:terminal",
                   "state": {
                     "terminal:terminal": {
-                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch03",
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/Docker/docker_container_build_up/ch01",
                       "focus": false,
                       "profile": {
                         "args": [],
@@ -63,7 +63,7 @@
                       },
                       "serial": {
                         "columns": 117,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch03 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git add .",
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch01 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir docker_container_build_up % git add .\u001b[1B\u001b[76D",
                         "rows": 21
                       }
                     }
@@ -237,18 +237,18 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "a8427e2c7d4ac641",
+  "active": "1fa625db34385813",
   "lastOpenFiles": [
+    "ch01/클라우드 컴퓨팅.md",
+    "ch02/도커 설치.md",
+    "appendix/도커 스웜 모드 클러스터 활용.md",
     "ch03/컨테이너 서비스를 위한 도커 활용.md",
     "img/image-754.png",
-    "ch02/도커 설치.md",
     "ch04/컨테이너 환경 구성을 위한 Dockerfile 구성.md",
-    "ch01/클라우드 컴퓨팅.md",
     "ch06/AWS 클라우드를 활용한 컨테이너 서비스 배포.md",
     "img/image-753.png",
     "img/image-752.png",
     "img/image-751.png",
-    "appendix/도커 스웜 모드 클러스터 활용.md",
     "ch01",
     "img/image-750.png",
     "ch05/도커 컴포즈 도구를 이용한 다중 컨테이너 애플리케이션 서비스 배포.md",
