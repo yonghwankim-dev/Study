@@ -1,0 +1,242 @@
+{
+  "main": {
+    "id": "41711c34ba3ddd6e",
+    "type": "split",
+    "children": [
+      {
+        "id": "65b5c9b162c829f5",
+        "type": "split",
+        "children": [
+          {
+            "id": "6e7825651067a66b",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "9b93b51c3f497476",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "ch01/도커 기초.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "도커 기초"
+                }
+              }
+            ]
+          },
+          {
+            "id": "d139de458d263f3c",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "0bdda1f050bd75b6",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/k8s/ch01",
+                      "focus": false,
+                      "profile": {
+                        "args": [],
+                        "executable": "/bin/zsh",
+                        "name": "",
+                        "platforms": {
+                          "darwin": true
+                        },
+                        "pythonExecutable": "python3",
+                        "restoreHistory": true,
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": "integrated",
+                        "useWin32Conhost": true
+                      },
+                      "serial": {
+                        "columns": 117,
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch01 % git cd ..\r\ngit: 'cd' is not a git command. See 'git --help'.\r\n\r\nThe most similar command is\r\n\u001b[8Cadd\r\nyonghwankim@gim-yonghwan-ui-MacBookAir ch01 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git ls\r\ngit: 'ls' is not a git command. See 'git --help'.\r\n\r\nThe most similar command is\r\n\u001b[8Clg\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   ../Docker/.DS_Store\r\n\u001b[8Cmodified:   ../Docker/docker_container_build_up/.obsidian/workspace.json\r\n\u001b[8Cmodified:   \"../Docker/docker_container_build_up/ch06/AWS \\355\\201\\264\\353\\235\\274\\354\\232\\260\\353\\223\\234\\353\\245\\274 \\355\\231\\234\\354\\232\\251\\355\\225\\234 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m./\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git add .",
+                        "rows": 21
+                      }
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "Terminal: zsh"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal"
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "598bc3045621a63a",
+    "type": "split",
+    "children": [
+      {
+        "id": "fe1b76478d0ba36b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cf568e8438a4325e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "b961a6bea0016942",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "c7af6222737eb38c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9346de9f5fbf1524",
+    "type": "split",
+    "children": [
+      {
+        "id": "c8364041e5bb13cd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "13c7e66c0169849e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "백링크"
+            }
+          },
+          {
+            "id": "a00d2b1905ccedf8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "나가는 링크"
+            }
+          },
+          {
+            "id": "8de1cd12b804bd86",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "13eb6c19944873b3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "terminal:Open terminal": false,
+      "templater-obsidian:Templater": false
+    }
+  },
+  "active": "0bdda1f050bd75b6",
+  "lastOpenFiles": [
+    "ch01/도커 기초.md",
+    "img/image-30.png",
+    "img/image-29.png",
+    "img/image-28.png",
+    "img/image-27.png",
+    "img/image-26.png",
+    "img/image-25.png",
+    "img/image-24.png",
+    "img/image-23.png",
+    "img/image-22.png",
+    "img/image-21.png",
+    "img",
+    "ch01"
+  ]
+}
