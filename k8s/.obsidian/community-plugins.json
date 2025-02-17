@@ -4,5 +4,6 @@
   "table-extended",
   "obsidian-plugin-toc",
   "terminal",
-  "templater-obsidian"
+  "templater-obsidian",
+  "obsidian-minimal-settings"
 ]
