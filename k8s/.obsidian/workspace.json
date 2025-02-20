@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "c9bbeeab6fa068fa",
+        "id": "bffc85b09a9b73ec",
         "type": "split",
         "children": [
           {
@@ -17,29 +17,44 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "ch02/쿠버네티스 소개.md",
+                    "file": "ch03/쿠버네티스 설치.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "쿠버네티스 소개"
+                  "title": "쿠버네티스 설치"
+                }
+              },
+              {
+                "id": "e1e4b4fbf83d99bf",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "ch05/Pod 살펴보기.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "Pod 살펴보기"
                 }
               }
-            ]
+            ],
+            "currentTab": 1
           },
           {
-            "id": "94e7ab73b0a79988",
+            "id": "ec7ca5ca3115452c",
             "type": "tabs",
             "children": [
               {
-                "id": "a86ed6c4c83fb3ac",
+                "id": "b23145f9d2f32327",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
                   "type": "terminal:terminal",
                   "state": {
                     "terminal:terminal": {
-                      "cwd": "/Users/yonghwankim/Documents/study/Study/k8s/ch02",
+                      "cwd": "/Users/yonghwankim/Documents/study/Study/k8s/ch05",
                       "focus": false,
                       "profile": {
                         "args": [],
@@ -62,8 +77,8 @@
                         "useWin32Conhost": true
                       },
                       "serial": {
-                        "columns": 104,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch02 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   ../Docker/.DS_Store\r\n\u001b[8Cmodified:   ../Docker/docker_container_build_up/.obsidian/workspace.json\r\n\u001b[8Cmodified:   \"../Docker/docker_container_build_up/ch06/AWS \\355\\201\\264\\353\\235\\274\\354\\232\\260\\353\\223\\234\\353\\245\\274 \\355\\231\\234\\354\\232\\251\\355\\225\\234 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\u001b[8Cmodified:   .obsidian/appearance.json\r\n\u001b[8Cmodified:   .obsidian/community-plugins.json\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch01/\\353\\217\\204\\354\\273\\244 \\352\\270\\260\\354\\264\\210.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31m.obsidian/plugins/obsidian-minimal-settings/\r\n\u001b[8C.obsidian/themes/\r\n\u001b[8Cch02/\r\n\u001b[8Cimg/image-31.png\r\n\u001b[8Cimg/image-32.png\r\n\u001b[8Cimg/image-33.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % gita dd .\r\nzsh: command not found: gita\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git a",
+                        "columns": 71,
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch05 % cd ..  \r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   ../Docker/.DS_Store\r\n\u001b[8Cmodified:   ../Docker/docker_container_build_up/.obsidian/workspace.json\r\n\u001b[8Cmodified:   \"../Docker/docker_container_build_up/ch06/AWS \\355\\201\\264\\353\\235\\274\\354\\232\\260\\353\\223\\234\\353\\245\\274 \\355\\231\\234\\354\\232\\251\\355\\225\\234 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch02/\\354\\277\\240\\353\\262\\204\\353\\204\\244\\355\\213\\260\\354\\212\\244 \\354\\206\\214\\352\\260\\234.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mch03/\r\n\u001b[8Cch04/\r\n\u001b[8Cch05/\r\n\u001b[8Cimg/image-34.png\r\n\u001b[8Cimg/image-35.png\r\n\u001b[8Cimg/image-36.png\r\n\u001b[8Cimg/image-37.png\r\n\u001b[8Cimg/image-38.png\r\n\u001b[8Cimg/image-39.png\r\n\u001b[8Cimg/image-40.png\r\n\u001b[8Cimg/image-41.png\r\n\u001b[8Cimg/image-42.png\r\n\u001b[8Cimg/image-43.png\r\n\u001b[8Cimg/image-44.png\r\n\u001b[8Cimg/image-45.png\r\n\u001b[8Cimg/image-46.png\r\n\u001b[8Cimg/image-47.png\r\n\u001b[8Cimg/image-48.png\r\n\u001b[8Cimg/image-49.png\r\n\u001b[8Cimg/image-50.png\r\n\u001b[8Cimg/image-51.png\r\n\u001b[8Cimg/image-52.png\r\n\u001b[8Cimg/image-53.png\r\n\u001b[8Cimg/image-54.png\r\n\u001b[8Cimg/image-55.png\r\n\u001b[8Cimg/image-56.png\r\n\u001b[8Cimg/image-57.png\r\n\u001b[8Cimg/image-58.png\r\n\u001b[8Cimg/image-59.png\r\n\u001b[8Cimg/image-60.png\r\n\u001b[8Cimg/image-61.png\r\n\u001b[8Cimg/image-62.png\r\n\u001b[8Cimg/image-63.png\r\n\u001b[8Cimg/image-64.png\r\n\u001b[8Cimg/image-65.png\r\n\u001b[8Cimg/image-66.png\r\n\u001b[8Cimg/image-67.png\r\n\u001b[8Cimg/image-68.png\r\n\u001b[8Cimg/image-69.png\r\n\u001b[8Cimg/image-70.png\r\n\u001b[8Cimg/image-71.png\r\n\u001b[8Cimg/image-72.png\r\n\u001b[8Cimg/image-73.png\r\n\u001b[8Cimg/image-74.png\r\n\u001b[8Cimg/image-75.png\r\n\u001b[8Cimg/image-76.png\r\n\u001b[8Cimg/image-77.png\r\n\u001b[8Cimg/image-78.png\r\n\u001b[8Cimg/image-79.png\r\n\u001b[8Cimg/image-80.png\r\n\u001b[8Cimg/image-81.png\r\n\u001b[8Cimg/image-82.png\r\n\u001b[8Cimg/image-83.png\r\n\u001b[8Cimg/image-84.png\r\n\u001b[8Cimg/image-85.png\r\n\u001b[8Cimg/image-86.png\r\n\u001b[8Cimg/image-87.png\r\n\u001b[8Cimg/image-88.png\r\n\u001b[8Cimg/image-89.png\r\n\u001b[8Cimg/image-90.png\r\n\u001b[8Cimg/image-91.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % gi",
                         "rows": 18
                       }
                     }
@@ -133,8 +148,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "9346de9f5fbf1524",
@@ -224,21 +238,27 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "a86ed6c4c83fb3ac",
+  "active": "b23145f9d2f32327",
   "lastOpenFiles": [
+    "ch05/Pod 살펴보기.md",
+    "ch04/쿠버네티스 첫 만남.md",
+    "ch05",
+    "img/image-91.png",
+    "img/image-90.png",
+    "img/image-89.png",
+    "img/image-88.png",
+    "img/image-87.png",
+    "img/image-86.png",
+    "img/image-85.png",
+    "img/image-84.png",
+    "img/image-83.png",
+    "img/image-82.png",
     "ch02/쿠버네티스 소개.md",
-    "img/image-33.png",
-    "img/image-32.png",
-    "img/image-31.png",
+    "ch03/쿠버네티스 설치.md",
+    "ch04",
     "ch01/도커 기초.md",
+    "ch03",
     "ch02",
-    "img/image-30.png",
-    "img/image-29.png",
-    "img/image-28.png",
-    "img/image-27.png",
-    "img/image-26.png",
-    "img/image-25.png",
-    "img/image-24.png",
     "img",
     "ch01"
   ]
