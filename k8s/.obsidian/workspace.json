@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "bffc85b09a9b73ec",
+        "id": "d98ca25bf106c28f",
         "type": "split",
         "children": [
           {
@@ -43,11 +43,11 @@
             "currentTab": 1
           },
           {
-            "id": "ec7ca5ca3115452c",
+            "id": "d8109832a6e4a138",
             "type": "tabs",
             "children": [
               {
-                "id": "b23145f9d2f32327",
+                "id": "872b8e325047c594",
                 "type": "leaf",
                 "pinned": true,
                 "state": {
@@ -77,8 +77,8 @@
                         "useWin32Conhost": true
                       },
                       "serial": {
-                        "columns": 71,
-                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch05 % cd ..  \r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   ../Docker/.DS_Store\r\n\u001b[8Cmodified:   ../Docker/docker_container_build_up/.obsidian/workspace.json\r\n\u001b[8Cmodified:   \"../Docker/docker_container_build_up/ch06/AWS \\355\\201\\264\\353\\235\\274\\354\\232\\260\\353\\223\\234\\353\\245\\274 \\355\\231\\234\\354\\232\\251\\355\\225\\234 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch02/\\354\\277\\240\\353\\262\\204\\353\\204\\244\\355\\213\\260\\354\\212\\244 \\354\\206\\214\\352\\260\\234.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mch03/\r\n\u001b[8Cch04/\r\n\u001b[8Cch05/\r\n\u001b[8Cimg/image-34.png\r\n\u001b[8Cimg/image-35.png\r\n\u001b[8Cimg/image-36.png\r\n\u001b[8Cimg/image-37.png\r\n\u001b[8Cimg/image-38.png\r\n\u001b[8Cimg/image-39.png\r\n\u001b[8Cimg/image-40.png\r\n\u001b[8Cimg/image-41.png\r\n\u001b[8Cimg/image-42.png\r\n\u001b[8Cimg/image-43.png\r\n\u001b[8Cimg/image-44.png\r\n\u001b[8Cimg/image-45.png\r\n\u001b[8Cimg/image-46.png\r\n\u001b[8Cimg/image-47.png\r\n\u001b[8Cimg/image-48.png\r\n\u001b[8Cimg/image-49.png\r\n\u001b[8Cimg/image-50.png\r\n\u001b[8Cimg/image-51.png\r\n\u001b[8Cimg/image-52.png\r\n\u001b[8Cimg/image-53.png\r\n\u001b[8Cimg/image-54.png\r\n\u001b[8Cimg/image-55.png\r\n\u001b[8Cimg/image-56.png\r\n\u001b[8Cimg/image-57.png\r\n\u001b[8Cimg/image-58.png\r\n\u001b[8Cimg/image-59.png\r\n\u001b[8Cimg/image-60.png\r\n\u001b[8Cimg/image-61.png\r\n\u001b[8Cimg/image-62.png\r\n\u001b[8Cimg/image-63.png\r\n\u001b[8Cimg/image-64.png\r\n\u001b[8Cimg/image-65.png\r\n\u001b[8Cimg/image-66.png\r\n\u001b[8Cimg/image-67.png\r\n\u001b[8Cimg/image-68.png\r\n\u001b[8Cimg/image-69.png\r\n\u001b[8Cimg/image-70.png\r\n\u001b[8Cimg/image-71.png\r\n\u001b[8Cimg/image-72.png\r\n\u001b[8Cimg/image-73.png\r\n\u001b[8Cimg/image-74.png\r\n\u001b[8Cimg/image-75.png\r\n\u001b[8Cimg/image-76.png\r\n\u001b[8Cimg/image-77.png\r\n\u001b[8Cimg/image-78.png\r\n\u001b[8Cimg/image-79.png\r\n\u001b[8Cimg/image-80.png\r\n\u001b[8Cimg/image-81.png\r\n\u001b[8Cimg/image-82.png\r\n\u001b[8Cimg/image-83.png\r\n\u001b[8Cimg/image-84.png\r\n\u001b[8Cimg/image-85.png\r\n\u001b[8Cimg/image-86.png\r\n\u001b[8Cimg/image-87.png\r\n\u001b[8Cimg/image-88.png\r\n\u001b[8Cimg/image-89.png\r\n\u001b[8Cimg/image-90.png\r\n\u001b[8Cimg/image-91.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % gi",
+                        "columns": 88,
+                        "data": "yonghwankim@gim-yonghwan-ui-MacBookAir ch05 % git ..\r\ngit: '..' is not a git command. See 'git --help'.\r\n\r\nThe most similar commands are\r\n\u001b[8Cam\r\n\u001b[8Ccc\r\n\u001b[8Cgc\r\n\u001b[8Clg\r\n\u001b[8Cmv\r\n\u001b[8Cp4\r\n\u001b[8Crm\r\nyonghwankim@gim-yonghwan-ui-MacBookAir ch05 % cd ..\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git status\r\nOn branch main\r\nYour branch is up to date with 'origin/main'.\r\n\r\nChanges not staged for commit:\r\n  (use \"git add <file>...\" to update what will be committed)\r\n  (use \"git restore <file>...\" to discard changes in working directory)\r\n\u001b[8C\u001b[31mmodified:   ../Docker/.DS_Store\r\n\u001b[8Cmodified:   ../Docker/docker_container_build_up/.obsidian/workspace.json\r\n\u001b[8Cmodified:   \"../Docker/docker_container_build_up/ch06/AWS \\355\\201\\264\\353\\235\\274\\354\\232\\260\\353\\223\\234\\353\\245\\274 \\355\\231\\234\\354\\232\\251\\355\\225\\234 \\354\\273\\250\\355\\205\\214\\354\\235\\264\\353\\204\\210 \\354\\204\\234\\353\\271\\204\\354\\212\\244 \\353\\260\\260\\355\\217\\254.md\"\r\n\u001b[8Cmodified:   .obsidian/workspace.json\r\n\u001b[8Cmodified:   \"ch05/Pod \\354\\202\\264\\355\\216\\264\\353\\263\\264\\352\\270\\260.md\"\r\n\r\n\u001b[0mUntracked files:\r\n  (use \"git add <file>...\" to include in what will be committed)\r\n\u001b[8C\u001b[31mch06/\r\n\u001b[8Cimg/image-100.png\r\n\u001b[8Cimg/image-101.png\r\n\u001b[8Cimg/image-102.png\r\n\u001b[8Cimg/image-103.png\r\n\u001b[8Cimg/image-104.png\r\n\u001b[8Cimg/image-105.png\r\n\u001b[8Cimg/image-106.png\r\n\u001b[8Cimg/image-107.png\r\n\u001b[8Cimg/image-108.png\r\n\u001b[8Cimg/image-109.png\r\n\u001b[8Cimg/image-110.png\r\n\u001b[8Cimg/image-111.png\r\n\u001b[8Cimg/image-112.png\r\n\u001b[8Cimg/image-113.png\r\n\u001b[8Cimg/image-114.png\r\n\u001b[8Cimg/image-115.png\r\n\u001b[8Cimg/image-116.png\r\n\u001b[8Cimg/image-117.png\r\n\u001b[8Cimg/image-118.png\r\n\u001b[8Cimg/image-119.png\r\n\u001b[8Cimg/image-120.png\r\n\u001b[8Cimg/image-121.png\r\n\u001b[8Cimg/image-122.png\r\n\u001b[8Cimg/image-123.png\r\n\u001b[8Cimg/image-124.png\r\n\u001b[8Cimg/image-125.png\r\n\u001b[8Cimg/image-126.png\r\n\u001b[8Cimg/image-127.png\r\n\u001b[8Cimg/image-128.png\r\n\u001b[8Cimg/image-129.png\r\n\u001b[8Cimg/image-130.png\r\n\u001b[8Cimg/image-131.png\r\n\u001b[8Cimg/image-132.png\r\n\u001b[8Cimg/image-133.png\r\n\u001b[8Cimg/image-134.png\r\n\u001b[8Cimg/image-135.png\r\n\u001b[8Cimg/image-136.png\r\n\u001b[8Cimg/image-137.png\r\n\u001b[8Cimg/image-138.png\r\n\u001b[8Cimg/image-139.png\r\n\u001b[8Cimg/image-140.png\r\n\u001b[8Cimg/image-141.png\r\n\u001b[8Cimg/image-142.png\r\n\u001b[8Cimg/image-143.png\r\n\u001b[8Cimg/image-144.png\r\n\u001b[8Cimg/image-145.png\r\n\u001b[8Cimg/image-146.png\r\n\u001b[8Cimg/image-147.png\r\n\u001b[8Cimg/image-148.png\r\n\u001b[8Cimg/image-149.png\r\n\u001b[8Cimg/image-150.png\r\n\u001b[8Cimg/image-151.png\r\n\u001b[8Cimg/image-152.png\r\n\u001b[8Cimg/image-153.png\r\n\u001b[8Cimg/image-154.png\r\n\u001b[8Cimg/image-155.png\r\n\u001b[8Cimg/image-156.png\r\n\u001b[8Cimg/image-157.png\r\n\u001b[8Cimg/image-158.png\r\n\u001b[8Cimg/image-159.png\r\n\u001b[8Cimg/image-160.png\r\n\u001b[8Cimg/image-161.png\r\n\u001b[8Cimg/image-162.png\r\n\u001b[8Cimg/image-163.png\r\n\u001b[8Cimg/image-164.png\r\n\u001b[8Cimg/image-165.png\r\n\u001b[8Cimg/image-166.png\r\n\u001b[8Cimg/image-167.png\r\n\u001b[8Cimg/image-168.png\r\n\u001b[8Cimg/image-169.png\r\n\u001b[8Cimg/image-170.png\r\n\u001b[8Cimg/image-171.png\r\n\u001b[8Cimg/image-172.png\r\n\u001b[8Cimg/image-92.png\r\n\u001b[8Cimg/image-93.png\r\n\u001b[8Cimg/image-94.png\r\n\u001b[8Cimg/image-95.png\r\n\u001b[8Cimg/image-96.png\r\n\u001b[8Cimg/image-97.png\r\n\u001b[8Cimg/image-98.png\r\n\u001b[8Cimg/image-99.png\r\n\r\n\u001b[0mno changes added to commit (use \"git add\" and/or \"git commit -a\")\r\nyonghwankim@gim-yonghwan-ui-MacBookAir k8s % git add .",
                         "rows": 18
                       }
                     }
@@ -238,21 +238,23 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "b23145f9d2f32327",
+  "active": "872b8e325047c594",
   "lastOpenFiles": [
     "ch05/Pod 살펴보기.md",
+    "ch06/쿠버네티스 네트워킹.md",
+    "ch06",
+    "img/image-172.png",
+    "img/image-171.png",
+    "img/image-170.png",
+    "img/image-169.png",
+    "img/image-168.png",
+    "img/image-167.png",
+    "img/image-166.png",
+    "img/image-165.png",
+    "img/image-164.png",
+    "img/image-163.png",
     "ch04/쿠버네티스 첫 만남.md",
     "ch05",
-    "img/image-91.png",
-    "img/image-90.png",
-    "img/image-89.png",
-    "img/image-88.png",
-    "img/image-87.png",
-    "img/image-86.png",
-    "img/image-85.png",
-    "img/image-84.png",
-    "img/image-83.png",
-    "img/image-82.png",
     "ch02/쿠버네티스 소개.md",
     "ch03/쿠버네티스 설치.md",
     "ch04",
