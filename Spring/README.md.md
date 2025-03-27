@@ -1,6 +1,3 @@
-## 소스코드 저장소
-[소스코드](https://github.com/yonghwankim-dev/spring_study)
-
 ## 1. IoC 컨테이너와 빈
 1. [Spring IoC Container & Bean](https://yonghwankim-dev.tistory.com/498)
 2. [의존성 주입(Dependency Injection)](https://yonghwankim-dev.tistory.com/501)
@@ -36,7 +33,6 @@
 
 ## References
 [스프링 프레임워크 핵심 기술](https://www.inflearn.com/course/spring-framework_core/dashboard)
-
 
 
 
