@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README.md"
+              "title": "README"
             }
           }
         ]
@@ -168,9 +168,9 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "20a13bf3a4488e41",
+  "active": "cf568e8438a4325e",
   "lastOpenFiles": [
-    "README.md.md",
+    "README.md",
     "ch11/고급 스케줄링.md",
     "ch03/쿠버네티스 설치.md",
     "ch14/로깅과 모니터링.md",
