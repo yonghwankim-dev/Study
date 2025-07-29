@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6b2d1225440955bd",
+        "id": "236aeaefb18f04cb",
         "type": "tabs",
         "children": [
           {
-            "id": "20a13bf3a4488e41",
+            "id": "43998d461083b07c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -94,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "aop/AOP.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "백링크"
+              "title": "AOP 의 백링크"
             }
           },
           {
@@ -168,8 +169,36 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "cf568e8438a4325e",
+  "active": "43998d461083b07c",
   "lastOpenFiles": [
+    "aop/AOP.md",
+    "img/image-24.png",
+    "img/image-23.png",
+    "img/image-22.png",
+    "img/image-21.png",
+    "clean code/클린 코더스 강의.md",
+    "img/image-20.png",
+    "clean code",
+    "websocket/Intro to WebSockets with Spring.md",
+    "cache/Global Cache 종류.md",
+    "img/image-6.png",
+    "img/image-9.png",
+    "img/image-19.png",
+    "img/image-18.png",
+    "img/image-17.png",
+    "cache/Local Cache와 Global Cache.md",
+    "aop",
+    "메모.md",
+    "sse/Server-Sent Events in Spring.md",
+    "sse/Polling vs SSE 성능 측정.md",
+    "cache",
+    "sse/Reactive WebSockets with Spring.md",
+    "sse/실시간 데이터 전송 방식 4가지.md",
+    "websocket",
+    "sse/SSE(Server-Sent-Events) WebSocket.md",
+    "img",
+    "Server-Sent-Events(SSE).md",
+    "sse",
     "README.md",
     "ch11/고급 스케줄링.md",
     "ch03/쿠버네티스 설치.md",
@@ -177,33 +206,15 @@
     "ch08/helm 패키지 매니저.md",
     "ch10/스토리지.md",
     "ch12/클러스터 관리.md",
-    "img/image-609.png",
-    "img/image-608.png",
-    "img/image-607.png",
-    "img/image-606.png",
-    "img/image-605.png",
-    "img/image-604.png",
-    "img/image-603.png",
     "ch09/Ingress 리소스.md",
     "ch13/접근 제어.md",
-    "img/image-602.png",
-    "img/image-601.png",
-    "img/image-600.png",
     "ch14",
     "ch13",
     "ch12",
     "ch02/쿠버네티스 소개.md",
     "ch11",
-    "ch10",
     "ch06/쿠버네티스 네트워킹.md",
     "ch07/쿠버네티스 컨트롤러.md",
-    "ch04/쿠버네티스 첫 만남.md",
-    "ch09",
-    "ch08",
-    "ch05/Pod 살펴보기.md",
-    "ch07",
-    "ch06",
-    "ch05",
-    "ch01/도커 기초.md"
+    "ch04/쿠버네티스 첫 만남.md"
   ]
 }
