@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="fineAnts@fineants-db.co2xlpgvmw7g.ap-northeast-2.rds.amazonaws.com" uuid="3f8a9c0b-989b-4eab-9d24-9aa86a463bc8">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://fineants-db.co2xlpgvmw7g.ap-northeast-2.rds.amazonaws.com:3306/fineAnts</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

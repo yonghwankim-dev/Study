@@ -1,0 +1,71 @@
+class Solution {
+    static class Parking{
+        int defaultTime; // 기본시간(분)
+        int defaultFee;  // 기본요금(원)
+        int unitTime;    // 단위시간(분)
+        int unitFee;     // 단위요금(원)
+        Set<Car> cars;
+
+        public Parking(int defaultTime, int defaultFee, int unitTime, int unitFee) {
+            this.defaultTime = defaultTime;
+            this.defaultFee = defaultFee;
+            this.unitTime = unitTime;
+            this.unitFee = unitFee;
+            this.cars = new HashSet<>();
+        }
+
+        public void inCar(Car car){
+
+        }
+
+        public void outCar(Car car){
+
+        }
+
+        public void calculate(){
+
+        }
+
+    }
+
+    enum Status{IN,OUT}
+
+    static class Car{
+        int carNumber;   // 차량번호
+        int totalTime;   // 총 주차시간
+        String recentlyParkingTime; // 최근 입차시간
+
+        public Car(int carNumber, int totalTime) {
+            this.carNumber = carNumber;
+            this.totalTime = totalTime;
+        }
+
+        public void parkIn(String time){
+            recentlyParkingTime = time;
+        }
+    }
+
+    public static int[] solution(int[] fees, String[] records) {
+        int[] answer = {};
+
+        Parking parking = new Parking(fees[0], fees[1], fees[2], fees[3]);
+        Set<Car> cars = new HashSet<>();
+        for(String record : records){
+            String[] info = record.split(" ");
+            String time = info[0];
+            int carNumber = Integer.parseInt(info[1]);
+            Status status = Status.valueOf(info[2]);
+
+            if(status.equals("IN")){
+                parking.inCar(new Car(carNumber, 0));
+            }
+            if(status.equals("OUT")){
+
+            }
+        }
+
+        System.out.println(parking.cars);
+
+        return answer;
+    }
+}
