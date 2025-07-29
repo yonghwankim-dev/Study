@@ -1,0 +1,10 @@
+POST /items/1/edit HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 66
+
+{
+  "name": "JPA",
+  "price": 15000,
+  "stockQuantity": 15
+}
