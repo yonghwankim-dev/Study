@@ -1,0 +1,11 @@
+POST /members HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 82
+
+{
+  "name": "김용환",
+  "city": "서울",
+  "street": "강남",
+  "zipcode": "1234"
+}
