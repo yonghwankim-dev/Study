@@ -29,7 +29,8 @@ class OrderTest {
 		return Stream.of(
 			Arguments.of(OrderState.SHIPPED),
 			Arguments.of(OrderState.DELIVERING),
-			Arguments.of(OrderState.DELIVERY_COMPLETED)
+			Arguments.of(OrderState.DELIVERY_COMPLETED),
+			Arguments.of(OrderState.CANCELED)
 		);
 	}
 
@@ -95,10 +96,23 @@ class OrderTest {
 			.hasMessageContaining("no ShippingInfo");
 	}
 
-	@Test
+	@ParameterizedTest
+	@MethodSource(value = "shippingChangeableOrderStateSource")
 	void shouldDoesNotThrow_whenOrderIsCanceled() {
 		Order order = new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines);
 
 		assertDoesNotThrow(order::cancel);
+	}
+
+	@ParameterizedTest
+	@MethodSource(value = "shippingNotChangeableOrderStateSource")
+	void shouldThrow_whenOrderIsAlreadyShipped(OrderState state) {
+		Order order = new Order(state, shippingInfo, orderLines);
+
+		Throwable throwable = Assertions.catchThrowable(order::cancel);
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalStateException.class)
+			.hasMessageContaining("already shipped");
 	}
 }
