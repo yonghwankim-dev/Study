@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
@@ -27,6 +28,8 @@ class ChangeOrderServiceTest {
 
 	private Order order;
 	private OrderNo id;
+	private OrderRepository orderRepository;
+	private MemberRepository memberRepository;
 
 	private ShippingInfo createNewShippingInfo() {
 		Receiver newReceiver = new Receiver("Jane Doe", "0987654321");
@@ -47,22 +50,23 @@ class ChangeOrderServiceTest {
 		);
 
 		order = new Order(id, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+
+		orderRepository = mock(OrderRepository.class);
+		given(orderRepository.findById(id))
+			.willReturn(order);
+		memberRepository = mock(MemberRepository.class);
 	}
 
 	@Test
 	void canCreated(){
-		OrderRepository orderRepository = mock(OrderRepository.class);
-		ChangeOrderService service = new ChangeOrderService(orderRepository);
+		ChangeOrderService service = new ChangeOrderService(orderRepository, memberRepository);
 
 		assertNotNull(service);
 	}
 
 	@Test
 	void shouldChangeShippingInfo_whenOrderExists() {
-		OrderRepository orderRepository = mock(OrderRepository.class);
-		given(orderRepository.findById(id))
-			.willReturn(order);
-		ChangeOrderService service = new ChangeOrderService(orderRepository);
+		ChangeOrderService service = new ChangeOrderService(orderRepository, memberRepository);
 		ShippingInfo newShippingInfo = createNewShippingInfo();
 
 		Assertions.assertDoesNotThrow(()->service.changeShippingInfo(id, newShippingInfo, false));

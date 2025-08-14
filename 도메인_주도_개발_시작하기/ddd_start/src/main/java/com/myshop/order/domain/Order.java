@@ -83,8 +83,8 @@ public class Order {
 		// todo: implement logic
 	}
 
-	public OrderNo getId() {
-		return id;
+	public Orderer getOrderer() {
+		return orderer;
 	}
 
 	@Override
