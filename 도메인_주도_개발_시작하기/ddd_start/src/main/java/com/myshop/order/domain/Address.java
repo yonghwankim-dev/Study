@@ -1,4 +1,4 @@
-package com.myshop.order;
+package com.myshop.order.domain;
 
 public class Address {
 	private String address1;

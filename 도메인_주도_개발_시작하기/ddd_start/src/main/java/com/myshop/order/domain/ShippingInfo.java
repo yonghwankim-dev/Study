@@ -1,4 +1,4 @@
-package com.myshop.order;
+package com.myshop.order.domain;
 
 public class ShippingInfo {
 	private Receiver receiver;
