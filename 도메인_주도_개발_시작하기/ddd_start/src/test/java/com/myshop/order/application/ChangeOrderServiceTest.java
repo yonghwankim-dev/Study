@@ -24,6 +24,7 @@ import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Product;
+import com.myshop.order.domain.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 
@@ -46,8 +47,9 @@ class ChangeOrderServiceTest {
 	void setUp() {
 		id = new OrderNo("12345");
 		memberId = new MemberId("23456");
-		Orderer orderer = new Orderer(memberId, "John Doe", "johnDoe@gmail.com");
-		OrderLine orderLine = new OrderLine(new Product(), new Money(1000), 2);
+		Orderer orderer = new Orderer(memberId, "John Doe");
+		ProductId productId = new ProductId("9000000112298");
+		OrderLine orderLine = new OrderLine(productId, new Money(1000), 2);
 		List<OrderLine> orderLines = List.of(orderLine);
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");

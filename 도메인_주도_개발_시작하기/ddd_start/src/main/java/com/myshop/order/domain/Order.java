@@ -3,13 +3,23 @@ package com.myshop.order.domain;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+
+@Entity
 public class Order {
+	@EmbeddedId
 	private OrderNo id;
+	@Embedded
 	private Orderer orderer;
 	private OrderState state;
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
 	private Money totalAmounts;
+
+	protected Order() {
+	}
 
 	public Order(OrderNo id, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
 		setOrderNo(id);

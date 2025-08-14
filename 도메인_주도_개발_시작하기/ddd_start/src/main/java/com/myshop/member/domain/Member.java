@@ -4,7 +4,6 @@ import com.myshop.order.domain.Address;
 
 public class Member {
 
-
 	private MemberId memberId;
 	private Address address;
 

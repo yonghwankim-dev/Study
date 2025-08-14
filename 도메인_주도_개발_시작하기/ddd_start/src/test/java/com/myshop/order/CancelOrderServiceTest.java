@@ -18,6 +18,7 @@ import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Product;
+import com.myshop.order.domain.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 
@@ -39,8 +40,9 @@ class CancelOrderServiceTest {
 		id = "12345";
 		orderNo = new OrderNo(id);
 		MemberId memberId = new MemberId("12345");
-		orderer = new Orderer(memberId, "John Doe", "johnDoe@gmail.com");
-		OrderLine orderLine = new OrderLine(new Product(), new Money(1000), 2);
+		orderer = new Orderer(memberId, "John Doe");
+		ProductId productId = new ProductId("9000000112298");
+		OrderLine orderLine = new OrderLine(productId, new Money(1000), 2);
 		orderLines = List.of(orderLine);
 		shippingInfo = new ShippingInfo(
 			new Receiver("John Doe", "1234567890"),
