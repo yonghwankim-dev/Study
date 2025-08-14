@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order {
-	private String orderNumber;
+	private OrderNo id;
 	private OrderState state;
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
@@ -66,6 +66,10 @@ public class Order {
 		// todo: implement logic
 	}
 
+	public OrderNo getId() {
+		return id;
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
@@ -73,11 +77,11 @@ public class Order {
 		if (object == null || getClass() != object.getClass())
 			return false;
 		Order order = (Order)object;
-		return Objects.equals(orderNumber, order.orderNumber);
+		return Objects.equals(id, order.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(orderNumber);
+		return Objects.hash(id);
 	}
 }
