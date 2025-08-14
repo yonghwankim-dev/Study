@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.myshop.order.domain.Money;
+import com.myshop.order.domain.OrderLine;
+import com.myshop.order.domain.Product;
+
 class OrderLineTest {
 
 	private Money price;

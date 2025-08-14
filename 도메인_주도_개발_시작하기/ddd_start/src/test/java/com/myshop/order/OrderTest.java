@@ -12,6 +12,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import com.myshop.order.domain.Address;
+import com.myshop.order.domain.Money;
+import com.myshop.order.domain.Order;
+import com.myshop.order.domain.OrderLine;
+import com.myshop.order.domain.OrderNumber;
+import com.myshop.order.domain.OrderState;
+import com.myshop.order.domain.Orderer;
+import com.myshop.order.domain.Product;
+import com.myshop.order.domain.Receiver;
+import com.myshop.order.domain.ShippingInfo;
+
 class OrderTest {
 
 	private ShippingInfo shippingInfo;
