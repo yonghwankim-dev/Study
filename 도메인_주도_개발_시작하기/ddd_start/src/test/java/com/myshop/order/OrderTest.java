@@ -2,6 +2,7 @@ package com.myshop.order;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.assertj.core.api.Assertions;
@@ -30,7 +31,8 @@ class OrderTest {
 	@MethodSource(value = "shippingChangeableOrderStateSource")
 	void shouldChangeShippingInfo_whenOrderStateIsPaymentWaiting(OrderState state) {
 		ShippingInfo oldShippingInfo = new ShippingInfo();
-		Order order = new Order(state, oldShippingInfo);
+		List<OrderLine> orderLines = List.of(new OrderLine(new Product(), 1000, 2));
+		Order order = new Order(state, oldShippingInfo, orderLines);
 		ShippingInfo newShippingInfo = new ShippingInfo();
 
 		order.changeShippingInfo(newShippingInfo);
@@ -42,7 +44,8 @@ class OrderTest {
 	@MethodSource(value = "shippingNotChangeableOrderStateSource")
 	void shouldThrowException_whenOrderStateIsNotShippingChangeable(OrderState state) {
 		ShippingInfo oldShippingInfo = new ShippingInfo();
-		Order order = new Order(state, oldShippingInfo);
+		List<OrderLine> orderLines = List.of(new OrderLine(new Product(), 1000, 2));
+		Order order = new Order(state, oldShippingInfo, orderLines);
 		ShippingInfo newShippingInfo = new ShippingInfo();
 
 		Throwable throwable = Assertions.catchThrowable(() -> order.changeShippingInfo(newShippingInfo));
