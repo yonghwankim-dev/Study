@@ -14,7 +14,7 @@ public class CancelOrderService {
 	public void cancelOrder(OrderNumber number){
 		Order order = orderRepository.findByNumber(number);
 		if (order == null) {
-			throw new OrderNotFoundException(number);
+			throw new NoOrderException(number);
 		}
 		order.cancel();
 	}
