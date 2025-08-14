@@ -45,15 +45,14 @@ public class Order {
 	}
 
 	public void changeShippingInfo(ShippingInfo newShippingInfo) {
-		if (!isShippingChangeable()) {
-			throw new IllegalStateException("can't change shipping in " + state);
-		}
-		this.shippingInfo = newShippingInfo;
+		verifyNotYetShipped();
+		setShippingInfo(newShippingInfo);
 	}
 
-	private boolean isShippingChangeable() {
-		return state == OrderState.PAYMENT_WAITING ||
-			state == OrderState.PREPARING;
+	private void verifyNotYetShipped() {
+		if (state != OrderState.PAYMENT_WAITING && state != OrderState.PREPARING) {
+			throw new IllegalStateException("already shipped");
+		}
 	}
 
 	public void cancel(){

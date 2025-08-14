@@ -66,7 +66,7 @@ class OrderTest {
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalStateException.class)
-			.hasMessageContaining("can't change shipping in " + state);
+			.hasMessageContaining("already shipped");
 	}
 
 	@ParameterizedTest
@@ -93,5 +93,12 @@ class OrderTest {
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("no ShippingInfo");
+	}
+
+	@Test
+	void shouldDoesNotThrow_whenOrderIsCanceled() {
+		Order order = new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines);
+
+		assertDoesNotThrow(order::cancel);
 	}
 }
