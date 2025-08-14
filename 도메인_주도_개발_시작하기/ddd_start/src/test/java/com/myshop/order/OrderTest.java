@@ -33,6 +33,13 @@ class OrderTest {
 		);
 	}
 
+	public static Stream<Arguments> invalidOrderLinesSource() {
+		return Stream.of(
+			Arguments.of(List.of()),
+			Arguments.of((Object)null)
+		);
+	}
+
 	@BeforeEach
 	void setUp() {
 		shippingInfo = new ShippingInfo("John Doe", "123 Main St", "12345", "City", "Country");
@@ -60,6 +67,16 @@ class OrderTest {
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalStateException.class)
 			.hasMessageContaining("can't change shipping in " + state);
+	}
+
+	@ParameterizedTest
+	@MethodSource(value = "invalidOrderLinesSource")
+	void shouldThrowException_whenOrderLinesIsInvalid(List<OrderLine> orderLines) {
+		Throwable throwable = Assertions.catchThrowable(() -> new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("no OrderLine");
 	}
 
 	@Test
