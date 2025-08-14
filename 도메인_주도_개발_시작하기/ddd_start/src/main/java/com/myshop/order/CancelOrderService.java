@@ -11,15 +11,11 @@ public class CancelOrderService {
 	}
 
 	@Transactional
-	public void cancelOrder(String orderId){
-		Order order = findOrderById(orderId);
+	public void cancelOrder(OrderNumber number){
+		Order order = orderRepository.findByNumber(number);
 		if (order == null) {
-			throw new OrderNotFoundException(orderId);
+			throw new OrderNotFoundException(number);
 		}
 		order.cancel();
-	}
-
-	private Order findOrderById(String orderId) {
-		return orderRepository.findByNumber(new OrderNumber(orderId));
 	}
 }
