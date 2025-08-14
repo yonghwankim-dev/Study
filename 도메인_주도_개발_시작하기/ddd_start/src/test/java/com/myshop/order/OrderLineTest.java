@@ -11,8 +11,9 @@ class OrderLineTest {
 		Product product = new Product();
 		int price = 1000;
 		int quantity = 2;
+
 		OrderLine orderLine = new OrderLine(product, price, quantity);
+
 		assertNotNull(orderLine);
 	}
-
 }
