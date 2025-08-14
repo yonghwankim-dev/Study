@@ -13,7 +13,7 @@ import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
-import com.myshop.order.domain.OrderNumber;
+import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
@@ -24,20 +24,20 @@ import com.myshop.order.domain.ShippingInfo;
 class CancelOrderServiceTest {
 
 	private String id;
-	private OrderNumber orderNumber;
+	private OrderNo orderNo;
 	private Orderer orderer;
 	private List<OrderLine> orderLines;
 	private ShippingInfo shippingInfo;
 
 	private Order createOrder() {
 		OrderState state = OrderState.PAYMENT_WAITING;
-		return new Order(orderNumber, orderer, orderLines, shippingInfo, state);
+		return new Order(orderNo, orderer, orderLines, shippingInfo, state);
 	}
 
 	@BeforeEach
 	void setUp() {
 		id = "12345";
-		orderNumber = new OrderNumber(id);
+		orderNo = new OrderNo(id);
 		MemberId memberId = new MemberId("12345");
 		orderer = new Orderer(memberId, "John Doe", "johnDoe@gmail.com");
 		OrderLine orderLine = new OrderLine(new Product(), new Money(1000), 2);
@@ -51,7 +51,7 @@ class CancelOrderServiceTest {
 	@Test
 	void shouldDoesNotThrow_whenOrderIsNotShipped(){
 		OrderRepository repository = BDDMockito.mock(OrderRepository.class);
-		OrderNumber number = new OrderNumber(id);
+		OrderNo number = new OrderNo(id);
 		Order order = createOrder();
 		BDDMockito.given(repository.findByNumber(number))
 			.willReturn(order);

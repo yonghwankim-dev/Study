@@ -4,7 +4,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.order.NoOrderException;
 import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderNumber;
+import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 
 public class CancelOrderService {
@@ -16,7 +16,7 @@ public class CancelOrderService {
 	}
 
 	@Transactional
-	public void cancelOrder(OrderNumber number){
+	public void cancelOrder(OrderNo number){
 		Order order = orderRepository.findByNumber(number);
 		if (order == null) {
 			throw new NoOrderException(number);
