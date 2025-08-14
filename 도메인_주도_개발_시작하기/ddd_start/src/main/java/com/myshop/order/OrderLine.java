@@ -2,22 +2,22 @@ package com.myshop.order;
 
 public class OrderLine {
 	private Product product;
-	private int price;
+	private Money price;
 	private int quantity;
-	private int amounts;
+	private Money amounts;
 
-	public OrderLine(Product product, int price, int quantity) {
+	public OrderLine(Product product, Money price, int quantity) {
 		this.product = product;
 		this.price = price;
 		this.quantity = quantity;
 		this.amounts = calculateAmounts();
 	}
 
-	private int calculateAmounts() {
-		return price * quantity;
+	private Money calculateAmounts() {
+		return price.multiply(quantity);
 	}
 
 	public int getAmounts() {
-		return amounts;
+		return amounts.getValue();
 	}
 }

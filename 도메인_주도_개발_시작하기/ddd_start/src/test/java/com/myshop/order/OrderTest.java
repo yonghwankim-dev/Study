@@ -47,7 +47,7 @@ class OrderTest {
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
 		shippingInfo = new ShippingInfo(receiver, address);
-		orderLines = List.of(new OrderLine(new Product(), 1000, 2));
+		orderLines = List.of(new OrderLine(new Product(), new Money(1000), 2));
 		Receiver newReceiver = new Receiver("Jane Doe", "0987654321");
 		Address newAddress = new Address("456 Elm St", "New City", "67890");
 		newShippingInfo = new ShippingInfo(newReceiver, newAddress);
