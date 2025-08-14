@@ -1,8 +1,10 @@
 package com.myshop.order;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
+	private String orderNumber;
 	private OrderState state;
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
@@ -62,5 +64,20 @@ public class Order {
 
 	public void completePayment(){
 		// todo: implement logic
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		Order order = (Order)object;
+		return Objects.equals(orderNumber, order.orderNumber);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(orderNumber);
 	}
 }
