@@ -11,11 +11,19 @@ public class Order {
 	private List<OrderLine> orderLines;
 	private Money totalAmounts;
 
-	public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
-		this.state = state;
+	public Order(OrderNo id, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
+		setOrderNo(id);
 		setOrderer(orderer);
 		setOrderLines(orderLines);
 		setShippingInfo(shippingInfo);
+		this.state = state;
+	}
+
+	private void setOrderNo(OrderNo id) {
+		if (id == null) {
+			throw new IllegalArgumentException("no OrderNo");
+		}
+		this.id = id;
 	}
 
 	private void setOrderer(Orderer orderer) {
