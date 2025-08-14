@@ -1,4 +1,5 @@
 package com.myshop.order;
 
-public class Orderer {
+public record Orderer(String name, String email) {
+
 }

@@ -24,7 +24,7 @@ class CancelOrderServiceTest {
 	void setUp() {
 		id = "12345";
 		orderNo = new OrderNo(id);
-		orderer = new Orderer();
+		orderer = new Orderer("John Doe", "johnDoe@gmail.com");
 		OrderLine orderLine = new OrderLine(new Product(), new Money(1000), 2);
 		orderLines = List.of(orderLine);
 		shippingInfo = new ShippingInfo(
