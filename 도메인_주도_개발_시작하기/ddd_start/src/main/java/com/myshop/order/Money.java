@@ -1,9 +1,13 @@
 package com.myshop.order;
 
 public class Money {
-	private final int amount;
+	private final int value;
 
-	public Money(int amount) {
-		this.amount = amount;
+	public Money(int value) {
+		this.value = value;
+	}
+
+	public int getValue() {
+		return value;
 	}
 }
