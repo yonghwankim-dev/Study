@@ -1,5 +1,6 @@
 package com.myshop.order.application;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
@@ -13,6 +14,7 @@ import org.mockito.BDDMockito;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.order.NoOrderException;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
@@ -70,6 +72,19 @@ class ChangeOrderServiceTest {
 		ShippingInfo newShippingInfo = createNewShippingInfo();
 
 		Assertions.assertDoesNotThrow(()-> service.changeShippingInfo(id, newShippingInfo, false));
+	}
+
+	@Test
+	void shouldThrow_whenOrderIsNull(){
+		OrderNo notExistingOrderNo = new OrderNo("99999");
+		ShippingInfo newShippingInfo = createNewShippingInfo();
+
+		Throwable throwable = catchThrowable(
+			() -> service.changeShippingInfo(notExistingOrderNo, newShippingInfo, false));
+
+		assertThat(throwable)
+			.isInstanceOf(NoOrderException.class)
+			.hasMessage("Order not found: " + notExistingOrderNo);
 	}
 
 	@Test
