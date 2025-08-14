@@ -53,7 +53,7 @@ class CancelOrderServiceTest {
 		OrderRepository repository = BDDMockito.mock(OrderRepository.class);
 		OrderNo number = new OrderNo(id);
 		Order order = createOrder();
-		BDDMockito.given(repository.findByNumber(number))
+		BDDMockito.given(repository.findById(number))
 			.willReturn(order);
 		CancelOrderService service = new CancelOrderService(repository);
 
