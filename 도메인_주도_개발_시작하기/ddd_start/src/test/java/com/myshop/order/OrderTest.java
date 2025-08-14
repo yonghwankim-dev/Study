@@ -16,6 +16,7 @@ class OrderTest {
 
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
+	private ShippingInfo newShippingInfo;
 
 	public static Stream<Arguments> shippingChangeableOrderStateSource() {
 		return Stream.of(
@@ -34,15 +35,15 @@ class OrderTest {
 
 	@BeforeEach
 	void setUp() {
-		shippingInfo = new ShippingInfo();
+		shippingInfo = new ShippingInfo("John Doe", "123 Main St", "12345", "City", "Country");
 		orderLines = List.of(new OrderLine(new Product(), 1000, 2));
+		newShippingInfo = new ShippingInfo("Jane Doe", "456 Elm St", "67890", "New City", "New Country");
 	}
 
 	@ParameterizedTest
 	@MethodSource(value = "shippingChangeableOrderStateSource")
 	void shouldChangeShippingInfo_whenOrderStateIsPaymentWaiting(OrderState state) {
 		Order order = new Order(state, shippingInfo, orderLines);
-		ShippingInfo newShippingInfo = new ShippingInfo();
 
 		order.changeShippingInfo(newShippingInfo);
 
@@ -53,7 +54,6 @@ class OrderTest {
 	@MethodSource(value = "shippingNotChangeableOrderStateSource")
 	void shouldThrowException_whenOrderStateIsNotShippingChangeable(OrderState state) {
 		Order order = new Order(state, shippingInfo, orderLines);
-		ShippingInfo newShippingInfo = new ShippingInfo();
 
 		Throwable throwable = Assertions.catchThrowable(() -> order.changeShippingInfo(newShippingInfo));
 
