@@ -46,7 +46,7 @@ class OrderTest {
 	@BeforeEach
 	void setUp() {
 		orderNo = new OrderNo("12345");
-		orderer = new Orderer();
+		orderer = new Orderer("John Doe", "johnDoe@gmail.com");
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
 		shippingInfo = new ShippingInfo(receiver, address);
