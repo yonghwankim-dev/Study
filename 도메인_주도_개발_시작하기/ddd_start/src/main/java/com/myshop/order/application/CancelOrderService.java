@@ -17,7 +17,7 @@ public class CancelOrderService {
 
 	@Transactional
 	public void cancelOrder(OrderNo number){
-		Order order = orderRepository.findByNumber(number);
+		Order order = orderRepository.findById(number);
 		if (order == null) {
 			throw new NoOrderException(number);
 		}
