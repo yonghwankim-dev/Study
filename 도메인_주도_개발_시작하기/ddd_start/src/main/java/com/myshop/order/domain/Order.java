@@ -59,10 +59,6 @@ public class Order {
 		this.shippingInfo = shippingInfo;
 	}
 
-	public void changeShipped(){
-		// todo: implement logic
-	}
-
 	public void changeShippingInfo(ShippingInfo newShippingInfo) {
 		verifyNotYetShipped();
 		setShippingInfo(newShippingInfo);
@@ -77,10 +73,6 @@ public class Order {
 	public void cancel(){
 		verifyNotYetShipped();
 		this.state = OrderState.CANCELED;
-	}
-
-	public void completePayment(){
-		// todo: implement logic
 	}
 
 	public Orderer getOrderer() {
