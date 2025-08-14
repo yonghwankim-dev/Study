@@ -61,4 +61,20 @@ class OrderTest {
 			.isInstanceOf(IllegalStateException.class)
 			.hasMessageContaining("can't change shipping in " + state);
 	}
+
+	@Test
+	void shouldNotThrowException_whenShippingInfoIsValid() {
+		Order order = new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines);
+
+		assertDoesNotThrow(() -> order.changeShippingInfo(newShippingInfo));
+	}
+
+	@Test
+	void shouldThrowException_whenShippingInfoIsNull(){
+		Throwable throwable = Assertions.catchThrowable(() -> new Order(OrderState.PAYMENT_WAITING, null, orderLines));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("no ShippingInfo");
+	}
 }
