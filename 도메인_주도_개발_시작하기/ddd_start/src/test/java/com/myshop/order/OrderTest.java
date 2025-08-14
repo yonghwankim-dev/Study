@@ -43,9 +43,14 @@ class OrderTest {
 
 	@BeforeEach
 	void setUp() {
-		shippingInfo = new ShippingInfo("John Doe", "123 Main St", "12345", "City", "Country");
+		// write phone number in Recevier constructor
+		Receiver receiver = new Receiver("John Doe", "1234567890");
+		Address address = new Address("123 Main St", "City", "12345");
+		shippingInfo = new ShippingInfo(receiver, address);
 		orderLines = List.of(new OrderLine(new Product(), 1000, 2));
-		newShippingInfo = new ShippingInfo("Jane Doe", "456 Elm St", "67890", "New City", "New Country");
+		Receiver newReceiver = new Receiver("Jane Doe", "0987654321");
+		Address newAddress = new Address("456 Elm St", "New City", "67890");
+		newShippingInfo = new ShippingInfo(newReceiver, newAddress);
 	}
 
 	@ParameterizedTest
