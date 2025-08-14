@@ -1,7 +1,7 @@
 package com.myshop.order;
 
 public interface OrderRepository {
-
-	Order save(Order order);
-	Order findById(String orderId);
+	Order findByNumber(OrderNumber number);
+	void save(Order order);
+	void delete(Order order);
 }

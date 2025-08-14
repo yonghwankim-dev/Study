@@ -10,20 +10,20 @@ import org.mockito.BDDMockito;
 class CancelOrderServiceTest {
 
 	private String id;
-	private OrderNo orderNo;
+	private OrderNumber orderNumber;
 	private Orderer orderer;
 	private List<OrderLine> orderLines;
 	private ShippingInfo shippingInfo;
 
 	private Order createOrder() {
 		OrderState state = OrderState.PAYMENT_WAITING;
-		return new Order(orderNo, orderer, orderLines, shippingInfo, state);
+		return new Order(orderNumber, orderer, orderLines, shippingInfo, state);
 	}
 
 	@BeforeEach
 	void setUp() {
 		id = "12345";
-		orderNo = new OrderNo(id);
+		orderNumber = new OrderNumber(id);
 		orderer = new Orderer("John Doe", "johnDoe@gmail.com");
 		OrderLine orderLine = new OrderLine(new Product(), new Money(1000), 2);
 		orderLines = List.of(orderLine);
@@ -36,12 +36,12 @@ class CancelOrderServiceTest {
 	@Test
 	void shouldDoesNotThrow_whenOrderIsNotShipped(){
 		OrderRepository repository = BDDMockito.mock(OrderRepository.class);
-		String orderId = id;
+		OrderNumber orderNumber = new OrderNumber(id);
 		Order order = createOrder();
-		BDDMockito.given(repository.findById(orderId))
+		BDDMockito.given(repository.findByNumber(orderNumber))
 			.willReturn(order);
 		CancelOrderService service = new CancelOrderService(repository);
 
-		Assertions.assertDoesNotThrow(() -> service.cancelOrder(orderId));
+		Assertions.assertDoesNotThrow(() -> service.cancelOrder(id));
 	}
 }

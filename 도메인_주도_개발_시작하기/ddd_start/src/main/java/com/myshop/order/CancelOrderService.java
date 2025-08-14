@@ -20,6 +20,6 @@ public class CancelOrderService {
 	}
 
 	private Order findOrderById(String orderId) {
-		return orderRepository.findById(orderId);
+		return orderRepository.findByNumber(new OrderNumber(orderId));
 	}
 }

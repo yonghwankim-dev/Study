@@ -18,7 +18,7 @@ class OrderTest {
 	private List<OrderLine> orderLines;
 	private ShippingInfo newShippingInfo;
 	private Orderer orderer;
-	private OrderNo orderNo;
+	private OrderNumber orderNumber;
 
 	public static Stream<Arguments> notShippedOrderStateSource() {
 		return Stream.of(
@@ -45,7 +45,7 @@ class OrderTest {
 
 	@BeforeEach
 	void setUp() {
-		orderNo = new OrderNo("12345");
+		orderNumber = new OrderNumber("12345");
 		orderer = new Orderer("John Doe", "johnDoe@gmail.com");
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
@@ -59,7 +59,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "notShippedOrderStateSource")
 	void shouldChangeShippingInfo_whenOrderStateIsPaymentWaiting(OrderState state) {
-		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, state);
+		Order order = new Order(orderNumber, orderer, orderLines, shippingInfo, state);
 
 		order.changeShippingInfo(newShippingInfo);
 
@@ -69,7 +69,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "alreadyShippedOrderStateSource")
 	void shouldThrowException_whenOrderStateIsNotShippingChangeable(OrderState state) {
-		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, state);
+		Order order = new Order(orderNumber, orderer, orderLines, shippingInfo, state);
 
 		Throwable throwable = Assertions.catchThrowable(() -> order.changeShippingInfo(newShippingInfo));
 
@@ -81,7 +81,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "invalidOrderLinesSource")
 	void shouldThrowException_whenOrderLinesIsInvalid(List<OrderLine> orderLines) {
-		Throwable throwable = Assertions.catchThrowable(() -> new Order(orderNo, orderer, orderLines, shippingInfo,
+		Throwable throwable = Assertions.catchThrowable(() -> new Order(orderNumber, orderer, orderLines, shippingInfo,
 			OrderState.PAYMENT_WAITING));
 
 		Assertions.assertThat(throwable)
@@ -91,14 +91,14 @@ class OrderTest {
 
 	@Test
 	void shouldNotThrowException_whenShippingInfoIsValid() {
-		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		Order order = new Order(orderNumber, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
 		assertDoesNotThrow(() -> order.changeShippingInfo(newShippingInfo));
 	}
 
 	@Test
 	void shouldThrowException_whenShippingInfoIsNull(){
-		Throwable throwable = Assertions.catchThrowable(() -> new Order(orderNo, orderer, orderLines, null, OrderState.PAYMENT_WAITING));
+		Throwable throwable = Assertions.catchThrowable(() -> new Order(orderNumber, orderer, orderLines, null, OrderState.PAYMENT_WAITING));
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalArgumentException.class)
@@ -108,7 +108,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "notShippedOrderStateSource")
 	void shouldDoesNotThrow_whenOrderIsCanceled() {
-		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		Order order = new Order(orderNumber, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
 		assertDoesNotThrow(order::cancel);
 	}
@@ -116,7 +116,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "alreadyShippedOrderStateSource")
 	void shouldThrow_whenOrderIsAlreadyShipped(OrderState state) {
-		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, state);
+		Order order = new Order(orderNumber, orderer, orderLines, shippingInfo, state);
 
 		Throwable throwable = Assertions.catchThrowable(order::cancel);
 
@@ -128,7 +128,7 @@ class OrderTest {
 	@Test
 	void shouldDoesNotThrow_whenOrdererIsNull() {
 		Throwable throwable = Assertions.catchThrowable(
-			() -> new Order(orderNo, null, orderLines, shippingInfo, OrderState.PAYMENT_WAITING));
+			() -> new Order(orderNumber, null, orderLines, shippingInfo, OrderState.PAYMENT_WAITING));
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalArgumentException.class)
@@ -142,6 +142,6 @@ class OrderTest {
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessageContaining("no OrderNo");
+			.hasMessageContaining("no OrderNumber");
 	}
 }
