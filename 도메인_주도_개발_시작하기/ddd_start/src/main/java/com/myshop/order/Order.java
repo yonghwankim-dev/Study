@@ -56,7 +56,8 @@ public class Order {
 	}
 
 	public void cancel(){
-		// todo: implement logic
+		verifyNotYetShipped();
+		this.state = OrderState.CANCELED;
 	}
 
 	public void completePayment(){
