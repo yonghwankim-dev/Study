@@ -122,4 +122,14 @@ class OrderTest {
 			.isInstanceOf(IllegalStateException.class)
 			.hasMessageContaining("already shipped");
 	}
+
+	@Test
+	void shouldDoesNotThrow_whenOrdererIsNull() {
+		Throwable throwable = Assertions.catchThrowable(
+			() -> new Order(null, orderLines, shippingInfo, OrderState.PAYMENT_WAITING));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("no Orderer");
+	}
 }
