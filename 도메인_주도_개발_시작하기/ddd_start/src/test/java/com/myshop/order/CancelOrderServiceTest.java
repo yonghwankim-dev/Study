@@ -42,6 +42,6 @@ class CancelOrderServiceTest {
 			.willReturn(order);
 		CancelOrderService service = new CancelOrderService(repository);
 
-		Assertions.assertDoesNotThrow(() -> service.cancelOrder(id));
+		Assertions.assertDoesNotThrow(() -> service.cancelOrder(number));
 	}
 }
