@@ -16,4 +16,15 @@ class OrderLineTest {
 
 		assertNotNull(orderLine);
 	}
+
+	@Test
+	void shouldCalculatedAmounts_whenOrderLineIsCreated(){
+		Product product = new Product();
+		int price = 1000;
+		int quantity = 2;
+
+		OrderLine orderLine = new OrderLine(product, price, quantity);
+
+		assertEquals(2000, orderLine.getAmounts());
+	}
 }
