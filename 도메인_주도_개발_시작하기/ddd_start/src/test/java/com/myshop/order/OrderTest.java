@@ -18,14 +18,14 @@ class OrderTest {
 	private List<OrderLine> orderLines;
 	private ShippingInfo newShippingInfo;
 
-	public static Stream<Arguments> shippingChangeableOrderStateSource() {
+	public static Stream<Arguments> notShippedOrderStateSource() {
 		return Stream.of(
 			Arguments.of(OrderState.PAYMENT_WAITING),
 			Arguments.of(OrderState.PREPARING)
 		);
 	}
 
-	public static Stream<Arguments> shippingNotChangeableOrderStateSource() {
+	public static Stream<Arguments> alreadyShippedOrderStateSource() {
 		return Stream.of(
 			Arguments.of(OrderState.SHIPPED),
 			Arguments.of(OrderState.DELIVERING),
@@ -49,7 +49,7 @@ class OrderTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource(value = "shippingChangeableOrderStateSource")
+	@MethodSource(value = "notShippedOrderStateSource")
 	void shouldChangeShippingInfo_whenOrderStateIsPaymentWaiting(OrderState state) {
 		Order order = new Order(state, shippingInfo, orderLines);
 
@@ -59,7 +59,7 @@ class OrderTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource(value = "shippingNotChangeableOrderStateSource")
+	@MethodSource(value = "alreadyShippedOrderStateSource")
 	void shouldThrowException_whenOrderStateIsNotShippingChangeable(OrderState state) {
 		Order order = new Order(state, shippingInfo, orderLines);
 
@@ -97,7 +97,7 @@ class OrderTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource(value = "shippingChangeableOrderStateSource")
+	@MethodSource(value = "notShippedOrderStateSource")
 	void shouldDoesNotThrow_whenOrderIsCanceled() {
 		Order order = new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines);
 
@@ -105,7 +105,7 @@ class OrderTest {
 	}
 
 	@ParameterizedTest
-	@MethodSource(value = "shippingNotChangeableOrderStateSource")
+	@MethodSource(value = "alreadyShippedOrderStateSource")
 	void shouldThrow_whenOrderIsAlreadyShipped(OrderState state) {
 		Order order = new Order(state, shippingInfo, orderLines);
 
