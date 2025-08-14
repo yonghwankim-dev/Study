@@ -6,7 +6,7 @@ public class Order {
 	private OrderState state;
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
-	private int totalAmounts;
+	private Money totalAmounts;
 
 	public Order(OrderState state, ShippingInfo shippingInfo, List<OrderLine> orderLines) {
 		this.state = state;
@@ -27,9 +27,10 @@ public class Order {
 	}
 
 	private void calculateTotalAmount() {
-		this.totalAmounts = orderLines.stream()
+		int sum = orderLines.stream()
 			.mapToInt(OrderLine::getAmounts)
 			.sum();
+		this.totalAmounts = new Money(sum);
 	}
 
 	public void changeShipped(){
