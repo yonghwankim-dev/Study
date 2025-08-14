@@ -3,8 +3,8 @@ package com.myshop.order;
 import java.util.Objects;
 
 public class Receiver {
-	private String name;
-	private String phoneNumber;
+	private final String name;
+	private final String phoneNumber;
 
 	public Receiver(String name, String phoneNumber) {
 		this.name = name;
