@@ -1,8 +1,8 @@
 package com.myshop.order.domain;
 
 public class ShippingInfo {
-	private Receiver receiver;
-	private Address address;
+	private final Receiver receiver;
+	private final Address address;
 
 	public ShippingInfo(Receiver receiver, Address address) {
 		this.receiver = receiver;

@@ -2,6 +2,8 @@ package com.myshop.order.application;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.NoOrderException;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
@@ -11,9 +13,11 @@ import com.myshop.order.domain.ShippingInfo;
 public class ChangeOrderService {
 
 	private final OrderRepository orderRepository;
+	private final MemberRepository memberRepository;
 
-	public ChangeOrderService(OrderRepository orderRepository) {
+	public ChangeOrderService(OrderRepository orderRepository, MemberRepository memberRepository) {
 		this.orderRepository = orderRepository;
+		this.memberRepository = memberRepository;
 	}
 
 	@Transactional
@@ -23,5 +27,9 @@ public class ChangeOrderService {
 			throw new NoOrderException(id);
 		}
 		order.changeShippingInfo(newShippingInfo);
+		if (useNewShippingAddrAsMemberAddr){
+			Member member = memberRepository.findById(order.getOrderer().memberId());
+			member.changeAddress(newShippingInfo.getAddress());
+		}
 	}
 }
