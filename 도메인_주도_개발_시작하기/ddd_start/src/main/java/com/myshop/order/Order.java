@@ -10,8 +10,8 @@ public class Order {
 
 	public Order(OrderState state, ShippingInfo shippingInfo, List<OrderLine> orderLines) {
 		this.state = state;
-		this.shippingInfo = shippingInfo;
 		setOrderLines(orderLines);
+		setShippingInfo(shippingInfo);
 	}
 
 	private void setOrderLines(List<OrderLine> orderLines) {
@@ -31,6 +31,13 @@ public class Order {
 			.mapToInt(OrderLine::getAmounts)
 			.sum();
 		this.totalAmounts = new Money(sum);
+	}
+
+	private void setShippingInfo(ShippingInfo shippingInfo) {
+		if (shippingInfo == null) {
+			throw new IllegalArgumentException("no ShippingInfo");
+		}
+		this.shippingInfo = shippingInfo;
 	}
 
 	public void changeShipped(){
