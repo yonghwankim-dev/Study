@@ -21,6 +21,7 @@ import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Product;
+import com.myshop.order.domain.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 
@@ -59,11 +60,12 @@ class OrderTest {
 	void setUp() {
 		orderNo = new OrderNo("12345");
 		MemberId memberId = new MemberId("12345");
-		orderer = new Orderer(memberId, "John Doe", "johnDoe@gmail.com");
+		orderer = new Orderer(memberId, "John Doe");
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
 		shippingInfo = new ShippingInfo(receiver, address);
-		orderLines = List.of(new OrderLine(new Product(), new Money(1000), 2));
+		ProductId productId = new ProductId("9000000112298");
+		orderLines = List.of(new OrderLine(productId, new Money(1000), 2));
 		Receiver newReceiver = new Receiver("Jane Doe", "0987654321");
 		Address newAddress = new Address("456 Elm St", "New City", "67890");
 		newShippingInfo = new ShippingInfo(newReceiver, newAddress);

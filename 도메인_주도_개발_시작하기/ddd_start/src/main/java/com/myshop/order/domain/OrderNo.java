@@ -2,7 +2,20 @@ package com.myshop.order.domain;
 
 import java.util.Objects;
 
-public record OrderNo(String id) {
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class OrderNo implements java.io.Serializable {
+	@Column
+	private String id;
+
+	protected OrderNo() {
+	}
+
+	public OrderNo(String id) {
+		this.id = id;
+	}
 
 	@Override
 	public boolean equals(Object object) {

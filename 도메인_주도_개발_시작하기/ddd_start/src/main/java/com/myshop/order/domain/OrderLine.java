@@ -1,13 +1,13 @@
 package com.myshop.order.domain;
 
 public class OrderLine {
-	private Product product;
+	private ProductId productId;
 	private Money price;
 	private int quantity;
 	private Money amounts;
 
-	public OrderLine(Product product, Money price, int quantity) {
-		this.product = product;
+	public OrderLine(ProductId productId, Money price, int quantity) {
+		this.productId = productId;
 		this.price = price;
 		this.quantity = quantity;
 		this.amounts = calculateAmounts();
