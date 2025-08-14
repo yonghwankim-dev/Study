@@ -17,6 +17,7 @@ class OrderTest {
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
 	private ShippingInfo newShippingInfo;
+	private Orderer orderer;
 
 	public static Stream<Arguments> notShippedOrderStateSource() {
 		return Stream.of(
@@ -43,7 +44,7 @@ class OrderTest {
 
 	@BeforeEach
 	void setUp() {
-		// write phone number in Recevier constructor
+		orderer = new Orderer();
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
 		shippingInfo = new ShippingInfo(receiver, address);
@@ -56,7 +57,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "notShippedOrderStateSource")
 	void shouldChangeShippingInfo_whenOrderStateIsPaymentWaiting(OrderState state) {
-		Order order = new Order(state, shippingInfo, orderLines);
+		Order order = new Order(orderer, orderLines, shippingInfo, state);
 
 		order.changeShippingInfo(newShippingInfo);
 
@@ -66,7 +67,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "alreadyShippedOrderStateSource")
 	void shouldThrowException_whenOrderStateIsNotShippingChangeable(OrderState state) {
-		Order order = new Order(state, shippingInfo, orderLines);
+		Order order = new Order(orderer, orderLines, shippingInfo, state);
 
 		Throwable throwable = Assertions.catchThrowable(() -> order.changeShippingInfo(newShippingInfo));
 
@@ -78,7 +79,8 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "invalidOrderLinesSource")
 	void shouldThrowException_whenOrderLinesIsInvalid(List<OrderLine> orderLines) {
-		Throwable throwable = Assertions.catchThrowable(() -> new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines));
+		Throwable throwable = Assertions.catchThrowable(() -> new Order(orderer, orderLines, shippingInfo,
+			OrderState.PAYMENT_WAITING));
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalArgumentException.class)
@@ -87,14 +89,14 @@ class OrderTest {
 
 	@Test
 	void shouldNotThrowException_whenShippingInfoIsValid() {
-		Order order = new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines);
+		Order order = new Order(orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
 		assertDoesNotThrow(() -> order.changeShippingInfo(newShippingInfo));
 	}
 
 	@Test
 	void shouldThrowException_whenShippingInfoIsNull(){
-		Throwable throwable = Assertions.catchThrowable(() -> new Order(OrderState.PAYMENT_WAITING, null, orderLines));
+		Throwable throwable = Assertions.catchThrowable(() -> new Order(orderer, orderLines, null, OrderState.PAYMENT_WAITING));
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(IllegalArgumentException.class)
@@ -104,7 +106,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "notShippedOrderStateSource")
 	void shouldDoesNotThrow_whenOrderIsCanceled() {
-		Order order = new Order(OrderState.PAYMENT_WAITING, shippingInfo, orderLines);
+		Order order = new Order(orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
 		assertDoesNotThrow(order::cancel);
 	}
@@ -112,7 +114,7 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "alreadyShippedOrderStateSource")
 	void shouldThrow_whenOrderIsAlreadyShipped(OrderState state) {
-		Order order = new Order(state, shippingInfo, orderLines);
+		Order order = new Order(orderer, orderLines, shippingInfo, state);
 
 		Throwable throwable = Assertions.catchThrowable(order::cancel);
 
