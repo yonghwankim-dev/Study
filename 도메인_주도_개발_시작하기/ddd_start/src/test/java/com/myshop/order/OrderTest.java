@@ -12,6 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import com.myshop.member.domain.MemberId;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
@@ -57,7 +58,8 @@ class OrderTest {
 	@BeforeEach
 	void setUp() {
 		orderNumber = new OrderNumber("12345");
-		orderer = new Orderer("John Doe", "johnDoe@gmail.com");
+		MemberId memberId = new MemberId("12345");
+		orderer = new Orderer(memberId, "John Doe", "johnDoe@gmail.com");
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
 		shippingInfo = new ShippingInfo(receiver, address);

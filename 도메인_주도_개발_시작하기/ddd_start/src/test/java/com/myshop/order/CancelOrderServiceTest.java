@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 
+import com.myshop.member.domain.MemberId;
 import com.myshop.order.application.CancelOrderService;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
@@ -37,7 +38,8 @@ class CancelOrderServiceTest {
 	void setUp() {
 		id = "12345";
 		orderNumber = new OrderNumber(id);
-		orderer = new Orderer("John Doe", "johnDoe@gmail.com");
+		MemberId memberId = new MemberId("12345");
+		orderer = new Orderer(memberId, "John Doe", "johnDoe@gmail.com");
 		OrderLine orderLine = new OrderLine(new Product(), new Money(1000), 2);
 		orderLines = List.of(orderLine);
 		shippingInfo = new ShippingInfo(

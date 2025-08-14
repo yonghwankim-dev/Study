@@ -1,5 +1,7 @@
 package com.myshop.order.domain;
 
-public record Orderer(String name, String email) {
+import com.myshop.member.domain.MemberId;
+
+public record Orderer(MemberId memberId, String name, String email) {
 
 }
