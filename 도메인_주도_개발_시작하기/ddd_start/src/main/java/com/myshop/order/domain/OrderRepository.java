@@ -1,7 +1,7 @@
 package com.myshop.order.domain;
 
 public interface OrderRepository {
-	Order findByNumber(OrderNumber number);
+	Order findByNumber(OrderNo number);
 	void save(Order order);
 	void delete(Order order);
 }

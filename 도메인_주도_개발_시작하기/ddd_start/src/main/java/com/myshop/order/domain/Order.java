@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order {
-	private OrderNumber id;
+	private OrderNo id;
 	private Orderer orderer;
 	private OrderState state;
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
 	private Money totalAmounts;
 
-	public Order(OrderNumber id, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
+	public Order(OrderNo id, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
 		setOrderNo(id);
 		setOrderer(orderer);
 		setOrderLines(orderLines);
@@ -19,9 +19,9 @@ public class Order {
 		this.state = state;
 	}
 
-	private void setOrderNo(OrderNumber id) {
+	private void setOrderNo(OrderNo id) {
 		if (id == null) {
-			throw new IllegalArgumentException("no OrderNumber");
+			throw new IllegalArgumentException("no OrderNo");
 		}
 		this.id = id;
 	}
@@ -83,7 +83,7 @@ public class Order {
 		// todo: implement logic
 	}
 
-	public OrderNumber getId() {
+	public OrderNo getId() {
 		return id;
 	}
 

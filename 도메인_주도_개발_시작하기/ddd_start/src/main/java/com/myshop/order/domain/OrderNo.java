@@ -2,7 +2,7 @@ package com.myshop.order.domain;
 
 import java.util.Objects;
 
-public record OrderNumber(String id) {
+public record OrderNo(String id) {
 
 	@Override
 	public boolean equals(Object object) {
@@ -10,7 +10,7 @@ public record OrderNumber(String id) {
 			return true;
 		if (object == null || getClass() != object.getClass())
 			return false;
-		OrderNumber orderNumber = (OrderNumber)object;
-		return Objects.equals(id, orderNumber.id);
+		OrderNo orderNo = (OrderNo)object;
+		return Objects.equals(id, orderNo.id);
 	}
 }
