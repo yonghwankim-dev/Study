@@ -157,4 +157,14 @@ class OrderTest {
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessageContaining("no OrderNo");
 	}
+
+	@Test
+	void shouldReturnTrue_whenCompareOrder(){
+		Order order1 = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		Order order2 = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.SHIPPED);
+
+		boolean actual = order1.equals(order2);
+
+		assertTrue(actual, "Orders should be equal based on OrderNo");
+	}
 }
