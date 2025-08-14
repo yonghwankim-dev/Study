@@ -51,7 +51,6 @@ class OrderTest {
 	@ParameterizedTest
 	@MethodSource(value = "shippingNotChangeableOrderStateSource")
 	void shouldThrowException_whenOrderStateIsNotShippingChangeable(OrderState state) {
-		List<OrderLine> orderLines = List.of(new OrderLine(new Product(), 1000, 2));
 		Order order = new Order(state, shippingInfo, orderLines);
 		ShippingInfo newShippingInfo = new ShippingInfo();
 
