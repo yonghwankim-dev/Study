@@ -5,15 +5,24 @@ import java.util.Objects;
 
 public class Order {
 	private OrderNo id;
+	private Orderer orderer;
 	private OrderState state;
 	private ShippingInfo shippingInfo;
 	private List<OrderLine> orderLines;
 	private Money totalAmounts;
 
-	public Order(OrderState state, ShippingInfo shippingInfo, List<OrderLine> orderLines) {
+	public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
 		this.state = state;
+		setOrderer(orderer);
 		setOrderLines(orderLines);
 		setShippingInfo(shippingInfo);
+	}
+
+	private void setOrderer(Orderer orderer) {
+		if (orderer == null) {
+			throw new IllegalArgumentException("no Orderer");
+		}
+		this.orderer = orderer;
 	}
 
 	private void setOrderLines(List<OrderLine> orderLines) {
