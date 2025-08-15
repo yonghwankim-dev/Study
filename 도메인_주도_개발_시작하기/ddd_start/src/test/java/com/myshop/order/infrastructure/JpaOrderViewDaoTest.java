@@ -5,15 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.myshop.FixedDomainFactory;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -61,16 +59,7 @@ class JpaOrderViewDaoTest {
 	}
 
 	private void saveOrder() {
-		OrderNo orderNo = new OrderNo("1234567890");
-		Orderer orderer = new Orderer(memberId, "홍길동");
-		Money price = new Money(1000);
-		int quantity = 2;
-		OrderLine orderLine = new OrderLine(productId, price, quantity);
-		List<OrderLine> orderLines = List.of(orderLine);
-		Receiver receiver = new Receiver("홍길동", "010-1234-5678");
-		ShippingInfo shippingInfo = new ShippingInfo(receiver, memberAddress);
-		OrderState state = OrderState.PAYMENT_WAITING;
-		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, state);
+		Order order = FixedDomainFactory.createOrder();
 		orderRepository.save(order);
 	}
 

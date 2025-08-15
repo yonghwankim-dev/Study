@@ -1,8 +1,10 @@
-package com.myshop.order.domain;
+package com.myshop.order.infrastructure;
 
 import org.springframework.stereotype.Repository;
 
-import com.myshop.order.infrastructure.SpringDataJpaOrderRepository;
+import com.myshop.order.domain.Order;
+import com.myshop.order.domain.OrderNo;
+import com.myshop.order.domain.OrderRepository;
 
 @Repository
 public class JpaOrderRepository implements OrderRepository {
