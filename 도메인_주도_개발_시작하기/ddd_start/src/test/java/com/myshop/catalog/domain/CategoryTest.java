@@ -1,4 +1,4 @@
-package com.myshop.category.domain;
+package com.myshop.catalog.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,8 +8,9 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.myshop.order.domain.Product;
-import com.myshop.order.domain.ProductId;
+import com.myshop.catalog.domain.category.Category;
+import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductId;
 
 class CategoryTest {
 

@@ -1,7 +1,10 @@
-package com.myshop.order.domain;
+package com.myshop.catalog.domain.product;
 
 import java.util.Objects;
 
+import com.myshop.catalog.domain.category.CategoryId;
+
+import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -11,6 +14,9 @@ import jakarta.persistence.Table;
 public class Product {
 	@EmbeddedId
 	private ProductId id;
+
+	@Embedded
+	private CategoryId categoryId;
 
 	protected Product() {
 	}

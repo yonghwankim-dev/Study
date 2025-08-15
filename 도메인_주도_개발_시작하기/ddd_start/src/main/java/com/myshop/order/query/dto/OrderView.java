@@ -2,8 +2,7 @@ package com.myshop.order.query.dto;
 
 import com.myshop.member.domain.Member;
 import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderState;
-import com.myshop.order.domain.Product;
+import com.myshop.catalog.domain.product.Product;
 
 public class OrderView {
 

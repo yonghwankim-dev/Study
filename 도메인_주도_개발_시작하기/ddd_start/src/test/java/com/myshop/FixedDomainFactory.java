@@ -10,7 +10,7 @@ import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
-import com.myshop.order.domain.ProductId;
+import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 
