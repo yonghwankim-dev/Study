@@ -1,9 +1,20 @@
 package com.myshop.catalog.infrastructure.product;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 
 public interface SpringDataJpaProductRepository extends JpaRepository<Product, ProductId> {
+	@Query("SELECT p FROM Product p WHERE p.categoryId = :id")
+	List<Product> findByCategoryId(@Param("id") CategoryId id, Pageable pageable);
+
+	@Query("SELECT COUNT(p) FROM Product p WHERE p.categoryId = :id")
+	int countsByCategoryId(@Param("id") CategoryId id);
 }
