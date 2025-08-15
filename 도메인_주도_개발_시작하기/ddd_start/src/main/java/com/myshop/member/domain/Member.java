@@ -17,6 +17,9 @@ public class Member {
 	@Embedded
 	private Address address;
 
+	@Embedded
+	private Password password;
+
 	protected Member() {
 		// Default constructor for JPA
 	}
@@ -31,5 +34,12 @@ public class Member {
 			throw new IllegalArgumentException("Address cannot be null");
 		}
 		this.address = address;
+	}
+
+	public void changePassword(String currentPassword, String newPassword){
+		if (!password.match(currentPassword)) {
+			throw new PasswordNotMatchException();
+		}
+		this.password = new Password(newPassword);
 	}
 }
