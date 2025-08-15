@@ -113,6 +113,10 @@ public class Order {
 		return orderer;
 	}
 
+	public Money getTotalAmounts() {
+		return totalAmounts;
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
