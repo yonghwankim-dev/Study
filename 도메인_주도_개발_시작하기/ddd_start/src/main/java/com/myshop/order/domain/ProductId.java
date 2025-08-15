@@ -1,5 +1,36 @@
 package com.myshop.order.domain;
 
-public record ProductId(String id) {
+import java.io.Serializable;
+import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
+public class ProductId implements Serializable {
+
+	@Column(name = "product_id")
+	private String id;
+
+	protected ProductId() {
+	}
+
+	public ProductId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		ProductId productId = (ProductId)object;
+		return Objects.equals(id, productId.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }

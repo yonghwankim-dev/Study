@@ -1,14 +1,24 @@
 package com.myshop.order.domain;
 
-public class Address {
-	private String address1;
-	private String address2;
-	private String zipcode;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
-	public Address(String address1, String address2, String zipcode) {
+@Embeddable
+public class Address {
+	@Column(name = "address1")
+	private String address1;
+	@Column(name = "address2")
+	private String address2;
+	@Column(name = "zip_code")
+	private String zipCode;
+
+	protected Address() {
+	}
+
+	public Address(String address1, String address2, String zipCode) {
 		this.address1 = address1;
 		this.address2 = address2;
-		this.zipcode = zipcode;
+		this.zipCode = zipCode;
 	}
 
 	public String getAddress1() {
@@ -19,7 +29,7 @@ public class Address {
 		return address2;
 	}
 
-	public String getZipcode() {
-		return zipcode;
+	public String getZipCode() {
+		return zipCode;
 	}
 }
