@@ -8,12 +8,12 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class CategoryId implements Serializable {
 	@Column(name = "category_id")
-	private String id;
+	private Long id;
 
 	protected CategoryId() {
 	}
 
-	public CategoryId(String id) {
+	public CategoryId(Long id) {
 		this.id = id;
 	}
 }

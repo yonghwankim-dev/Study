@@ -8,6 +8,7 @@ import com.myshop.catalog.domain.product.Product;
 
 public class Category {
 
+	private CategoryId id;
 	private Set<Product> products;
 
 	public Category(Set<Product> products) {
@@ -23,5 +24,9 @@ public class Category {
 		return products.stream()
 				.sorted(Comparator.comparing(p -> p.getId().getId()))
 				.toList();
+	}
+
+	public CategoryId getId() {
+		return id;
 	}
 }
