@@ -14,6 +14,7 @@ import org.mockito.BDDMockito;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.member.domain.Password;
 import com.myshop.order.NoOrderException;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
@@ -30,12 +31,8 @@ import com.myshop.order.domain.ShippingInfo;
 
 class ChangeOrderServiceTest {
 
-	private Order order;
 	private OrderNo id;
-	private OrderRepository orderRepository;
-	private MemberRepository memberRepository;
 	private ChangeOrderService service;
-	private MemberId memberId;
 
 	private ShippingInfo createNewShippingInfo() {
 		Receiver newReceiver = new Receiver("Jane Doe", "0987654321");
@@ -46,7 +43,7 @@ class ChangeOrderServiceTest {
 	@BeforeEach
 	void setUp() {
 		id = new OrderNo("12345");
-		memberId = new MemberId("23456");
+		MemberId memberId = new MemberId("23456");
 		Orderer orderer = new Orderer(memberId, "John Doe");
 		ProductId productId = new ProductId("9000000112298");
 		OrderLine orderLine = new OrderLine(productId, new Money(1000), 2);
@@ -55,14 +52,15 @@ class ChangeOrderServiceTest {
 		Address address = new Address("123 Main St", "City", "12345");
 		ShippingInfo shippingInfo = new ShippingInfo(receiver,address);
 
-		order = new Order(id, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		Order order = new Order(id, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
-		orderRepository = mock(OrderRepository.class);
+		OrderRepository orderRepository = mock(OrderRepository.class);
 		given(orderRepository.findById(id))
 			.willReturn(order);
 
-		memberRepository = mock(MemberRepository.class);
-		Member member = new Member(memberId, address);
+		MemberRepository memberRepository = mock(MemberRepository.class);
+		Password password = new Password("password1234");
+		Member member = new Member(memberId, address, password);
 		given(memberRepository.findById(memberId))
 			.willReturn(member);
 
