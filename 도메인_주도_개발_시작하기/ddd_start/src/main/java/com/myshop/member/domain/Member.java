@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Member {
 
 	@EmbeddedId
-	private MemberId memberId;
+	private MemberId id;
 
 	@Embedded
 	private Address address;
@@ -21,8 +21,8 @@ public class Member {
 		// Default constructor for JPA
 	}
 
-	public Member(MemberId memberId, Address address) {
-		this.memberId = memberId;
+	public Member(MemberId id, Address address) {
+		this.id = id;
 		this.address = address;
 	}
 
