@@ -26,7 +26,7 @@ public class JpaOrderViewDao implements OrderViewDao {
 			and o.orderer.memberId = m.id
 			and index(ol) = 0
 			and ol.productId = p.id
-			order by o.id.id desc
+			order by o.orderNo.id desc
 		""";
 		TypedQuery<OrderView> query = em.createQuery(selectQuery, OrderView.class);
 		query.setParameter("ordererId", ordererId);

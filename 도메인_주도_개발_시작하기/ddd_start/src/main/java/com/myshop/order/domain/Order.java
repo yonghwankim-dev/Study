@@ -15,7 +15,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 
@@ -24,7 +23,7 @@ import jakarta.persistence.Table;
 @Access(jakarta.persistence.AccessType.FIELD)
 public class Order {
 	@EmbeddedId
-	private OrderNo id;
+	private OrderNo orderNo;
 	@Embedded
 	private Orderer orderer;
 
@@ -46,8 +45,8 @@ public class Order {
 	protected Order() {
 	}
 
-	public Order(OrderNo id, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
-		setOrderNo(id);
+	public Order(OrderNo orderNo, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
+		setOrderNo(orderNo);
 		setOrderer(orderer);
 		setOrderLines(orderLines);
 		setShippingInfo(shippingInfo);
@@ -58,7 +57,7 @@ public class Order {
 		if (id == null) {
 			throw new IllegalArgumentException("no OrderNo");
 		}
-		this.id = id;
+		this.orderNo = id;
 	}
 
 	private void setOrderer(Orderer orderer) {
@@ -121,11 +120,11 @@ public class Order {
 		if (object == null || getClass() != object.getClass())
 			return false;
 		Order order = (Order)object;
-		return Objects.equals(id, order.id);
+		return Objects.equals(orderNo, order.orderNo);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(orderNo);
 	}
 }
