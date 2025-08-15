@@ -19,6 +19,10 @@ public class ProductId implements Serializable {
 		this.id = id;
 	}
 
+	public String getId() {
+		return id;
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
