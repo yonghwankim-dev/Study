@@ -17,19 +17,12 @@ import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
 import com.myshop.order.domain.Address;
-import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderLine;
-import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
-import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.OrderViewDao;
-import com.myshop.order.domain.Orderer;
-import com.myshop.order.domain.Product;
-import com.myshop.order.domain.ProductId;
-import com.myshop.order.domain.ProductRepository;
-import com.myshop.order.domain.Receiver;
-import com.myshop.order.domain.ShippingInfo;
+import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.order.query.dto.OrderView;
 
 @SpringBootTest

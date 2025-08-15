@@ -1,7 +1,6 @@
 package com.myshop.order.application;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
@@ -24,8 +22,7 @@ import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
-import com.myshop.order.domain.Product;
-import com.myshop.order.domain.ProductId;
+import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 

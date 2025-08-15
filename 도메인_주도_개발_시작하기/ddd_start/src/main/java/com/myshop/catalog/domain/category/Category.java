@@ -1,10 +1,10 @@
-package com.myshop.category.domain;
+package com.myshop.catalog.domain.category;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import com.myshop.order.domain.Product;
+import com.myshop.catalog.domain.product.Product;
 
 public class Category {
 

@@ -1,5 +1,7 @@
 package com.myshop.order.domain;
 
+import com.myshop.catalog.domain.product.ProductId;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Embeddable;

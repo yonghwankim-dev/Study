@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.catalog.domain.product;
 
 import java.io.Serializable;
 import java.util.Objects;

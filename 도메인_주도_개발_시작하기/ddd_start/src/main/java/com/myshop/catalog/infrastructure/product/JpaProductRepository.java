@@ -1,10 +1,10 @@
-package com.myshop.order.infrastructure;
+package com.myshop.catalog.infrastructure.product;
 
 import org.springframework.stereotype.Repository;
 
-import com.myshop.order.domain.Product;
-import com.myshop.order.domain.ProductId;
-import com.myshop.order.domain.ProductRepository;
+import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductRepository;
 
 @Repository
 public class JpaProductRepository implements ProductRepository {
