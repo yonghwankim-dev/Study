@@ -24,9 +24,10 @@ public class Member {
 		// Default constructor for JPA
 	}
 
-	public Member(MemberId id, Address address) {
+	public Member(MemberId id, Address address, Password password) {
 		this.id = id;
 		this.address = address;
+		this.password = password;
 	}
 
 	public void changeAddress(Address address) {

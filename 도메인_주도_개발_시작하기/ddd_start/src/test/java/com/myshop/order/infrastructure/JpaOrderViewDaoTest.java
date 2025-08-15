@@ -17,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.member.domain.Password;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
@@ -86,7 +87,8 @@ class JpaOrderViewDaoTest {
 			"735-17",
 			"06235"
 		);
-		Member member = new Member(memberId, memberAddress);
+		Password password = new Password("password1234");
+		Member member = new Member(memberId, memberAddress, password);
 		memberRepository.save(member);
 	}
 
