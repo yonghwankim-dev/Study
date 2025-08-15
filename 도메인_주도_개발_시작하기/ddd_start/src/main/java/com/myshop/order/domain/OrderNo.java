@@ -1,13 +1,14 @@
 package com.myshop.order.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class OrderNo implements java.io.Serializable {
-	@Column
+public class OrderNo implements Serializable {
+	@Column(name = "order_no")
 	private String id;
 
 	protected OrderNo() {

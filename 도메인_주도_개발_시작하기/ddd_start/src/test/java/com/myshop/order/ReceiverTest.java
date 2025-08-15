@@ -17,7 +17,7 @@ class ReceiverTest {
 
 		assertNotNull(receiver);
 		assertEquals(name, receiver.getName());
-		assertEquals(phoneNumber, receiver.getPhoneNumber());
+		assertEquals(phoneNumber, receiver.getPhone());
 	}
 
 	@Test

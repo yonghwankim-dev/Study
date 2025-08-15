@@ -2,21 +2,31 @@ package com.myshop.order.domain;
 
 import java.util.Objects;
 
-public class Receiver {
-	private final String name;
-	private final String phoneNumber;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
-	public Receiver(String name, String phoneNumber) {
+@Embeddable
+public class Receiver {
+	@Column(name = "receiver_name")
+	private String name;
+	@Column(name = "receiver_phone")
+	private String phone;
+
+	protected Receiver() {
+
+	}
+
+	public Receiver(String name, String phone) {
 		this.name = name;
-		this.phoneNumber = phoneNumber;
+		this.phone = phone;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhone() {
+		return phone;
 	}
 
 	@Override
@@ -26,11 +36,11 @@ public class Receiver {
 		if (object == null || getClass() != object.getClass())
 			return false;
 		Receiver receiver = (Receiver)object;
-		return Objects.equals(name, receiver.name) && Objects.equals(phoneNumber, receiver.phoneNumber);
+		return Objects.equals(name, receiver.name) && Objects.equals(phone, receiver.phone);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name, phoneNumber);
+		return Objects.hash(name, phone);
 	}
 }

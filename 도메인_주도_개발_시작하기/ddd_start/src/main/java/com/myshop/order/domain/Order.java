@@ -3,19 +3,44 @@ package com.myshop.order.domain;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderColumn;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "purchase_order")
+@Access(jakarta.persistence.AccessType.FIELD)
 public class Order {
 	@EmbeddedId
 	private OrderNo id;
 	@Embedded
 	private Orderer orderer;
+
+	@Column(name = "state")
+	@Enumerated(EnumType.STRING)
 	private OrderState state;
+	@Embedded
 	private ShippingInfo shippingInfo;
+
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "order_line", joinColumns = @JoinColumn(name = "order_no"))
+	@OrderColumn(name = "line_idx")
 	private List<OrderLine> orderLines;
+
+	@Convert(converter = MoneyConverter.class)
+	@Column(name = "total_amounts")
 	private Money totalAmounts;
 
 	protected Order() {

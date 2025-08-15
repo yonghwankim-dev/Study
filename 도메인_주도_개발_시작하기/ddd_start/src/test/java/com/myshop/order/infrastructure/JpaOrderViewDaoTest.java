@@ -1,9 +1,11 @@
 package com.myshop.order.infrastructure;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,6 @@ class JpaOrderViewDaoTest {
 		List<OrderView> orderViews = orderViewDao.selectByOrderer(ordererId);
 
 		assertNotNull(orderViews);
+		assertThat(orderViews).isEmpty();
 	}
 }
