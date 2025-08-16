@@ -12,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.myshop.FixedDomainFactory;
+import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -58,7 +59,8 @@ class JpaOrderViewDaoTest {
 
 	private void saveProduct() {
 		productId = new ProductId("9000000112298");
-		Product product = new Product(productId);
+		CategoryId categoryId = new CategoryId(1L);
+		Product product = new Product(productId, categoryId);
 		productRepository.save(product);
 	}
 

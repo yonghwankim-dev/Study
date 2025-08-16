@@ -1,32 +1,29 @@
 package com.myshop.catalog.domain.category;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 
-import com.myshop.catalog.domain.product.Product;
-
+@Entity
 public class Category {
-
+	@EmbeddedId
 	private CategoryId id;
-	private Set<Product> products;
+	@Column(name = "name")
+	private String name;
 
-	public Category(Set<Product> products) {
-		this.products = products;
+	protected Category() {
 	}
 
-	public List<Product> getProducts(int page, int size){
-		List<Product> sortedProducts = sortById(products);
-		return sortedProducts.subList((page - 1) * size, page * size);
-	}
-
-	private List<Product> sortById(Set<Product> products) {
-		return products.stream()
-				.sorted(Comparator.comparing(p -> p.getId().getId()))
-				.toList();
+	public Category(CategoryId id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public CategoryId getId() {
 		return id;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

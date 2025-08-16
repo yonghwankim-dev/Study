@@ -21,8 +21,9 @@ public class Product {
 	protected Product() {
 	}
 
-	public Product(ProductId id) {
+	public Product(ProductId id, CategoryId categoryId) {
 		this.id = id;
+		this.categoryId = categoryId;
 	}
 
 	public ProductId getId() {

@@ -14,9 +14,13 @@ import com.myshop.catalog.domain.product.ProductRepository;
 
 public class ProductListService {
 
-	private CategoryRepository categoryRepository;
-	private ProductRepository productRepository;
+	private final CategoryRepository categoryRepository;
+	private final ProductRepository productRepository;
 
+	public ProductListService(CategoryRepository categoryRepository, ProductRepository productRepository) {
+		this.categoryRepository = categoryRepository;
+		this.productRepository = productRepository;
+	}
 
 	public Page<Product> getProductOfCategory(Long categoryId, int page, int size){
 		Category category = categoryRepository.findById(new CategoryId(categoryId));
