@@ -57,4 +57,10 @@ public class JpaProductRepository implements ProductRepository {
 	public void deleteAll() {
 		repository.deleteAll();
 	}
+
+	@Override
+	public ProductId nextId() {
+		String id = "test-id";
+		return new ProductId(id);
+	}
 }
