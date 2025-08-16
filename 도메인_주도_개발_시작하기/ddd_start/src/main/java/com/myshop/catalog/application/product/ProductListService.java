@@ -24,13 +24,8 @@ public class ProductListService {
 
 	public Page<Product> getProductOfCategory(Long categoryId, int page, int size){
 		Category category = categoryRepository.findById(new CategoryId(categoryId));
-		checkCategory(category);
 		List<Product> products = productRepository.findByCategoryId(category.getId(), page, size);
 		int totalCount = productRepository.countsByCategoryId(category.getId());
 		return new PageImpl<>(products, PageRequest.of(page - 1, size), totalCount);
-	}
-
-	private void checkCategory(Category category) {
-
 	}
 }
