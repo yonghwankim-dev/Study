@@ -34,7 +34,7 @@ public class Store {
 			throw new IllegalStateException("Store is blocked, cannot create new product");
 		}
 		Set<CategoryId> categoryIds = Collections.emptySet();
-		return new Product(newProductId, categoryIds, storeId);
+		return new Product(newProductId, categoryIds, storeId, productInfo);
 	}
 
 	private boolean isBlocked() {
