@@ -36,4 +36,9 @@ public class JpaOrderRepository implements OrderRepository {
 		}
 		repository.delete(order);
 	}
+
+	@Override
+	public void deleteAll() {
+		repository.deleteAll();
+	}
 }

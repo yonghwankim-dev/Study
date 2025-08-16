@@ -1,12 +1,17 @@
 package com.myshop.catalog.domain.product;
 
 import java.util.Objects;
+import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,15 +20,16 @@ public class Product {
 	@EmbeddedId
 	private ProductId id;
 
-	@Embedded
-	private CategoryId categoryId;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"))
+	private Set<CategoryId> categoryIds;
 
 	protected Product() {
 	}
 
-	public Product(ProductId id, CategoryId categoryId) {
+	public Product(ProductId id, Set<CategoryId> categoryIds) {
 		this.id = id;
-		this.categoryId = categoryId;
+		this.categoryIds = categoryIds;
 	}
 
 	public ProductId getId() {

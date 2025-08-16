@@ -4,4 +4,6 @@ public interface MemberRepository {
 	Member findById(MemberId id);
 	void save(Member member);
 	void delete(Member member);
+
+	void deleteAll();
 }
