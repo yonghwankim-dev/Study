@@ -4,4 +4,5 @@ public interface OrderRepository {
 	Order findById(OrderNo id);
 	void save(Order order);
 	void delete(Order order);
+	void deleteAll();
 }

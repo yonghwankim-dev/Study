@@ -12,9 +12,9 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 
 public interface SpringDataJpaProductRepository extends JpaRepository<Product, ProductId> {
-	@Query("SELECT p FROM Product p WHERE p.categoryId = :id")
+	@Query("SELECT p FROM Product p WHERE :id MEMBER OF p.categoryIds")
 	List<Product> findByCategoryId(@Param("id") CategoryId id, Pageable pageable);
 
-	@Query("SELECT COUNT(p) FROM Product p WHERE p.categoryId = :id")
+	@Query("SELECT COUNT(p) FROM Product p WHERE :id MEMBER OF p.categoryIds")
 	int countsByCategoryId(@Param("id") CategoryId id);
 }

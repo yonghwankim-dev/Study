@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Set;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +62,7 @@ class JpaOrderViewDaoTest {
 	private void saveProduct() {
 		productId = new ProductId("9000000112298");
 		CategoryId categoryId = new CategoryId(1L);
-		Product product = new Product(productId, categoryId);
+		Product product = new Product(productId, Set.of(categoryId));
 		productRepository.save(product);
 	}
 
@@ -74,6 +76,13 @@ class JpaOrderViewDaoTest {
 		Password password = new Password("password1234");
 		Member member = new Member(memberId, memberAddress, password);
 		memberRepository.save(member);
+	}
+
+	@AfterEach
+	void tearDown() {
+		orderRepository.deleteAll();
+		productRepository.deleteAll();
+		memberRepository.deleteAll();
 	}
 
 	@Test

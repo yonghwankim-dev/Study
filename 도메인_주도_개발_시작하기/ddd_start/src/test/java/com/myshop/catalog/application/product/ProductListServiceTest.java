@@ -2,6 +2,8 @@ package com.myshop.catalog.application.product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Set;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +46,7 @@ class ProductListServiceTest {
 	}
 
 	private void saveProduct(ProductId productId, CategoryId categoryId) {
-		Product product = new Product(productId, categoryId);
+		Product product = new Product(productId, Set.of(categoryId));
 		productRepository.save(product);
 	}
 

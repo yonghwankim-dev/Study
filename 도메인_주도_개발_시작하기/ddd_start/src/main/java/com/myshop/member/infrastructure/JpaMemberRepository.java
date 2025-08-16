@@ -32,4 +32,9 @@ public class JpaMemberRepository implements MemberRepository {
 	public void delete(Member member) {
 		repository.delete(member);
 	}
+
+	@Override
+	public void deleteAll() {
+		repository.deleteAll();
+	}
 }

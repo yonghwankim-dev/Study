@@ -3,6 +3,7 @@ package com.myshop.order.infrastructure;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,6 +21,11 @@ class JpaOrderRepositoryTest {
 
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@AfterEach
+	void tearDown() {
+		orderRepository.deleteAll();
+	}
 
 	@Test
 	void shouldSaveOrderAndOrderLines() {
