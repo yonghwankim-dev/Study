@@ -1,9 +1,5 @@
 package com.myshop.catalog.application.product;
 
-import java.util.Collections;
-import java.util.Set;
-
-import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
@@ -24,8 +20,7 @@ public class RegisterProductService {
 		Store store = storeRepository.findById(request.getStoreId());
 		checkNull(store);
 		ProductId id = productRepository.nextId();
-		Set<CategoryId> categoryIds = Collections.emptySet();
-		Product product = new Product(id, categoryIds, store.getStoreId());
+		Product product = store.createProduct(id);
 		productRepository.save(product);
 		return id;
 	}
