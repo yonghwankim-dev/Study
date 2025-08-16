@@ -44,7 +44,7 @@ class RegisterProductServiceTest {
 
 	@Test
 	void shouldSaveNewProduct() {
-		NewProductRequest request = new NewProductRequest(storeId);
+		NewProductRequest request = new NewProductRequest(storeId, "Java Book");
 
 		ProductId productId = service.registerNewProduct(request);
 

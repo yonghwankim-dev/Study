@@ -6,6 +6,7 @@ import java.util.Set;
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductInfo;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -28,7 +29,7 @@ public class Store {
 		return storeId;
 	}
 
-	public Product createProduct(ProductId newProductId) {
+	public Product createProduct(ProductId newProductId, ProductInfo productInfo) {
 		if (isBlocked()) {
 			throw new IllegalStateException("Store is blocked, cannot create new product");
 		}

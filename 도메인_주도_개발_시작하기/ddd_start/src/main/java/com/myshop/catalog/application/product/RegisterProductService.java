@@ -2,6 +2,7 @@ package com.myshop.catalog.application.product;
 
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.store.domain.Store;
 import com.myshop.store.domain.StoreRepository;
@@ -20,7 +21,8 @@ public class RegisterProductService {
 		Store store = storeRepository.findById(request.getStoreId());
 		checkNull(store);
 		ProductId id = productRepository.nextId();
-		Product product = store.createProduct(id);
+		ProductInfo productInfo = new ProductInfo(request.getProductName());
+		Product product = store.createProduct(id, productInfo);
 		productRepository.save(product);
 		return id;
 	}
