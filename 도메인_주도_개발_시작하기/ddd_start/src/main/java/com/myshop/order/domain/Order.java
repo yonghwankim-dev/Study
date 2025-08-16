@@ -6,7 +6,6 @@ import java.util.Objects;
 import jakarta.persistence.Access;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
@@ -38,14 +37,14 @@ public class Order {
 	@OrderColumn(name = "line_idx")
 	private List<OrderLine> orderLines;
 
-	@Convert(converter = MoneyConverter.class)
 	@Column(name = "total_amounts")
 	private Money totalAmounts;
 
 	protected Order() {
 	}
 
-	public Order(OrderNo orderNo, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo, OrderState state) {
+	public Order(OrderNo orderNo, Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo,
+		OrderState state) {
 		setOrderNo(orderNo);
 		setOrderer(orderer);
 		setOrderLines(orderLines);
@@ -104,7 +103,7 @@ public class Order {
 		}
 	}
 
-	public void cancel(){
+	public void cancel() {
 		verifyNotYetShipped();
 		this.state = OrderState.CANCELED;
 	}

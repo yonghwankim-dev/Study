@@ -1,7 +1,9 @@
 package com.myshop.order.domain;
 
 import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
+@Converter(autoApply = true)
 public class MoneyConverter implements AttributeConverter<Money, Integer> {
 
 	@Override
