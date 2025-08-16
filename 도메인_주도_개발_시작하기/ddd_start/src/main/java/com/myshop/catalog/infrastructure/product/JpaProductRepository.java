@@ -60,7 +60,7 @@ public class JpaProductRepository implements ProductRepository {
 
 	@Override
 	public ProductId nextId() {
-		String id = "test-id";
+		String id = "9000000112298";
 		return new ProductId(id);
 	}
 }
