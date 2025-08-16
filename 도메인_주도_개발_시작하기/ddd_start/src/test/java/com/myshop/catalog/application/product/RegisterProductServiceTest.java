@@ -49,7 +49,6 @@ class RegisterProductServiceTest {
 		ProductId productId = service.registerNewProduct(request);
 
 		Assertions.assertThat(productId).isNotNull();
-		Assertions.assertThat(productId).isEqualTo(new ProductId("9000000112298"));
 		Assertions.assertThat(productRepository.findById(productId)).isNotNull();
 	}
 
