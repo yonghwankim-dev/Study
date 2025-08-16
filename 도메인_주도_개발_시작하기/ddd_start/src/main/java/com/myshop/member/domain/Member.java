@@ -1,7 +1,11 @@
 package com.myshop.member.domain;
 
+import com.myshop.common.jpa.EmailSetConverter;
+import com.myshop.common.model.EmailSet;
 import com.myshop.order.domain.Address;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -20,6 +24,10 @@ public class Member {
 	@Embedded
 	private Password password;
 
+	@Column(name = "emails")
+	@Convert(converter = EmailSetConverter.class)
+	private EmailSet emails;
+
 	protected Member() {
 		// Default constructor for JPA
 	}
@@ -37,7 +45,7 @@ public class Member {
 		this.address = address;
 	}
 
-	public void changePassword(String currentPassword, String newPassword){
+	public void changePassword(String currentPassword, String newPassword) {
 		if (!password.match(currentPassword)) {
 			throw new PasswordNotMatchException();
 		}
