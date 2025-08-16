@@ -9,7 +9,7 @@ public class Money {
 		this.value = value;
 	}
 
-	public Money add(Money money){
+	public Money add(Money money) {
 		return new Money(this.value + money.value);
 	}
 
