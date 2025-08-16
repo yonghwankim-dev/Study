@@ -23,7 +23,7 @@ public class RegisterProductService {
 	public ProductId registerNewProduct(NewProductRequest request) {
 		Store store = storeRepository.findById(request.getStoreId());
 		checkNull(store);
-		ProductId id = new ProductId("9000000112298");
+		ProductId id = productRepository.nextId();
 		Set<CategoryId> categoryIds = Collections.emptySet();
 		Product product = new Product(id, categoryIds, store.getStoreId());
 		productRepository.save(product);

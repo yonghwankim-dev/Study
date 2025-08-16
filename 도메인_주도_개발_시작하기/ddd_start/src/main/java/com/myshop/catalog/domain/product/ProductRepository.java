@@ -17,4 +17,6 @@ public interface ProductRepository {
 	int countsByCategoryId(CategoryId id);
 
 	void deleteAll();
+
+	ProductId nextId();
 }
