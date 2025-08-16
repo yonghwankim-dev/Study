@@ -17,6 +17,7 @@ import com.myshop.FixedDomainFactory;
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
@@ -64,7 +65,8 @@ class JpaOrderViewDaoTest {
 		productId = new ProductId("9000000112298");
 		CategoryId categoryId = new CategoryId(1L);
 		StoreId storeId = new StoreId("123456789");
-		Product product = new Product(productId, Set.of(categoryId), storeId);
+		ProductInfo productInfo = new ProductInfo("Java Book");
+		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo);
 		productRepository.save(product);
 	}
 

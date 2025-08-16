@@ -9,6 +9,7 @@ import com.myshop.store.domain.StoreId;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,13 +29,17 @@ public class Product {
 	@Column(name = "store_id")
 	private StoreId storeId;
 
+	@Embedded
+	private ProductInfo productInfo;
+
 	protected Product() {
 	}
 
-	public Product(ProductId id, Set<CategoryId> categoryIds, StoreId storeId) {
+	public Product(ProductId id, Set<CategoryId> categoryIds, StoreId storeId, ProductInfo productInfo) {
 		this.id = id;
 		this.categoryIds = categoryIds;
 		this.storeId = storeId;
+		this.productInfo = productInfo;
 	}
 
 	public ProductId getId() {

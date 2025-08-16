@@ -18,6 +18,7 @@ import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.category.CategoryRepository;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.store.domain.StoreId;
 
@@ -48,7 +49,8 @@ class ProductListServiceTest {
 
 	private void saveProduct(ProductId productId, CategoryId categoryId) {
 		StoreId storeId = new StoreId("123456789");
-		Product product = new Product(productId, Set.of(categoryId), storeId);
+		ProductInfo productInfo = new ProductInfo("Java Book");
+		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo);
 		productRepository.save(product);
 	}
 
