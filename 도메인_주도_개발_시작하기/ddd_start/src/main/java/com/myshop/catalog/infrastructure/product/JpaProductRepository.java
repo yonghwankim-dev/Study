@@ -9,15 +9,18 @@ import org.springframework.stereotype.Repository;
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductIdGenerator;
 import com.myshop.catalog.domain.product.ProductRepository;
 
 @Repository
 public class JpaProductRepository implements ProductRepository {
 
 	private final SpringDataJpaProductRepository repository;
+	private final ProductIdGenerator generator;
 
-	public JpaProductRepository(SpringDataJpaProductRepository repository) {
+	public JpaProductRepository(SpringDataJpaProductRepository repository, ProductIdGenerator generator) {
 		this.repository = repository;
+		this.generator = generator;
 	}
 
 	@Override
@@ -60,7 +63,6 @@ public class JpaProductRepository implements ProductRepository {
 
 	@Override
 	public ProductId nextId() {
-		String id = "9000000112298";
-		return new ProductId(id);
+		return generator.generate();
 	}
 }
