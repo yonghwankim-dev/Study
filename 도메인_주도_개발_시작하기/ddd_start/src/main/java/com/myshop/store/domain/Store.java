@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductFactory;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 
@@ -34,7 +35,7 @@ public class Store {
 			throw new IllegalStateException("Store is blocked, cannot create new product");
 		}
 		Set<CategoryId> categoryIds = Collections.emptySet();
-		return new Product(newProductId, categoryIds, getStoreId(), productInfo);
+		return ProductFactory.create(newProductId, categoryIds, getStoreId(), productInfo);
 	}
 
 	private boolean isBlocked() {
