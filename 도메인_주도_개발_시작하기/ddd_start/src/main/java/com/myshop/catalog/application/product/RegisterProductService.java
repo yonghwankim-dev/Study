@@ -7,20 +7,32 @@ import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.store.domain.Store;
+import com.myshop.store.domain.StoreRepository;
 
 public class RegisterProductService {
 
 	private final ProductRepository productRepository;
+	private final StoreRepository storeRepository;
 
-	public RegisterProductService(ProductRepository productRepository) {
+	public RegisterProductService(ProductRepository productRepository, StoreRepository storeRepository) {
 		this.productRepository = productRepository;
+		this.storeRepository = storeRepository;
 	}
 
 	public ProductId registerNewProduct(NewProductRequest request) {
+		Store store = storeRepository.findById(request.getStoreId());
+		checkNull(store);
 		ProductId id = new ProductId("9000000112298");
 		Set<CategoryId> categoryIds = Collections.emptySet();
 		Product product = new Product(id, categoryIds);
 		productRepository.save(product);
 		return id;
+	}
+
+	private void checkNull(Store store) {
+		if (store == null) {
+			throw new IllegalArgumentException("Store cannot be null");
+		}
 	}
 }
