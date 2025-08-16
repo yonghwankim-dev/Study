@@ -4,10 +4,11 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.store.domain.StoreId;
 
 import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,12 +25,16 @@ public class Product {
 	@CollectionTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"))
 	private Set<CategoryId> categoryIds;
 
+	@Column(name = "store_id")
+	private StoreId storeId;
+
 	protected Product() {
 	}
 
-	public Product(ProductId id, Set<CategoryId> categoryIds) {
+	public Product(ProductId id, Set<CategoryId> categoryIds, StoreId storeId) {
 		this.id = id;
 		this.categoryIds = categoryIds;
+		this.storeId = storeId;
 	}
 
 	public ProductId getId() {

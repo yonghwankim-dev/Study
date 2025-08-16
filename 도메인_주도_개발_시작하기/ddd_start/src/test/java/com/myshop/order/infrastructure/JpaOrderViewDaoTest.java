@@ -15,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -23,10 +26,8 @@ import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderViewDao;
-import com.myshop.catalog.domain.product.Product;
-import com.myshop.catalog.domain.product.ProductId;
-import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.order.query.dto.OrderView;
+import com.myshop.store.domain.StoreId;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -62,7 +63,8 @@ class JpaOrderViewDaoTest {
 	private void saveProduct() {
 		productId = new ProductId("9000000112298");
 		CategoryId categoryId = new CategoryId(1L);
-		Product product = new Product(productId, Set.of(categoryId));
+		StoreId storeId = new StoreId("123456789");
+		Product product = new Product(productId, Set.of(categoryId), storeId);
 		productRepository.save(product);
 	}
 
@@ -86,12 +88,12 @@ class JpaOrderViewDaoTest {
 	}
 
 	@Test
-	void canCreated(){
+	void canCreated() {
 		assertNotNull(orderViewDao);
 	}
 
 	@Test
-	void shouldReturnOrderViewList(){
+	void shouldReturnOrderViewList() {
 		String ordererId = "12345";
 
 		List<OrderView> orderViews = orderViewDao.selectByOrderer(ordererId);

@@ -16,4 +16,8 @@ public class Store {
 	public Store(StoreId storeId) {
 		this.storeId = storeId;
 	}
+
+	public StoreId getStoreId() {
+		return storeId;
+	}
 }
