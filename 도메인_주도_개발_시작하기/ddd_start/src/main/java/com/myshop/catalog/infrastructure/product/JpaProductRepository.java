@@ -52,4 +52,9 @@ public class JpaProductRepository implements ProductRepository {
 	public int countsByCategoryId(CategoryId id) {
 		return repository.countsByCategoryId(id);
 	}
+
+	@Override
+	public void deleteAll() {
+		repository.deleteAll();
+	}
 }
