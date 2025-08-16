@@ -19,6 +19,7 @@ import com.myshop.catalog.domain.category.CategoryRepository;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.store.domain.StoreId;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -46,7 +47,8 @@ class ProductListServiceTest {
 	}
 
 	private void saveProduct(ProductId productId, CategoryId categoryId) {
-		Product product = new Product(productId, Set.of(categoryId));
+		StoreId storeId = new StoreId("123456789");
+		Product product = new Product(productId, Set.of(categoryId), storeId);
 		productRepository.save(product);
 	}
 
@@ -62,12 +64,12 @@ class ProductListServiceTest {
 	}
 
 	@Test
-	void canCreated(){
+	void canCreated() {
 		assertNotNull(service);
 	}
 
 	@Test
-	void shouldReturnPagedProductList(){
+	void shouldReturnPagedProductList() {
 		Long categoryId = 1L;
 		int page = 1;
 		int size = 5;
