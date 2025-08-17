@@ -8,6 +8,7 @@ import com.myshop.order.domain.Canceller;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
+import com.myshop.order.infrastructure.domain.SecurityCancelPolicy;
 
 public class CancelOrderService {
 
@@ -19,7 +20,7 @@ public class CancelOrderService {
 
 	@Transactional
 	public void cancelOrder(OrderNo orderNo, Canceller canceller) {
-		CancelPolicy cancelPolicy = new CancelPolicy();
+		CancelPolicy cancelPolicy = new SecurityCancelPolicy();
 		Order order = orderRepository.findById(orderNo)
 			.orElseThrow(() -> new OrderNotFoundException(orderNo));
 		if (!cancelPolicy.hasCancellationPermission(order, canceller)) {

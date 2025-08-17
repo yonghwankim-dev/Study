@@ -6,18 +6,19 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
+import com.myshop.order.infrastructure.domain.SecurityCancelPolicy;
 
 class CancelPolicyTest {
 
 	@Test
 	void canCreated() {
-		CancelPolicy cancelPolicy = new CancelPolicy();
+		CancelPolicy cancelPolicy = new SecurityCancelPolicy();
 		assertNotNull(cancelPolicy);
 	}
 
 	@Test
 	void shouldReturnTrue_whenCancellerHasNotPermission() {
-		CancelPolicy cancelPolicy = new CancelPolicy();
+		CancelPolicy cancelPolicy = new SecurityCancelPolicy();
 		Order order = FixedDomainFactory.createOrder();
 		Canceller canceller = new Canceller("12345");
 
