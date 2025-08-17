@@ -32,9 +32,11 @@ class JpaOrderRepositoryTest {
 
 	@Test
 	void shouldSaveOrderAndOrderLines() {
-		saveOrder();
+		String orderId = "1234567890";
 
-		OrderNo orderNo = new OrderNo("1234567890");
+		saveOrder(orderId);
+
+		OrderNo orderNo = new OrderNo(orderId);
 		Order findOrder = orderRepository.findById(orderNo)
 			.orElseThrow(() -> new OrderNotFoundException(orderNo));
 		assertNotNull(findOrder);
@@ -43,19 +45,26 @@ class JpaOrderRepositoryTest {
 
 	@Test
 	void shouldReturnOrderList() {
-		saveOrder();
+		for (int i = 1; i <= 20; i++) {
+			String orderId = String.format("%05d", i);
+			saveOrder(orderId);
+		}
 
 		String ordererId = "12345";
-		int startRow = 0;
-		int size = 10;
+		int startRow = 1;
+		int size = 5;
 
 		List<Order> orders = orderRepository.findByOrdererId(ordererId, startRow, size);
 
-		Assertions.assertThat(orders).hasSize(1);
+		Assertions.assertThat(orders).hasSize(5);
+		Assertions.assertThat(orders)
+			.extracting("orderNo")
+			.extracting("id")
+			.containsExactly("00019", "00018", "00017", "00016", "00015");
 	}
 
-	private void saveOrder() {
-		Order order = FixedDomainFactory.createOrder();
+	private void saveOrder(String orderId) {
+		Order order = FixedDomainFactory.createOrder(orderId);
 		orderRepository.save(order);
 	}
 }

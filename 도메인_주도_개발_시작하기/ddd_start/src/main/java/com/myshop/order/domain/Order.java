@@ -132,4 +132,11 @@ public class Order {
 	public int hashCode() {
 		return Objects.hash(orderNo);
 	}
+
+	@Override
+	public String toString() {
+		return "Order{" +
+			"orderNo=" + orderNo +
+			'}';
+	}
 }

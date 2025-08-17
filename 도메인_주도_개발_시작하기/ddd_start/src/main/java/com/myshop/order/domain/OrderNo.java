@@ -27,4 +27,11 @@ public class OrderNo implements Serializable {
 		OrderNo orderNo = (OrderNo)object;
 		return Objects.equals(id, orderNo.id);
 	}
+
+	@Override
+	public String toString() {
+		return "OrderNo{" +
+			"id='" + id + '\'' +
+			'}';
+	}
 }
