@@ -18,6 +18,10 @@ public class OrderNo implements Serializable {
 		this.id = id;
 	}
 
+	public boolean is2ndGeneration() {
+		return id.startsWith("N");
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
