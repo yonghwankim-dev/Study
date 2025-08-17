@@ -12,6 +12,8 @@ import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.domain.Address;
+import com.myshop.order.domain.CancelPolicy;
+import com.myshop.order.domain.Canceller;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
@@ -55,9 +57,12 @@ class CancelOrderServiceTest {
 		Optional<Order> order = Optional.of(createOrder());
 		BDDMockito.given(repository.findById(orderNo))
 			.willReturn(order);
-		CancelOrderService service = new CancelOrderService(repository);
+		CancelPolicy cancelPolicy = BDDMockito.mock(CancelPolicy.class);
+		Canceller canceller = new Canceller("12345");
+		BDDMockito.given(cancelPolicy.hasCancellationPermission(order.orElseThrow(), canceller))
+			.willReturn(true);
+		CancelOrderService service = new CancelOrderService(repository, cancelPolicy);
 
-		// todo : implement cancelOrder method in CancelOrderService
-		Assertions.assertDoesNotThrow(() -> service.cancelOrder(orderNo, null));
+		Assertions.assertDoesNotThrow(() -> service.cancelOrder(orderNo, canceller));
 	}
 }
