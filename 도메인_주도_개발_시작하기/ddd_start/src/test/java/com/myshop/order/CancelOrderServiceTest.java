@@ -1,6 +1,7 @@
 package com.myshop.order;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -53,7 +54,7 @@ class CancelOrderServiceTest {
 	void shouldDoesNotThrow_whenOrderIsNotShipped() {
 		OrderRepository repository = BDDMockito.mock(OrderRepository.class);
 		OrderNo number = new OrderNo(id);
-		Order order = createOrder();
+		Optional<Order> order = Optional.of(createOrder());
 		BDDMockito.given(repository.findById(number))
 			.willReturn(order);
 		CancelOrderService service = new CancelOrderService(repository);
