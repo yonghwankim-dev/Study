@@ -16,7 +16,12 @@ import com.myshop.order.domain.ShippingInfo;
 
 public class FixedDomainFactory {
 	public static Order createOrder() {
-		OrderNo orderNo = new OrderNo("1234567890");
+		String orderId = "1234567890";
+		return createOrder(orderId);
+	}
+
+	public static Order createOrder(String orderId) {
+		OrderNo orderNo = new OrderNo(orderId);
 		MemberId memberId = new MemberId("12345");
 		Orderer orderer = new Orderer(memberId, "홍길동");
 		ProductId productId = new ProductId("9000000112298");
