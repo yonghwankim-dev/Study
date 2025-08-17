@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import com.myshop.FixedDomainFactory;
 import com.myshop.order.infrastructure.domain.SecurityCancelPolicy;
 
-class CancelPolicyTest {
+class SecurityCancelPolicyTest {
 
 	@Test
 	void canCreated() {
