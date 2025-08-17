@@ -7,17 +7,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 
+import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.application.CancelOrderService;
 import com.myshop.order.domain.Address;
-import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
-import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 
@@ -50,7 +50,7 @@ class CancelOrderServiceTest {
 	}
 
 	@Test
-	void shouldDoesNotThrow_whenOrderIsNotShipped(){
+	void shouldDoesNotThrow_whenOrderIsNotShipped() {
 		OrderRepository repository = BDDMockito.mock(OrderRepository.class);
 		OrderNo number = new OrderNo(id);
 		Order order = createOrder();

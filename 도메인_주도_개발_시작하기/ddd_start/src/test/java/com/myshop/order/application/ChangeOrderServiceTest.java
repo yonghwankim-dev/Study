@@ -9,20 +9,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
 import com.myshop.order.NoOrderException;
 import com.myshop.order.domain.Address;
-import com.myshop.order.domain.Money;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
-import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 
@@ -47,7 +47,7 @@ class ChangeOrderServiceTest {
 		List<OrderLine> orderLines = List.of(orderLine);
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
-		ShippingInfo shippingInfo = new ShippingInfo(receiver,address);
+		ShippingInfo shippingInfo = new ShippingInfo(receiver, address);
 
 		Order order = new Order(id, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
@@ -68,11 +68,11 @@ class ChangeOrderServiceTest {
 	void shouldChangeShippingInfo_whenOrderExists() {
 		ShippingInfo newShippingInfo = createNewShippingInfo();
 
-		Assertions.assertDoesNotThrow(()-> service.changeShippingInfo(id, newShippingInfo, false));
+		Assertions.assertDoesNotThrow(() -> service.changeShippingInfo(id, newShippingInfo, false));
 	}
 
 	@Test
-	void shouldThrow_whenOrderIsNull(){
+	void shouldThrow_whenOrderIsNull() {
 		OrderNo notExistingOrderNo = new OrderNo("99999");
 		ShippingInfo newShippingInfo = createNewShippingInfo();
 
@@ -89,6 +89,7 @@ class ChangeOrderServiceTest {
 		ShippingInfo newShippingInfo = createNewShippingInfo();
 		boolean useNewShippingAddrAsMemberAddr = true;
 
-		Assertions.assertDoesNotThrow(() -> service.changeShippingInfo(id, newShippingInfo, useNewShippingAddrAsMemberAddr));
+		Assertions.assertDoesNotThrow(
+			() -> service.changeShippingInfo(id, newShippingInfo, useNewShippingAddrAsMemberAddr));
 	}
 }

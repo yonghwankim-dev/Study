@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.myshop.order.domain.Money;
-import com.myshop.order.domain.OrderLine;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.common.model.Money;
+import com.myshop.order.domain.OrderLine;
 
 class OrderLineTest {
 
@@ -21,7 +21,7 @@ class OrderLineTest {
 	}
 
 	@Test
-	void canCreated(){
+	void canCreated() {
 		int quantity = 2;
 
 		OrderLine orderLine = new OrderLine(productId, price, quantity);
@@ -30,7 +30,7 @@ class OrderLineTest {
 	}
 
 	@Test
-	void shouldCalculatedAmounts_whenOrderLineIsCreated(){
+	void shouldCalculatedAmounts_whenOrderLineIsCreated() {
 		int quantity = 2;
 
 		OrderLine orderLine = new OrderLine(productId, price, quantity);

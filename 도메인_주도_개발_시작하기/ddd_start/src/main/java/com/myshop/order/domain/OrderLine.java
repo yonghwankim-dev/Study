@@ -1,6 +1,7 @@
 package com.myshop.order.domain;
 
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.common.model.Money;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

@@ -1,5 +1,7 @@
 package com.myshop.order.domain;
 
+import com.myshop.common.model.Money;
+
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
