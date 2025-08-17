@@ -1,0 +1,9 @@
+package com.myshop.order.domain;
+
+public class Canceller {
+	private String memberId;
+
+	public Canceller(String memberId) {
+		this.memberId = memberId;
+	}
+}

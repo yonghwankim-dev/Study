@@ -52,12 +52,12 @@ class CancelOrderServiceTest {
 	@Test
 	void shouldDoesNotThrow_whenOrderIsNotShipped() {
 		OrderRepository repository = BDDMockito.mock(OrderRepository.class);
-		OrderNo number = new OrderNo(id);
 		Optional<Order> order = Optional.of(createOrder());
-		BDDMockito.given(repository.findById(number))
+		BDDMockito.given(repository.findById(orderNo))
 			.willReturn(order);
 		CancelOrderService service = new CancelOrderService(repository);
 
-		Assertions.assertDoesNotThrow(() -> service.cancelOrder(number));
+		// todo : implement cancelOrder method in CancelOrderService
+		Assertions.assertDoesNotThrow(() -> service.cancelOrder(orderNo, null));
 	}
 }
