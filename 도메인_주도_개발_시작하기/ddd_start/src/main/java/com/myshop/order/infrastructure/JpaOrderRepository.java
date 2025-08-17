@@ -1,7 +1,10 @@
 package com.myshop.order.infrastructure;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.myshop.order.domain.Order;
@@ -20,6 +23,12 @@ public class JpaOrderRepository implements OrderRepository {
 	@Override
 	public Optional<Order> findById(OrderNo id) {
 		return repository.findById(id);
+	}
+
+	@Override
+	public List<Order> findByOrdererId(String ordererId, int startRow, int size) {
+		Pageable pageable = PageRequest.of(startRow / size, size);
+		return repository.findByOrdererId(ordererId, pageable);
 	}
 
 	@Override
