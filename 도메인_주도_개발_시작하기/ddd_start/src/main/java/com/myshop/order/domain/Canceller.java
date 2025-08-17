@@ -6,4 +6,8 @@ public class Canceller {
 	public Canceller(String memberId) {
 		this.memberId = memberId;
 	}
+
+	public String getMemberId() {
+		return memberId;
+	}
 }
