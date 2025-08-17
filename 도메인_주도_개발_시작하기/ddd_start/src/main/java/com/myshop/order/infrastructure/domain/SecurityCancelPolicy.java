@@ -1,9 +1,12 @@
 package com.myshop.order.infrastructure.domain;
 
+import org.springframework.stereotype.Component;
+
 import com.myshop.order.domain.CancelPolicy;
 import com.myshop.order.domain.Canceller;
 import com.myshop.order.domain.Order;
 
+@Component
 public class SecurityCancelPolicy implements CancelPolicy {
 	@Override
 	public boolean hasCancellationPermission(Order order, Canceller canceller) {
