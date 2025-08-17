@@ -1,4 +1,4 @@
-package com.myshop.order;
+package com.myshop.order.application;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,6 @@ import org.mockito.BDDMockito;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.application.CancelOrderService;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
