@@ -30,6 +30,11 @@ class JpaOrderRepositoryTest {
 		orderRepository.deleteAll();
 	}
 
+	private void saveOrder(String orderId) {
+		Order order = FixedDomainFactory.createOrder(orderId);
+		orderRepository.save(order);
+	}
+
 	@Test
 	void shouldSaveOrderAndOrderLines() {
 		String orderId = "1234567890";
@@ -63,8 +68,16 @@ class JpaOrderRepositoryTest {
 			.containsExactly("00019", "00018", "00017", "00016", "00015");
 	}
 
-	private void saveOrder(String orderId) {
-		Order order = FixedDomainFactory.createOrder(orderId);
-		orderRepository.save(order);
+	@Test
+	void shouldDeleteOrder() {
+		String orderId = "1234567890";
+		saveOrder(orderId);
+		OrderNo orderNo = new OrderNo(orderId);
+		Order order = orderRepository.findById(orderNo)
+			.orElseThrow(() -> new OrderNotFoundException(orderNo));
+
+		orderRepository.delete(order);
+
+		Assertions.assertThat(orderRepository.findById(orderNo)).isEmpty();
 	}
 }
