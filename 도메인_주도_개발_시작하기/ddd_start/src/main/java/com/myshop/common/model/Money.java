@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.common.model;
 
 import java.util.Objects;
 

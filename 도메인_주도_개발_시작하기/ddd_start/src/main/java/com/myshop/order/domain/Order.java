@@ -3,6 +3,8 @@ package com.myshop.order.domain;
 import java.util.List;
 import java.util.Objects;
 
+import com.myshop.common.model.Money;
+
 import jakarta.persistence.Access;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
