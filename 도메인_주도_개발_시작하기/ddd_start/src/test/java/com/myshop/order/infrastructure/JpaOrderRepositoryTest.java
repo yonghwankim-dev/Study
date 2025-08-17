@@ -2,6 +2,8 @@ package com.myshop.order.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -41,4 +43,14 @@ class JpaOrderRepositoryTest {
 		Assertions.assertThat(findOrder.getTotalAmounts()).isEqualTo(new Money(2000));
 	}
 
+	@Test
+	void shouldReturnOrderList() {
+		String ordererId = "1234567890";
+		int startRow = 0;
+		int size = 10;
+
+		List<Order> orders = orderRepository.findByOrdererId(ordererId, startRow, size);
+
+		Assertions.assertThat(orders).isEmpty();
+	}
 }
