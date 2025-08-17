@@ -47,8 +47,8 @@ class CancelOrderServiceTest {
 		orderLines = List.of(orderLine);
 		shippingInfo = new ShippingInfo(
 			new Receiver("John Doe", "1234567890"),
-			new Address("123 Main St", "City", "12345")
-		);
+			"shipping message",
+			new Address("123 Main St", "City", "12345"));
 	}
 
 	@Test

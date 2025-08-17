@@ -9,6 +9,10 @@ import jakarta.persistence.Embedded;
 public class ShippingInfo {
 	@Embedded
 	private Receiver receiver;
+
+	@Column(name = "shipping_message")
+	private String message;
+
 	@Embedded
 	@AttributeOverride(name = "address1", column = @Column(name = "shipping_addr1"))
 	@AttributeOverride(name = "address2", column = @Column(name = "shipping_addr2"))
@@ -19,7 +23,7 @@ public class ShippingInfo {
 
 	}
 
-	public ShippingInfo(Receiver receiver, Address address) {
+	public ShippingInfo(Receiver receiver, String message, Address address) {
 		this.receiver = receiver;
 		this.address = address;
 	}
