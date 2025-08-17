@@ -32,9 +32,7 @@ class JpaOrderRepositoryTest {
 
 	@Test
 	void shouldSaveOrderAndOrderLines() {
-		Order order = FixedDomainFactory.createOrder();
-
-		orderRepository.save(order);
+		saveOrder();
 
 		OrderNo orderNo = new OrderNo("1234567890");
 		Order findOrder = orderRepository.findById(orderNo)
@@ -45,12 +43,19 @@ class JpaOrderRepositoryTest {
 
 	@Test
 	void shouldReturnOrderList() {
-		String ordererId = "1234567890";
+		saveOrder();
+
+		String ordererId = "12345";
 		int startRow = 0;
 		int size = 10;
 
 		List<Order> orders = orderRepository.findByOrdererId(ordererId, startRow, size);
 
-		Assertions.assertThat(orders).isEmpty();
+		Assertions.assertThat(orders).hasSize(1);
+	}
+
+	private void saveOrder() {
+		Order order = FixedDomainFactory.createOrder();
+		orderRepository.save(order);
 	}
 }
