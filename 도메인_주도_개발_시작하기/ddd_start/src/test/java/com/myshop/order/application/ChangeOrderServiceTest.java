@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +16,7 @@ import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
-import com.myshop.order.NoOrderException;
+import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
@@ -53,7 +54,7 @@ class ChangeOrderServiceTest {
 
 		OrderRepository orderRepository = mock(OrderRepository.class);
 		given(orderRepository.findById(id))
-			.willReturn(order);
+			.willReturn(Optional.of(order));
 
 		MemberRepository memberRepository = mock(MemberRepository.class);
 		Password password = new Password("password1234");
@@ -80,7 +81,7 @@ class ChangeOrderServiceTest {
 			() -> service.changeShippingInfo(notExistingOrderNo, newShippingInfo, false));
 
 		assertThat(throwable)
-			.isInstanceOf(NoOrderException.class)
+			.isInstanceOf(OrderNotFoundException.class)
 			.hasMessage("Order not found: " + notExistingOrderNo);
 	}
 

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
+import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
@@ -34,7 +35,8 @@ class JpaOrderRepositoryTest {
 		orderRepository.save(order);
 
 		OrderNo orderNo = new OrderNo("1234567890");
-		Order findOrder = orderRepository.findById(orderNo);
+		Order findOrder = orderRepository.findById(orderNo)
+			.orElseThrow(() -> new OrderNotFoundException(orderNo));
 		assertNotNull(findOrder);
 		Assertions.assertThat(findOrder.getTotalAmounts()).isEqualTo(new Money(2000));
 	}

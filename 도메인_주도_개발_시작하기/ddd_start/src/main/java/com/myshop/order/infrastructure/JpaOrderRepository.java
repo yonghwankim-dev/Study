@@ -1,5 +1,7 @@
 package com.myshop.order.infrastructure;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import com.myshop.order.domain.Order;
@@ -16,9 +18,8 @@ public class JpaOrderRepository implements OrderRepository {
 	}
 
 	@Override
-	public Order findById(OrderNo id) {
-		return repository.findById(id)
-			.orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + id));
+	public Optional<Order> findById(OrderNo id) {
+		return repository.findById(id);
 	}
 
 	@Override
