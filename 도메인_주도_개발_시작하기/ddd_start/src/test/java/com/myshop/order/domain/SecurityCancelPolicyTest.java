@@ -32,4 +32,14 @@ class SecurityCancelPolicyTest {
 
 		Assertions.assertThat(result).isTrue();
 	}
+
+	@Test
+	void shouldReturnFalse_whenCancellerNotOrderer() {
+		Order order = FixedDomainFactory.createOrder();
+		Canceller canceller = new Canceller("54321");
+
+		boolean result = cancelPolicy.hasCancellationPermission(order, canceller);
+
+		Assertions.assertThat(result).isFalse();
+	}
 }
