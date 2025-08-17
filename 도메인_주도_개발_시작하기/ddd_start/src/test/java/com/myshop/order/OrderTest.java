@@ -62,12 +62,14 @@ class OrderTest {
 		orderer = new Orderer(memberId, "John Doe");
 		Receiver receiver = new Receiver("John Doe", "1234567890");
 		Address address = new Address("123 Main St", "City", "12345");
-		shippingInfo = new ShippingInfo(receiver, address);
+		String message = "Please deliver between 9 AM and 5 PM";
+		shippingInfo = new ShippingInfo(receiver, message, address);
 		ProductId productId = new ProductId("9000000112298");
 		orderLines = List.of(new OrderLine(productId, new Money(1000), 2));
 		Receiver newReceiver = new Receiver("Jane Doe", "0987654321");
+		String newMessage = "Please deliver to the back door.";
 		Address newAddress = new Address("456 Elm St", "New City", "67890");
-		newShippingInfo = new ShippingInfo(newReceiver, newAddress);
+		newShippingInfo = new ShippingInfo(newReceiver, newMessage, newAddress);
 	}
 
 	@ParameterizedTest

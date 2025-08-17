@@ -30,12 +30,13 @@ public class FixedDomainFactory {
 		OrderLine orderLine = new OrderLine(productId, price, quantity);
 		List<OrderLine> orderLines = List.of(orderLine);
 		Receiver receiver = new Receiver("홍길동", "010-1234-5678");
+		String message = "shipping message";
 		Address address = new Address(
 			"서울 강남구 역삼동",
 			"735-17",
 			"06235"
 		);
-		ShippingInfo shippingInfo = new ShippingInfo(receiver, address);
+		ShippingInfo shippingInfo = new ShippingInfo(receiver, message, address);
 		OrderState state = OrderState.PAYMENT_WAITING;
 		return new Order(orderNo, orderer, orderLines, shippingInfo, state);
 	}
