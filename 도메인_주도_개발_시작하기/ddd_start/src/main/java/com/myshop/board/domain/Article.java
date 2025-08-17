@@ -1,5 +1,7 @@
 package com.myshop.board.domain;
 
+import java.util.Objects;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -25,4 +27,31 @@ public class Article {
 	@AttributeOverride(name = "content", column = @Column(table = "article_content", name = "content"))
 	@AttributeOverride(name = "contentType", column = @Column(table = "article_content", name = "content_type"))
 	private ArticleContent content;
+
+	protected Article() {
+	}
+
+	public Article(String title, ArticleContent content) {
+		this.title = title;
+		this.content = content;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		Article article = (Article)object;
+		return Objects.equals(id, article.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
 }
