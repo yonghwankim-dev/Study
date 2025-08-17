@@ -14,6 +14,11 @@ public class SecurityCancelPolicy implements CancelPolicy {
 		return order.getOrderer().getMemberId().getId().equals(canceller.getMemberId());
 	}
 
+	/**
+	 * todo: add SpringSecurity
+	 * @param canceller
+	 * @return
+	 */
 	private boolean isCurrentUserAdminRole(Canceller canceller) {
 		return false;
 	}
