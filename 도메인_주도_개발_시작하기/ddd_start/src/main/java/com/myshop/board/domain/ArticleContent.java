@@ -10,6 +10,9 @@ public class ArticleContent {
 	@Column(name = "content_type")
 	private String contentType;
 
+	protected ArticleContent() {
+	}
+
 	public ArticleContent(String content, String contentType) {
 		this.content = content;
 		this.contentType = contentType;
