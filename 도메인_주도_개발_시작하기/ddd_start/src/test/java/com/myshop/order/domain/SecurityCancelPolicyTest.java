@@ -3,6 +3,7 @@ package com.myshop.order.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
@@ -10,15 +11,20 @@ import com.myshop.order.infrastructure.domain.SecurityCancelPolicy;
 
 class SecurityCancelPolicyTest {
 
+	private CancelPolicy cancelPolicy;
+
+	@BeforeEach
+	void setUp() {
+		cancelPolicy = new SecurityCancelPolicy();
+	}
+
 	@Test
 	void canCreated() {
-		CancelPolicy cancelPolicy = new SecurityCancelPolicy();
 		assertNotNull(cancelPolicy);
 	}
 
 	@Test
-	void shouldReturnTrue_whenCancellerHasNotPermission() {
-		CancelPolicy cancelPolicy = new SecurityCancelPolicy();
+	void shouldReturnTrue_whenCancellerOrderer() {
 		Order order = FixedDomainFactory.createOrder();
 		Canceller canceller = new Canceller("12345");
 
