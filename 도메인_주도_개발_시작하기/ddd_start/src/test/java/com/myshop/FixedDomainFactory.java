@@ -1,9 +1,11 @@
 package com.myshop;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.product.Image;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
@@ -53,6 +55,7 @@ public class FixedDomainFactory {
 		Money price = new Money(1000);
 		String detail = "Java Programming Book ";
 		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
-		return new Product(productId, Set.of(categoryId), storeId, productInfo);
+		List<Image> images = new ArrayList<>();
+		return new Product(productId, Set.of(categoryId), storeId, productInfo, images);
 	}
 }
