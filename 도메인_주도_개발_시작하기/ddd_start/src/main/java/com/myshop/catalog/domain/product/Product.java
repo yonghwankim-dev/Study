@@ -1,6 +1,7 @@
 package com.myshop.catalog.domain.product;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -64,6 +65,10 @@ public class Product {
 
 	public ProductId getId() {
 		return id;
+	}
+
+	public List<Image> getImages() {
+		return Collections.unmodifiableList(images);
 	}
 
 	@Override
