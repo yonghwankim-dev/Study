@@ -48,11 +48,13 @@ public class Product {
 	protected Product() {
 	}
 
-	public Product(ProductId id, Set<CategoryId> categoryIds, StoreId storeId, ProductInfo productInfo) {
+	public Product(ProductId id, Set<CategoryId> categoryIds, StoreId storeId, ProductInfo productInfo,
+		List<Image> images) {
 		this.id = id;
 		this.categoryIds = categoryIds;
 		this.storeId = storeId;
 		this.productInfo = productInfo;
+		this.images.addAll(images);
 	}
 
 	public void changeImages(List<Image> newImages) {

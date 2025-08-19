@@ -1,9 +1,11 @@
 package com.myshop.store.domain;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.product.Image;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductFactory;
 import com.myshop.catalog.domain.product.ProductId;
@@ -30,12 +32,12 @@ public class Store {
 		return storeId;
 	}
 
-	public Product createProduct(ProductId newProductId, ProductInfo productInfo) {
+	public Product createProduct(ProductId newProductId, ProductInfo productInfo, List<Image> images) {
 		if (isBlocked()) {
 			throw new IllegalStateException("Store is blocked, cannot create new product");
 		}
 		Set<CategoryId> categoryIds = Collections.emptySet();
-		return ProductFactory.create(newProductId, categoryIds, getStoreId(), productInfo);
+		return ProductFactory.create(newProductId, categoryIds, getStoreId(), productInfo, images);
 	}
 
 	private boolean isBlocked() {

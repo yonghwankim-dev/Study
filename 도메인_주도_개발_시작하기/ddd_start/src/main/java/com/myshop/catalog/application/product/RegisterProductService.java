@@ -1,5 +1,9 @@
 package com.myshop.catalog.application.product;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.myshop.catalog.domain.product.Image;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
@@ -25,7 +29,8 @@ public class RegisterProductService {
 		Money price = new Money(request.getPrice());
 		String detail = request.getDetail();
 		ProductInfo productInfo = new ProductInfo(request.getProductName(), price, detail);
-		Product product = store.createProduct(id, productInfo);
+		List<Image> images = new ArrayList<>();
+		Product product = store.createProduct(id, productInfo, images);
 		productRepository.save(product);
 		return id;
 	}

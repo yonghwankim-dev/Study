@@ -2,6 +2,8 @@ package com.myshop.catalog.application.product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.assertj.core.api.Assertions;
@@ -16,6 +18,7 @@ import org.springframework.data.domain.Page;
 import com.myshop.catalog.domain.category.Category;
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.category.CategoryRepository;
+import com.myshop.catalog.domain.product.Image;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
@@ -53,7 +56,8 @@ class ProductListServiceTest {
 		Money price = new Money(1000);
 		String detail = "Java Programming Book ";
 		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
-		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo);
+		List<Image> images = new ArrayList<>();
+		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo, images);
 		productRepository.save(product);
 	}
 
