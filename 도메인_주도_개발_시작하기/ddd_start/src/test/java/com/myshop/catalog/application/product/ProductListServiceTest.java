@@ -20,6 +20,7 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.common.model.Money;
 import com.myshop.store.domain.StoreId;
 
 @SpringBootTest
@@ -49,7 +50,9 @@ class ProductListServiceTest {
 
 	private void saveProduct(ProductId productId, CategoryId categoryId) {
 		StoreId storeId = new StoreId("123456789");
-		ProductInfo productInfo = new ProductInfo("Java Book");
+		Money price = new Money(1000);
+		String detail = "Java Programming Book ";
+		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
 		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo);
 		productRepository.save(product);
 	}

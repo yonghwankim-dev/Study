@@ -4,6 +4,7 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.common.model.Money;
 import com.myshop.store.domain.Store;
 import com.myshop.store.domain.StoreRepository;
 
@@ -21,7 +22,9 @@ public class RegisterProductService {
 		Store store = storeRepository.findById(request.getStoreId());
 		checkNull(store);
 		ProductId id = productRepository.nextId();
-		ProductInfo productInfo = new ProductInfo(request.getProductName());
+		Money price = new Money(request.getPrice());
+		String detail = request.getDetail();
+		ProductInfo productInfo = new ProductInfo(request.getProductName(), price, detail);
 		Product product = store.createProduct(id, productInfo);
 		productRepository.save(product);
 		return id;

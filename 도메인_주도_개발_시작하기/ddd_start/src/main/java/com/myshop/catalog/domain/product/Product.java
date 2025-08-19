@@ -1,11 +1,14 @@
 package com.myshop.catalog.domain.product;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.store.domain.StoreId;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -14,6 +17,8 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +37,14 @@ public class Product {
 	@Embedded
 	private ProductInfo productInfo;
 
+	@OneToMany(
+		cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+		orphanRemoval = true
+	)
+	@JoinColumn(name = "product_id")
+	@OrderColumn(name = "list_idx")
+	private List<Image> images = new ArrayList<>();
+
 	protected Product() {
 	}
 
@@ -40,6 +53,11 @@ public class Product {
 		this.categoryIds = categoryIds;
 		this.storeId = storeId;
 		this.productInfo = productInfo;
+	}
+
+	public void changeImages(List<Image> newImages) {
+		images.clear();
+		images.addAll(newImages);
 	}
 
 	public ProductId getId() {

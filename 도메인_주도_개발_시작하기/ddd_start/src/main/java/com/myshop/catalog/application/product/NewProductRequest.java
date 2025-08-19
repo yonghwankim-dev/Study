@@ -5,10 +5,14 @@ import com.myshop.store.domain.StoreId;
 public class NewProductRequest {
 	private StoreId storeId;
 	private String productName;
+	private int price;
+	private String detail;
 
-	public NewProductRequest(StoreId storeId, String productName) {
+	public NewProductRequest(StoreId storeId, String productName, int price, String detail) {
 		this.storeId = storeId;
 		this.productName = productName;
+		this.price = price;
+		this.detail = detail;
 	}
 
 	public StoreId getStoreId() {
@@ -17,5 +21,13 @@ public class NewProductRequest {
 
 	public String getProductName() {
 		return productName;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getDetail() {
+		return detail;
 	}
 }
