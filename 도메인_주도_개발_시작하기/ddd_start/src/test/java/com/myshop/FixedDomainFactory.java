@@ -1,12 +1,14 @@
 package com.myshop;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.product.ExternalImage;
 import com.myshop.catalog.domain.product.Image;
+import com.myshop.catalog.domain.product.InternalImage;
 import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductFactory;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.common.model.Money;
@@ -51,11 +53,26 @@ public class FixedDomainFactory {
 	public static Product createProduct() {
 		ProductId productId = new ProductId("9000000112298");
 		CategoryId categoryId = new CategoryId(1L);
+		return createProduct(productId, categoryId);
+	}
+
+	public static Product createProduct(ProductId productId, CategoryId categoryId) {
 		StoreId storeId = new StoreId("123456789");
+		ProductInfo productInfo = createProductInfo();
+		List<Image> images = createImages();
+		return ProductFactory.create(productId, Set.of(categoryId), storeId, productInfo, images);
+	}
+
+	private static List<Image> createImages() {
+		Image internalImage = new InternalImage("javaProgrammingBook.jpg");
+		Image externalImage = new ExternalImage("https://example.com/javaProgrammingBook.jpg");
+		return List.of(internalImage, externalImage);
+	}
+
+	private static ProductInfo createProductInfo() {
+		String productName = "Java Book";
 		Money price = new Money(1000);
 		String detail = "Java Programming Book ";
-		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
-		List<Image> images = new ArrayList<>();
-		return new Product(productId, Set.of(categoryId), storeId, productInfo, images);
+		return new ProductInfo(productName, price, detail);
 	}
 }
