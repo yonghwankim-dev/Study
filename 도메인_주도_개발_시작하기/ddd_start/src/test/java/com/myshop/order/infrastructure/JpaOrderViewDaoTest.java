@@ -3,9 +3,7 @@ package com.myshop.order.infrastructure;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,13 +13,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.myshop.FixedDomainFactory;
-import com.myshop.catalog.domain.category.CategoryId;
-import com.myshop.catalog.domain.product.Image;
-import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
-import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
-import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -31,7 +24,6 @@ import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
-import com.myshop.store.domain.StoreId;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -65,15 +57,7 @@ class JpaOrderViewDaoTest {
 	}
 
 	private void saveProduct() {
-		productId = new ProductId("9000000112298");
-		CategoryId categoryId = new CategoryId(1L);
-		StoreId storeId = new StoreId("123456789");
-		Money price = new Money(1000);
-		String detail = "Java Programming Book";
-		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
-		List<Image> images = new ArrayList<>();
-		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo, images);
-		productRepository.save(product);
+		productRepository.save(FixedDomainFactory.createProduct());
 	}
 
 	private void saveMember() {
