@@ -1,8 +1,12 @@
 package com.myshop;
 
 import java.util.List;
+import java.util.Set;
 
+import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.domain.Address;
@@ -13,6 +17,7 @@ import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.store.domain.StoreId;
 
 public class FixedDomainFactory {
 	public static Order createOrder() {
@@ -39,5 +44,15 @@ public class FixedDomainFactory {
 		ShippingInfo shippingInfo = new ShippingInfo(receiver, message, address);
 		OrderState state = OrderState.PAYMENT_WAITING;
 		return new Order(orderNo, orderer, orderLines, shippingInfo, state);
+	}
+
+	public static Product createProduct() {
+		ProductId productId = new ProductId("9000000112298");
+		CategoryId categoryId = new CategoryId(1L);
+		StoreId storeId = new StoreId("123456789");
+		Money price = new Money(1000);
+		String detail = "Java Programming Book ";
+		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
+		return new Product(productId, Set.of(categoryId), storeId, productInfo);
 	}
 }

@@ -19,6 +19,7 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -65,7 +66,9 @@ class JpaOrderViewDaoTest {
 		productId = new ProductId("9000000112298");
 		CategoryId categoryId = new CategoryId(1L);
 		StoreId storeId = new StoreId("123456789");
-		ProductInfo productInfo = new ProductInfo("Java Book");
+		Money price = new Money(1000);
+		String detail = "Java Programming Book";
+		ProductInfo productInfo = new ProductInfo("Java Book", price, detail);
 		Product product = new Product(productId, Set.of(categoryId), storeId, productInfo);
 		productRepository.save(product);
 	}
