@@ -12,10 +12,10 @@ import com.myshop.order.domain.OrderRepository;
 public class MemoryOrderRepository implements OrderRepository {
 
 	private Map<OrderNo, Order> orderStore = new HashMap<>();
-	
+
 	@Override
 	public Optional<Order> findById(OrderNo id) {
-		return Optional.empty();
+		return Optional.ofNullable(orderStore.get(id));
 	}
 
 	@Override
@@ -25,7 +25,10 @@ public class MemoryOrderRepository implements OrderRepository {
 
 	@Override
 	public void save(Order order) {
-
+		if (order == null) {
+			throw new IllegalArgumentException("Order cannot be null");
+		}
+		orderStore.put(order.getOrderNo(), order);
 	}
 
 	@Override

@@ -110,6 +110,10 @@ public class Order {
 		this.state = OrderState.CANCELED;
 	}
 
+	public OrderNo getOrderNo() {
+		return orderNo;
+	}
+
 	public Orderer getOrderer() {
 		return orderer;
 	}
