@@ -46,5 +46,7 @@ class MemoryOrderRepositoryTest {
 		List<Order> orders = orderRepository.findByOrdererId(ordererId, startRow, size);
 
 		assertNotNull(orders);
+		Assertions.assertThat(orders)
+			.hasSize(1);
 	}
 }
