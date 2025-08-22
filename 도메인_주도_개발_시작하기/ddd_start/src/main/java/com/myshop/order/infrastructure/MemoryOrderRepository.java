@@ -22,6 +22,7 @@ public class MemoryOrderRepository implements OrderRepository {
 	public List<Order> findByOrdererId(String ordererId, int startRow, int size) {
 		return orderStore.values().stream()
 			.filter(order -> order.getOrderer().getMemberId().getId().equals(ordererId))
+			.sorted((order1, order2) -> order2.getOrderNo().compareTo(order1.getOrderNo()))
 			.skip(startRow)
 			.limit(size)
 			.toList();

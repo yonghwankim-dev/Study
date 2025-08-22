@@ -7,7 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class OrderNo implements Serializable {
+public class OrderNo implements Serializable, Comparable<OrderNo> {
 	@Column(name = "order_no")
 	private String id;
 
@@ -21,7 +21,12 @@ public class OrderNo implements Serializable {
 	public boolean is2ndGeneration() {
 		return id.startsWith("N");
 	}
-	
+
+	@Override
+	public int compareTo(OrderNo orderNo) {
+		return id.compareTo(orderNo.id);
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
