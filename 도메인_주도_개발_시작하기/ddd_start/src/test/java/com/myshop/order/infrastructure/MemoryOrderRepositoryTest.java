@@ -44,7 +44,6 @@ class MemoryOrderRepositoryTest {
 
 	@Test
 	void shouldSaveOrder() {
-		OrderRepository orderRepository = new MemoryOrderRepository();
 		Order order = FixedDomainFactory.createOrder();
 
 		orderRepository.save(order);
@@ -73,5 +72,19 @@ class MemoryOrderRepositoryTest {
 		Assertions.assertThat(orders)
 			.containsExactlyElementsOf(expectedOrders)
 			.hasSize(10);
+	}
+
+	@Test
+	void shouldDeleteOrder() {
+		Order order = FixedDomainFactory.createOrder();
+		orderRepository.save(order);
+
+		orderRepository.delete(order);
+
+		orderRepository.findById(new OrderNo("1234567890"))
+			.ifPresentOrElse(
+				ord -> fail("Order should be deleted"),
+				() -> assertTrue(true)
+			);
 	}
 }
