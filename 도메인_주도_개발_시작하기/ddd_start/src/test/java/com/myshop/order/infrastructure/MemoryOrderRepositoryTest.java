@@ -56,7 +56,7 @@ class MemoryOrderRepositoryTest {
 
 	@Test
 	void shouldSubOrders() {
-		saveOrders(orderRepository);
+		List<Order> saveOrders = saveOrders(orderRepository);
 		String ordererId = "12345";
 		int startRow = 1;
 		int size = 10;
@@ -64,7 +64,14 @@ class MemoryOrderRepositoryTest {
 		List<Order> orders = orderRepository.findByOrdererId(ordererId, startRow, size);
 
 		assertNotNull(orders);
+
+		List<Order> expectedOrders = saveOrders.stream()
+			.sorted((order1, order2) -> order2.getOrderNo().compareTo(order1.getOrderNo()))
+			.skip(startRow)
+			.limit(size)
+			.toList();
 		Assertions.assertThat(orders)
+			.containsExactlyElementsOf(expectedOrders)
 			.hasSize(10);
 	}
 }
