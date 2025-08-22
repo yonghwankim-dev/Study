@@ -39,13 +39,13 @@ public class MemoryOrderRepository implements OrderRepository {
 	@Override
 	public void delete(Order order) {
 		if (order == null) {
-			throw new IllegalArgumentException("Order cannot be null");
+			return;
 		}
 		orderStore.remove(order.getOrderNo());
 	}
 
 	@Override
 	public void deleteAll() {
-
+		orderStore.clear();
 	}
 }

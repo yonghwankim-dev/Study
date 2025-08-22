@@ -87,4 +87,14 @@ class MemoryOrderRepositoryTest {
 				() -> assertTrue(true)
 			);
 	}
+
+	@Test
+	void shouldDeleteAllOrders() {
+		saveOrders(orderRepository);
+
+		orderRepository.deleteAll();
+
+		List<Order> orders = orderRepository.findByOrdererId("12345", 0, 10);
+		Assertions.assertThat(orders).isEmpty();
+	}
 }
