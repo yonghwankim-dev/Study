@@ -1,5 +1,6 @@
 package com.myshop.order.infrastructure;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class MemoryOrderRepository implements OrderRepository {
 
 	@Override
 	public List<Order> findByOrdererId(String ordererId, int startRow, int size) {
-		return null;
+		return new ArrayList<>();
 	}
 
 	@Override

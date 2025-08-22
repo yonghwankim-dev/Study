@@ -2,6 +2,7 @@ package com.myshop.order.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -31,5 +32,19 @@ class MemoryOrderRepositoryTest {
 		OrderNo orderNo = new OrderNo("1234567890");
 		Optional<Order> findOrder = orderRepository.findById(orderNo);
 		Assertions.assertThat(findOrder).contains(order);
+	}
+
+	@Test
+	void shouldSubOrders() {
+		OrderRepository orderRepository = new MemoryOrderRepository();
+		Order order = FixedDomainFactory.createOrder();
+		orderRepository.save(order);
+		String ordererId = "12345";
+		int startRow = 1;
+		int size = 10;
+
+		List<Order> orders = orderRepository.findByOrdererId(ordererId, startRow, size);
+
+		assertNotNull(orders);
 	}
 }
