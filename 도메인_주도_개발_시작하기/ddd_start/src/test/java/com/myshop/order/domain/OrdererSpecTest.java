@@ -12,11 +12,13 @@ class OrdererSpecTest {
 
 	private String ordererId;
 	private OrdererSpec ordererSpec;
+	private Order order;
 
 	@BeforeEach
 	void setUp() {
 		ordererId = "12345";
 		ordererSpec = new OrdererSpec(ordererId);
+		order = FixedDomainFactory.createOrder();
 	}
 
 	@Test
@@ -26,8 +28,6 @@ class OrdererSpecTest {
 
 	@Test
 	void shouldReturnTrue_whenOrdererIdIsMatched() {
-		Order order = FixedDomainFactory.createOrder();
-
 		boolean satisfiedBy = ordererSpec.isSatisfiedBy(order);
 
 		assertThat(satisfiedBy).isTrue();
@@ -36,7 +36,6 @@ class OrdererSpecTest {
 	@Test
 	void shouldReturnFalse_whenOrdererIdIsNotMatched() {
 		ordererSpec = new OrdererSpec("67890"); // Different ordererId
-		Order order = FixedDomainFactory.createOrder();
 
 		boolean satisfiedBy = ordererSpec.isSatisfiedBy(order);
 
