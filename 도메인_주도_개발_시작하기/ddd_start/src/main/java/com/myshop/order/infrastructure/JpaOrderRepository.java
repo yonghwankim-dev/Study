@@ -8,17 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import com.myshop.order.domain.Specification;
 
 @Repository
 public class JpaOrderRepository implements OrderRepository {
 
 	private final SpringDataJpaOrderRepository repository;
-
-	@PersistenceContext
-	private EntityManager em;
 
 	public JpaOrderRepository(SpringDataJpaOrderRepository repository) {
 		this.repository = repository;
@@ -32,6 +27,19 @@ public class JpaOrderRepository implements OrderRepository {
 	@Override
 	public List<Order> findByOrdererId(String ordererId, int startRow, int size) {
 		return repository.findByOrdererId(ordererId, startRow, size);
+	}
+
+	@Override
+	public List<Order> findAll() {
+		return repository.findAll();
+	}
+
+	@Override
+	public List<Order> findAll(Specification<Order> spec) {
+		List<Order> allOrders = findAll();
+		return allOrders.stream()
+			.filter(spec::isSatisfiedBy)
+			.toList();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.myshop.order.infrastructure;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Optional;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
+import com.myshop.order.domain.Specification;
 
 public class MemoryOrderRepository implements OrderRepository {
 
@@ -22,10 +24,33 @@ public class MemoryOrderRepository implements OrderRepository {
 	public List<Order> findByOrdererId(String ordererId, int startRow, int size) {
 		return orderStore.values().stream()
 			.filter(order -> order.getOrderer().getMemberId().getId().equals(ordererId))
-			.sorted((order1, order2) -> order2.getOrderNo().compareTo(order1.getOrderNo()))
+			.sorted(orderNoDescComparator())
 			.skip(startRow)
 			.limit(size)
 			.toList();
+	}
+
+	@Override
+	public List<Order> findAll(Specification<Order> spec) {
+		List<Order> allOrders = findAll();
+		return allOrders.stream()
+			.filter(spec::isSatisfiedBy)
+			.toList();
+	}
+
+	@Override
+	public List<Order> findAll() {
+		return orderStore.values().stream()
+			.sorted(orderNoAscComparator())
+			.toList();
+	}
+
+	private Comparator<Order> orderNoAscComparator() {
+		return Comparator.comparing(Order::getOrderNo);
+	}
+
+	private Comparator<Order> orderNoDescComparator() {
+		return (order1, order2) -> order2.getOrderNo().compareTo(order1.getOrderNo());
 	}
 
 	@Override
