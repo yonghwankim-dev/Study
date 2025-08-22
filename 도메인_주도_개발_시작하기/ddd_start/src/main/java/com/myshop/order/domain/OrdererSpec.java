@@ -1,7 +1,7 @@
 package com.myshop.order.domain;
 
 public class OrdererSpec implements Specification<Order> {
-	private final String ordererId;
+	private String ordererId;
 
 	public OrdererSpec(String ordererId) {
 		this.ordererId = ordererId;

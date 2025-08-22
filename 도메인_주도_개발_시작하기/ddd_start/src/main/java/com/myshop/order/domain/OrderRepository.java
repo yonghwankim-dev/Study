@@ -8,6 +8,10 @@ public interface OrderRepository {
 
 	List<Order> findByOrdererId(String ordererId, int startRow, int size);
 
+	List<Order> findAll();
+
+	List<Order> findAll(Specification<Order> spec);
+
 	void save(Order order);
 
 	void delete(Order order);
