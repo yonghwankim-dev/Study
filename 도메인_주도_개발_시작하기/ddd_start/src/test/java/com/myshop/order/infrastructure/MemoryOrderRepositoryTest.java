@@ -2,10 +2,12 @@ package com.myshop.order.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
@@ -14,6 +16,24 @@ import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 
 class MemoryOrderRepositoryTest {
+
+	private OrderRepository orderRepository;
+
+	private List<Order> saveOrders(OrderRepository orderRepository) {
+		List<Order> result = new ArrayList<>();
+		for (int i = 1; i <= 20; i++) {
+			String orderId = String.format("%05d", i);
+			Order order = FixedDomainFactory.createOrder(orderId);
+			orderRepository.save(order);
+			result.add(order);
+		}
+		return result;
+	}
+
+	@BeforeEach
+	void setUp() {
+		orderRepository = new MemoryOrderRepository();
+	}
 
 	@Test
 	void canCreated() {
@@ -36,9 +56,7 @@ class MemoryOrderRepositoryTest {
 
 	@Test
 	void shouldSubOrders() {
-		OrderRepository orderRepository = new MemoryOrderRepository();
-		Order order = FixedDomainFactory.createOrder();
-		orderRepository.save(order);
+		saveOrders(orderRepository);
 		String ordererId = "12345";
 		int startRow = 1;
 		int size = 10;
@@ -47,6 +65,6 @@ class MemoryOrderRepositoryTest {
 
 		assertNotNull(orders);
 		Assertions.assertThat(orders)
-			.hasSize(1);
+			.hasSize(10);
 	}
 }
