@@ -39,6 +39,7 @@ class OrderSummaryDaoTest {
 	@BeforeEach
 	void setUp() {
 		ordererId = "12345";
+		saveOrderSummaries();
 	}
 
 	@Test
@@ -51,16 +52,26 @@ class OrderSummaryDaoTest {
 	}
 
 	@Test
-	void shouldReturnOrderSummary_whenTwoSpecifications() {
+	void shouldReturnOrderSummaryByOrdererIdAndDateRange() {
+		LocalDateTime now = LocalDateTime.now();
 		Specification<OrderSummary> spec1 = OrderSummarySpecs.ordererId(ordererId);
 		Specification<OrderSummary> spec2 = OrderSummarySpecs.orderDateBetween(
-			LocalDateTime.of(2023, 1, 1, 0, 0),
-			LocalDateTime.of(2023, 12, 31, 23, 59)
+			now.minusMonths(1),
+			now.plusMonths(1)
 		);
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec1.and(spec2));
 
-		Assertions.assertThat(orderSummaries).isNotNull();
+		Assertions.assertThat(orderSummaries).hasSize(20);
+	}
+
+	@Test
+	void shouldReturnEmptyOrderSummary_whenNoMatchingOrdererId() {
+		Specification<OrderSummary> spec = Specification.not(OrderSummarySpecs.ordererId(ordererId));
+
+		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
+
+		Assertions.assertThat(orderSummaries).isEmpty();
 	}
 
 	@Test
@@ -72,7 +83,6 @@ class OrderSummaryDaoTest {
 
 	@Test
 	void shouldReturnOrderList_whenPassSpecification() {
-		saveOrderSummaries();
 		Specification<OrderSummary> spec = new OrdererIdSpec(ordererId);
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
