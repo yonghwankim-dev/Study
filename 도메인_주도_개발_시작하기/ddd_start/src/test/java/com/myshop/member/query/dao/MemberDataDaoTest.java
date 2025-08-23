@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -28,7 +29,7 @@ class MemberDataDaoTest {
 		return new MemberData(id, name, blocked);
 	}
 
-	private void createMemberDatas() {
+	private void saveMemberDates() {
 		for (int i = 1; i <= 20; i++) {
 			String id = String.format("%05d", i);
 			MemberData memberData = createMemberData(id);
@@ -54,7 +55,7 @@ class MemberDataDaoTest {
 
 	@Test
 	void shouldReturnMemberDataListByNameAndPageable() {
-		createMemberDatas();
+		saveMemberDates();
 		String name = "jam%";
 		Pageable pageable = PageRequest.of(0, 5);
 
@@ -65,7 +66,7 @@ class MemberDataDaoTest {
 
 	@Test
 	void shouldReturnMemberDataListByNameAndPageableAndSort() {
-		createMemberDatas();
+		saveMemberDates();
 		String name = "jam%";
 		Sort sort = Sort.by("name").descending();
 		Pageable pageable = PageRequest.of(0, 5, sort);
@@ -75,5 +76,20 @@ class MemberDataDaoTest {
 		Assertions.assertThat(memberDataList)
 			.hasSize(5)
 			.isSortedAccordingTo(Comparator.comparing(MemberData::getName).reversed());
+	}
+
+	@Test
+	void shouldReturnPageMemberDataByBlockedAndPageable() {
+		saveMemberDates();
+		boolean blocked = false;
+		Pageable pageable = PageRequest.of(0, 5);
+
+		Page<MemberData> page = memberDataDao.findByBlocked(blocked, pageable);
+
+		Assertions.assertThat(page.getContent()).hasSize(5);
+		Assertions.assertThat(page.getTotalElements()).isEqualTo(20);
+		Assertions.assertThat(page.getTotalPages()).isEqualTo(4);
+		Assertions.assertThat(page.getNumber()).isZero();
+		Assertions.assertThat(page.getSize()).isEqualTo(5);
 	}
 }
