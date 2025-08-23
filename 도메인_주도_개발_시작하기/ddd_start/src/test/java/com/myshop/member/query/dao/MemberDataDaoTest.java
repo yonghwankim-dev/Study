@@ -1,5 +1,6 @@
 package com.myshop.member.query.dao;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.myshop.member.query.dto.MemberData;
 
@@ -59,5 +61,19 @@ class MemberDataDaoTest {
 		List<MemberData> memberDataList = memberDataDao.findByNameLike(name, pageable);
 
 		Assertions.assertThat(memberDataList).hasSize(5);
+	}
+
+	@Test
+	void shouldReturnMemberDataListByNameAndPageableAndSort() {
+		createMemberDatas();
+		String name = "jam%";
+		Sort sort = Sort.by("name").descending();
+		Pageable pageable = PageRequest.of(0, 5, sort);
+
+		List<MemberData> memberDataList = memberDataDao.findByNameLike(name, pageable);
+
+		Assertions.assertThat(memberDataList)
+			.hasSize(5)
+			.isSortedAccordingTo(Comparator.comparing(MemberData::getName).reversed());
 	}
 }
