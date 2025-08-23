@@ -93,7 +93,15 @@ class OrderSummaryDaoTest {
 	void shouldReturnOrderSummaryByOrdererId() {
 		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByNumberDesc("12345");
 
-		Assertions.assertThat(orderSummaries).isNotNull();
+		Assertions.assertThat(orderSummaries).hasSize(20);
+		Assertions.assertThat(orderSummaries)
+			.extracting("number")
+			.containsExactly(
+				"00020", "00019", "00018", "00017", "00016",
+				"00015", "00014", "00013", "00012", "00011",
+				"00010", "00009", "00008", "00007", "00006",
+				"00005", "00004", "00003", "00002", "00001"
+			);
 	}
 
 	@Test
