@@ -53,7 +53,7 @@ class MemberDataDaoTest {
 	@Test
 	void shouldReturnMemberDataListByNameAndPageable() {
 		createMemberDatas();
-		String name = "james";
+		String name = "jam%";
 		Pageable pageable = PageRequest.of(0, 5);
 
 		List<MemberData> memberDataList = memberDataDao.findByNameLike(name, pageable);
