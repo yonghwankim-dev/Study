@@ -1,6 +1,7 @@
 package com.myshop.order.query.dao;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -94,14 +95,21 @@ class OrderSummaryDaoTest {
 		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByNumberDesc("12345");
 
 		Assertions.assertThat(orderSummaries).hasSize(20);
+		Comparator<OrderSummary> comparator = Comparator.comparing(OrderSummary::getNumber).reversed();
 		Assertions.assertThat(orderSummaries)
-			.extracting("number")
-			.containsExactly(
-				"00020", "00019", "00018", "00017", "00016",
-				"00015", "00014", "00013", "00012", "00011",
-				"00010", "00009", "00008", "00007", "00006",
-				"00005", "00004", "00003", "00002", "00001"
-			);
+			.isSortedAccordingTo(comparator);
+	}
+
+	@Test
+	void shouldReturnOrderSummaryByOrdererIdAndOrderDate() {
+		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByOrderDateDescNumberAsc(ordererId);
+
+		Assertions.assertThat(orderSummaries).hasSize(20);
+		Comparator<OrderSummary> comparator = Comparator.comparing(OrderSummary::getOrderDate,
+				Comparator.reverseOrder())
+			.thenComparing(OrderSummary::getNumber);
+		Assertions.assertThat(orderSummaries)
+			.isSortedAccordingTo(comparator);
 	}
 
 	@Test

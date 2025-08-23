@@ -16,5 +16,7 @@ public interface OrderSummaryDao extends Repository<OrderSummary, String> {
 
 	List<OrderSummary> findByOrdererIdOrderByNumberDesc(String ordererId);
 
+	List<OrderSummary> findByOrdererIdOrderByOrderDateDescNumberAsc(String ordererId);
+
 	void deleteAll();
 }
