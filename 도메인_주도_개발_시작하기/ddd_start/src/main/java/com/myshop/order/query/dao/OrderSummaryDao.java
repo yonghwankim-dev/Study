@@ -15,4 +15,6 @@ public interface OrderSummaryDao extends Repository<OrderSummary, String> {
 	List<OrderSummary> findAll(Specification<OrderSummary> spec);
 
 	List<OrderSummary> findByOrdererIdOrderByNumberDesc(String ordererId);
+
+	void deleteAll();
 }
