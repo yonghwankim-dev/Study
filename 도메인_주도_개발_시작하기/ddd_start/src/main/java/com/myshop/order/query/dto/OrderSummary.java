@@ -1,6 +1,7 @@
 package com.myshop.order.query.dto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +29,20 @@ public class OrderSummary {
 	private String productName;
 
 	protected OrderSummary() {
+	}
+
+	public OrderSummary(String number, long version, String ordererId, String ordererName, int totalAmounts,
+		String receiverName, String state, LocalDateTime orderDate, String productId, String productName) {
+		this.number = number;
+		this.version = version;
+		this.ordererId = ordererId;
+		this.ordererName = ordererName;
+		this.totalAmounts = totalAmounts;
+		this.receiverName = receiverName;
+		this.state = state;
+		this.orderDate = orderDate;
+		this.productId = productId;
+		this.productName = productName;
 	}
 
 	public String getNumber() {
@@ -68,5 +83,20 @@ public class OrderSummary {
 
 	public String getProductName() {
 		return productName;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		OrderSummary that = (OrderSummary)object;
+		return Objects.equals(number, that.number);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(number);
 	}
 }
