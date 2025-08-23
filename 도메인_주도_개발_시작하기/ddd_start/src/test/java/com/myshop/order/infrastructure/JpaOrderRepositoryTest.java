@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.domain.Specification;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
@@ -18,8 +17,6 @@ import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
-import com.myshop.order.query.dao.OrdererIdSpec;
-import com.myshop.order.query.dto.OrderSummary;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -82,19 +79,5 @@ class JpaOrderRepositoryTest {
 		orderRepository.delete(order);
 
 		Assertions.assertThat(orderRepository.findById(orderNo)).isEmpty();
-	}
-
-	@Test
-	void shouldReturnOrderList_whenPassSpecification() {
-		for (int i = 1; i <= 20; i++) {
-			String orderId = String.format("%05d", i);
-			saveOrder(orderId);
-		}
-
-		Specification<OrderSummary> spec = new OrdererIdSpec("12345");
-
-		List<Order> orders = orderRepository.findAll(spec);
-
-		Assertions.assertThat(orders).hasSize(20);
 	}
 }

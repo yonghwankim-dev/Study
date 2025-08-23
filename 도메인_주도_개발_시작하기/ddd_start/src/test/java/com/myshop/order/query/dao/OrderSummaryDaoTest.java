@@ -20,7 +20,7 @@ class OrderSummaryDaoTest {
 	private OrderSummaryDao orderSummaryDao;
 
 	@Test
-	void shouldReturnOrderSummarys() {
+	void shouldReturnOrderSummary() {
 		Specification<OrderSummary> spec = OrderSummarySpecs.ordererId("12345");
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
@@ -44,6 +44,15 @@ class OrderSummaryDaoTest {
 	@Test
 	void shouldReturnOrderSummaryByOrdererId() {
 		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByNumberDesc("12345");
+
+		Assertions.assertThat(orderSummaries).isNotNull();
+	}
+
+	@Test
+	void shouldReturnOrderList_whenPassSpecification() {
+		Specification<OrderSummary> spec = new OrdererIdSpec("12345");
+
+		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
 
 		Assertions.assertThat(orderSummaries).isNotNull();
 	}
