@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.myshop.member.query.dto.MemberData;
 
@@ -85,6 +86,21 @@ class MemberDataDaoTest {
 		Pageable pageable = PageRequest.of(0, 5);
 
 		Page<MemberData> page = memberDataDao.findByBlocked(blocked, pageable);
+
+		Assertions.assertThat(page.getContent()).hasSize(5);
+		Assertions.assertThat(page.getTotalElements()).isEqualTo(20);
+		Assertions.assertThat(page.getTotalPages()).isEqualTo(4);
+		Assertions.assertThat(page.getNumber()).isZero();
+		Assertions.assertThat(page.getSize()).isEqualTo(5);
+	}
+
+	@Test
+	void shouldReturnPageMemberDataBySpecificationAndPageable() {
+		saveMemberDates();
+		Specification<MemberData> spec = new MemberNameSpec("jam");
+		Pageable pageable = PageRequest.of(0, 5);
+
+		Page<MemberData> page = memberDataDao.findAll(spec, pageable);
 
 		Assertions.assertThat(page.getContent()).hasSize(5);
 		Assertions.assertThat(page.getTotalElements()).isEqualTo(20);
