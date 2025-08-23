@@ -142,4 +142,20 @@ class OrderSummaryDaoTest {
 			.hasSize(20)
 			.isSortedAccordingTo(Comparator.comparing(OrderSummary::getNumber));
 	}
+
+	@Test
+	void shouldReturnOrderSummaryByOrdererIdAndSortedNumberAscAndOrderDateDesc() {
+		Sort sort1 = Sort.by("number").ascending();
+		Sort sort2 = Sort.by("orderDate").descending();
+		Sort sort = sort1.and(sort2);
+
+		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererId(ordererId, sort);
+
+		Comparator<OrderSummary> comparator = Comparator
+			.comparing(OrderSummary::getNumber)
+			.thenComparing(OrderSummary::getOrderDate, Comparator.reverseOrder());
+		Assertions.assertThat(orderSummaries)
+			.hasSize(20)
+			.isSortedAccordingTo(comparator);
+	}
 }
