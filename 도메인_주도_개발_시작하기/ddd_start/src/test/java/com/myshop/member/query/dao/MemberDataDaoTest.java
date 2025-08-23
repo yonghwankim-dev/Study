@@ -16,6 +16,12 @@ class MemberDataDaoTest {
 	@Autowired
 	private MemberDataDao memberDataDao;
 
+	private MemberData createMemberData(String id) {
+		String name = "james";
+		boolean blocked = false;
+		return new MemberData(id, name, blocked);
+	}
+
 	@AfterEach
 	void tearDown() {
 		memberDataDao.deleteAll();
@@ -30,11 +36,5 @@ class MemberDataDaoTest {
 
 		MemberData findMemberData = memberDataDao.findById(id);
 		Assertions.assertThat(findMemberData).isEqualTo(memberData);
-	}
-
-	private MemberData createMemberData(String id) {
-		String name = "james";
-		boolean blocked = false;
-		return new MemberData(id, name, blocked);
 	}
 }
