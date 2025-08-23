@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,6 +21,7 @@ class OrderSummaryDaoTest {
 
 	@Autowired
 	private OrderSummaryDao orderSummaryDao;
+	private String ordererId;
 
 	private void saveOrderSummaries() {
 		for (int i = 1; i <= 20; i++) {
@@ -34,9 +36,14 @@ class OrderSummaryDaoTest {
 		orderSummaryDao.deleteAll();
 	}
 
+	@BeforeEach
+	void setUp() {
+		ordererId = "12345";
+	}
+
 	@Test
 	void shouldReturnOrderSummary() {
-		Specification<OrderSummary> spec = OrderSummarySpecs.ordererId("12345");
+		Specification<OrderSummary> spec = OrderSummarySpecs.ordererId(ordererId);
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
 
@@ -45,7 +52,7 @@ class OrderSummaryDaoTest {
 
 	@Test
 	void shouldReturnOrderSummary_whenTwoSpecifications() {
-		Specification<OrderSummary> spec1 = OrderSummarySpecs.ordererId("12345");
+		Specification<OrderSummary> spec1 = OrderSummarySpecs.ordererId(ordererId);
 		Specification<OrderSummary> spec2 = OrderSummarySpecs.orderDateBetween(
 			LocalDateTime.of(2023, 1, 1, 0, 0),
 			LocalDateTime.of(2023, 12, 31, 23, 59)
@@ -66,7 +73,7 @@ class OrderSummaryDaoTest {
 	@Test
 	void shouldReturnOrderList_whenPassSpecification() {
 		saveOrderSummaries();
-		Specification<OrderSummary> spec = new OrdererIdSpec("12345");
+		Specification<OrderSummary> spec = new OrdererIdSpec(ordererId);
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
 
@@ -75,11 +82,10 @@ class OrderSummaryDaoTest {
 
 	@Test
 	void shouldSaveOrderSummary() {
-		String number = "12345";
-		OrderSummary orderSummary = FixedDomainFactory.createOrderSummary(number);
+		OrderSummary orderSummary = FixedDomainFactory.createOrderSummary(ordererId);
 		orderSummaryDao.save(orderSummary);
 
-		OrderSummary findOrderSummary = orderSummaryDao.findByNumber(number);
+		OrderSummary findOrderSummary = orderSummaryDao.findByNumber(ordererId);
 
 		Assertions.assertThat(findOrderSummary).isEqualTo(orderSummary);
 	}
