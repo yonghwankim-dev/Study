@@ -9,7 +9,6 @@ import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Specification;
-import com.myshop.order.query.dto.OrderSummary;
 
 @Repository
 public class JpaOrderRepository implements OrderRepository {
@@ -41,11 +40,6 @@ public class JpaOrderRepository implements OrderRepository {
 		return allOrders.stream()
 			.filter(spec::isSatisfiedBy)
 			.toList();
-	}
-
-	@Override
-	public List<Order> findAll(org.springframework.data.jpa.domain.Specification<OrderSummary> spec) {
-		return repository.findAll(spec);
 	}
 
 	@Override
