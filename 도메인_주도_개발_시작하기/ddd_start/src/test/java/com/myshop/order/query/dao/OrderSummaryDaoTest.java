@@ -2,7 +2,6 @@ package com.myshop.order.query.dao;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -12,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
 
-import com.myshop.order.domain.OrderState;
+import com.myshop.FixedDomainFactory;
 import com.myshop.order.query.dto.OrderSummary;
 
 @SpringBootTest
@@ -25,25 +24,9 @@ class OrderSummaryDaoTest {
 	private void saveOrderSummaries() {
 		for (int i = 1; i <= 20; i++) {
 			String number = String.format("%05d", i);
-			OrderSummary orderSummary = createOrderSummary(number);
+			OrderSummary orderSummary = FixedDomainFactory.createOrderSummary(number);
 			orderSummaryDao.save(orderSummary);
 		}
-	}
-
-	private OrderSummary createOrderSummary(String number) {
-		String productId = "9000000112298";
-		return new OrderSummary(
-			number,
-			UUID.randomUUID().version(),
-			"12345",
-			"호길동",
-			10_000,
-			"강감찬",
-			OrderState.PAYMENT_WAITING.name(),
-			LocalDateTime.now(),
-			productId,
-			"Java Book"
-		);
 	}
 
 	@AfterEach
@@ -93,7 +76,7 @@ class OrderSummaryDaoTest {
 	@Test
 	void shouldSaveOrderSummary() {
 		String number = "12345";
-		OrderSummary orderSummary = createOrderSummary(number);
+		OrderSummary orderSummary = FixedDomainFactory.createOrderSummary(number);
 		orderSummaryDao.save(orderSummary);
 
 		OrderSummary findOrderSummary = orderSummaryDao.findByNumber(number);

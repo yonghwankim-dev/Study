@@ -1,7 +1,9 @@
 package com.myshop;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.ExternalImage;
@@ -21,6 +23,7 @@ import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.query.dto.OrderSummary;
 import com.myshop.store.domain.StoreId;
 
 public class FixedDomainFactory {
@@ -74,5 +77,21 @@ public class FixedDomainFactory {
 		Money price = new Money(1000);
 		String detail = "Java Programming Book ";
 		return new ProductInfo(productName, price, detail);
+	}
+
+	public static OrderSummary createOrderSummary(String number) {
+		String productId = "9000000112298";
+		return new OrderSummary(
+			number,
+			UUID.randomUUID().version(),
+			"12345",
+			"호길동",
+			10_000,
+			"강감찬",
+			OrderState.PAYMENT_WAITING.name(),
+			LocalDateTime.now(),
+			productId,
+			"Java Book"
+		);
 	}
 }
