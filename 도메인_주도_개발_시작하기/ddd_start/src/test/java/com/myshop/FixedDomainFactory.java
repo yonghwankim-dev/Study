@@ -1,6 +1,7 @@
 package com.myshop;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -96,8 +97,26 @@ public class FixedDomainFactory {
 		);
 	}
 
+	public static List<MemberData> createFixedMemberDataList() {
+		List<MemberData> result = new ArrayList<>();
+		for (int i = 0; i < 20; i++) {
+			String id = String.format("%05d", i);
+			MemberData memberData = createMemberData(id, "james");
+			result.add(memberData);
+		}
+		for (int i = 0; i < 20; i++) {
+			String id = String.format("%05d", i + 20);
+			MemberData memberData = createMemberData(id, "bob");
+			result.add(memberData);
+		}
+		return result;
+	}
+
 	public static MemberData createMemberData(String id) {
-		String name = "james";
+		return createMemberData(id, "james");
+	}
+
+	public static MemberData createMemberData(String id, String name) {
 		boolean blocked = false;
 		return new MemberData(id, name, blocked);
 	}

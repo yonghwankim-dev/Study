@@ -25,11 +25,8 @@ class FindMemberDataServiceTest {
 	private MemberDataDao memberDataDao;
 
 	private void saveMemberDates() {
-		for (int i = 1; i <= 20; i++) {
-			String id = String.format("%05d", i);
-			MemberData memberData = FixedDomainFactory.createMemberData(id);
-			memberDataDao.save(memberData);
-		}
+		List<MemberData> datas = FixedDomainFactory.createFixedMemberDataList();
+		datas.forEach(memberDataDao::save);
 	}
 
 	@BeforeEach
@@ -44,10 +41,13 @@ class FindMemberDataServiceTest {
 
 	@Test
 	void shouldReturnMemberData() {
-		MemberSearchRequest searchRequest = new MemberSearchRequest();
+		MemberSearchRequest searchRequest = new MemberSearchRequest(true, "jam");
 
 		List<MemberData> memberDataList = service.findMembers(searchRequest);
 
-		Assertions.assertThat(memberDataList).hasSize(5);
+		Assertions.assertThat(memberDataList)
+			.hasSize(5)
+			.allMatch(memberData -> !memberData.isBlocked())
+			.allMatch(memberData -> memberData.getName().contains("jam"));
 	}
 }

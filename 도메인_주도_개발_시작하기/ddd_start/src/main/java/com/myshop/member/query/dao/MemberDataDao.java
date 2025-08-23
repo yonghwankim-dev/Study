@@ -19,6 +19,6 @@ public interface MemberDataDao extends Repository<MemberData, String> {
 	Page<MemberData> findAll(Specification<MemberData> spec, Pageable pageable);
 
 	void save(MemberData memberData);
-
+	
 	void deleteAll();
 }
