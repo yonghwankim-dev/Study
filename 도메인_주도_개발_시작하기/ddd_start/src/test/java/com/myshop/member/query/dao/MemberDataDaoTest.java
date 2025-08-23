@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
+import com.myshop.FixedDomainFactory;
 import com.myshop.member.query.dto.MemberData;
 
 @SpringBootTest
@@ -24,16 +25,10 @@ class MemberDataDaoTest {
 	@Autowired
 	private MemberDataDao memberDataDao;
 
-	private MemberData createMemberData(String id) {
-		String name = "james";
-		boolean blocked = false;
-		return new MemberData(id, name, blocked);
-	}
-
 	private void saveMemberDates() {
 		for (int i = 1; i <= 20; i++) {
 			String id = String.format("%05d", i);
-			MemberData memberData = createMemberData(id);
+			MemberData memberData = FixedDomainFactory.createMemberData(id);
 			memberDataDao.save(memberData);
 		}
 	}
@@ -46,7 +41,7 @@ class MemberDataDaoTest {
 	@Test
 	void shouldSaveMemberData() {
 		String id = String.format("%05d", 1);
-		MemberData memberData = createMemberData(id);
+		MemberData memberData = FixedDomainFactory.createMemberData(id);
 
 		memberDataDao.save(memberData);
 

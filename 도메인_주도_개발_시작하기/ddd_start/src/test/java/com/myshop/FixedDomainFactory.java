@@ -15,6 +15,7 @@ import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.query.dto.MemberData;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
@@ -93,5 +94,11 @@ public class FixedDomainFactory {
 			productId,
 			"Java Book"
 		);
+	}
+
+	public static MemberData createMemberData(String id) {
+		String name = "james";
+		boolean blocked = false;
+		return new MemberData(id, name, blocked);
 	}
 }
