@@ -24,9 +24,7 @@ class MemberDataDaoTest {
 	@Test
 	void shouldSaveMemberData() {
 		String id = String.format("%05d", 1);
-		String name = "james";
-		boolean blocked = false;
-		MemberData memberData = new MemberData(id, name, blocked);
+		MemberData memberData = createMemberData(id);
 
 		memberDataDao.save(memberData);
 
@@ -34,4 +32,9 @@ class MemberDataDaoTest {
 		Assertions.assertThat(findMemberData).isEqualTo(memberData);
 	}
 
+	private MemberData createMemberData(String id) {
+		String name = "james";
+		boolean blocked = false;
+		return new MemberData(id, name, blocked);
+	}
 }
