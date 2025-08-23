@@ -2,6 +2,7 @@ package com.myshop.order.query.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.Repository;
 
@@ -17,6 +18,8 @@ public interface OrderSummaryDao extends Repository<OrderSummary, String> {
 	List<OrderSummary> findByOrdererIdOrderByNumberDesc(String ordererId);
 
 	List<OrderSummary> findByOrdererIdOrderByOrderDateDescNumberAsc(String ordererId);
+
+	List<OrderSummary> findByOrdererId(String ordererId, Sort sort);
 
 	void deleteAll();
 }

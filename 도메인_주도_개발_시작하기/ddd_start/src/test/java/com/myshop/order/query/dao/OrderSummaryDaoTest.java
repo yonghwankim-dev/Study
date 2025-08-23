@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.myshop.FixedDomainFactory;
@@ -129,5 +130,16 @@ class OrderSummaryDaoTest {
 		OrderSummary findOrderSummary = orderSummaryDao.findByNumber(ordererId);
 
 		Assertions.assertThat(findOrderSummary).isEqualTo(orderSummary);
+	}
+
+	@Test
+	void shouldReturnOrderSummaryListByOrdererIdAndSort() {
+		Sort sort = Sort.by("number").ascending();
+
+		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererId(ordererId, sort);
+
+		Assertions.assertThat(orderSummaries)
+			.hasSize(20)
+			.isSortedAccordingTo(Comparator.comparing(OrderSummary::getNumber));
 	}
 }
