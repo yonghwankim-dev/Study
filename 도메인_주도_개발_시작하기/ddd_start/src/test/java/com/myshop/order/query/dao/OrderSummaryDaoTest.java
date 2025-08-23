@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -20,6 +21,35 @@ class OrderSummaryDaoTest {
 
 	@Autowired
 	private OrderSummaryDao orderSummaryDao;
+
+	private void saveOrderSummaries() {
+		for (int i = 1; i <= 20; i++) {
+			String number = String.format("%05d", i);
+			OrderSummary orderSummary = createOrderSummary(number);
+			orderSummaryDao.save(orderSummary);
+		}
+	}
+
+	private OrderSummary createOrderSummary(String number) {
+		String productId = "9000000112298";
+		return new OrderSummary(
+			number,
+			UUID.randomUUID().version(),
+			"12345",
+			"호길동",
+			10_000,
+			"강감찬",
+			OrderState.PAYMENT_WAITING.name(),
+			LocalDateTime.now(),
+			productId,
+			"Java Book"
+		);
+	}
+
+	@AfterEach
+	void tearDown() {
+		orderSummaryDao.deleteAll();
+	}
 
 	@Test
 	void shouldReturnOrderSummary() {
@@ -52,11 +82,12 @@ class OrderSummaryDaoTest {
 
 	@Test
 	void shouldReturnOrderList_whenPassSpecification() {
+		saveOrderSummaries();
 		Specification<OrderSummary> spec = new OrdererIdSpec("12345");
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
 
-		Assertions.assertThat(orderSummaries).isNotNull();
+		Assertions.assertThat(orderSummaries).hasSize(20);
 	}
 
 	@Test
@@ -68,21 +99,5 @@ class OrderSummaryDaoTest {
 		OrderSummary findOrderSummary = orderSummaryDao.findByNumber(number);
 
 		Assertions.assertThat(findOrderSummary).isEqualTo(orderSummary);
-	}
-
-	private OrderSummary createOrderSummary(String number) {
-		String productId = "9000000112298";
-		return new OrderSummary(
-			number,
-			UUID.randomUUID().version(),
-			"2023-01-01T10:00:00",
-			"1234567890",
-			10_000,
-			"홍길동",
-			OrderState.PAYMENT_WAITING.name(),
-			LocalDateTime.now(),
-			productId,
-			"Java Book"
-		);
 	}
 }
