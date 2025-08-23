@@ -75,6 +75,21 @@ class OrderSummaryDaoTest {
 	}
 
 	@Test
+	void shouldReturnOrderSummary_whenSpecIsNullable() {
+		Specification<OrderSummary> nullableSpec = createNullableSpec();
+		Specification<OrderSummary> otherSpec = OrderSummarySpecs.ordererId(ordererId);
+		Specification<OrderSummary> spec = Specification.where(nullableSpec).and(otherSpec);
+
+		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec);
+
+		Assertions.assertThat(orderSummaries).hasSize(20);
+	}
+
+	private Specification<OrderSummary> createNullableSpec() {
+		return null;
+	}
+
+	@Test
 	void shouldReturnOrderSummaryByOrdererId() {
 		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByNumberDesc("12345");
 
