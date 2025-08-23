@@ -2,17 +2,20 @@ package com.myshop.member.query.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
 import com.myshop.member.query.dto.MemberData;
 
 public interface MemberDataDao extends Repository<MemberData, String> {
+	MemberData findById(String id);
+
 	List<MemberData> findByNameLike(String name, Pageable pageable);
 
-	void save(MemberData memberData);
+	Page<MemberData> findByBlocked(boolean blocked, Pageable pageable);
 
-	MemberData findById(String id);
+	void save(MemberData memberData);
 
 	void deleteAll();
 }
