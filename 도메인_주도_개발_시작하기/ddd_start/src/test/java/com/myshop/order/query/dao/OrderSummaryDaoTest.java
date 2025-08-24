@@ -13,15 +13,20 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Order;
+import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
+import com.myshop.order.domain.Receiver;
+import com.myshop.order.domain.ShippingInfo;
 import com.myshop.order.query.dto.OrderSummary;
 import com.myshop.order.query.dto.OrderView;
 
@@ -189,4 +194,20 @@ class OrderSummaryDaoTest {
 		Assertions.assertThat(orderViews.get(0).getProductName()).isEqualTo("Java Book");
 	}
 
+	@Transactional
+	@Test
+	void shouldChangedShippingInfo_whenFindOrderSummary() {
+		String number = "123456789020";
+		Order order = orderRepository.findById(new OrderNo(number)).orElseThrow();
+		ShippingInfo newShippingInfo = new ShippingInfo(new Receiver("강감찬", "010-1234-5678"),
+			"message", new Address("서울 강남구 역삼동", "735-17", "06235"));
+
+		order.changeShippingInfo(newShippingInfo);
+
+		Sort sort = Sort.by("number").descending();
+		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererId(order.getOrderer().getMemberId().getId(),
+			sort);
+		Assertions.assertThat(orderSummaries.get(0).getNumber()).isEqualTo(number);
+		Assertions.assertThat(orderSummaries.get(0).getReceiverName()).isEqualTo("강감찬");
+	}
 }
