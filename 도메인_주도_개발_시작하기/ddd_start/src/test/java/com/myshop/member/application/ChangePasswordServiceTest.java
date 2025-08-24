@@ -12,6 +12,7 @@ import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
+import com.myshop.member.query.dto.ChangePasswordRequest;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -33,7 +34,7 @@ class ChangePasswordServiceTest {
 
 	@Test
 	void shouldChangePassword() {
-		service.changePassword(memberId, "12345", "newPassword");
+		service.changePassword(new ChangePasswordRequest(memberId, "12345", "newPassword"));
 
 		Member findMember = memberRepository.findById(new MemberId(memberId));
 		Assertions.assertThat(findMember.getPassword()).isEqualTo(new Password("newPassword"));
