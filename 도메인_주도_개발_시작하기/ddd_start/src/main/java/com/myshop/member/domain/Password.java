@@ -2,6 +2,8 @@ package com.myshop.member.domain;
 
 import java.util.Objects;
 
+import org.apache.logging.log4j.util.Strings;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -15,6 +17,9 @@ public class Password {
 	}
 
 	public Password(String value) {
+		if (Strings.isEmpty(value)) {
+			throw new IllegalArgumentException("Password cannot be empty");
+		}
 		this.value = value;
 	}
 
