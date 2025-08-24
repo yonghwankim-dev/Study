@@ -1,12 +1,16 @@
 package com.myshop.member.ui;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.application.ChangePasswordService;
 import com.myshop.member.query.dto.ChangePasswordRequest;
+import com.myshop.member.query.dto.MemberAuthentication;
 
 @RestController
 @RequestMapping("/member/changePassword")
@@ -19,8 +23,15 @@ public class MemberPasswordController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> submit(ChangePasswordRequest request) {
+	public ResponseEntity<Void> submit(@RequestBody ChangePasswordRequest request) {
+		setMemberId(request);
 		service.changePassword(request);
 		return ResponseEntity.ok().build();
+	}
+
+	private void setMemberId(ChangePasswordRequest request) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		MemberAuthentication memberAuthentication = (MemberAuthentication)authentication.getPrincipal();
+		request.setMemberId(memberAuthentication.getMemberId());
 	}
 }
