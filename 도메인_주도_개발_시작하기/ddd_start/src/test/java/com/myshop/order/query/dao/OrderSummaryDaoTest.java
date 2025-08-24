@@ -49,23 +49,17 @@ class OrderSummaryDaoTest {
 		productRepository.save(product);
 	}
 
-	private void saveOrder() {
-		Order order = FixedDomainFactory.createOrder();
-		orderRepository.save(order);
-	}
-
-	private void saveOrderSummaries() {
+	private void saveOrders() {
 		for (int i = 1; i <= 20; i++) {
-			String number = String.format("%05d", i);
-			OrderSummary orderSummary = FixedDomainFactory.createOrderSummary(number);
-			orderSummaryDao.save(orderSummary);
+			String orderId = String.format("1234567890%02d", i);
+			Order order = FixedDomainFactory.createOrder(orderId);
+			orderRepository.save(order);
 		}
 	}
 
 	@AfterEach
 	void tearDown() {
 		memberRepository.deleteAll();
-		orderSummaryDao.deleteAll();
 		productRepository.deleteAll();
 		orderRepository.deleteAll();
 	}
@@ -75,8 +69,7 @@ class OrderSummaryDaoTest {
 		ordererId = "12345";
 		saveMember();
 		saveProduct();
-		saveOrder();
-		saveOrderSummaries();
+		saveOrders();
 	}
 
 	@Test
@@ -158,16 +151,6 @@ class OrderSummaryDaoTest {
 	}
 
 	@Test
-	void shouldSaveOrderSummary() {
-		OrderSummary orderSummary = FixedDomainFactory.createOrderSummary(ordererId);
-		orderSummaryDao.save(orderSummary);
-
-		OrderSummary findOrderSummary = orderSummaryDao.findByNumber(ordererId);
-
-		Assertions.assertThat(findOrderSummary).isEqualTo(orderSummary);
-	}
-
-	@Test
 	void shouldReturnOrderSummaryListByOrdererIdAndSort() {
 		Sort sort = Sort.by("number").ascending();
 
@@ -198,11 +181,12 @@ class OrderSummaryDaoTest {
 	void shouldReturnOrderView() {
 		List<OrderView> orderViews = orderSummaryDao.findOrderView(ordererId);
 
-		Assertions.assertThat(orderViews).hasSize(1);
-		Assertions.assertThat(orderViews.get(0).getNumber()).isEqualTo("1234567890");
+		Assertions.assertThat(orderViews).hasSize(20);
+		Assertions.assertThat(orderViews.get(0).getNumber()).isEqualTo("123456789020");
 		Assertions.assertThat(orderViews.get(0).getState()).isEqualTo(OrderState.PAYMENT_WAITING);
 		Assertions.assertThat(orderViews.get(0).getMemberName()).isEqualTo("홍길동");
 		Assertions.assertThat(orderViews.get(0).getMemberId()).isEqualTo("12345");
 		Assertions.assertThat(orderViews.get(0).getProductName()).isEqualTo("Java Book");
 	}
+
 }

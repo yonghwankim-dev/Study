@@ -46,6 +46,7 @@ class JpaOrderRepositoryTest {
 			.orElseThrow(() -> new OrderNotFoundException(orderNo));
 		assertNotNull(findOrder);
 		Assertions.assertThat(findOrder.getTotalAmounts()).isEqualTo(new Money(2000));
+		Assertions.assertThat(findOrder.getVersion()).isGreaterThan(0L);
 	}
 
 	@Test
