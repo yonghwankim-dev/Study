@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
@@ -209,5 +211,18 @@ class OrderSummaryDaoTest {
 			sort);
 		Assertions.assertThat(orderSummaries.get(0).getNumber()).isEqualTo(number);
 		Assertions.assertThat(orderSummaries.get(0).getReceiverName()).isEqualTo("강감찬");
+	}
+
+	@Test
+	void shouldReturnOrderSummaryListBySpecAndPageable() {
+		Specification<OrderSummary> spec = OrderSummarySpecs.orderDateBetween(
+			LocalDateTime.now().minusMonths(1),
+			LocalDateTime.now().plusMonths(1)
+		);
+		Pageable pageable = PageRequest.of(1, 10);
+
+		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec, pageable);
+		
+		Assertions.assertThat(orderSummaries).hasSize(10);
 	}
 }

@@ -2,6 +2,7 @@ package com.myshop.order.query.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,8 @@ public interface OrderSummaryDao extends Repository<OrderSummary, String> {
 	OrderSummary findByNumber(String number);
 
 	List<OrderSummary> findAll(Specification<OrderSummary> spec);
+
+	List<OrderSummary> findAll(Specification<OrderSummary> spec, Pageable pageable);
 
 	List<OrderSummary> findByOrdererIdOrderByNumberDesc(String ordererId);
 
