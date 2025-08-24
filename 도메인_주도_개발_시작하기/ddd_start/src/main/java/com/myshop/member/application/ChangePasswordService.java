@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.member.domain.Member;
-import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 
 @Service
@@ -18,7 +17,7 @@ public class ChangePasswordService {
 
 	@Transactional
 	public void changePassword(String memberId, String oldPassword, String newPassword) {
-		Member member = memberRepository.findById(new MemberId(memberId));
+		Member member = MemberServiceHelper.findExistingMember(memberRepository, memberId);
 		member.changePassword(oldPassword, newPassword);
 	}
 }
