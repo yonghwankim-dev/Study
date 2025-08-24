@@ -62,13 +62,14 @@ class JpaOrderViewDaoTest {
 
 	private void saveMember() {
 		memberId = new MemberId("12345");
+		String name = "james";
 		memberAddress = new Address(
 			"서울 강남구 역삼동",
 			"735-17",
 			"06235"
 		);
 		Password password = new Password("password1234");
-		Member member = new Member(memberId, memberAddress, password);
+		Member member = new Member(memberId, name, memberAddress, password);
 		memberRepository.save(member);
 	}
 

@@ -22,6 +22,10 @@ public class OrderNo implements Serializable, Comparable<OrderNo> {
 		return id.startsWith("N");
 	}
 
+	public String getId() {
+		return id;
+	}
+
 	@Override
 	public int compareTo(OrderNo orderNo) {
 		return id.compareTo(orderNo.id);

@@ -59,8 +59,9 @@ class ChangeOrderServiceTest {
 			.willReturn(Optional.of(order));
 
 		MemberRepository memberRepository = mock(MemberRepository.class);
+		String name = "John Doe";
 		Password password = new Password("password1234");
-		Member member = new Member(memberId, address, password);
+		Member member = new Member(memberId, name, address, password);
 		given(memberRepository.findById(memberId))
 			.willReturn(member);
 

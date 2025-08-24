@@ -67,6 +67,10 @@ public class Product {
 		return id;
 	}
 
+	public ProductInfo getProductInfo() {
+		return productInfo;
+	}
+
 	public List<Image> getImages() {
 		return Collections.unmodifiableList(images);
 	}
