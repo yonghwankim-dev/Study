@@ -31,6 +31,8 @@ public class Member {
 	@Convert(converter = EmailSetConverter.class)
 	private EmailSet emails;
 
+	private boolean blocked;
+
 	protected Member() {
 		// Default constructor for JPA
 	}
@@ -40,6 +42,7 @@ public class Member {
 		this.name = name;
 		this.address = address;
 		this.password = password;
+		this.blocked = false;
 	}
 
 	public void changeAddress(Address address) {
@@ -56,11 +59,19 @@ public class Member {
 		this.password = new Password(newPassword);
 	}
 
+	public void block() {
+		this.blocked = true;
+	}
+
 	public MemberId getId() {
 		return id;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean isBlocked() {
+		return blocked;
 	}
 }
