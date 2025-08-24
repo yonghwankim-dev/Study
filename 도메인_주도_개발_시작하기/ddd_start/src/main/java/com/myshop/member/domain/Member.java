@@ -18,6 +18,9 @@ public class Member {
 	@EmbeddedId
 	private MemberId id;
 
+	@Column(name = "name")
+	private String name;
+
 	@Embedded
 	private Address address;
 
@@ -32,8 +35,9 @@ public class Member {
 		// Default constructor for JPA
 	}
 
-	public Member(MemberId id, Address address, Password password) {
+	public Member(MemberId id, String name, Address address, Password password) {
 		this.id = id;
+		this.name = name;
 		this.address = address;
 		this.password = password;
 	}
@@ -50,5 +54,13 @@ public class Member {
 			throw new PasswordNotMatchException();
 		}
 		this.password = new Password(newPassword);
+	}
+
+	public MemberId getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

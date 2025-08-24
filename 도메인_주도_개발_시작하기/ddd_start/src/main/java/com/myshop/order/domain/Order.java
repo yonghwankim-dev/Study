@@ -122,6 +122,10 @@ public class Order {
 		return totalAmounts;
 	}
 
+	public OrderState getState() {
+		return state;
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)

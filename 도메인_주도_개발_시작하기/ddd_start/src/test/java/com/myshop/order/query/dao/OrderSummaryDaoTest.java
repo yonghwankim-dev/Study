@@ -16,6 +16,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.order.query.dto.OrderSummary;
+import com.myshop.order.query.dto.OrderView;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -157,5 +158,19 @@ class OrderSummaryDaoTest {
 		Assertions.assertThat(orderSummaries)
 			.hasSize(20)
 			.isSortedAccordingTo(comparator);
+	}
+
+	@Test
+	void shouldReturnOrderView() {
+		String ordererId = "12345";
+		List<OrderView> orderViews = orderSummaryDao.findOrderView(ordererId);
+
+		Assertions.assertThat(orderViews).isNotNull();
+		Assertions.assertThat(orderViews).hasSize(20);
+		Assertions.assertThat(orderViews.get(0).getNumber()).isNotNull();
+		Assertions.assertThat(orderViews.get(0).getState()).isNotNull();
+		Assertions.assertThat(orderViews.get(0).getMemberName()).isNotNull();
+		Assertions.assertThat(orderViews.get(0).getMemberId()).isNotNull();
+		Assertions.assertThat(orderViews.get(0).getProductName()).isNotNull();
 	}
 }

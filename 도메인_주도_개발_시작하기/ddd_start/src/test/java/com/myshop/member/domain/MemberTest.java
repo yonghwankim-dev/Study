@@ -3,7 +3,6 @@ package com.myshop.member.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +15,7 @@ class MemberTest {
 	@BeforeEach
 	void setUp() {
 		MemberId memberId = new MemberId("12345");
+		String name = "james";
 		Address address = new Address(
 			"서울특별시 강남구 역삼동",
 			"831-7",
@@ -23,15 +23,15 @@ class MemberTest {
 		);
 		String currentPassword = "password1234";
 		Password password = new Password(currentPassword);
-		member = new Member(memberId, address, password);
+		member = new Member(memberId, name, address, password);
 	}
 
 	@Test
-	void shouldNotThrow_whenCurrentPasswordMatch(){
+	void shouldNotThrow_whenCurrentPasswordMatch() {
 		String currentPassword = "password1234";
 		String newPassword = "newPassword1234";
 
-		assertDoesNotThrow(()-> member.changePassword(currentPassword, newPassword));
+		assertDoesNotThrow(() -> member.changePassword(currentPassword, newPassword));
 	}
 
 	@Test
