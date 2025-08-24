@@ -1,5 +1,6 @@
 package com.myshop.order.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "purchase_order")
@@ -25,6 +27,9 @@ import jakarta.persistence.Table;
 public class Order {
 	@EmbeddedId
 	private OrderNo orderNo;
+
+	@Version
+	private long version;
 	@Embedded
 	private Orderer orderer;
 
@@ -42,6 +47,9 @@ public class Order {
 	@Column(name = "total_amounts")
 	private Money totalAmounts;
 
+	@Column(name = "order_date")
+	private LocalDateTime orderDate;
+
 	protected Order() {
 	}
 
@@ -52,6 +60,7 @@ public class Order {
 		setOrderLines(orderLines);
 		setShippingInfo(shippingInfo);
 		this.state = state;
+		this.orderDate = LocalDateTime.now();
 	}
 
 	private void setOrderNo(OrderNo id) {
@@ -124,6 +133,10 @@ public class Order {
 
 	public OrderState getState() {
 		return state;
+	}
+
+	public long getVersion() {
+		return version;
 	}
 
 	@Override
