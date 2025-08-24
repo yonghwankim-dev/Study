@@ -15,6 +15,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.myshop.FixedDomainFactory;
+import com.myshop.catalog.domain.product.Product;
+import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberRepository;
+import com.myshop.order.domain.Order;
+import com.myshop.order.domain.OrderRepository;
+import com.myshop.order.domain.OrderState;
 import com.myshop.order.query.dto.OrderSummary;
 import com.myshop.order.query.dto.OrderView;
 
@@ -24,7 +31,28 @@ class OrderSummaryDaoTest {
 
 	@Autowired
 	private OrderSummaryDao orderSummaryDao;
+	@Autowired
+	private MemberRepository memberRepository;
+	@Autowired
+	private ProductRepository productRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 	private String ordererId;
+
+	private void saveMember() {
+		Member member = FixedDomainFactory.createMember("12345");
+		memberRepository.save(member);
+	}
+
+	private void saveProduct() {
+		Product product = FixedDomainFactory.createProduct();
+		productRepository.save(product);
+	}
+
+	private void saveOrder() {
+		Order order = FixedDomainFactory.createOrder();
+		orderRepository.save(order);
+	}
 
 	private void saveOrderSummaries() {
 		for (int i = 1; i <= 20; i++) {
@@ -36,12 +64,18 @@ class OrderSummaryDaoTest {
 
 	@AfterEach
 	void tearDown() {
+		memberRepository.deleteAll();
 		orderSummaryDao.deleteAll();
+		productRepository.deleteAll();
+		orderRepository.deleteAll();
 	}
 
 	@BeforeEach
 	void setUp() {
 		ordererId = "12345";
+		saveMember();
+		saveProduct();
+		saveOrder();
 		saveOrderSummaries();
 	}
 
@@ -162,15 +196,13 @@ class OrderSummaryDaoTest {
 
 	@Test
 	void shouldReturnOrderView() {
-		String ordererId = "12345";
 		List<OrderView> orderViews = orderSummaryDao.findOrderView(ordererId);
 
-		Assertions.assertThat(orderViews).isNotNull();
-		Assertions.assertThat(orderViews).hasSize(20);
-		Assertions.assertThat(orderViews.get(0).getNumber()).isNotNull();
-		Assertions.assertThat(orderViews.get(0).getState()).isNotNull();
-		Assertions.assertThat(orderViews.get(0).getMemberName()).isNotNull();
-		Assertions.assertThat(orderViews.get(0).getMemberId()).isNotNull();
-		Assertions.assertThat(orderViews.get(0).getProductName()).isNotNull();
+		Assertions.assertThat(orderViews).hasSize(1);
+		Assertions.assertThat(orderViews.get(0).getNumber()).isEqualTo("1234567890");
+		Assertions.assertThat(orderViews.get(0).getState()).isEqualTo(OrderState.PAYMENT_WAITING);
+		Assertions.assertThat(orderViews.get(0).getMemberName()).isEqualTo("홍길동");
+		Assertions.assertThat(orderViews.get(0).getMemberId()).isEqualTo("12345");
+		Assertions.assertThat(orderViews.get(0).getProductName()).isEqualTo("Java Book");
 	}
 }

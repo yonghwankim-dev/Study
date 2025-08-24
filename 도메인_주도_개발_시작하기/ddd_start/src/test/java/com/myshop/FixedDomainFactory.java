@@ -15,7 +15,9 @@ import com.myshop.catalog.domain.product.ProductFactory;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.common.model.Money;
+import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.Password;
 import com.myshop.member.query.dto.MemberData;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.Order;
@@ -87,7 +89,7 @@ public class FixedDomainFactory {
 			number,
 			UUID.randomUUID().version(),
 			"12345",
-			"호길동",
+			"홍길동",
 			10_000,
 			"강감찬",
 			OrderState.PAYMENT_WAITING.name(),
@@ -119,5 +121,22 @@ public class FixedDomainFactory {
 	public static MemberData createMemberData(String id, String name) {
 		boolean blocked = false;
 		return new MemberData(id, name, blocked);
+	}
+
+	public static Member createMember(String id) {
+		MemberId memberId = new MemberId(id);
+		String name = "홍길동";
+		Address address = new Address(
+			"서울 강남구 역삼동",
+			"735-17",
+			"06235"
+		);
+		Password password = new Password("12345");
+		return new Member(
+			memberId,
+			name,
+			address,
+			password
+		);
 	}
 }
