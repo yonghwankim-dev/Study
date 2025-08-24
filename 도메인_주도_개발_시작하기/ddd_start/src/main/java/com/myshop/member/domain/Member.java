@@ -41,7 +41,7 @@ public class Member {
 		this.id = id;
 		this.name = name;
 		this.address = address;
-		this.password = password;
+		setPassword(password);
 		this.blocked = false;
 	}
 
@@ -56,7 +56,11 @@ public class Member {
 		if (!password.match(currentPassword)) {
 			throw new PasswordNotMatchException();
 		}
-		this.password = new Password(newPassword);
+		setPassword(new Password(newPassword));
+	}
+
+	private void setPassword(Password newPassword) {
+		this.password = newPassword;
 	}
 
 	public void block() {
@@ -73,5 +77,9 @@ public class Member {
 
 	public boolean isBlocked() {
 		return blocked;
+	}
+
+	public Password getPassword() {
+		return password;
 	}
 }
