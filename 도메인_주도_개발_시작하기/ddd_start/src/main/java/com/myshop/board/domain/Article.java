@@ -1,0 +1,57 @@
+package com.myshop.board.domain;
+
+import java.util.Objects;
+
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "article")
+@SecondaryTable(
+	name = "article_content",
+	pkJoinColumns = @PrimaryKeyJoinColumn(name = "id")
+)
+public class Article {
+	@Id
+	@GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+	private Long id;
+	private String title;
+	@Embedded
+	@AttributeOverride(name = "content", column = @Column(table = "article_content", name = "content"))
+	@AttributeOverride(name = "contentType", column = @Column(table = "article_content", name = "content_type"))
+	private ArticleContent content;
+
+	protected Article() {
+	}
+
+	public Article(String title, ArticleContent content) {
+		this.title = title;
+		this.content = content;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		Article article = (Article)object;
+		return Objects.equals(id, article.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+}

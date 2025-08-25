@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=shop'
+      - 'MYSQL_PASSWORD=shoppass'
+      - 'MYSQL_ROOT_PASSWORD=shoppass'
+      - 'MYSQL_USER=shopuser'
+    ports:
+      - '3306:3306'
