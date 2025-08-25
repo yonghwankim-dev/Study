@@ -1,0 +1,243 @@
+{
+  "main": {
+    "id": "572618eca2e97c06",
+    "type": "split",
+    "children": [
+      {
+        "id": "137f7649049a429d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be31d1fca3edc09c",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/Pasted image 20250818153917.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20250818153917"
+            }
+          },
+          {
+            "id": "531c99f6ecc9519c",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/Pasted image 20250818163626.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20250818163626"
+            }
+          },
+          {
+            "id": "0d75a9048a1cedf4",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "imgs/Pasted image 20250819145252.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20250819145252"
+            }
+          },
+          {
+            "id": "e972eaf53874a5d2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Chapter5. Load Balancer.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter5. Load Balancer"
+            }
+          },
+          {
+            "id": "434cf11ff8669afb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Chapter5. Load Balancer.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter5. Load Balancer"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1a10ede3ceb59a0d",
+    "type": "split",
+    "children": [
+      {
+        "id": "8d8acd4ed2167878",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b8c3083d7a598811",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "cf16f88b6474df4e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "da9cd979c2e73ba3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0517fe5cfdecf9fc",
+    "type": "split",
+    "children": [
+      {
+        "id": "916ffb2696626a6e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e54a7cdc7e07a896",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Chapter3. VPC 구축하기.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Chapter3. VPC 구축하기 의 백링크"
+            }
+          },
+          {
+            "id": "42c32b8763bc7c9c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Chapter3. VPC 구축하기.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Chapter3. VPC 구축하기 의 나가는 링크"
+            }
+          },
+          {
+            "id": "4ad0c1ec1f472fdb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "14f2aa1c80ea3c39",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Chapter3. VPC 구축하기.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Chapter3. VPC 구축하기 의 개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:새 베이스 생성하기": false,
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "active": "b8c3083d7a598811",
+  "lastOpenFiles": [
+    "imgs/Pasted image 20250825120642.png",
+    "imgs/Pasted image 20250825115300.png",
+    "Chapter5. Load Balancer.md",
+    "imgs/Pasted image 20250825115936.png",
+    "imgs/Pasted image 20250825115902.png",
+    "imgs/Pasted image 20250825115729.png",
+    "imgs/Pasted image 20250825115635.png",
+    "imgs/Pasted image 20250821142816.png",
+    "imgs/Pasted image 20250821134024.png",
+    "imgs/Pasted image 20250821112708.png",
+    "imgs/Pasted image 20250821143037.png",
+    "imgs/Pasted image 20250821143012.png",
+    "Chapter4. Google Compute Engine.md",
+    "Chapter2. IAM.md",
+    "Chapter1. GCP 가입하고 둘러보기.md",
+    "Chapter3. VPC 구축하기.md",
+    "imgs"
+  ]
+}
