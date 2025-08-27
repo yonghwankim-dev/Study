@@ -49,16 +49,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chapter3. VPC 구축하기.md",
+                "file": "Chapter6. Cloud DNS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter3. VPC 구축하기"
+              "title": "Chapter6. Cloud DNS"
+            }
+          },
+          {
+            "id": "2fb2de14c5842c1e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Chapter7. Cloud SQL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter7. Cloud SQL"
+            }
+          },
+          {
+            "id": "c40b52fb6ff506c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Chapter8. Google Cloud Storage.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Chapter8. Google Cloud Storage"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -206,24 +234,27 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "e972eaf53874a5d2",
+  "active": "c40b52fb6ff506c0",
   "lastOpenFiles": [
-    "Chapter4. Google Compute Engine.md",
+    "imgs/Pasted image 20250827123639.png",
+    "imgs/Pasted image 20250827123619.png",
+    "imgs/Pasted image 20250827123529.png",
+    "imgs/Pasted image 20250827123412.png",
+    "imgs/Pasted image 20250827123208.png",
+    "imgs/Pasted image 20250827123114.png",
+    "imgs/Pasted image 20250827122919.png",
+    "imgs/Pasted image 20250827122403.png",
+    "imgs/Pasted image 20250827122303.png",
+    "imgs/Pasted image 20250827122135.png",
+    "imgs/Pasted image 20250827120948.png",
+    "Chapter7. Cloud SQL.md",
+    "Chapter8. Google Cloud Storage.md",
+    "Chapter6. Cloud DNS.md",
     "Chapter3. VPC 구축하기.md",
+    "Chapter4. Google Compute Engine.md",
     "Chapter2. IAM.md",
     "Chapter5. Load Balancer.md",
-    "imgs/Pasted image 20250825132716.png",
     "imgs/Pasted.md",
-    "imgs/Pasted image 20250825132328.png",
-    "imgs/Pasted image 20250825130015.png",
-    "imgs/Pasted image 20250825125728.png",
-    "imgs/Pasted image 20250825125537.png",
-    "Pasted image 20250825124318.png",
-    "imgs/Pasted image 20250825122945.png",
-    "imgs/Pasted image 20250825120642.png",
-    "imgs/Pasted image 20250825115936.png",
-    "imgs/Pasted image 20250825115902.png",
-    "Chapter6. Cloud DNS.md",
     "Chapter1. GCP 가입하고 둘러보기.md",
     "imgs"
   ]
