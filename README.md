@@ -50,6 +50,8 @@
 
 ### [실습으로 배우는 AWS 핵심 서비스](실습으로배우는AWS핵심서비스/README.md)
 
+### [초보자도 쉽게 배우는 GCP)(GCP/초보자도_쉽게_하는_GCP)
+
 ## TIL
 
 ### [TIL](TIL/README.md)
