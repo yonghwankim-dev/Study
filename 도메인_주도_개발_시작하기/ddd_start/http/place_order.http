@@ -1,0 +1,8 @@
+// todo: implement place_order.http
+POST http://localhost:8080/order/place
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}

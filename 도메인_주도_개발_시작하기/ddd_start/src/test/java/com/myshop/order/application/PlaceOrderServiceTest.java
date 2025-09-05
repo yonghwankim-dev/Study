@@ -21,11 +21,13 @@ import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Money;
+import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.MemberRepository;
+import com.myshop.member.domain.Password;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
-import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 import com.myshop.order.query.dto.OrderRequest;
@@ -43,6 +45,17 @@ class PlaceOrderServiceTest {
 
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private MemberRepository memberRepository;
+
+	private Member createMember() {
+		MemberId memberId = new MemberId("member-1");
+		String name = "홍길동";
+		Address address = new Address("서울시 강남구 역삼동", "101동 202호", "12345");
+		Password password = new Password("password");
+		return new Member(memberId, name, address, password);
+	}
 
 	private Product createProduct1() {
 		ProductId productId = new ProductId("product-1");
@@ -64,6 +77,7 @@ class PlaceOrderServiceTest {
 
 	@BeforeEach
 	void setUp() {
+		memberRepository.save(createMember());
 		productRepository.save(createProduct1());
 		productRepository.save(createProduct2());
 	}
@@ -72,6 +86,7 @@ class PlaceOrderServiceTest {
 	void tearDown() {
 		repository.deleteAll();
 		productRepository.deleteAll();
+		memberRepository.deleteAll();
 	}
 
 	@Test
@@ -91,9 +106,7 @@ class PlaceOrderServiceTest {
 		orderProducts.add(new OrderProduct(productId1, 2));
 		orderProducts.add(new OrderProduct(productId2, 3));
 		MemberId memberId = new MemberId("member-1");
-		String name = "홍길동";
-		Orderer orderer = new Orderer(memberId, name);
-		OrderRequest request = new OrderRequest(orderer, shippingInfo, orderProducts);
+		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
 
 		OrderNo orderNo = service.placeOrder(request);
 

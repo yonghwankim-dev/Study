@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.domain.MemberId;
@@ -23,7 +24,7 @@ public class OrderController {
 	}
 
 	@PostMapping("/order/place")
-	public ResponseEntity<OrderNo> order(OrderRequest orderRequest) {
+	public ResponseEntity<OrderNo> order(@RequestBody OrderRequest orderRequest) {
 		setOrderer(orderRequest);
 		OrderNo orderNo = placeOrderService.placeOrder(orderRequest);
 		return ResponseEntity.ok(orderNo);
@@ -31,7 +32,7 @@ public class OrderController {
 
 	private void setOrderer(OrderRequest orderRequest) {
 		Orderer orderer = createOrderer();
-		orderRequest.setOrderer(orderer);
+		orderRequest.setOrdererMemberId(orderer.getMemberId());
 	}
 
 	private static Orderer createOrderer() {
