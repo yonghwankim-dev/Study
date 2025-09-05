@@ -2,6 +2,8 @@ package com.myshop.member.domain;
 
 import java.util.HashSet;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.myshop.common.jpa.EmailSetConverter;
 import com.myshop.common.model.EmailSet;
 import com.myshop.order.domain.Address;
@@ -61,11 +63,11 @@ public class Member {
 		this.address = address;
 	}
 
-	public void changePassword(String currentPassword, String newPassword) {
-		if (!password.match(currentPassword)) {
+	public void changePassword(String currentPassword, String newPassword, PasswordEncoder passwordEncoder) {
+		if (!password.match(currentPassword, passwordEncoder)) {
 			throw new PasswordNotMatchException();
 		}
-		setPassword(new Password(newPassword));
+		setPassword(new Password(passwordEncoder.encode(newPassword)));
 	}
 
 	private void setPassword(Password newPassword) {

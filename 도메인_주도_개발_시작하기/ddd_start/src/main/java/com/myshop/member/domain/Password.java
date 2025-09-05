@@ -3,6 +3,7 @@ package com.myshop.member.domain;
 import java.util.Objects;
 
 import org.apache.logging.log4j.util.Strings;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -23,8 +24,8 @@ public class Password {
 		this.value = value;
 	}
 
-	public boolean match(String password) {
-		return value.equals(password);
+	public boolean match(String password, PasswordEncoder passwordEncoder) {
+		return passwordEncoder.matches(password, value);
 	}
 
 	public String getValue() {

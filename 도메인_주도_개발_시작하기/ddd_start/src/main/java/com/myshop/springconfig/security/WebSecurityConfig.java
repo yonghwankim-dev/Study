@@ -20,6 +20,7 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(authorize ->
 			authorize.requestMatchers(HttpMethod.POST, "/member/join").permitAll()
 				.requestMatchers("/member/login").permitAll()
+				.requestMatchers("/", "/error").permitAll()
 				.anyRequest().authenticated()
 		);
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
