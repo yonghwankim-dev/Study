@@ -18,7 +18,7 @@ public class ChangePasswordService {
 
 	@Transactional
 	public void changePassword(ChangePasswordRequest changePasswordRequest) {
-		Member member = MemberServiceHelper.findExistingMember(memberRepository, changePasswordRequest.memberId());
-		member.changePassword(changePasswordRequest.oldPassword(), changePasswordRequest.newPassword());
+		Member member = MemberServiceHelper.findExistingMember(memberRepository, changePasswordRequest.getMemberId());
+		member.changePassword(changePasswordRequest.getOldPassword(), changePasswordRequest.getNewPassword());
 	}
 }

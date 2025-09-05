@@ -14,4 +14,8 @@ public class EmailSet {
 	public Set<Email> getEmails() {
 		return Collections.unmodifiableSet(emails);
 	}
+
+	public void add(String email) {
+		this.emails.add(new Email(email));
+	}
 }
