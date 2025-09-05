@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myshop.member.NoMemberException;
 import com.myshop.member.application.ChangePasswordService;
 import com.myshop.member.query.dto.ChangePasswordRequest;
 import com.myshop.member.query.dto.MemberAuthentication;
@@ -25,7 +26,11 @@ public class MemberPasswordController {
 	@PostMapping
 	public ResponseEntity<Void> submit(@RequestBody ChangePasswordRequest request) {
 		setMemberId(request);
-		service.changePassword(request);
+		try {
+			service.changePassword(request);
+		} catch (NoMemberException e) {
+			return ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.ok().build();
 	}
 
