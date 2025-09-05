@@ -10,6 +10,8 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Money;
+import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
@@ -24,10 +26,13 @@ public class PlaceOrderService {
 
 	private final OrderRepository repository;
 	private final ProductRepository productRepository;
+	private final MemberRepository memberRepository;
 
-	public PlaceOrderService(OrderRepository repository, ProductRepository productRepository) {
+	public PlaceOrderService(OrderRepository repository, ProductRepository productRepository,
+		MemberRepository memberRepository) {
 		this.repository = repository;
 		this.productRepository = productRepository;
+		this.memberRepository = memberRepository;
 	}
 
 	@Transactional
@@ -39,7 +44,8 @@ public class PlaceOrderService {
 	}
 
 	private Order createOrder(OrderNo orderNo, OrderRequest orderRequest) {
-		Orderer orderer = orderRequest.getOrderer();
+		Member member = memberRepository.findById(orderRequest.getOrdererMemberId());
+		Orderer orderer = new Orderer(member.getId(), member.getName());
 		ShippingInfo shippingInfo = orderRequest.getShippingInfo();
 		List<OrderLine> orderLines = new ArrayList<>();
 		for (OrderProduct orderProduct : orderRequest.getOrderProducts()) {
