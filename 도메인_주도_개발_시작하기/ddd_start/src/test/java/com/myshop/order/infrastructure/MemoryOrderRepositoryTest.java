@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import com.myshop.FixedDomainFactory;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
+import com.myshop.order.domain.OrderNoGenerator;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrdererSpec;
 import com.myshop.order.domain.Specification;
@@ -34,13 +35,12 @@ class MemoryOrderRepositoryTest {
 
 	@BeforeEach
 	void setUp() {
-		orderRepository = new MemoryOrderRepository();
+		OrderNoGenerator orderNoGenerator = new NanoTimeOrderNoGenerator();
+		orderRepository = new MemoryOrderRepository(orderNoGenerator);
 	}
 
 	@Test
 	void canCreated() {
-		OrderRepository orderRepository = new MemoryOrderRepository();
-
 		assertNotNull(orderRepository);
 	}
 

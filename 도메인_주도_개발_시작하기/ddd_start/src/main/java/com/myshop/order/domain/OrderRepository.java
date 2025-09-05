@@ -17,4 +17,6 @@ public interface OrderRepository {
 	void delete(Order order);
 
 	void deleteAll();
+
+	OrderNo nextId();
 }

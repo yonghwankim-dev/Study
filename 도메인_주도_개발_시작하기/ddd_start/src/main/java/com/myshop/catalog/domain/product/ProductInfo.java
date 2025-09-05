@@ -28,4 +28,12 @@ public class ProductInfo {
 	public String getProductName() {
 		return productName;
 	}
+
+	public Money getPrice() {
+		return price;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
 }
