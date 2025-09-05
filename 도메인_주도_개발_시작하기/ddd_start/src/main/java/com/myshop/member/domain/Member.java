@@ -1,5 +1,7 @@
 package com.myshop.member.domain;
 
+import java.util.HashSet;
+
 import com.myshop.common.jpa.EmailSetConverter;
 import com.myshop.common.model.EmailSet;
 import com.myshop.order.domain.Address;
@@ -43,6 +45,13 @@ public class Member {
 		this.address = address;
 		setPassword(password);
 		this.blocked = false;
+	}
+
+	public void addEmail(String email) {
+		if (emails == null) {
+			emails = new EmailSet(new HashSet<>());
+		}
+		emails.add(email);
 	}
 
 	public void changeAddress(Address address) {

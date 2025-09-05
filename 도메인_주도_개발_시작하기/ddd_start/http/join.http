@@ -1,0 +1,11 @@
+POST http://localhost:8080/member/join
+Content-Type: application/json
+
+{
+  "name": "홍길동",
+  "address1": "서울시 강남구 역삼동",
+  "address2": "101동 101호",
+  "zipCode": "12345",
+  "email": "hong1234@gmail.com",
+  "password": "1234"
+}
