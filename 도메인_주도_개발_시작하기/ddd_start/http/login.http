@@ -1,0 +1,5 @@
+POST http://localhost:8080/member/login
+Content-Type: application/x-www-form-urlencoded
+
+memberId = 5f74a00d-b65d-4548-841a-0dc1ef0c85c4 &
+password = 1234

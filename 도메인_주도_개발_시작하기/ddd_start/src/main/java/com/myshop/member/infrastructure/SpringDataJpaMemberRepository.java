@@ -1,6 +1,7 @@
 package com.myshop.member.infrastructure;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +14,7 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Mem
 
 	@Query("SELECT m FROM Member m WHERE m.id.id IN :blockingIds")
 	List<Member> findByIdIn(@Param("blockingIds") String[] blockingIds);
+
+	@Query("SELECT m FROM Member m WHERE m.emails = :email")
+	Optional<Member> findByEmail(String email);
 }

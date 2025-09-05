@@ -22,7 +22,7 @@ public class JpaMemberRepository implements MemberRepository {
 		return repository.findById(id)
 			.orElseThrow();
 	}
-
+	
 	@Override
 	public List<Member> findByIdIn(String[] blockingIds) {
 		return repository.findByIdIn(blockingIds);
