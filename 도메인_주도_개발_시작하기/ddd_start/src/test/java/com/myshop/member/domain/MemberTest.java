@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.myshop.order.domain.Address;
 
 class MemberTest {
 
 	private Member member;
+	private PasswordEncoder passwordEncoder;
 
 	@BeforeEach
 	void setUp() {
@@ -21,7 +24,8 @@ class MemberTest {
 			"831-7",
 			"06242"
 		);
-		String currentPassword = "password1234";
+		passwordEncoder = new BCryptPasswordEncoder();
+		String currentPassword = passwordEncoder.encode("password1234");
 		Password password = new Password(currentPassword);
 		member = new Member(memberId, name, address, password);
 	}
@@ -31,7 +35,7 @@ class MemberTest {
 		String currentPassword = "password1234";
 		String newPassword = "newPassword1234";
 
-		assertDoesNotThrow(() -> member.changePassword(currentPassword, newPassword));
+		assertDoesNotThrow(() -> member.changePassword(currentPassword, newPassword, passwordEncoder));
 	}
 
 	@Test
@@ -39,7 +43,8 @@ class MemberTest {
 		String notMatchingCurrentPassword = "wrongPassword";
 		String newPassword = "newPassword1234";
 
-		Throwable throwable = catchThrowable(() -> member.changePassword(notMatchingCurrentPassword, newPassword));
+		Throwable throwable = catchThrowable(
+			() -> member.changePassword(notMatchingCurrentPassword, newPassword, passwordEncoder));
 
 		assertThat(throwable)
 			.isInstanceOf(PasswordNotMatchException.class);
