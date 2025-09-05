@@ -8,15 +8,21 @@ import org.springframework.security.core.userdetails.User;
 
 public class MemberAuthentication extends User {
 	private final String memberId;
+	private final String memberName;
 
-	public MemberAuthentication(String username, String password,
-		Collection<? extends GrantedAuthority> authorities, String memberId) {
+	public MemberAuthentication(String username, String password, Collection<? extends GrantedAuthority> authorities,
+		String memberId, String memberName) {
 		super(username, password, authorities);
 		this.memberId = memberId;
+		this.memberName = memberName;
 	}
 
 	public String getMemberId() {
 		return memberId;
+	}
+
+	public String getMemberName() {
+		return memberName;
 	}
 
 	@Override

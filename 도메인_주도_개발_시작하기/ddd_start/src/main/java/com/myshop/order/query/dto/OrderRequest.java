@@ -11,6 +11,9 @@ public class OrderRequest {
 	private ShippingInfo shippingInfo;
 	private List<OrderProduct> orderProducts;
 
+	public OrderRequest() {
+	}
+
 	public OrderRequest(Orderer orderer, ShippingInfo shippingInfo, List<OrderProduct> orderProducts) {
 		this.orderer = orderer;
 		this.shippingInfo = shippingInfo;
@@ -27,5 +30,9 @@ public class OrderRequest {
 
 	public List<OrderProduct> getOrderProducts() {
 		return orderProducts;
+	}
+
+	public void setOrderer(Orderer orderer) {
+		this.orderer = orderer;
 	}
 }

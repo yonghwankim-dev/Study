@@ -3,6 +3,9 @@ package com.myshop.catalog.application.product;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.myshop.catalog.domain.product.Image;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
@@ -12,6 +15,7 @@ import com.myshop.common.model.Money;
 import com.myshop.store.domain.Store;
 import com.myshop.store.domain.StoreRepository;
 
+@Service
 public class RegisterProductService {
 
 	private final ProductRepository productRepository;
@@ -22,6 +26,7 @@ public class RegisterProductService {
 		this.storeRepository = storeRepository;
 	}
 
+	@Transactional
 	public ProductId registerNewProduct(NewProductRequest request) {
 		Store store = storeRepository.findById(request.getStoreId());
 		checkNull(store);
