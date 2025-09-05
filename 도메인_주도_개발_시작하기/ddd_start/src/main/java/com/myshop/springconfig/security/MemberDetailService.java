@@ -27,7 +27,8 @@ public class MemberDetailService implements UserDetailsService {
 			member.getId().getId(),
 			member.getPassword().getValue(),
 			List.of(new SimpleGrantedAuthority("USER")),
-			member.getId().getId()
+			member.getId().getId(),
+			member.getName()
 		);
 	}
 }
