@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
+import com.myshop.order.domain.OrderNoGenerator;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Specification;
 
@@ -14,9 +15,11 @@ import com.myshop.order.domain.Specification;
 public class JpaOrderRepository implements OrderRepository {
 
 	private final SpringDataJpaOrderRepository repository;
+	private final OrderNoGenerator orderNoGenerator;
 
-	public JpaOrderRepository(SpringDataJpaOrderRepository repository) {
+	public JpaOrderRepository(SpringDataJpaOrderRepository repository, OrderNoGenerator orderNoGenerator) {
 		this.repository = repository;
+		this.orderNoGenerator = orderNoGenerator;
 	}
 
 	@Override
@@ -61,5 +64,10 @@ public class JpaOrderRepository implements OrderRepository {
 	@Override
 	public void deleteAll() {
 		repository.deleteAll();
+	}
+
+	@Override
+	public OrderNo nextId() {
+		return new OrderNo(orderNoGenerator.nextId());
 	}
 }

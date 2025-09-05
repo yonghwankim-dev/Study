@@ -23,4 +23,5 @@ public interface SpringDataJpaOrderRepository extends JpaRepository<Order, Order
 		@Param("size") int size);
 
 	List<Order> findAll(Specification<OrderSummary> spec);
+
 }

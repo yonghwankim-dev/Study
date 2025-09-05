@@ -8,12 +8,19 @@ import java.util.Optional;
 
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
+import com.myshop.order.domain.OrderNoGenerator;
 import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Specification;
 
 public class MemoryOrderRepository implements OrderRepository {
 
-	private Map<OrderNo, Order> orderStore = new HashMap<>();
+	private final Map<OrderNo, Order> orderStore;
+	private final OrderNoGenerator orderNoGenerator;
+
+	public MemoryOrderRepository(OrderNoGenerator orderNoGenerator) {
+		this.orderStore = new HashMap<>();
+		this.orderNoGenerator = orderNoGenerator;
+	}
 
 	@Override
 	public Optional<Order> findById(OrderNo id) {
@@ -72,5 +79,10 @@ public class MemoryOrderRepository implements OrderRepository {
 	@Override
 	public void deleteAll() {
 		orderStore.clear();
+	}
+
+	@Override
+	public OrderNo nextId() {
+		return new OrderNo(orderNoGenerator.nextId());
 	}
 }
