@@ -12,6 +12,8 @@ import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.order.ValidationError;
+import com.myshop.order.ValidationErrorException;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
@@ -37,6 +39,15 @@ public class PlaceOrderService {
 
 	@Transactional
 	public OrderNo placeOrder(OrderRequest orderRequest) {
+		List<ValidationError> errors = new ArrayList<>();
+		if (orderRequest == null) {
+			errors.add(ValidationError.of("empty"));
+		}
+
+		if (!errors.isEmpty()) {
+			throw new ValidationErrorException(errors);
+		}
+
 		OrderNo orderNo = repository.nextId();
 		Order order = createOrder(orderNo, orderRequest);
 		repository.save(order);

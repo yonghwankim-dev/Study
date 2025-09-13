@@ -25,6 +25,7 @@ import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
+import com.myshop.order.ValidationErrorException;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderRepository;
@@ -112,5 +113,15 @@ class PlaceOrderServiceTest {
 
 		Assertions.assertThat(orderNo).isNotNull();
 		Assertions.assertThat(repository.findById(orderNo)).isPresent();
+	}
+
+	@Test
+	void placeOrder_whenRequestNull_thenThrowException() {
+		OrderRequest request = null;
+
+		Throwable throwable = Assertions.catchThrowable(() -> service.placeOrder(request));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(ValidationErrorException.class);
 	}
 }

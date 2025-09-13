@@ -115,4 +115,16 @@ class OrderControllerTest {
 			"12345");
 		return new ShippingInfo(receiver, message, address);
 	}
+
+	@Test
+	void placeOrder_whenOrderRequestIsNull_thenResponseBadRequest() {
+		RestAssured.given()
+			.contentType(ContentType.JSON)
+			.cookie("JSESSIONID", sessionId)
+			.when()
+			.post("/order/place")
+			.then()
+			.log().all()
+			.statusCode(HttpStatus.BAD_REQUEST.value());
+	}
 }
