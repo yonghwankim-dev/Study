@@ -39,6 +39,15 @@ public class PlaceOrderService {
 
 	@Transactional
 	public OrderNo placeOrder(OrderRequest orderRequest) {
+		validateOrderRequest(orderRequest);
+
+		OrderNo orderNo = repository.nextId();
+		Order order = createOrder(orderNo, orderRequest);
+		repository.save(order);
+		return orderNo;
+	}
+
+	private void validateOrderRequest(OrderRequest orderRequest) {
 		List<ValidationError> errors = new ArrayList<>();
 		if (orderRequest == null) {
 			errors.add(ValidationError.of("empty"));
@@ -57,11 +66,6 @@ public class PlaceOrderService {
 		if (!errors.isEmpty()) {
 			throw new ValidationErrorException(errors);
 		}
-
-		OrderNo orderNo = repository.nextId();
-		Order order = createOrder(orderNo, orderRequest);
-		repository.save(order);
-		return orderNo;
 	}
 
 	private Order createOrder(OrderNo orderNo, OrderRequest orderRequest) {
