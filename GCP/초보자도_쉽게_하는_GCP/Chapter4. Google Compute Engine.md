@@ -2,7 +2,7 @@
 ## Compute Engine 생성해보기
 Compute Engine을 생성하기 위해서 Compute Engine 서비스로 이동합니다.
 
-서비스로 입장했으면 상단 메뉴의 "턴스 만들기" 버튼을 클릭하여 생성 페이지로 입장합니다.
+서비스로 입장했으면 상단 메뉴의 "인스턴스 만들기" 버튼을 클릭하여 생성 페이지로 입장합니다.
 ![image](imgs/Pasted%20image%2020250819113607.png)
 
 Compute Engine 프리티어 기준을 보면 오리건 리전에 실행하는 e2-micro VM 인스턴스는 1개 무료로 사용할 수 있습니다.
