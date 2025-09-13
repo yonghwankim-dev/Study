@@ -42,7 +42,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		String address2 = "삼성빌딩 101호";
 		String zipCode = "12345";
 		String email = "hong1234@gmail.com";
-		String password = "1234";
+		String password = "hong1234@";
 		JoinRequest joinRequest = new JoinRequest(name, address1, address2, zipCode, email, password);
 		joinService.join(joinRequest);
 	}

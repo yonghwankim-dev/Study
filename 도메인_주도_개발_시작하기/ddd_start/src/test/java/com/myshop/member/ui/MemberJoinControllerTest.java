@@ -43,7 +43,7 @@ class MemberJoinControllerTest {
 		String address2 = "역삼동";
 		String zipCode = "12345";
 		String email = "hong1234@gamil.com";
-		String password = "12345";
+		String password = "hong1234@";
 		JoinRequest request = new JoinRequest(name, address1, address2, zipCode, email, password);
 
 		String memberId = RestAssured.given()
