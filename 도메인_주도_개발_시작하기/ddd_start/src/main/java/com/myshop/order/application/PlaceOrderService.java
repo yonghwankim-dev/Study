@@ -42,6 +42,13 @@ public class PlaceOrderService {
 		List<ValidationError> errors = new ArrayList<>();
 		if (orderRequest == null) {
 			errors.add(ValidationError.of("empty"));
+		} else {
+			if (orderRequest.getOrdererMemberId() == null) {
+				errors.add(ValidationError.of("ordererMemberId", "empty"));
+			}
+			if (orderRequest.getOrderProducts() == null) {
+				errors.add(ValidationError.of("orderProducts", "empty"));
+			}
 		}
 
 		if (!errors.isEmpty()) {

@@ -25,6 +25,7 @@ import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
+import com.myshop.order.ValidationError;
 import com.myshop.order.ValidationErrorException;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.OrderNo;
@@ -123,5 +124,28 @@ class PlaceOrderServiceTest {
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(ValidationErrorException.class);
+	}
+
+	@Test
+	void placeOrder_whenInvalidInput_thenThrowException() {
+		Receiver receiver = new Receiver("홍길동", "010-1234-5678");
+		String message = "문 앞에 놓아주세요.";
+		Address address = new Address("서울시 강남구 역삼동", "101동 202호", "12345");
+		ShippingInfo shippingInfo = new ShippingInfo(receiver, message, address);
+		List<OrderProduct> orderProducts = null;
+		MemberId memberId = null;
+		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
+
+		Throwable throwable = Assertions.catchThrowable(() -> service.placeOrder(request));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(ValidationErrorException.class);
+		ValidationErrorException error = (ValidationErrorException)throwable;
+		Assertions.assertThat(error.getErrors())
+			.hasSize(2)
+			.containsExactly(
+				ValidationError.of("ordererMemberId", "empty"),
+				ValidationError.of("orderProducts", "empty")
+			);
 	}
 }
