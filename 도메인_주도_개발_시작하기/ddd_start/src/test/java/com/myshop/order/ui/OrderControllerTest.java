@@ -81,7 +81,6 @@ class OrderControllerTest {
 			.statusCode(HttpStatus.FOUND.value())
 			.extract()
 			.cookie("JSESSIONID");
-
 	}
 
 	@Test
