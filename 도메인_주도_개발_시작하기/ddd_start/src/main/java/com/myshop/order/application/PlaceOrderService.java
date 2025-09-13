@@ -46,8 +46,11 @@ public class PlaceOrderService {
 			if (orderRequest.getOrdererMemberId() == null) {
 				errors.add(ValidationError.of("ordererMemberId", "empty"));
 			}
-			if (orderRequest.getOrderProducts() == null) {
+			if (orderRequest.getOrderProducts() == null || orderRequest.getOrderProducts().isEmpty()) {
 				errors.add(ValidationError.of("orderProducts", "empty"));
+			}
+			if (orderRequest.getShippingInfo() == null) {
+				errors.add(ValidationError.of("shippingInfo", "empty"));
 			}
 		}
 
