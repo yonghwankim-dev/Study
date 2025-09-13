@@ -4,7 +4,9 @@ import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -23,13 +25,38 @@ public class JoinService {
 		this.passwordEncoder = passwordEncoder;
 	}
 
-	public void join(JoinRequest joinRequest) {
+	@Transactional
+	public MemberId join(JoinRequest joinRequest) {
+		String id = UUID.randomUUID().toString();
 		String name = joinRequest.getName();
-		Address address = new Address(joinRequest.getAddress1(), joinRequest.getAddress2(), joinRequest.getZipCode());
-		Password password = new Password(passwordEncoder.encode(joinRequest.getPassword()));
-		MemberId memberId = new MemberId(UUID.randomUUID().toString());
+		String address1 = joinRequest.getAddress1();
+		String address2 = joinRequest.getAddress2();
+		String zipCode = joinRequest.getZipCode();
+		String rawPassword = joinRequest.getPassword();
+		String email = joinRequest.getEmail();
+
+		// 값의 형식 검사
+		checkEmpty(id, "id");
+		checkEmpty(name, "name");
+		checkEmpty(address1, "address1");
+		checkEmpty(zipCode, "zipCode");
+		checkEmpty(rawPassword, "password");
+		checkEmpty(email, "email");
+
+		MemberId memberId = new MemberId(id);
+		Address address = new Address(address1, address2, zipCode);
+		Password password = new Password(passwordEncoder.encode(rawPassword));
 		Member member = new Member(memberId, name, address, password);
-		member.addEmail(joinRequest.getEmail());
+		member.addEmail(email);
+
 		repository.save(member);
+
+		return memberId;
+	}
+
+	private void checkEmpty(String value, String propertyName) {
+		if (value == null || value.isEmpty()) {
+			throw new EmptyPropertyException(propertyName);
+		}
 	}
 }
