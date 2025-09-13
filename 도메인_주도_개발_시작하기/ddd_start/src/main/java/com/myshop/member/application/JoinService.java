@@ -1,11 +1,14 @@
 package com.myshop.member.application;
 
+import java.util.regex.Pattern;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.member.DuplicateIdException;
 import com.myshop.member.EmptyPropertyException;
+import com.myshop.member.InvalidPropertyException;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberIdGenerator;
@@ -45,6 +48,11 @@ public class JoinService {
 		checkEmpty(rawPassword, "password");
 		checkEmpty(email, "email");
 
+		// 값 형식 검사
+		// name: 한글 또는 영문 대소문자, 공백 허용, 2~20자
+		Pattern namePattern = Pattern.compile("^[a-zA-Z가-힣\\s]{2,20}$");
+		checkFormat(name, "name", namePattern);
+
 		// 로직 검사
 		checkDuplicateId(id);
 
@@ -62,6 +70,12 @@ public class JoinService {
 	private void checkEmpty(String value, String propertyName) {
 		if (value == null || value.isEmpty()) {
 			throw new EmptyPropertyException(propertyName);
+		}
+	}
+
+	private void checkFormat(String value, String propertyName, Pattern pattern) {
+		if (!pattern.matcher(value).matches()) {
+			throw new InvalidPropertyException(propertyName, "invalid format");
 		}
 	}
 
