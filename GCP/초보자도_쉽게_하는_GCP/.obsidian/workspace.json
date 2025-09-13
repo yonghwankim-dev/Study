@@ -77,12 +77,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chapter8. Google Cloud Storage.md",
+                "file": "Chapter5. Load Balancer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter8. Google Cloud Storage"
+              "title": "Chapter5. Load Balancer"
             }
           }
         ],
@@ -236,6 +236,11 @@
   },
   "active": "c40b52fb6ff506c0",
   "lastOpenFiles": [
+    "Chapter4. Google Compute Engine.md",
+    "Chapter5. Load Balancer.md",
+    "Chapter3. VPC 구축하기.md",
+    "Chapter2. IAM.md",
+    "Chapter8. Google Cloud Storage.md",
     "imgs/Pasted image 20250827123639.png",
     "imgs/Pasted image 20250827123619.png",
     "imgs/Pasted image 20250827123529.png",
@@ -246,14 +251,8 @@
     "imgs/Pasted image 20250827122403.png",
     "imgs/Pasted image 20250827122303.png",
     "imgs/Pasted image 20250827122135.png",
-    "imgs/Pasted image 20250827120948.png",
     "Chapter7. Cloud SQL.md",
-    "Chapter8. Google Cloud Storage.md",
     "Chapter6. Cloud DNS.md",
-    "Chapter3. VPC 구축하기.md",
-    "Chapter4. Google Compute Engine.md",
-    "Chapter2. IAM.md",
-    "Chapter5. Load Balancer.md",
     "imgs/Pasted.md",
     "Chapter1. GCP 가입하고 둘러보기.md",
     "imgs"
