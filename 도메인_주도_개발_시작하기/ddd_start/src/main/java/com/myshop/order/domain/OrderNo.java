@@ -17,11 +17,7 @@ public class OrderNo implements Serializable, Comparable<OrderNo> {
 	public OrderNo(String id) {
 		this.id = id;
 	}
-
-	public boolean is2ndGeneration() {
-		return id.startsWith("N");
-	}
-
+	
 	public String getId() {
 		return id;
 	}

@@ -2,6 +2,7 @@ package com.myshop.order.ui;
 
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,14 @@ import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myshop.FixedDomainFactory;
+import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.product.ProductId;
+import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.application.OrderProduct;
+import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
 import com.myshop.order.query.dto.OrderRequest;
@@ -31,26 +38,69 @@ class OrderControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
+	@Autowired
+	private MemberRepository memberRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
+
+	@Autowired
+	private OrderRepository orderRepository;
+
+	private String sessionId;
+	private String memberId;
+
 	@BeforeEach
 	void setUp() {
 		RestAssured.port = port;
+
+		memberId = "member-1";
+		String password = "12345";
+		memberRepository.save(FixedDomainFactory.createMember(memberId));
+		sessionId = login(memberId, password);
+
+		productRepository.save(FixedDomainFactory.createProduct(new ProductId("product-1"), new CategoryId(1L)));
+		productRepository.save(FixedDomainFactory.createProduct(new ProductId("product-2"), new CategoryId(2L)));
+	}
+
+	@AfterEach
+	void tearDown() {
+		memberRepository.deleteAll();
+		productRepository.deleteAll();
+		orderRepository.deleteAll();
+	}
+
+	private String login(String id, String password) {
+		return RestAssured.given()
+			.param("memberId", id)
+			.param("password", password)
+			.when()
+			.post("/member/login")
+			.then()
+			.log().all()
+			.statusCode(HttpStatus.FOUND.value())
+			.extract()
+			.cookie("JSESSIONID");
+
 	}
 
 	@Test
 	void placeOrder() throws JsonProcessingException {
 		List<OrderProduct> orderProducts = createOrderProducts();
-		MemberId orderMemberId = new MemberId("member-1");
+		MemberId orderMemberId = new MemberId(memberId);
 		ShippingInfo shippingInfo = createShippingInfo();
 		OrderRequest request = new OrderRequest(orderProducts, orderMemberId, shippingInfo);
 
 		RestAssured.given()
 			.contentType(ContentType.JSON)
 			.body(objectMapper.writeValueAsString(request))
+			.cookie("JSESSIONID", sessionId)
 			.when()
 			.post("/order/place")
 			.then()
+			.log().all()
 			.statusCode(HttpStatus.OK.value())
-			.body("orderNo", org.hamcrest.Matchers.notNullValue());
+			.body("id", org.hamcrest.Matchers.notNullValue());
 	}
 
 	private List<OrderProduct> createOrderProducts() {
