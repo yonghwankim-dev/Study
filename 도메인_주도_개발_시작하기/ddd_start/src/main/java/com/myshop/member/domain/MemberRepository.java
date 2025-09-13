@@ -7,6 +7,8 @@ public interface MemberRepository {
 
 	List<Member> findByIdIn(String[] blockingIds);
 
+	int countsById(MemberId memberId);
+
 	void save(Member member);
 
 	void delete(Member member);

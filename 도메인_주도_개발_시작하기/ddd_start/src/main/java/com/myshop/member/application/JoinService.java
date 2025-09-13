@@ -4,6 +4,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myshop.member.DuplicateIdException;
 import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
@@ -28,7 +29,7 @@ public class JoinService {
 
 	@Transactional
 	public MemberId join(JoinRequest joinRequest) {
-		String id = idGenerator.generate().toString();
+		String id = idGenerator.generate().getId();
 		String name = joinRequest.getName();
 		String address1 = joinRequest.getAddress1();
 		String address2 = joinRequest.getAddress2();
@@ -44,6 +45,9 @@ public class JoinService {
 		checkEmpty(rawPassword, "password");
 		checkEmpty(email, "email");
 
+		// 로직 검사
+		checkDuplicateId(id);
+
 		MemberId memberId = new MemberId(id);
 		Address address = new Address(address1, address2, zipCode);
 		Password password = new Password(passwordEncoder.encode(rawPassword));
@@ -58,6 +62,13 @@ public class JoinService {
 	private void checkEmpty(String value, String propertyName) {
 		if (value == null || value.isEmpty()) {
 			throw new EmptyPropertyException(propertyName);
+		}
+	}
+
+	private void checkDuplicateId(String id) {
+		int count = repository.countsById(new MemberId(id));
+		if (count > 0) {
+			throw new DuplicateIdException(id);
 		}
 	}
 }
