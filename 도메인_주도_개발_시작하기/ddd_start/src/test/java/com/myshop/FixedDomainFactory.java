@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.ExternalImage;
 import com.myshop.catalog.domain.product.Image;
@@ -131,7 +134,8 @@ public class FixedDomainFactory {
 			"735-17",
 			"06235"
 		);
-		Password password = new Password("12345");
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		Password password = new Password(passwordEncoder.encode("12345"));
 		return new Member(
 			memberId,
 			name,

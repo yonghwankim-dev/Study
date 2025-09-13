@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.member.domain.Password;
 import com.myshop.member.query.dto.ChangePasswordRequest;
 
 @SpringBootTest
@@ -34,10 +35,13 @@ class ChangePasswordServiceTest {
 
 	@Test
 	void shouldChangePassword() {
-		service.changePassword(new ChangePasswordRequest(memberId, "12345", "newPassword"));
+		String oldPassword = "12345";
+		String newPassword = "newPassword";
+		service.changePassword(new ChangePasswordRequest(memberId, oldPassword, newPassword));
 
 		Member findMember = memberRepository.findById(new MemberId(memberId));
-		Assertions.assertThat(findMember.getPassword()).isEqualTo(new Password("newPassword"));
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		Assertions.assertThat(passwordEncoder.matches(newPassword, findMember.getPassword().getValue())).isTrue();
 	}
 
 }
