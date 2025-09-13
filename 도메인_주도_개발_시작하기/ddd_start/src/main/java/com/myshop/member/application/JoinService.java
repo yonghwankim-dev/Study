@@ -1,7 +1,5 @@
 package com.myshop.member.application;
 
-import java.util.UUID;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
 import com.myshop.member.query.dto.JoinRequest;
@@ -19,15 +18,17 @@ public class JoinService {
 
 	private final MemberRepository repository;
 	private final PasswordEncoder passwordEncoder;
+	private final MemberIdGenerator idGenerator;
 
-	public JoinService(MemberRepository repository, PasswordEncoder passwordEncoder) {
+	public JoinService(MemberRepository repository, PasswordEncoder passwordEncoder, MemberIdGenerator idGenerator) {
 		this.repository = repository;
 		this.passwordEncoder = passwordEncoder;
+		this.idGenerator = idGenerator;
 	}
 
 	@Transactional
 	public MemberId join(JoinRequest joinRequest) {
-		String id = UUID.randomUUID().toString();
+		String id = idGenerator.generate().toString();
 		String name = joinRequest.getName();
 		String address1 = joinRequest.getAddress1();
 		String address2 = joinRequest.getAddress2();
