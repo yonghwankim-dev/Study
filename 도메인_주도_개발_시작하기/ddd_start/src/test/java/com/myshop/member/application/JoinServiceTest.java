@@ -2,14 +2,19 @@ package com.myshop.member.application;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
+import com.myshop.FixedDomainFactory;
 import com.myshop.member.DuplicateIdException;
 import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.query.dto.JoinRequest;
 
@@ -22,6 +27,16 @@ class JoinServiceTest {
 
 	@Autowired
 	private MemberRepository memberRepository;
+
+	@MockitoSpyBean
+	private MemberIdGenerator idGenerator;
+
+	@BeforeEach
+	void setUp() {
+		MemberId memberId = new MemberId("member-1");
+		BDDMockito.given(idGenerator.generate())
+			.willReturn(memberId);
+	}
 
 	@AfterEach
 	void tearDown() {
@@ -62,6 +77,8 @@ class JoinServiceTest {
 
 	@Test
 	void join_whenDuplicateId_thenThrowException() {
+		memberRepository.save(FixedDomainFactory.createMember(idGenerator.generate().getId()));
+
 		String name = "홍길동";
 		String address1 = "서울시 강남구";
 		String address2 = "역삼동";
