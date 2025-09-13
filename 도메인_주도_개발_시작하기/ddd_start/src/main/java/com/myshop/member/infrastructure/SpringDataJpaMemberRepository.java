@@ -17,4 +17,7 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Mem
 
 	@Query("SELECT m FROM Member m WHERE m.emails = :email")
 	Optional<Member> findByEmail(String email);
+
+	@Query("SELECT COUNT(m) FROM Member m WHERE m.id = :memberId")
+	int countById(@Param("memberId") MemberId memberId);
 }
