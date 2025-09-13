@@ -1,5 +1,7 @@
 package com.myshop.order;
 
+import java.util.Objects;
+
 public class ValidationError {
 	private final String propertyName;
 	private final String code;
@@ -15,5 +17,20 @@ public class ValidationError {
 
 	public static ValidationError of(String propertyName, String code) {
 		return new ValidationError(propertyName, code);
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		ValidationError that = (ValidationError)object;
+		return Objects.equals(propertyName, that.propertyName) && Objects.equals(code, that.code);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(propertyName, code);
 	}
 }
