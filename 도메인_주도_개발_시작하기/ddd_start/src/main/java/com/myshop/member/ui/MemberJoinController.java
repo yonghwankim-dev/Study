@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.application.JoinService;
+import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.JoinRequest;
 
 @RestController
@@ -18,8 +19,8 @@ public class MemberJoinController {
 	}
 
 	@PostMapping("/member/join")
-	public ResponseEntity<Void> join(@RequestBody JoinRequest joinRequest) {
-		joinService.join(joinRequest);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<MemberId> join(@RequestBody JoinRequest joinRequest) {
+		MemberId memberId = joinService.join(joinRequest);
+		return ResponseEntity.ok(memberId);
 	}
 }
