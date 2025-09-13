@@ -3,15 +3,19 @@ package com.myshop.member.ui;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myshop.FixedDomainFactory;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.query.dto.JoinRequest;
 
@@ -31,9 +35,15 @@ class MemberJoinControllerTest {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@MockitoSpyBean
+	private MemberIdGenerator idGenerator;
+
 	@BeforeEach
 	void setUp() {
 		RestAssured.port = port;
+
+		BDDMockito.given(idGenerator.generate())
+			.willReturn(new MemberId("member-1"));
 	}
 
 	@Test
@@ -67,7 +77,7 @@ class MemberJoinControllerTest {
 		String address2 = "역삼동";
 		String zipCode = "12345";
 		String email = "hong1234@gamil.com";
-		String password = "12345";
+		String password = "hong1234@";
 		JoinRequest request = new JoinRequest(name, address1, address2, zipCode, email, password);
 
 		RestAssured.given()
@@ -89,7 +99,7 @@ class MemberJoinControllerTest {
 		String address2 = "역삼동";
 		String zipCode = "12345";
 		String email = "hong1234@gamil.com";
-		String password = "12345";
+		String password = "hong1234@";
 		JoinRequest request = new JoinRequest(name, address1, address2, zipCode, email, password);
 
 		RestAssured.given()
@@ -104,4 +114,27 @@ class MemberJoinControllerTest {
 			.body("[0].code", org.hamcrest.Matchers.equalTo("invalid"));
 	}
 
+	@Test
+	void join_whenDuplicateId_thenResponseDuplicateCode() throws JsonProcessingException {
+		memberRepository.save(FixedDomainFactory.createMember(idGenerator.generate().getId()));
+
+		String name = "홍길동";
+		String address1 = "서울시 강남구";
+		String address2 = "역삼동";
+		String zipCode = "12345";
+		String email = "hong1234@gamil.com";
+		String password = "hong1234@";
+		JoinRequest request = new JoinRequest(name, address1, address2, zipCode, email, password);
+
+		RestAssured.given()
+			.contentType(ContentType.JSON)
+			.body(objectMapper.writeValueAsString(request))
+			.when()
+			.post("/member/join")
+			.then()
+			.log().all()
+			.statusCode(HttpStatus.BAD_REQUEST.value())
+			.body("field", org.hamcrest.Matchers.equalTo("id"))
+			.body("code", org.hamcrest.Matchers.equalTo("duplicate"));
+	}
 }
