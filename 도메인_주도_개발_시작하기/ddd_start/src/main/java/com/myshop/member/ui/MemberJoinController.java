@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.EmptyPropertyException;
+import com.myshop.member.InvalidPropertyException;
 import com.myshop.member.application.JoinService;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.JoinErrorResponse;
@@ -31,12 +32,20 @@ public class MemberJoinController {
 			memberId = joinService.join(joinRequest);
 		} catch (EmptyPropertyException e) {
 			errors.rejectValue(e.getPropertyName(), "empty");
-			List<ErrorResponse> errorResponses = errors.getFieldErrors().stream()
-				.map(err -> new JoinErrorResponse(err.getField(), err.getDefaultMessage(), err.getCode()))
-				.map(ErrorResponse.class::cast)
-				.toList();
+			List<ErrorResponse> errorResponses = createErrorResponses(errors);
+			return ResponseEntity.badRequest().body(errorResponses);
+		} catch (InvalidPropertyException e) {
+			errors.rejectValue(e.getPropertyName(), "invalid");
+			List<ErrorResponse> errorResponses = createErrorResponses(errors);
 			return ResponseEntity.badRequest().body(errorResponses);
 		}
 		return ResponseEntity.ok(memberId);
+	}
+
+	private static List<ErrorResponse> createErrorResponses(Errors errors) {
+		return errors.getFieldErrors().stream()
+			.map(err -> new JoinErrorResponse(err.getField(), err.getDefaultMessage(), err.getCode()))
+			.map(ErrorResponse.class::cast)
+			.toList();
 	}
 }
