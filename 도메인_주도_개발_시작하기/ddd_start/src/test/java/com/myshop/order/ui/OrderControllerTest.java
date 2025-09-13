@@ -127,4 +127,25 @@ class OrderControllerTest {
 			.log().all()
 			.statusCode(HttpStatus.BAD_REQUEST.value());
 	}
+
+	@Test
+	void placeOrder_whenOrderProductsAreNull_thenResponseBadRequest() throws JsonProcessingException {
+		List<OrderProduct> orderProducts = null;
+		MemberId orderMemberId = new MemberId("member-1");
+		ShippingInfo shippingInfo = createShippingInfo();
+		OrderRequest request = new OrderRequest(orderProducts, orderMemberId, shippingInfo);
+
+		RestAssured.given()
+			.contentType(ContentType.JSON)
+			.cookie("JSESSIONID", sessionId)
+			.body(objectMapper.writeValueAsString(request))
+			.when()
+			.post("/order/place")
+			.then()
+			.log().all()
+			.statusCode(HttpStatus.BAD_REQUEST.value())
+			.body("[0].field", org.hamcrest.Matchers.equalTo("orderProducts"))
+			.body("[0].code", org.hamcrest.Matchers.equalTo("empty"));
+
+	}
 }

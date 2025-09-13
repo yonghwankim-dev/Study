@@ -19,6 +19,18 @@ public class ValidationError {
 		return new ValidationError(propertyName, code);
 	}
 
+	public boolean hasName() {
+		return propertyName != null && !propertyName.isEmpty();
+	}
+
+	public String getPropertyName() {
+		return propertyName;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)
