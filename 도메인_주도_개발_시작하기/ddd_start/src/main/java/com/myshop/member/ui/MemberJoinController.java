@@ -46,7 +46,7 @@ public class MemberJoinController {
 		return ResponseEntity.ok(memberId);
 	}
 
-	private static List<ErrorResponse> createErrorResponses(Errors errors) {
+	private List<ErrorResponse> createErrorResponses(Errors errors) {
 		return errors.getFieldErrors().stream()
 			.map(err -> new JoinErrorResponse(err.getField(), err.getDefaultMessage(), err.getCode()))
 			.map(ErrorResponse.class::cast)
