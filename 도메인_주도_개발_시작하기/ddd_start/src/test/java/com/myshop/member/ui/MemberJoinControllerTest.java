@@ -59,4 +59,26 @@ class MemberJoinControllerTest {
 
 		Assertions.assertThat(memberRepository.findById(new MemberId(memberId))).isNotNull();
 	}
+
+	@Test
+	void join_whenInvalidName_thenResponseError() throws JsonProcessingException {
+		String name = "";
+		String address1 = "서울시 강남구";
+		String address2 = "역삼동";
+		String zipCode = "12345";
+		String email = "hong1234@gamil.com";
+		String password = "12345";
+		JoinRequest request = new JoinRequest(name, address1, address2, zipCode, email, password);
+
+		RestAssured.given()
+			.contentType(ContentType.JSON)
+			.body(objectMapper.writeValueAsString(request))
+			.when()
+			.post("/member/join")
+			.then()
+			.log().all()
+			.statusCode(HttpStatus.BAD_REQUEST.value())
+			.body("[0].field", org.hamcrest.Matchers.equalTo("name"))
+			.body("[0].code", org.hamcrest.Matchers.equalTo("empty"));
+	}
 }
