@@ -1,4 +1,4 @@
-package com.myshop.member.domain;
+package com.myshop.member;
 
 public class PasswordNotMatchException extends RuntimeException {
 }

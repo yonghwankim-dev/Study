@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.myshop.member.DuplicateIdException;
 import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
@@ -57,5 +58,21 @@ class JoinServiceTest {
 
 		Assertions.assertThat(throwable)
 			.isInstanceOf(EmptyPropertyException.class);
+	}
+
+	@Test
+	void join_whenDuplicateId_thenThrowException() {
+		String name = "홍길동";
+		String address1 = "서울시 강남구";
+		String address2 = "역삼동";
+		String zipCode = "12345";
+		String email = "hong1234@gamil.com";
+		String password = "12345";
+		JoinRequest request = new JoinRequest(name, address1, address2, zipCode, email, password);
+
+		Throwable throwable = Assertions.catchThrowable(() -> service.join(request));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(DuplicateIdException.class);
 	}
 }
