@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myshop.member.DuplicateIdException;
 import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.InvalidPropertyException;
 import com.myshop.member.application.JoinService;
@@ -38,6 +39,9 @@ public class MemberJoinController {
 			errors.rejectValue(e.getPropertyName(), "invalid");
 			List<ErrorResponse> errorResponses = createErrorResponses(errors);
 			return ResponseEntity.badRequest().body(errorResponses);
+		} catch (DuplicateIdException e) {
+			ErrorResponse errorResponse = new JoinErrorResponse("id", "ID already exists", "duplicate");
+			return ResponseEntity.badRequest().body(errorResponse);
 		}
 		return ResponseEntity.ok(memberId);
 	}
