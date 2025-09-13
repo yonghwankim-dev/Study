@@ -49,9 +49,7 @@ public class JoinService {
 		checkEmpty(email, "email");
 
 		// 값 형식 검사
-		// name: 한글 또는 영문 대소문자, 공백 허용, 2~20자
-		Pattern namePattern = Pattern.compile("^[a-zA-Z가-힣\\s]{2,20}$");
-		checkFormat(name, "name", namePattern);
+		validateInputFormat(name, zipCode, rawPassword, email);
 
 		// 로직 검사
 		checkDuplicateId(id);
@@ -65,6 +63,25 @@ public class JoinService {
 		repository.save(member);
 
 		return memberId;
+	}
+
+	private void validateInputFormat(String name, String zipCode, String rawPassword, String email) {
+		// name: 한글 또는 영문 대소문자, 공백 허용, 2~20자
+		Pattern namePattern = Pattern.compile("^[a-zA-Z가-힣\\s]{2,20}$");
+		checkFormat(name, "name", namePattern);
+
+		// zipCode: 숫자 5자리
+		Pattern zipCodePattern = Pattern.compile("^\\d{5}$");
+		checkFormat(zipCode, "zipCode", zipCodePattern);
+
+		// password: 영문, 숫자, 특수문자 조합 8~20자
+		Pattern passwordPattern = Pattern.compile(
+			"^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,20}$");
+		checkFormat(rawPassword, "password", passwordPattern);
+
+		// email: 일반적인 이메일 형식
+		Pattern emailPattern = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+		checkFormat(email, "email", emailPattern);
 	}
 
 	private void checkEmpty(String value, String propertyName) {
