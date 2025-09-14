@@ -1,14 +1,10 @@
 package com.myshop.member.application;
 
-import java.util.regex.Pattern;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.member.DuplicateIdException;
-import com.myshop.member.EmptyPropertyException;
-import com.myshop.member.InvalidPropertyException;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberIdGenerator;
@@ -32,6 +28,8 @@ public class JoinService {
 
 	@Transactional
 	public MemberId join(JoinRequest joinRequest) {
+		new JoinRequestValidator().validate(joinRequest);
+
 		String id = idGenerator.generate().getId();
 		String name = joinRequest.getName();
 		String address1 = joinRequest.getAddress1();
@@ -40,18 +38,7 @@ public class JoinService {
 		String rawPassword = joinRequest.getPassword();
 		String email = joinRequest.getEmail();
 
-		// 값의 형식 검사
-		checkEmpty(id, "id");
-		checkEmpty(name, "name");
-		checkEmpty(address1, "address1");
-		checkEmpty(zipCode, "zipCode");
-		checkEmpty(rawPassword, "password");
-		checkEmpty(email, "email");
-
-		// 값 형식 검사
-		validateInputFormat(name, zipCode, rawPassword, email);
-
-		// 로직 검사
+		// 논리적 오류 검사
 		checkDuplicateId(id);
 
 		MemberId memberId = new MemberId(id);
@@ -63,37 +50,6 @@ public class JoinService {
 		repository.save(member);
 
 		return memberId;
-	}
-
-	private void validateInputFormat(String name, String zipCode, String rawPassword, String email) {
-		// name: 한글 또는 영문 대소문자, 공백 허용, 2~20자
-		Pattern namePattern = Pattern.compile("^[a-zA-Z가-힣\\s]{2,20}$");
-		checkFormat(name, "name", namePattern);
-
-		// zipCode: 숫자 5자리
-		Pattern zipCodePattern = Pattern.compile("^\\d{5}$");
-		checkFormat(zipCode, "zipCode", zipCodePattern);
-
-		// password: 영문, 숫자, 특수문자 조합 8~20자
-		Pattern passwordPattern = Pattern.compile(
-			"^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,20}$");
-		checkFormat(rawPassword, "password", passwordPattern);
-
-		// email: 일반적인 이메일 형식
-		Pattern emailPattern = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
-		checkFormat(email, "email", emailPattern);
-	}
-
-	private void checkEmpty(String value, String propertyName) {
-		if (value == null || value.isEmpty()) {
-			throw new EmptyPropertyException(propertyName);
-		}
-	}
-
-	private void checkFormat(String value, String propertyName, Pattern pattern) {
-		if (!pattern.matcher(value).matches()) {
-			throw new InvalidPropertyException(propertyName, "invalid format");
-		}
 	}
 
 	private void checkDuplicateId(String id) {
