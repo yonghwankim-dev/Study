@@ -5,6 +5,6 @@ import com.myshop.common.model.Money;
 public class DiscountCalculationService {
 
 	public Money calculateDiscountAmounts() {
-		return null;
+		return new Money(0);
 	}
 }
