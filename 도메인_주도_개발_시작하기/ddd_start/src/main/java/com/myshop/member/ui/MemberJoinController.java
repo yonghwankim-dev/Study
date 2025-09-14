@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myshop.member.DuplicateIdException;
 import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.InvalidPropertyException;
+import com.myshop.member.application.JoinRequestValidator;
 import com.myshop.member.application.JoinService;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.JoinErrorResponse;
@@ -28,8 +29,10 @@ public class MemberJoinController {
 
 	@PostMapping("/member/join")
 	public ResponseEntity<?> join(@RequestBody JoinRequest joinRequest, Errors errors) {
+
 		MemberId memberId;
 		try {
+			new JoinRequestValidator().validate(joinRequest);
 			memberId = joinService.join(joinRequest);
 		} catch (EmptyPropertyException e) {
 			errors.rejectValue(e.getPropertyName(), e.getCode());
