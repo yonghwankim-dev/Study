@@ -16,7 +16,7 @@ class OrdererSpecTest {
 
 	@BeforeEach
 	void setUp() {
-		ordererId = "12345";
+		ordererId = "member-1";
 		ordererSpec = new OrdererSpec(ordererId);
 		order = FixedDomainFactory.createOrder();
 	}

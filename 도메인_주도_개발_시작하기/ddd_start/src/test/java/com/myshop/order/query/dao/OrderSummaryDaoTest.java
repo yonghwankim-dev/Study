@@ -47,7 +47,7 @@ class OrderSummaryDaoTest {
 	private String ordererId;
 
 	private void saveMember() {
-		Member member = FixedDomainFactory.createMember("12345");
+		Member member = FixedDomainFactory.createMember("member-1");
 		memberRepository.save(member);
 	}
 
@@ -59,7 +59,7 @@ class OrderSummaryDaoTest {
 	private void saveOrders() {
 		for (int i = 1; i <= 20; i++) {
 			String orderId = String.format("1234567890%02d", i);
-			Order order = FixedDomainFactory.createOrder(orderId);
+			Order order = FixedDomainFactory.createOrder(orderId, "member-1");
 			orderRepository.save(order);
 		}
 	}
@@ -73,7 +73,7 @@ class OrderSummaryDaoTest {
 
 	@BeforeEach
 	void setUp() {
-		ordererId = "12345";
+		ordererId = "member-1";
 		saveMember();
 		saveProduct();
 		saveOrders();
@@ -128,7 +128,7 @@ class OrderSummaryDaoTest {
 
 	@Test
 	void shouldReturnOrderSummaryByOrdererId() {
-		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByNumberDesc("12345");
+		List<OrderSummary> orderSummaries = orderSummaryDao.findByOrdererIdOrderByNumberDesc("member-1");
 
 		Assertions.assertThat(orderSummaries).hasSize(20);
 		Comparator<OrderSummary> comparator = Comparator.comparing(OrderSummary::getNumber).reversed();
@@ -192,7 +192,7 @@ class OrderSummaryDaoTest {
 		Assertions.assertThat(orderViews.get(0).getNumber()).isEqualTo("123456789020");
 		Assertions.assertThat(orderViews.get(0).getState()).isEqualTo(OrderState.PAYMENT_WAITING);
 		Assertions.assertThat(orderViews.get(0).getMemberName()).isEqualTo("홍길동");
-		Assertions.assertThat(orderViews.get(0).getMemberId()).isEqualTo("12345");
+		Assertions.assertThat(orderViews.get(0).getMemberId()).isEqualTo("member-1");
 		Assertions.assertThat(orderViews.get(0).getProductName()).isEqualTo("Java Book");
 	}
 
@@ -222,7 +222,7 @@ class OrderSummaryDaoTest {
 		Pageable pageable = PageRequest.of(1, 10);
 
 		List<OrderSummary> orderSummaries = orderSummaryDao.findAll(spec, pageable);
-		
+
 		Assertions.assertThat(orderSummaries).hasSize(10);
 	}
 }

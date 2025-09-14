@@ -36,12 +36,12 @@ import com.myshop.store.domain.StoreId;
 public class FixedDomainFactory {
 	public static Order createOrder() {
 		String orderId = "1234567890";
-		return createOrder(orderId);
+		return createOrder(orderId, "member-1");
 	}
 
-	public static Order createOrder(String orderId) {
+	public static Order createOrder(String orderId, String memberIdValue) {
 		OrderNo orderNo = new OrderNo(orderId);
-		MemberId memberId = new MemberId("12345");
+		MemberId memberId = new MemberId(memberIdValue);
 		Orderer orderer = new Orderer(memberId, "홍길동");
 		ProductId productId = new ProductId("9000000112298");
 		Money price = new Money(1000);
