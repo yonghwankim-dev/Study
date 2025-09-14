@@ -32,11 +32,11 @@ public class MemberJoinController {
 		try {
 			memberId = joinService.join(joinRequest);
 		} catch (EmptyPropertyException e) {
-			errors.rejectValue(e.getPropertyName(), "empty");
+			errors.rejectValue(e.getPropertyName(), e.getCode());
 			List<ErrorResponse> errorResponses = createErrorResponses(errors);
 			return ResponseEntity.badRequest().body(errorResponses);
 		} catch (InvalidPropertyException e) {
-			errors.rejectValue(e.getPropertyName(), "invalid");
+			errors.rejectValue(e.getPropertyName(), e.getCode());
 			List<ErrorResponse> errorResponses = createErrorResponses(errors);
 			return ResponseEntity.badRequest().body(errorResponses);
 		} catch (DuplicateIdException e) {

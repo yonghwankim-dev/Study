@@ -3,19 +3,19 @@ package com.myshop.member;
 public class InvalidPropertyException extends RuntimeException {
 
 	private final String propertyName;
-	private final String reason;
+	private final String code;
 
-	public InvalidPropertyException(String propertyName, String reason) {
-		super(propertyName + " is invalid: " + reason);
+	public InvalidPropertyException(String propertyName) {
+		super(propertyName + " has an invalid format");
 		this.propertyName = propertyName;
-		this.reason = reason;
+		this.code = "invalid";
 	}
 
 	public String getPropertyName() {
 		return propertyName;
 	}
 
-	public String getReason() {
-		return reason;
+	public String getCode() {
+		return code;
 	}
 }
