@@ -20,7 +20,7 @@ class DiscountCalculationServiceTest {
 	}
 
 	@Test
-	void calculateDiscountAmounts() {
+	void calculateDiscountAmounts_whenEmptyOrderLine() {
 		DiscountCalculationService service = new DiscountCalculationService();
 
 		ArrayList<OrderLine> orderLines = new ArrayList<>();
