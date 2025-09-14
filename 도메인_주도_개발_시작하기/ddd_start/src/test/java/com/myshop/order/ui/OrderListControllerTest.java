@@ -85,11 +85,11 @@ class OrderListControllerTest {
 			.then()
 			.log().all()
 			.statusCode(HttpStatus.OK.value())
+			.body("size()", org.hamcrest.Matchers.equalTo(1))
 			.body("[0].number", org.hamcrest.Matchers.equalTo("order-1"))
 			.body("[0].state", org.hamcrest.Matchers.equalTo(OrderState.PAYMENT_WAITING.name()))
 			.body("[0].memberName", org.hamcrest.Matchers.equalTo("홍길동"))
 			.body("[0].memberId", org.hamcrest.Matchers.equalTo("member-1"))
 			.body("[0].productName", org.hamcrest.Matchers.equalTo("Java Book"));
-
 	}
 }
