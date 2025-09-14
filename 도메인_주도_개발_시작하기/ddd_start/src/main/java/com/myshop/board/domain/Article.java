@@ -28,12 +28,23 @@ public class Article {
 	@AttributeOverride(name = "contentType", column = @Column(table = "article_content", name = "content_type"))
 	private ArticleContent content;
 
+	private boolean deleted;
+
 	protected Article() {
 	}
 
 	public Article(String title, ArticleContent content) {
 		this.title = title;
 		this.content = content;
+		this.deleted = false;
+	}
+
+	public void markDeleted() {
+		this.deleted = true;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
 	}
 
 	public Long getId() {
