@@ -26,7 +26,7 @@ class MemoryOrderRepositoryTest {
 		List<Order> result = new ArrayList<>();
 		for (int i = 1; i <= 20; i++) {
 			String orderId = String.format("%05d", i);
-			Order order = FixedDomainFactory.createOrder(orderId);
+			Order order = FixedDomainFactory.createOrder(orderId, "member-1");
 			orderRepository.save(order);
 			result.add(order);
 		}
@@ -58,7 +58,7 @@ class MemoryOrderRepositoryTest {
 	@Test
 	void shouldSubOrders() {
 		List<Order> saveOrders = saveOrders(orderRepository);
-		String ordererId = "12345";
+		String ordererId = "member-1";
 		int startRow = 1;
 		int size = 10;
 
@@ -103,7 +103,7 @@ class MemoryOrderRepositoryTest {
 	@Test
 	void shouldReturnOrders_whenOrdererIdIsMatched() {
 		List<Order> saveOrders = saveOrders(orderRepository);
-		Specification<Order> spec = new OrdererSpec("12345");
+		Specification<Order> spec = new OrdererSpec("member-1");
 
 		List<Order> orders = orderRepository.findAll(spec);
 		Assertions.assertThat(orders)

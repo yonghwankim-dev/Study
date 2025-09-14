@@ -26,7 +26,7 @@ class SecurityCancelPolicyTest {
 	@Test
 	void shouldReturnTrue_whenCancellerOrderer() {
 		Order order = FixedDomainFactory.createOrder();
-		Canceller canceller = new Canceller("12345");
+		Canceller canceller = new Canceller("member-1");
 
 		boolean result = cancelPolicy.hasCancellationPermission(order, canceller);
 

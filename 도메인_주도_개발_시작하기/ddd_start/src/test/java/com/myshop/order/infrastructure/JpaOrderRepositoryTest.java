@@ -31,7 +31,7 @@ class JpaOrderRepositoryTest {
 	}
 
 	private void saveOrder(String orderId) {
-		Order order = FixedDomainFactory.createOrder(orderId);
+		Order order = FixedDomainFactory.createOrder(orderId, "member-1");
 		orderRepository.save(order);
 	}
 
@@ -56,7 +56,7 @@ class JpaOrderRepositoryTest {
 			saveOrder(orderId);
 		}
 
-		String ordererId = "12345";
+		String ordererId = "member-1";
 		int startRow = 1;
 		int size = 5;
 

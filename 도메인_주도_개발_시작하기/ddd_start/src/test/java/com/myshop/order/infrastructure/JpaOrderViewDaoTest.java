@@ -61,7 +61,7 @@ class JpaOrderViewDaoTest {
 	}
 
 	private void saveMember() {
-		memberId = new MemberId("12345");
+		memberId = new MemberId("member-1");
 		String name = "james";
 		memberAddress = new Address(
 			"서울 강남구 역삼동",
@@ -87,7 +87,7 @@ class JpaOrderViewDaoTest {
 
 	@Test
 	void shouldReturnOrderViewList() {
-		String ordererId = "12345";
+		String ordererId = "member-1";
 
 		List<OrderView> orderViews = orderViewDao.selectByOrderer(ordererId);
 
