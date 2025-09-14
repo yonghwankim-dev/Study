@@ -20,7 +20,8 @@ class JpaArticleRepositoryTest {
 	@Test
 	void shouldSaveArticle() {
 		ArticleContent content = new ArticleContent("Test Content", "text/plain");
-		Article article = new Article("Test Title", content);
+		String memberId = "member-1";
+		Article article = new Article("Test Title", content, memberId);
 
 		repository.save(article);
 

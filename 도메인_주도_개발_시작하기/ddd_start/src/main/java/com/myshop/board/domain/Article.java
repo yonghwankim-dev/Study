@@ -28,14 +28,17 @@ public class Article {
 	@AttributeOverride(name = "contentType", column = @Column(table = "article_content", name = "content_type"))
 	private ArticleContent content;
 
+	private String memberId;
+
 	private boolean deleted;
 
 	protected Article() {
 	}
 
-	public Article(String title, ArticleContent content) {
+	public Article(String title, ArticleContent content, String memberId) {
 		this.title = title;
 		this.content = content;
+		this.memberId = memberId;
 		this.deleted = false;
 	}
 
@@ -49,6 +52,10 @@ public class Article {
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getAuthorId() {
+		return memberId;
 	}
 
 	@Override
