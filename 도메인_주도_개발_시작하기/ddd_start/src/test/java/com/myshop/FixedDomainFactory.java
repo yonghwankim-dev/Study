@@ -143,4 +143,8 @@ public class FixedDomainFactory {
 			password
 		);
 	}
+
+	public static OrderLine createOrderLine(String productId, int price, int quantity) {
+		return new OrderLine(new ProductId(productId), new Money(price), quantity);
+	}
 }
