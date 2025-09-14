@@ -20,7 +20,7 @@ class DiscountCalculationServiceTest {
 
 		Money money = service.calculateDiscountAmounts();
 
-		Assertions.assertThat(money).isEqualTo(null);
+		Assertions.assertThat(money).isEqualTo(new Money(0));
 	}
 
 }
