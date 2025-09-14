@@ -25,7 +25,8 @@ class DeleteArticleServiceTest {
 	@BeforeEach
 	void setUp() {
 		ArticleContent articleContent = new ArticleContent("content", "text/plain");
-		Article article = new Article("Title 1", articleContent);
+		String memberId = "member-1";
+		Article article = new Article("Title 1", articleContent, memberId);
 		articleRepository.save(article);
 		articleId = article.getId();
 	}
@@ -43,6 +44,17 @@ class DeleteArticleServiceTest {
 
 		Article findArticle = articleRepository.findById(articleId);
 		Assertions.assertThat(findArticle.isDeleted()).isTrue();
+	}
+
+	@Test
+	void shouldNotDeleteArticle_whenNoPermission() {
+		String userId = "member-2";
+
+		Throwable throwable = Assertions.catchThrowable(() -> service.delete(userId, articleId));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalStateException.class)
+			.hasMessage("User does not have permission to delete this article.");
 	}
 
 }
