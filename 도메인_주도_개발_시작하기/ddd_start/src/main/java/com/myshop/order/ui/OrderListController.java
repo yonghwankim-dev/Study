@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.MemberAuthentication;
-import com.myshop.order.application.OrderListService;
+import com.myshop.order.domain.OrderViewDao;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.query.dto.OrderView;
 
 @RestController
 public class OrderListController {
 
-	private final OrderListService orderListService;
+	private final OrderViewDao orderViewDao;
 
-	public OrderListController(OrderListService orderListService) {
-		this.orderListService = orderListService;
+	public OrderListController(OrderViewDao orderViewDao) {
+		this.orderViewDao = orderViewDao;
 	}
 
 	@GetMapping("/myorders")
 	public ResponseEntity<List<OrderView>> list() {
 		MemberId memberId = createOrderer().getMemberId();
-		List<OrderView> orderViews = orderListService.getOrderList(memberId.getId());
+		List<OrderView> orderViews = orderViewDao.selectByOrderer(memberId.getId());
 		return ResponseEntity.ok().body(orderViews);
 	}
 
