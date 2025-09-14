@@ -1,10 +1,12 @@
 package com.myshop.member.application;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.member.domain.Member;
@@ -37,5 +39,14 @@ class BlockMembersServiceTest {
 		memberRepository.findByIdIn(memberIds).forEach(member -> {
 			assert member.isBlocked() : "Member should be blocked";
 		});
+	}
+
+	@Test
+	void shouldNotBlockMember_whenNoAuthentication() {
+		String memberId = memberIds[0];
+		Throwable throwable = Assertions.catchThrowable(() -> service.block(memberId));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(AuthenticationCredentialsNotFoundException.class);
 	}
 }
