@@ -10,9 +10,11 @@ import com.myshop.board.domain.ArticleRepository;
 public class DeleteArticleService {
 
 	private final ArticleRepository articleRepository;
+	private final PermissionService permissionService;
 
-	public DeleteArticleService(ArticleRepository articleRepository) {
+	public DeleteArticleService(ArticleRepository articleRepository, PermissionService permissionService) {
 		this.articleRepository = articleRepository;
+		this.permissionService = permissionService;
 	}
 
 	@Transactional
