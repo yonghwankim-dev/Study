@@ -6,7 +6,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.common.model.Money;
+import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
+import com.myshop.order.domain.OrderLine;
 
 class DiscountCalculationServiceTest {
 
@@ -21,7 +23,10 @@ class DiscountCalculationServiceTest {
 	void calculateDiscountAmounts() {
 		DiscountCalculationService service = new DiscountCalculationService();
 
-		Money money = service.calculateDiscountAmounts(new ArrayList<>(), new ArrayList<>(), new MemberGrade());
+		ArrayList<OrderLine> orderLines = new ArrayList<>();
+		ArrayList<Coupon> coupons = new ArrayList<>();
+		MemberGrade memberGrade = new MemberGrade("VIP");
+		Money money = service.calculateDiscountAmounts(orderLines, coupons, memberGrade);
 
 		Assertions.assertThat(money).isEqualTo(new Money(0));
 	}
