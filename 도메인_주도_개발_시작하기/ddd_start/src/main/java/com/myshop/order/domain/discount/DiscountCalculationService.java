@@ -9,21 +9,28 @@ import com.myshop.order.domain.OrderLine;
 
 public class DiscountCalculationService {
 
+	// TODO: 1. 쿠폰 할인 계산 로직 구현, 2. 멤버십 할인 계산 로직 구현
 	public Money calculateDiscountAmounts(List<OrderLine> orderLines, List<Coupon> coupons, MemberGrade grade) {
 		Money couponDiscount = coupons.stream()
-			.map(this::calculateDiscount)
+			.map(coupon -> calculateDiscount(coupon, orderLines))
 			.reduce(new Money(0),
-				(money, money2) -> money != null && money2 != null ? money.add(money2) : new Money(0));
+				(money, money2) -> money != null ? money.add(money2) : new Money(0));
 
-		Money membershipDiscount = calculateDiscount(grade);
+		Money membershipDiscount = calculateDiscount(grade, orderLines);
 		return couponDiscount.add(membershipDiscount);
 	}
 
-	private Money calculateDiscount(Coupon coupon) {
-		return new Money(0);
+	private Money calculateDiscount(Coupon coupon, List<OrderLine> orderLines) {
+		return orderLines.stream()
+			.map(coupon::applyDiscount)
+			.reduce(new Money(0),
+				(money, money2) -> money != null ? money.add(money2) : new Money(0));
 	}
 
-	private Money calculateDiscount(MemberGrade grade) {
-		return new Money(0);
+	private Money calculateDiscount(MemberGrade grade, List<OrderLine> orderLines) {
+		return orderLines.stream()
+			.map(grade::applyDiscount)
+			.reduce(new Money(0),
+				(money, money2) -> money != null ? money.add(money2) : new Money(0));
 	}
 }
