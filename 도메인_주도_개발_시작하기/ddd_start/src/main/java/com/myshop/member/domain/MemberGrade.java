@@ -11,6 +11,10 @@ public class MemberGrade {
 		this.gradeName = gradeName;
 	}
 
+	public static MemberGrade vip() {
+		return new MemberGrade("VIP");
+	}
+
 	public Money applyDiscount(OrderLine orderLine) {
 		if ("VIP".equals(gradeName)) {
 			int amounts = orderLine.getAmounts();

@@ -1,10 +1,12 @@
 package com.myshop.order.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.myshop.common.model.Money;
+import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.order.domain.discount.DiscountCalculationService;
 
@@ -51,6 +53,9 @@ public class Order {
 
 	@Column(name = "order_date")
 	private LocalDateTime orderDate;
+
+	private Money paymentAmounts;
+	private List<Coupon> coupons = new ArrayList<>();
 
 	protected Order() {
 	}
@@ -122,6 +127,13 @@ public class Order {
 	}
 
 	public void calculateAmounts(DiscountCalculationService service, MemberGrade grade) {
+		Money totalAmounts = getTotalAmounts();
+		Money discountAmounts = service.calculateDiscountAmounts(this.orderLines, this.coupons, grade);
+		this.paymentAmounts = totalAmounts.minus(discountAmounts);
+	}
+
+	public void addCoupon(Coupon coupon) {
+		this.coupons.add(coupon);
 	}
 
 	public OrderNo getOrderNo() {
@@ -142,6 +154,10 @@ public class Order {
 
 	public long getVersion() {
 		return version;
+	}
+
+	public Money getPaymentAmounts() {
+		return paymentAmounts;
 	}
 
 	@Override
