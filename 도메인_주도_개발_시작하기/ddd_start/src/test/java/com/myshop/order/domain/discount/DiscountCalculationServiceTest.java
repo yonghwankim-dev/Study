@@ -34,18 +34,18 @@ class DiscountCalculationServiceTest {
 	}
 
 	@Test
-	void calculateDiscountAmounts_whenOneOrderLineAndNoCoupon() {
+	void calculateDiscountAmounts_whenOrderLinesAndNoCoupon() {
 		DiscountCalculationService service = new DiscountCalculationService();
 		List<OrderLine> orderLines = createOrderLine();
 		List<Coupon> coupons = new ArrayList<>();
 		MemberGrade memberGrade = new MemberGrade("VIP");
 		Money money = service.calculateDiscountAmounts(orderLines, coupons, memberGrade);
 
-		Assertions.assertThat(money).isEqualTo(new Money(100));
+		Assertions.assertThat(money).isEqualTo(new Money(300));
 	}
 
 	@Test
-	void calculateDiscountAmounts_whenOneOrderLineAndCoupon() {
+	void calculateDiscountAmounts_whenOrderLinesAndCoupon() {
 		DiscountCalculationService service = new DiscountCalculationService();
 		List<OrderLine> orderLines = createOrderLine();
 		Coupon coupon = new Coupon(0.1);
@@ -54,12 +54,13 @@ class DiscountCalculationServiceTest {
 
 		Money money = service.calculateDiscountAmounts(orderLines, coupons, memberGrade);
 
-		Assertions.assertThat(money).isEqualTo(new Money(200));
+		Assertions.assertThat(money).isEqualTo(new Money(600));
 	}
 
 	private ArrayList<OrderLine> createOrderLine() {
 		ArrayList<OrderLine> orderLines = new ArrayList<>();
 		orderLines.add(FixedDomainFactory.createOrderLine("product-1", 1000, 1));
+		orderLines.add(FixedDomainFactory.createOrderLine("product-2", 2000, 1));
 		return orderLines;
 	}
 
