@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 import com.myshop.common.model.Money;
+import com.myshop.member.domain.MemberGrade;
+import com.myshop.order.domain.discount.DiscountCalculationService;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.CollectionTable;
@@ -117,6 +119,9 @@ public class Order {
 	public void cancel() {
 		verifyNotYetShipped();
 		this.state = OrderState.CANCELED;
+	}
+
+	public void calculateAmounts(DiscountCalculationService service, MemberGrade grade) {
 	}
 
 	public OrderNo getOrderNo() {
