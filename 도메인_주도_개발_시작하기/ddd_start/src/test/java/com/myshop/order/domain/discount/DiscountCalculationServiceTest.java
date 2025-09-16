@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
@@ -14,20 +15,24 @@ import com.myshop.order.domain.OrderLine;
 
 class DiscountCalculationServiceTest {
 
+	private DiscountCalculationService service;
+
+	@BeforeEach
+	void setUp() {
+		service = new DiscountCalculationService();
+	}
+
 	@Test
 	void canCreated() {
-		DiscountCalculationService service = new DiscountCalculationService();
-
 		Assertions.assertThat(service).isNotNull();
 	}
 
 	@Test
 	void calculateDiscountAmounts_whenEmptyOrderLine() {
-		DiscountCalculationService service = new DiscountCalculationService();
-
 		List<OrderLine> orderLines = new ArrayList<>();
 		List<Coupon> coupons = new ArrayList<>();
 		MemberGrade memberGrade = new MemberGrade("VIP");
+
 		Money money = service.calculateDiscountAmounts(orderLines, coupons, memberGrade);
 
 		Assertions.assertThat(money).isEqualTo(new Money(0));
@@ -35,7 +40,6 @@ class DiscountCalculationServiceTest {
 
 	@Test
 	void calculateDiscountAmounts_whenOrderLinesAndNoCoupon() {
-		DiscountCalculationService service = new DiscountCalculationService();
 		List<OrderLine> orderLines = createOrderLine();
 		List<Coupon> coupons = new ArrayList<>();
 		MemberGrade memberGrade = new MemberGrade("VIP");
@@ -46,7 +50,6 @@ class DiscountCalculationServiceTest {
 
 	@Test
 	void calculateDiscountAmounts_whenOrderLinesAndCoupon() {
-		DiscountCalculationService service = new DiscountCalculationService();
 		List<OrderLine> orderLines = createOrderLine();
 		Coupon coupon = new Coupon(0.1);
 		List<Coupon> coupons = List.of(coupon);
