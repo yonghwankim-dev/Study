@@ -28,7 +28,7 @@ class MemberTest {
 		passwordEncoder = new BCryptPasswordEncoder();
 		String currentPassword = passwordEncoder.encode("password1234");
 		Password password = new Password(currentPassword);
-		member = new Member(memberId, name, address, password);
+		member = new Member(memberId, name, address, password, MemberGrade.basic());
 	}
 
 	@Test

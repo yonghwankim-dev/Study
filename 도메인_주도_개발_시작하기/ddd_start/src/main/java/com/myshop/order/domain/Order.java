@@ -55,7 +55,11 @@ public class Order {
 	private LocalDateTime orderDate;
 
 	private Money paymentAmounts;
-	private List<Coupon> coupons = new ArrayList<>();
+
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "coupon", joinColumns = @JoinColumn(name = "order_no"))
+	@OrderColumn(name = "coupon_idx")
+	private List<Coupon> coupons;
 
 	protected Order() {
 	}
@@ -68,6 +72,7 @@ public class Order {
 		setShippingInfo(shippingInfo);
 		this.state = state;
 		this.orderDate = LocalDateTime.now();
+		this.coupons = new ArrayList<>();
 	}
 
 	private void setOrderNo(OrderNo id) {

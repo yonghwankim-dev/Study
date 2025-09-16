@@ -19,6 +19,7 @@ import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.Password;
 import com.myshop.member.query.dto.MemberData;
@@ -140,7 +141,8 @@ public class FixedDomainFactory {
 			memberId,
 			name,
 			address,
-			password
+			password,
+			MemberGrade.basic()
 		);
 	}
 

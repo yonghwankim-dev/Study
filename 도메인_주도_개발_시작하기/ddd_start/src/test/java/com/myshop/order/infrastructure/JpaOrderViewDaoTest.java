@@ -16,6 +16,7 @@ import com.myshop.FixedDomainFactory;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
@@ -69,7 +70,7 @@ class JpaOrderViewDaoTest {
 			"06235"
 		);
 		Password password = new Password("password1234");
-		Member member = new Member(memberId, name, memberAddress, password);
+		Member member = new Member(memberId, name, memberAddress, password, MemberGrade.basic());
 		memberRepository.save(member);
 	}
 

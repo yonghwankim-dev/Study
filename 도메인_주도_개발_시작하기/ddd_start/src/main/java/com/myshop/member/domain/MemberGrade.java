@@ -3,9 +3,17 @@ package com.myshop.member.domain;
 import com.myshop.common.model.Money;
 import com.myshop.order.domain.OrderLine;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class MemberGrade {
 
-	private final String gradeName;
+	@Column(name = "grade")
+	private String gradeName;
+
+	public MemberGrade() {
+	}
 
 	public MemberGrade(String gradeName) {
 		this.gradeName = gradeName;
@@ -13,6 +21,10 @@ public class MemberGrade {
 
 	public static MemberGrade vip() {
 		return new MemberGrade("VIP");
+	}
+
+	public static MemberGrade basic() {
+		return new MemberGrade("BASIC");
 	}
 
 	public Money applyDiscount(OrderLine orderLine) {

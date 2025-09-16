@@ -3,9 +3,17 @@ package com.myshop.coupon.domain;
 import com.myshop.common.model.Money;
 import com.myshop.order.domain.OrderLine;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Coupon {
 
-	private final double discountRate;
+	@Column(name = "discount_rate")
+	private double discountRate;
+
+	protected Coupon() {
+	}
 
 	public Coupon(double discountRate) {
 		this.discountRate = discountRate;
