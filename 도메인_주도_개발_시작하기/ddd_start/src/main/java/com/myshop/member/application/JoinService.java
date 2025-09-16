@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.member.DuplicateIdException;
 import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
@@ -44,7 +45,7 @@ public class JoinService {
 		MemberId memberId = new MemberId(id);
 		Address address = new Address(address1, address2, zipCode);
 		Password password = new Password(passwordEncoder.encode(rawPassword));
-		Member member = new Member(memberId, name, address, password);
+		Member member = new Member(memberId, name, address, password, MemberGrade.basic());
 		member.addEmail(email);
 
 		repository.save(member);

@@ -21,6 +21,7 @@ import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.discount.DiscountCalculationService;
 import com.myshop.order.query.dto.OrderRequest;
 
 @Service
@@ -29,12 +30,14 @@ public class PlaceOrderService {
 	private final OrderRepository repository;
 	private final ProductRepository productRepository;
 	private final MemberRepository memberRepository;
+	private final DiscountCalculationService discountCalculationService;
 
 	public PlaceOrderService(OrderRepository repository, ProductRepository productRepository,
-		MemberRepository memberRepository) {
+		MemberRepository memberRepository, DiscountCalculationService discountCalculationService) {
 		this.repository = repository;
 		this.productRepository = productRepository;
 		this.memberRepository = memberRepository;
+		this.discountCalculationService = discountCalculationService;
 	}
 
 	@Transactional
@@ -72,6 +75,14 @@ public class PlaceOrderService {
 		Member member = memberRepository.findById(orderRequest.getOrdererMemberId());
 		Orderer orderer = new Orderer(member.getId(), member.getName());
 		ShippingInfo shippingInfo = orderRequest.getShippingInfo();
+		List<OrderLine> orderLines = createOrderLines(orderRequest);
+
+		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		order.calculateAmounts(discountCalculationService, member.getGrade());
+		return order;
+	}
+
+	private List<OrderLine> createOrderLines(OrderRequest orderRequest) {
 		List<OrderLine> orderLines = new ArrayList<>();
 		for (OrderProduct orderProduct : orderRequest.getOrderProducts()) {
 			ProductId productId = new ProductId(orderProduct.getProductId());
@@ -81,6 +92,6 @@ public class PlaceOrderService {
 			OrderLine orderLine = new OrderLine(productId, price, quantity);
 			orderLines.add(orderLine);
 		}
-		return new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		return orderLines;
 	}
 }

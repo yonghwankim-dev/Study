@@ -22,6 +22,7 @@ import com.myshop.catalog.domain.product.ProductInfo;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
@@ -56,7 +57,7 @@ class PlaceOrderServiceTest {
 		String name = "홍길동";
 		Address address = new Address("서울시 강남구 역삼동", "101동 202호", "12345");
 		Password password = new Password("password");
-		return new Member(memberId, name, address, password);
+		return new Member(memberId, name, address, password, MemberGrade.basic());
 	}
 
 	private Product createProduct1() {

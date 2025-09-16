@@ -36,17 +36,21 @@ public class Member {
 	@Convert(converter = EmailSetConverter.class)
 	private EmailSet emails;
 
+	@Embedded
+	private MemberGrade grade;
+
 	private boolean blocked;
 
 	protected Member() {
 		// Default constructor for JPA
 	}
 
-	public Member(MemberId id, String name, Address address, Password password) {
+	public Member(MemberId id, String name, Address address, Password password, MemberGrade grade) {
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		setPassword(password);
+		this.grade = grade;
 		this.blocked = false;
 	}
 
@@ -93,5 +97,9 @@ public class Member {
 
 	public Password getPassword() {
 		return password;
+	}
+
+	public MemberGrade getGrade() {
+		return grade;
 	}
 }

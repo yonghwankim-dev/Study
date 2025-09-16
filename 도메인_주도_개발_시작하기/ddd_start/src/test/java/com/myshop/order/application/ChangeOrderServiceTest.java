@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
@@ -61,7 +62,7 @@ class ChangeOrderServiceTest {
 		MemberRepository memberRepository = mock(MemberRepository.class);
 		String name = "John Doe";
 		Password password = new Password("password1234");
-		Member member = new Member(memberId, name, address, password);
+		Member member = new Member(memberId, name, address, password, MemberGrade.basic());
 		given(memberRepository.findById(memberId))
 			.willReturn(member);
 
