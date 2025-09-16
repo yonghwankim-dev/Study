@@ -9,7 +9,7 @@ import com.myshop.order.domain.OrderLine;
 
 public class DiscountCalculationService {
 
-	// TODO: 1. 쿠폰 할인 계산 로직 구현, 2. 멤버십 할인 계산 로직 구현
+	// todo: Coupon 테스트 케이스 추가
 	public Money calculateDiscountAmounts(List<OrderLine> orderLines, List<Coupon> coupons, MemberGrade grade) {
 		Money couponDiscount = coupons.stream()
 			.map(coupon -> calculateDiscount(coupon, orderLines))
