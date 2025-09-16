@@ -14,7 +14,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
+import com.myshop.coupon.domain.Coupon;
+import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
+import com.myshop.order.domain.discount.DiscountCalculationService;
 
 class OrderTest {
 
@@ -162,5 +165,29 @@ class OrderTest {
 		boolean actual = order1.equals(order2);
 
 		assertTrue(actual, "Orders should be equal based on OrderNo");
+	}
+
+	@Test
+	void calculateAmounts() {
+		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		DiscountCalculationService service = new DiscountCalculationService();
+		MemberGrade grade = MemberGrade.vip();
+
+		order.calculateAmounts(service, grade);
+
+		Assertions.assertThat(order.getPaymentAmounts()).isEqualTo(new Money(1800));
+	}
+
+	@Test
+	void calculateAmounts_whenAddedCoupon() {
+		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		Coupon coupon = new Coupon(0.1);
+		order.addCoupon(coupon);
+		DiscountCalculationService service = new DiscountCalculationService();
+		MemberGrade grade = MemberGrade.vip();
+
+		order.calculateAmounts(service, grade);
+
+		Assertions.assertThat(order.getPaymentAmounts()).isEqualTo(new Money(1600));
 	}
 }

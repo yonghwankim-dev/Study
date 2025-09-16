@@ -17,6 +17,10 @@ public class Money {
 		return new Money(this.value * multiplier);
 	}
 
+	public Money minus(Money discountAmounts) {
+		return new Money(this.value - discountAmounts.value);
+	}
+
 	public int getValue() {
 		return value;
 	}
