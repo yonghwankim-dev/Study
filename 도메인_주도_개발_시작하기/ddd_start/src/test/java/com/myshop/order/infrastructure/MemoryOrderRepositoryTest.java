@@ -14,7 +14,7 @@ import com.myshop.FixedDomainFactory;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderNoGenerator;
-import com.myshop.order.domain.OrderRepository;
+import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.domain.OrdererSpec;
 import com.myshop.order.domain.Specification;
 

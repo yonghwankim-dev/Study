@@ -30,9 +30,9 @@ import com.myshop.order.ValidationError;
 import com.myshop.order.ValidationErrorException;
 import com.myshop.order.domain.Address;
 import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.query.dto.OrderRequest;
 import com.myshop.store.domain.StoreId;
 

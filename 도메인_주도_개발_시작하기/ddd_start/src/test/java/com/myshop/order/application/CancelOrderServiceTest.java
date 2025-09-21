@@ -17,11 +17,11 @@ import com.myshop.order.domain.Canceller;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderLine;
 import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.repository.OrderRepository;
 
 class CancelOrderServiceTest {
 

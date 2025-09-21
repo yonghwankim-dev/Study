@@ -7,8 +7,8 @@ import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.repository.OrderRepository;
 
 public class ChangeOrderService {
 

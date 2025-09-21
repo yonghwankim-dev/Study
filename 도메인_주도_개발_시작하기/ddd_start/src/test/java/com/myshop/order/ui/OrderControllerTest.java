@@ -20,9 +20,9 @@ import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.application.OrderProduct;
-import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Receiver;
 import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.query.dto.OrderRequest;
 
 import io.restassured.RestAssured;
