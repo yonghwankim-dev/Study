@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.myshop.survey.domain.service.FakeSurveyPermissionChecker;
 import com.myshop.survey.query.dto.CreateSurveyRequest;
 
 @SpringBootTest
@@ -15,6 +16,9 @@ class CreateSurveyServiceTest {
 	@Autowired
 	private CreateSurveyService service;
 
+	@Autowired
+	private FakeSurveyPermissionChecker fakeSurveyPermissionChecker;
+
 	@Test
 	void canCreated() {
 		Assertions.assertThat(service).isNotNull();
@@ -22,7 +26,9 @@ class CreateSurveyServiceTest {
 
 	@Test
 	void createSurvey() {
-		CreateSurveyRequest request = new CreateSurveyRequest("Customer Satisfaction Survey");
+		fakeSurveyPermissionChecker.allowUserCreation(1L);
+		Long requesterId = 1L;
+		CreateSurveyRequest request = new CreateSurveyRequest("Customer Satisfaction Survey", requesterId);
 
 		Long surveyId = service.createSurvey(request);
 
@@ -33,7 +39,8 @@ class CreateSurveyServiceTest {
 
 	@Test
 	void shouldThrowException_whenInvalidTitle() {
-		CreateSurveyRequest request = new CreateSurveyRequest(null);
+		Long requesterId = 1L;
+		CreateSurveyRequest request = new CreateSurveyRequest(null, requesterId);
 
 		Throwable throwable = Assertions.catchThrowable(() -> service.createSurvey(request));
 
