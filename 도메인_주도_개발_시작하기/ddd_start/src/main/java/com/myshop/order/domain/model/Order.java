@@ -9,6 +9,7 @@ import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
+import com.myshop.order.domain.service.DiscountCalculationService;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.CollectionTable;
@@ -132,8 +133,12 @@ public class Order {
 	}
 
 	public void calculateAmounts(CouponAndMemberShipDiscountCalculationService service, MemberGrade grade) {
-		Money totalAmounts = getTotalAmounts();
 		Money discountAmounts = service.calculateDiscountAmounts(this.orderLines, this.coupons, grade);
+		this.paymentAmounts = totalAmounts.minus(discountAmounts);
+	}
+
+	public void calculateAmounts(DiscountCalculationService service) {
+		Money discountAmounts = service.calculateDiscountAmount(this.orderLines, orderer.getMemberId());
 		this.paymentAmounts = totalAmounts.minus(discountAmounts);
 	}
 
