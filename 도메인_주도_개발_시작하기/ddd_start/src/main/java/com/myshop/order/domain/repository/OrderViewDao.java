@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.repository;
 
 import java.util.List;
 

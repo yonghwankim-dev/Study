@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
-import com.myshop.order.domain.OrderLine;
+import com.myshop.order.domain.model.OrderLine;
 
 class OrderLineTest {
 

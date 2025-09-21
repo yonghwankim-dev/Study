@@ -14,8 +14,8 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderState;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrderState;
 import com.myshop.order.domain.repository.OrderRepository;
 
 import io.restassured.RestAssured;

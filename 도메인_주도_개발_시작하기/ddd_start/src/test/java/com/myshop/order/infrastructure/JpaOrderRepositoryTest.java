@@ -14,8 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
 import com.myshop.order.OrderNotFoundException;
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderNo;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.repository.OrderRepository;
 
 @SpringBootTest

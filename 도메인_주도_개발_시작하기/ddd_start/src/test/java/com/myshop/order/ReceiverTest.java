@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.myshop.order.domain.Receiver;
+import com.myshop.order.domain.model.Receiver;
 
 class ReceiverTest {
 

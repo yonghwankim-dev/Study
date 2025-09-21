@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrdererSpec;
 
 class OrdererSpecTest {
 

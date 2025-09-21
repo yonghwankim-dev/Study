@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 public enum OrderState {
 	PAYMENT_WAITING,
