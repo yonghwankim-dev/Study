@@ -1,9 +1,14 @@
 package com.myshop.order.infrastructure;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
+import com.myshop.member.domain.MemberId;
+import com.myshop.order.domain.model.OrderLine;
 import com.myshop.order.domain.service.DiscountCalculationService;
 
 class RuleBasedDiscountCalculationServiceTest {
@@ -18,9 +23,23 @@ class RuleBasedDiscountCalculationServiceTest {
 	@Test
 	void shouldReturnZero_whenNoDiscountRulesApply() {
 		DiscountCalculationService discountCalculationService = new RuleBasedDiscountCalculationService();
+		MemberId memberId = new MemberId("member-1");
 
-		Money discountAmount = discountCalculationService.calculateDiscountAmount(null);
+		Money discountAmount = discountCalculationService.calculateDiscountAmount(null, memberId);
 
 		Assertions.assertThat(discountAmount).isEqualTo(new Money(0));
+	}
+
+	@Test
+	void shouldReturnDiscountAmount_whenDiscountRulesApply() {
+		DiscountCalculationService discountCalculationService = new RuleBasedDiscountCalculationService();
+		OrderLine orderLine1 = FixedDomainFactory.createOrderLine("product-1", 1000, 1);
+		OrderLine orderLine2 = FixedDomainFactory.createOrderLine("product-2", 2000, 2);
+		List<OrderLine> orderLines = List.of(orderLine1, orderLine2);
+		MemberId memberId = new MemberId("member-1");
+
+		Money discountAmount = discountCalculationService.calculateDiscountAmount(orderLines, memberId);
+
+		Assertions.assertThat(discountAmount).isEqualTo(new Money(1500));
 	}
 }
