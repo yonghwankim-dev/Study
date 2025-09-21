@@ -32,14 +32,15 @@ class RuleBasedDiscountCalculationServiceTest {
 
 	@Test
 	void shouldReturnDiscountAmount_whenDiscountRulesApply() {
-		DiscountCalculationService discountCalculationService = new RuleBasedDiscountCalculationService();
+		MemberId memberId = new MemberId("member-1");
+		RuleBasedDiscountCalculationService discountCalculationService = new RuleBasedDiscountCalculationService();
+		discountCalculationService.addDiscountRule(memberId, "10PERCENT");
 		OrderLine orderLine1 = FixedDomainFactory.createOrderLine("product-1", 1000, 1);
 		OrderLine orderLine2 = FixedDomainFactory.createOrderLine("product-2", 2000, 2);
 		List<OrderLine> orderLines = List.of(orderLine1, orderLine2);
-		MemberId memberId = new MemberId("member-1");
 
 		Money discountAmount = discountCalculationService.calculateDiscountAmount(orderLines, memberId);
 
-		Assertions.assertThat(discountAmount).isEqualTo(new Money(1500));
+		Assertions.assertThat(discountAmount).isEqualTo(new Money(500));
 	}
 }
