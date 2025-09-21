@@ -1,4 +1,4 @@
-package com.myshop.order.domain.service;
+package com.myshop.order.infrastructure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,9 @@ import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.order.domain.model.OrderLine;
 
-class DiscountCalculationServiceTest {
+class BenefitPolicyDiscountServiceTest {
 
-	private DiscountCalculationService service;
+	private BenefitPolicyDiscountService service;
 
 	private ArrayList<OrderLine> createOrderLine() {
 		ArrayList<OrderLine> orderLines = new ArrayList<>();
@@ -26,7 +26,7 @@ class DiscountCalculationServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		service = new DiscountCalculationService();
+		service = new BenefitPolicyDiscountService();
 	}
 
 	@Test
