@@ -2,6 +2,7 @@ package com.myshop.survey.application;
 
 import org.springframework.stereotype.Service;
 
+import com.myshop.survey.NoPermissionException;
 import com.myshop.survey.domain.Survey;
 import com.myshop.survey.domain.SurveyRepository;
 import com.myshop.survey.domain.service.SurveyPermissionChecker;
@@ -21,7 +22,7 @@ public class CreateSurveyService {
 	public Long createSurvey(CreateSurveyRequest request) {
 		validate(request);
 		if (!permissionChecker.hasUserCreationPermission(request.getRequesterId())) {
-			throw new IllegalArgumentException("no permission");
+			throw new NoPermissionException();
 		}
 		Survey survey = new Survey(request.getTitle());
 		return surveyRepository.save(survey).getId();
