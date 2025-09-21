@@ -17,6 +17,13 @@ public class Survey {
 	}
 
 	public Survey(String title) {
+		setTitle(title);
+	}
+
+	private void setTitle(String title) {
+		if (title == null || title.isBlank()) {
+			throw new IllegalArgumentException("invalid title");
+		}
 		this.title = title;
 	}
 
