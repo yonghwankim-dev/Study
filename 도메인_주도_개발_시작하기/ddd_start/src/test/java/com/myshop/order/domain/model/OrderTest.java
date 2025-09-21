@@ -17,7 +17,7 @@ import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.infrastructure.BenefitPolicyDiscountService;
+import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
 
 class OrderTest {
 
@@ -170,7 +170,7 @@ class OrderTest {
 	@Test
 	void calculateAmounts() {
 		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
-		BenefitPolicyDiscountService service = new BenefitPolicyDiscountService();
+		CouponAndMemberShipDiscountCalculationService service = new CouponAndMemberShipDiscountCalculationService();
 		MemberGrade grade = MemberGrade.vip();
 
 		order.calculateAmounts(service, grade);
@@ -183,7 +183,7 @@ class OrderTest {
 		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 		Coupon coupon = new Coupon(0.1);
 		order.addCoupon(coupon);
-		BenefitPolicyDiscountService service = new BenefitPolicyDiscountService();
+		CouponAndMemberShipDiscountCalculationService service = new CouponAndMemberShipDiscountCalculationService();
 		MemberGrade grade = MemberGrade.vip();
 
 		order.calculateAmounts(service, grade);

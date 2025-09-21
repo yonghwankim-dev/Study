@@ -19,9 +19,9 @@ import com.myshop.order.domain.model.OrderState;
 import com.myshop.order.domain.model.Orderer;
 import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
+import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
 import com.myshop.order.error.ValidationError;
 import com.myshop.order.error.ValidationErrorException;
-import com.myshop.order.infrastructure.BenefitPolicyDiscountService;
 import com.myshop.order.query.dto.OrderRequest;
 
 @Service
@@ -30,14 +30,15 @@ public class PlaceOrderService {
 	private final OrderRepository repository;
 	private final ProductRepository productRepository;
 	private final MemberRepository memberRepository;
-	private final BenefitPolicyDiscountService benefitPolicyDiscountService;
+	private final CouponAndMemberShipDiscountCalculationService couponAndMemberShipDiscountCalculationService;
 
 	public PlaceOrderService(OrderRepository repository, ProductRepository productRepository,
-		MemberRepository memberRepository, BenefitPolicyDiscountService benefitPolicyDiscountService) {
+		MemberRepository memberRepository,
+		CouponAndMemberShipDiscountCalculationService couponAndMemberShipDiscountCalculationService) {
 		this.repository = repository;
 		this.productRepository = productRepository;
 		this.memberRepository = memberRepository;
-		this.benefitPolicyDiscountService = benefitPolicyDiscountService;
+		this.couponAndMemberShipDiscountCalculationService = couponAndMemberShipDiscountCalculationService;
 	}
 
 	@Transactional
@@ -78,7 +79,7 @@ public class PlaceOrderService {
 		List<OrderLine> orderLines = createOrderLines(orderRequest);
 
 		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
-		order.calculateAmounts(benefitPolicyDiscountService, member.getGrade());
+		order.calculateAmounts(couponAndMemberShipDiscountCalculationService, member.getGrade());
 		return order;
 	}
 

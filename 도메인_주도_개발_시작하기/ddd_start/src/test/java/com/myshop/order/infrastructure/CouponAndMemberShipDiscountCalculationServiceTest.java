@@ -12,10 +12,11 @@ import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.order.domain.model.OrderLine;
+import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
 
-class BenefitPolicyDiscountServiceTest {
+class CouponAndMemberShipDiscountCalculationServiceTest {
 
-	private BenefitPolicyDiscountService service;
+	private CouponAndMemberShipDiscountCalculationService service;
 
 	private ArrayList<OrderLine> createOrderLine() {
 		ArrayList<OrderLine> orderLines = new ArrayList<>();
@@ -26,7 +27,7 @@ class BenefitPolicyDiscountServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		service = new BenefitPolicyDiscountService();
+		service = new CouponAndMemberShipDiscountCalculationService();
 	}
 
 	@Test
