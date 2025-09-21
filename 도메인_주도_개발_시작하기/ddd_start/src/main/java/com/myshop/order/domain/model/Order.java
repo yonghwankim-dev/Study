@@ -8,7 +8,7 @@ import java.util.Objects;
 import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
-import com.myshop.order.domain.service.DiscountCalculationService;
+import com.myshop.order.infrastructure.BenefitPolicyDiscountService;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.CollectionTable;
@@ -131,7 +131,7 @@ public class Order {
 		this.state = OrderState.CANCELED;
 	}
 
-	public void calculateAmounts(DiscountCalculationService service, MemberGrade grade) {
+	public void calculateAmounts(BenefitPolicyDiscountService service, MemberGrade grade) {
 		Money totalAmounts = getTotalAmounts();
 		Money discountAmounts = service.calculateDiscountAmounts(this.orderLines, this.coupons, grade);
 		this.paymentAmounts = totalAmounts.minus(discountAmounts);

@@ -3,12 +3,12 @@ package com.myshop.order.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.myshop.order.domain.service.DiscountCalculationService;
+import com.myshop.order.infrastructure.BenefitPolicyDiscountService;
 
 @Configuration
 public class OrderConfig {
 	@Bean
-	public DiscountCalculationService discountCalculationService() {
-		return new DiscountCalculationService();
+	public BenefitPolicyDiscountService discountCalculationService() {
+		return new BenefitPolicyDiscountService();
 	}
 }
