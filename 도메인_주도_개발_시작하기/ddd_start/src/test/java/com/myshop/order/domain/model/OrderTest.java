@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,14 +17,6 @@ import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.domain.model.Address;
-import com.myshop.order.domain.model.Order;
-import com.myshop.order.domain.model.OrderLine;
-import com.myshop.order.domain.model.OrderNo;
-import com.myshop.order.domain.model.OrderState;
-import com.myshop.order.domain.model.Orderer;
-import com.myshop.order.domain.model.Receiver;
-import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.service.DiscountCalculationService;
 
 class OrderTest {
