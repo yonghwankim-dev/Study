@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.myshop.survey.domain.service.FakeSurveyPermissionChecker;
+import com.myshop.survey.infrastructure.FakeSurveyPermissionChecker;
 import com.myshop.survey.query.dto.CreateSurveyRequest;
 
 @SpringBootTest
