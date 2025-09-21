@@ -17,7 +17,7 @@ import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.domain.discount.DiscountCalculationService;
+import com.myshop.order.domain.service.DiscountCalculationService;
 
 class OrderTest {
 

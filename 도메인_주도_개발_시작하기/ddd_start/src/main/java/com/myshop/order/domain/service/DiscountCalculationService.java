@@ -1,4 +1,4 @@
-package com.myshop.order.domain.discount;
+package com.myshop.order.domain.service;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import com.myshop.order.domain.OrderLine;
 
 public class DiscountCalculationService {
 
-	// todo: Coupon 테스트 케이스 추가
 	public Money calculateDiscountAmounts(List<OrderLine> orderLines, List<Coupon> coupons, MemberGrade grade) {
 		Money couponDiscount = coupons.stream()
 			.map(coupon -> calculateDiscount(coupon, orderLines))

@@ -1,4 +1,4 @@
-package com.myshop.order.domain.discount;
+package com.myshop.order.domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,13 @@ import com.myshop.order.domain.OrderLine;
 class DiscountCalculationServiceTest {
 
 	private DiscountCalculationService service;
+
+	private ArrayList<OrderLine> createOrderLine() {
+		ArrayList<OrderLine> orderLines = new ArrayList<>();
+		orderLines.add(FixedDomainFactory.createOrderLine("product-1", 1000, 1));
+		orderLines.add(FixedDomainFactory.createOrderLine("product-2", 2000, 1));
+		return orderLines;
+	}
 
 	@BeforeEach
 	void setUp() {
@@ -59,12 +66,4 @@ class DiscountCalculationServiceTest {
 
 		Assertions.assertThat(money).isEqualTo(new Money(600));
 	}
-
-	private ArrayList<OrderLine> createOrderLine() {
-		ArrayList<OrderLine> orderLines = new ArrayList<>();
-		orderLines.add(FixedDomainFactory.createOrderLine("product-1", 1000, 1));
-		orderLines.add(FixedDomainFactory.createOrderLine("product-2", 2000, 1));
-		return orderLines;
-	}
-
 }
