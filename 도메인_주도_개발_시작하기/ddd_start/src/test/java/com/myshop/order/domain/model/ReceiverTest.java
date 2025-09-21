@@ -1,10 +1,8 @@
-package com.myshop.order;
+package com.myshop.order.domain.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
-import com.myshop.order.domain.model.Receiver;
 
 class ReceiverTest {
 

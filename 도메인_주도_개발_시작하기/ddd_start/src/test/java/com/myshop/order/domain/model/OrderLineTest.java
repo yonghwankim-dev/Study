@@ -1,4 +1,4 @@
-package com.myshop.order;
+package com.myshop.order.domain.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
-import com.myshop.order.domain.model.OrderLine;
 
 class OrderLineTest {
 
