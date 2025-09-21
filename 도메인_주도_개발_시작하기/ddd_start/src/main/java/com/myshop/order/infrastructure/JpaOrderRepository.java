@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
 import com.myshop.order.domain.OrderNoGenerator;
-import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.Specification;
+import com.myshop.order.domain.repository.OrderRepository;
 
 @Repository
 public class JpaOrderRepository implements OrderRepository {

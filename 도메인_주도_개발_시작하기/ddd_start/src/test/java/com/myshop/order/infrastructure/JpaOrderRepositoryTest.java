@@ -16,7 +16,7 @@ import com.myshop.common.model.Money;
 import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.Order;
 import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderRepository;
+import com.myshop.order.domain.repository.OrderRepository;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
