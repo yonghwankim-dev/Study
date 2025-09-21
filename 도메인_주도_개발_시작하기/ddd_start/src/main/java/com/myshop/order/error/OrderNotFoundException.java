@@ -1,4 +1,4 @@
-package com.myshop.order;
+package com.myshop.order.error;
 
 import com.myshop.order.domain.model.OrderNo;
 

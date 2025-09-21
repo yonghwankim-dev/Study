@@ -17,16 +17,16 @@ import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
-import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderLine;
 import com.myshop.order.domain.model.OrderNo;
-import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.domain.model.OrderState;
 import com.myshop.order.domain.model.Orderer;
 import com.myshop.order.domain.model.Receiver;
 import com.myshop.order.domain.model.ShippingInfo;
+import com.myshop.order.domain.repository.OrderRepository;
+import com.myshop.order.error.OrderNotFoundException;
 
 class ChangeOrderServiceTest {
 
