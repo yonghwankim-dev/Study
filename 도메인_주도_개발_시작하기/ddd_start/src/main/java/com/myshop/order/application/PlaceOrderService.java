@@ -21,7 +21,7 @@ import com.myshop.order.domain.OrderRepository;
 import com.myshop.order.domain.OrderState;
 import com.myshop.order.domain.Orderer;
 import com.myshop.order.domain.ShippingInfo;
-import com.myshop.order.domain.discount.DiscountCalculationService;
+import com.myshop.order.domain.service.DiscountCalculationService;
 import com.myshop.order.query.dto.OrderRequest;
 
 @Service
