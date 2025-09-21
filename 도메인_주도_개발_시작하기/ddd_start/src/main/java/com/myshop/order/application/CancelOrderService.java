@@ -2,12 +2,12 @@ package com.myshop.order.application;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.model.CancelPolicy;
 import com.myshop.order.domain.model.Canceller;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.repository.OrderRepository;
+import com.myshop.order.error.OrderNotFoundException;
 
 public class CancelOrderService {
 

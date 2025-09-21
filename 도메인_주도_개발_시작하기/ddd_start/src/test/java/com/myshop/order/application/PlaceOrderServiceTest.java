@@ -26,13 +26,13 @@ import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
-import com.myshop.order.ValidationError;
-import com.myshop.order.ValidationErrorException;
 import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.model.Receiver;
 import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
+import com.myshop.order.error.ValidationError;
+import com.myshop.order.error.ValidationErrorException;
 import com.myshop.order.query.dto.OrderRequest;
 import com.myshop.store.domain.StoreId;
 

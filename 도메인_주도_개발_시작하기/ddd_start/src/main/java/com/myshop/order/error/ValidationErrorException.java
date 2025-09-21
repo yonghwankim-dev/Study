@@ -1,4 +1,4 @@
-package com.myshop.order;
+package com.myshop.order.error;
 
 import java.util.List;
 

@@ -12,8 +12,6 @@ import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.order.ValidationError;
-import com.myshop.order.ValidationErrorException;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderLine;
 import com.myshop.order.domain.model.OrderNo;
@@ -22,6 +20,8 @@ import com.myshop.order.domain.model.Orderer;
 import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.domain.service.DiscountCalculationService;
+import com.myshop.order.error.ValidationError;
+import com.myshop.order.error.ValidationErrorException;
 import com.myshop.order.query.dto.OrderRequest;
 
 @Service

@@ -4,11 +4,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.order.OrderNotFoundException;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
+import com.myshop.order.error.OrderNotFoundException;
 
 public class ChangeOrderService {
 
