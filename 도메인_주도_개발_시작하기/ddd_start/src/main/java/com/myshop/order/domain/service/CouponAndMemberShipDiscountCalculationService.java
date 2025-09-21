@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure;
+package com.myshop.order.domain.service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.order.domain.model.OrderLine;
 
-public class BenefitPolicyDiscountService {
+public class CouponAndMemberShipDiscountCalculationService {
 
 	public Money calculateDiscountAmounts(List<OrderLine> orderLines, List<Coupon> coupons, MemberGrade grade) {
 		Money couponDiscount = coupons.stream()
