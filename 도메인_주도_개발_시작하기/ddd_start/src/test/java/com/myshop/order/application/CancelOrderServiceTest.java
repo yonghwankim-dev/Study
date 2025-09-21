@@ -11,16 +11,16 @@ import org.mockito.BDDMockito;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.domain.Address;
-import com.myshop.order.domain.CancelPolicy;
-import com.myshop.order.domain.Canceller;
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderLine;
-import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderState;
-import com.myshop.order.domain.Orderer;
-import com.myshop.order.domain.Receiver;
-import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.model.Address;
+import com.myshop.order.domain.model.CancelPolicy;
+import com.myshop.order.domain.model.Canceller;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrderLine;
+import com.myshop.order.domain.model.OrderNo;
+import com.myshop.order.domain.model.OrderState;
+import com.myshop.order.domain.model.Orderer;
+import com.myshop.order.domain.model.Receiver;
+import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
 
 class CancelOrderServiceTest {

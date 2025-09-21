@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderNoGenerator;
-import com.myshop.order.domain.Specification;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrderNo;
+import com.myshop.order.domain.model.OrderNoGenerator;
+import com.myshop.order.domain.model.Specification;
 import com.myshop.order.domain.repository.OrderRepository;
 
 @Repository

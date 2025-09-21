@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 public class OrdererSpec implements Specification<Order> {
 	private String ordererId;

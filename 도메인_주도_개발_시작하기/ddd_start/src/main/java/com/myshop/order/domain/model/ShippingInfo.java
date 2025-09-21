@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;

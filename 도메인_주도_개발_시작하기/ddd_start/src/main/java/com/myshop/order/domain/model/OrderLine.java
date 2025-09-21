@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;

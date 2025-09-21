@@ -20,9 +20,9 @@ import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
-import com.myshop.order.domain.Address;
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderViewDao;
+import com.myshop.order.domain.model.Address;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.repository.OrderViewDao;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.query.dto.OrderView;
 

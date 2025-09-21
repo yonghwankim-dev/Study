@@ -20,8 +20,9 @@ import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.application.OrderProduct;
-import com.myshop.order.domain.Receiver;
-import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.model.Receiver;
+import com.myshop.order.domain.model.ShippingInfo;
+import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.query.dto.OrderRequest;
 
@@ -111,7 +112,7 @@ class OrderControllerTest {
 	private ShippingInfo createShippingInfo() {
 		Receiver receiver = new Receiver("홍길동", "010-1234-5678");
 		String message = "부재시 경비실에 맡겨주세요.";
-		com.myshop.order.domain.Address address = new com.myshop.order.domain.Address("서울시 강남구 역삼동", "101동 202호",
+		Address address = new Address("서울시 강남구 역삼동", "101동 202호",
 			"12345");
 		return new ShippingInfo(receiver, message, address);
 	}

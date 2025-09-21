@@ -11,7 +11,7 @@ import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
-import com.myshop.order.domain.OrderLine;
+import com.myshop.order.domain.model.OrderLine;
 
 class DiscountCalculationServiceTest {
 

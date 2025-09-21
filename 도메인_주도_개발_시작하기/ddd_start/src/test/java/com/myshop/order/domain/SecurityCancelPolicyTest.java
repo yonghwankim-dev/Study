@@ -7,6 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
+import com.myshop.order.domain.model.CancelPolicy;
+import com.myshop.order.domain.model.Canceller;
+import com.myshop.order.domain.model.Order;
 import com.myshop.order.infrastructure.domain.SecurityCancelPolicy;
 
 class SecurityCancelPolicyTest {

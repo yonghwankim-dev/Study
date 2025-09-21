@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 import com.myshop.member.domain.MemberId;
 
@@ -8,7 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class Orderer{
+public class Orderer {
 	@AttributeOverrides(
 		@AttributeOverride(name = "id", column = @Column(name = "orderer_id"))
 	)

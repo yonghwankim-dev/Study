@@ -3,9 +3,9 @@ package com.myshop.order.query.dto;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderNo;
-import com.myshop.order.domain.OrderState;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrderNo;
+import com.myshop.order.domain.model.OrderState;
 
 public class OrderView {
 

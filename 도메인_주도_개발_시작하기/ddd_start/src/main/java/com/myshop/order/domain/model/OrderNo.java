@@ -1,4 +1,4 @@
-package com.myshop.order.domain;
+package com.myshop.order.domain.model;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,7 +17,7 @@ public class OrderNo implements Serializable, Comparable<OrderNo> {
 	public OrderNo(String id) {
 		this.id = id;
 	}
-	
+
 	public String getId() {
 		return id;
 	}

@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.myshop.order.domain.Order;
-import com.myshop.order.domain.OrderNo;
+import com.myshop.order.domain.model.Order;
+import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.query.dto.OrderSummary;
 
 public interface SpringDataJpaOrderRepository extends JpaRepository<Order, OrderNo> {

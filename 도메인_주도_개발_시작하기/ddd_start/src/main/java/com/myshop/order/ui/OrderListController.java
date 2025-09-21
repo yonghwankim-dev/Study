@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.MemberAuthentication;
-import com.myshop.order.domain.OrderViewDao;
-import com.myshop.order.domain.Orderer;
+import com.myshop.order.domain.repository.OrderViewDao;
+import com.myshop.order.domain.model.Orderer;
 import com.myshop.order.query.dto.OrderView;
 
 @RestController

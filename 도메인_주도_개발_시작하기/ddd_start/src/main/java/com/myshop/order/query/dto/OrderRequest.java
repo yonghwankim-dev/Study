@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.application.OrderProduct;
-import com.myshop.order.domain.ShippingInfo;
+import com.myshop.order.domain.model.ShippingInfo;
 
 public class OrderRequest {
 	private List<OrderProduct> orderProducts;
