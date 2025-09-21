@@ -30,4 +30,15 @@ class CreateSurveyServiceTest {
 			.isNotNull()
 			.isGreaterThan(0);
 	}
+
+	@Test
+	void shouldThrowException_whenInvalidTitle() {
+		CreateSurveyRequest request = new CreateSurveyRequest(null);
+
+		Throwable throwable = Assertions.catchThrowable(() -> service.createSurvey(request));
+
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessageContaining("invalid title");
+	}
 }
