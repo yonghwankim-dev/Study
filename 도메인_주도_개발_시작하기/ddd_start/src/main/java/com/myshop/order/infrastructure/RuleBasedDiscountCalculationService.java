@@ -11,7 +11,15 @@ import com.myshop.order.domain.service.DiscountCalculationService;
 
 public class RuleBasedDiscountCalculationService implements DiscountCalculationService {
 
-	private final Map<MemberId, String> discountRules = new HashMap<>();
+	private final Map<MemberId, String> discountRules;
+
+	public RuleBasedDiscountCalculationService() {
+		this(new HashMap<>());
+	}
+
+	public RuleBasedDiscountCalculationService(Map<MemberId, String> discountRules) {
+		this.discountRules = discountRules;
+	}
 
 	public void addDiscountRule(MemberId memberId, String rule) {
 		discountRules.put(memberId, rule);

@@ -3,6 +3,7 @@ package com.myshop.order.domain.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.assertj.core.api.Assertions;
@@ -18,6 +19,8 @@ import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
+import com.myshop.order.domain.service.DiscountCalculationService;
+import com.myshop.order.infrastructure.RuleBasedDiscountCalculationService;
 
 class OrderTest {
 
@@ -189,5 +192,16 @@ class OrderTest {
 		order.calculateAmounts(service, grade);
 
 		Assertions.assertThat(order.getPaymentAmounts()).isEqualTo(new Money(1600));
+	}
+
+	@Test
+	void calculateAmounts_whenPassDiscountCalculationService() {
+		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+		Map<MemberId, String> rules = Map.of(orderer.getMemberId(), "10PERCENT");
+		DiscountCalculationService service = new RuleBasedDiscountCalculationService(rules);
+
+		order.calculateAmounts(service);
+
+		Assertions.assertThat(order.getPaymentAmounts()).isEqualTo(new Money(1800));
 	}
 }
