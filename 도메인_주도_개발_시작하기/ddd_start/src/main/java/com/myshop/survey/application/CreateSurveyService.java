@@ -16,7 +16,15 @@ public class CreateSurveyService {
 	}
 
 	public Long createSurvey(CreateSurveyRequest request) {
+		validate(request);
 		Survey survey = new Survey(request.getTitle());
 		return surveyRepository.save(survey).getId();
+	}
+
+	private void validate(CreateSurveyRequest request) {
+		String title = request.getTitle();
+		if (title == null || title.isBlank()) {
+			throw new IllegalArgumentException("invalid title");
+		}
 	}
 }
