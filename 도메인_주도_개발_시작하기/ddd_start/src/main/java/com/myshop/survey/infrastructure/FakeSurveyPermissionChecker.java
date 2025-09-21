@@ -16,6 +16,10 @@ public class FakeSurveyPermissionChecker implements SurveyPermissionChecker {
 		creatableUserIds.add(userId);
 	}
 
+	public void clear() {
+		creatableUserIds.clear();
+	}
+
 	@Override
 	public boolean hasUserCreationPermission(Long userId) {
 		return creatableUserIds.contains(userId);
