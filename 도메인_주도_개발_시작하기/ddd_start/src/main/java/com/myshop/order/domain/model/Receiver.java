@@ -43,4 +43,12 @@ public class Receiver {
 	public int hashCode() {
 		return Objects.hash(name, phone);
 	}
+
+	@Override
+	public String toString() {
+		return "Receiver{" +
+			"name='" + name + '\'' +
+			", phone='" + phone + '\'' +
+			'}';
+	}
 }

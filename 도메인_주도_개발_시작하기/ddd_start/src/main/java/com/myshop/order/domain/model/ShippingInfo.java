@@ -1,5 +1,7 @@
 package com.myshop.order.domain.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -34,5 +36,30 @@ public class ShippingInfo {
 
 	public Address getAddress() {
 		return address;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		ShippingInfo that = (ShippingInfo)object;
+		return Objects.equals(receiver, that.receiver) && Objects.equals(message, that.message)
+			&& Objects.equals(address, that.address);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(receiver, message, address);
+	}
+
+	@Override
+	public String toString() {
+		return "ShippingInfo{" +
+			"receiver=" + receiver +
+			", message='" + message + '\'' +
+			", address=" + address +
+			'}';
 	}
 }

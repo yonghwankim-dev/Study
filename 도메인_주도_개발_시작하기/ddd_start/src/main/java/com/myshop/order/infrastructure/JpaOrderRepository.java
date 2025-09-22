@@ -33,6 +33,11 @@ public class JpaOrderRepository implements OrderRepository {
 	}
 
 	@Override
+	public Optional<Order> findByIdForUpdate(OrderNo id) {
+		return repository.findByIdForUpdate(id);
+	}
+
+	@Override
 	public List<Order> findAll() {
 		return repository.findAll();
 	}

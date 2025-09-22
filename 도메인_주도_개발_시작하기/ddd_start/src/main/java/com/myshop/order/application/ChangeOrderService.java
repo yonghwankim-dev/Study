@@ -1,5 +1,6 @@
 package com.myshop.order.application;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.member.domain.Member;
@@ -10,6 +11,7 @@ import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.error.OrderNotFoundException;
 
+@Service
 public class ChangeOrderService {
 
 	private final OrderRepository orderRepository;
@@ -22,7 +24,7 @@ public class ChangeOrderService {
 
 	@Transactional
 	public void changeShippingInfo(OrderNo id, ShippingInfo newShippingInfo, boolean useNewShippingAddrAsMemberAddr) {
-		Order order = orderRepository.findById(id)
+		Order order = orderRepository.findByIdForUpdate(id)
 			.orElseThrow(() -> new OrderNotFoundException(id));
 		order.changeShippingInfo(newShippingInfo);
 		if (useNewShippingAddrAsMemberAddr) {

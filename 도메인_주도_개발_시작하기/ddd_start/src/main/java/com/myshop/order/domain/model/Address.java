@@ -1,5 +1,7 @@
 package com.myshop.order.domain.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
@@ -31,5 +33,30 @@ public class Address {
 
 	public String getZipCode() {
 		return zipCode;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object)
+			return true;
+		if (object == null || getClass() != object.getClass())
+			return false;
+		Address address = (Address)object;
+		return Objects.equals(address1, address.address1) && Objects.equals(address2, address.address2)
+			&& Objects.equals(zipCode, address.zipCode);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address1, address2, zipCode);
+	}
+
+	@Override
+	public String toString() {
+		return "Address{" +
+			"address1='" + address1 + '\'' +
+			", address2='" + address2 + '\'' +
+			", zipCode='" + zipCode + '\'' +
+			'}';
 	}
 }
