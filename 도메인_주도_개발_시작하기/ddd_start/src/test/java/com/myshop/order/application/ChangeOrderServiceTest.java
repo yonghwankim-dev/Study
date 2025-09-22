@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -159,5 +160,60 @@ class ChangeOrderServiceTest {
 			.isEqualTo(OrderState.SHIPPED);
 		org.assertj.core.api.Assertions.assertThat(findOrder.getShippingInfo())
 			.isEqualTo(shippingInfo);
+	}
+
+	@DisplayName("비선점 잠금에 의해서 한 스레드가 배송지 정보를 변경하고, 다른 스레드가 동시에 배송지 정보를 변경할 때 낙관적 잠금 오류가 발생한다.")
+	@Test
+	void shouldFailToChangeShippingInfoDueToOptimisticLock() {
+		CountDownLatch thread1Ready = new CountDownLatch(1);
+		AtomicReference<Throwable> thread2Exception = new AtomicReference<>();
+
+		Thread thread1 = new Thread(() -> {
+			transactionTemplate.executeWithoutResult(status -> {
+				Order order = orderRepository.findById(id).orElseThrow();
+				System.out.println("Thread1 version = " + order.getVersion());
+				try {
+					Thread.sleep(100); // thread2가 거의 동시에 실행되도록 잠시 대기
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				}
+				order.changeShippingInfo(createNewShippingInfo());
+			});
+
+			thread1Ready.countDown(); // thread1이 변경을 완료했음을 알림
+		});
+
+		Thread thread2 = new Thread(() -> {
+			Throwable throwable = catchThrowable(() ->
+				transactionTemplate.executeWithoutResult(status -> {
+						Order order = orderRepository.findById(id).orElseThrow();
+						System.out.println("Thread2 version = " + order.getVersion());
+						try {
+							thread1Ready.await(); // thread1이 변경을 완료할 때까지 대기
+						} catch (InterruptedException e) {
+							throw new RuntimeException(e);
+						}
+						order.changeShippingInfo(createNewShippingInfo());
+					}
+				)
+			);
+
+			thread2Exception.set(throwable);
+		});
+
+		thread1.start();
+		thread2.start();
+
+		try {
+			thread1.join();
+			thread2.join();
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		Throwable throwable = thread2Exception.get();
+		org.assertj.core.api.Assertions.assertThat(throwable)
+			.isInstanceOf(org.springframework.orm.ObjectOptimisticLockingFailureException.class)
+			.hasMessageContaining("Row was updated or deleted by another transaction");
 	}
 }
