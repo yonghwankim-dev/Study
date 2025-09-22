@@ -1,6 +1,7 @@
 package com.myshop.member.infrastructure;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +27,11 @@ public class JpaMemberRepository implements MemberRepository {
 	@Override
 	public List<Member> findByIdIn(String[] blockingIds) {
 		return repository.findByIdIn(blockingIds);
+	}
+
+	@Override
+	public Optional<Member> findByIdForUpdate(MemberId id) {
+		return repository.findByIdForUpdate(id);
 	}
 
 	@Override

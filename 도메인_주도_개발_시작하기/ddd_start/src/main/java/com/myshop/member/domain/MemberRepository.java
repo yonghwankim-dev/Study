@@ -1,11 +1,14 @@
 package com.myshop.member.domain;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberRepository {
 	Member findById(MemberId id);
 
 	List<Member> findByIdIn(String[] blockingIds);
+
+	Optional<Member> findByIdForUpdate(MemberId id);
 
 	int countsById(MemberId memberId);
 
