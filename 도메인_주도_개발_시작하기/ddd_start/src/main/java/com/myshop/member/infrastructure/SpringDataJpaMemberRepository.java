@@ -21,7 +21,9 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Mem
 	List<Member> findByIdIn(@Param("blockingIds") String[] blockingIds);
 
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	@QueryHints(@QueryHint(name = "javax.persistence.lock.timeout", value = "2000"))
+	@QueryHints({
+		@QueryHint(name = "javax.persistence.lock.timeout", value = "2000")
+	})
 	@Query("SELECT m FROM Member m WHERE m.id = :id")
 	Optional<Member> findByIdForUpdate(@Param("id") MemberId id);
 
