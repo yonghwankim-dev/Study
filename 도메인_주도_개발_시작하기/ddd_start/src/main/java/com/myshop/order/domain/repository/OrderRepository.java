@@ -10,6 +10,8 @@ import com.myshop.order.domain.model.Specification;
 public interface OrderRepository {
 	Optional<Order> findById(OrderNo id);
 
+	Optional<Order> findByIdForUpdate(OrderNo id);
+
 	List<Order> findByOrdererId(String ordererId, int startRow, int size);
 
 	List<Order> findAll();

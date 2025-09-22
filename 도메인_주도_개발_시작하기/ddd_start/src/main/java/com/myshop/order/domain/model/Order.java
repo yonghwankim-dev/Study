@@ -35,6 +35,7 @@ public class Order {
 
 	@Version
 	private long version;
+
 	@Embedded
 	private Orderer orderer;
 
@@ -127,6 +128,10 @@ public class Order {
 		}
 	}
 
+	public void changeState(OrderState state) {
+		this.state = state;
+	}
+
 	public void cancel() {
 		verifyNotYetShipped();
 		this.state = OrderState.CANCELED;
@@ -168,6 +173,10 @@ public class Order {
 
 	public Money getPaymentAmounts() {
 		return paymentAmounts;
+	}
+
+	public ShippingInfo getShippingInfo() {
+		return shippingInfo;
 	}
 
 	@Override
