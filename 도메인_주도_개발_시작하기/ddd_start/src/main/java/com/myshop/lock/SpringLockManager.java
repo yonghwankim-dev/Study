@@ -117,6 +117,7 @@ public class SpringLockManager implements LockManager {
 		);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public void extendLockExpiration(LockId lockId, long inc) throws LockException {
 		Optional<LockData> lockDataOpt = getLockData(lockId);
