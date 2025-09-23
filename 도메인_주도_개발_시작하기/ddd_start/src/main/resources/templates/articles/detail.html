@@ -9,6 +9,12 @@
 </head>
 <body>
 <h1>Detail Article</h1>
+
+<!-- 에러 메시지 표시 -->
+<div th:if="${#strings.equals(param.error, 'alreadyLocked')}" style="color:red; font-weight:bold;">
+    This article is currently being edited by another user.
+</div>
+
 <p><strong>Title:</strong> <span th:text="${article.title}">Sample Title</span></p>
 <p><strong>Content:</strong></p>
 <p th:text="${article.content}">Sample Content</p>

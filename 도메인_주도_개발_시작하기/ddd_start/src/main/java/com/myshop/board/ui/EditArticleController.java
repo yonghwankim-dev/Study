@@ -9,6 +9,7 @@ import com.myshop.board.application.DetailArticleService;
 import com.myshop.board.domain.Article;
 import com.myshop.board.query.dto.ArticleAndLockId;
 import com.myshop.board.query.dto.ArticleItem;
+import com.myshop.lock.error.AlreadyLockedException;
 
 @Controller
 public class EditArticleController {
@@ -21,7 +22,12 @@ public class EditArticleController {
 
 	@GetMapping("/articles/edit")
 	public String editForm(@RequestParam("id") Long id, ModelMap model) {
-		ArticleAndLockId articleAndLockId = service.getArticleAndLockId(id);// 잠금 선점
+		ArticleAndLockId articleAndLockId;
+		try {
+			articleAndLockId = service.getArticleAndLockId(id);// 잠금 선점
+		} catch (AlreadyLockedException exception) {
+			return "redirect:/articles/detail?id=" + id + "&error=alreadyLocked";
+		}
 
 		Article article = articleAndLockId.getArticle();
 		ArticleItem item = new ArticleItem(article.getId(), article.getTitle(), article.getContent().getContent());
