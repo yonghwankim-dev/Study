@@ -4,14 +4,16 @@ public class UpdateArticleRequest {
 	private Long id;
 	private String title;
 	private String content;
+	private String lockId;
 
 	public UpdateArticleRequest() {
 	}
 
-	public UpdateArticleRequest(Long id, String title, String content) {
+	public UpdateArticleRequest(Long id, String title, String content, String lockId) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
+		this.lockId = lockId;
 	}
 
 	public Long getId() {
@@ -26,6 +28,10 @@ public class UpdateArticleRequest {
 		return content;
 	}
 
+	public String getLockId() {
+		return lockId;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -36,5 +42,9 @@ public class UpdateArticleRequest {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public void setLockId(String lockId) {
+		this.lockId = lockId;
 	}
 }
