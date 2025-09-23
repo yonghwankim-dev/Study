@@ -46,6 +46,14 @@ public class Article {
 		this.deleted = true;
 	}
 
+	public void changeTitle(String title) {
+		this.title = title;
+	}
+
+	public void changeContent(String content) {
+		this.content = new ArticleContent(content, this.content.getContentType());
+	}
+
 	public boolean isDeleted() {
 		return deleted;
 	}
