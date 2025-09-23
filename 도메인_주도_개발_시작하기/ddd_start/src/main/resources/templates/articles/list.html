@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Article</title>
+</head>
+<body>
+<h1>List Article</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="article : ${articles}">
+        <td th:text="${article.id}">1</td>
+        <td th:text="${article.title}">Sample Title</td>
+        <td th:text="${article.content}">Sample Content</td>
+        <td>
+            <a th:href="@{'/articles/detail?id=' + ${article.id}}">View Details</a>
+        </td>
+    </tr>
+    </tbody>
+</body>
+</html>
