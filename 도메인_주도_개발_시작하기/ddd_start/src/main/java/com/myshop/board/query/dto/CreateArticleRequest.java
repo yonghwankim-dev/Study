@@ -25,4 +25,16 @@ public class CreateArticleRequest {
 	public String getAuthorId() {
 		return authorId;
 	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setAuthorId(String authorId) {
+		this.authorId = authorId;
+	}
 }

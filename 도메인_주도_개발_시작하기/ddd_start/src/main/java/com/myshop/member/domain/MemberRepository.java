@@ -10,6 +10,8 @@ public interface MemberRepository {
 
 	Optional<Member> findByIdForUpdate(MemberId id);
 
+	Optional<Member> findByEmail(String email);
+
 	int countsById(MemberId memberId);
 
 	void save(Member member);

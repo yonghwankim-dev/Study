@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.myshop.member.domain.Member;
-import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.query.dto.MemberAuthentication;
 
@@ -20,8 +19,8 @@ public class MemberDetailService implements UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-		Member member = memberRepository.findById(new MemberId(memberId));
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Member member = memberRepository.findByEmail(email).orElseThrow();
 
 		return new MemberAuthentication(
 			member.getId().getId(),
