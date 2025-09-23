@@ -23,6 +23,7 @@ public class ListArticleController {
 	public String list(ModelMap model) {
 		List<Article> articles = listArticleService.getAllArticles();
 		List<ArticleItem> items = articles.stream()
+			.filter(article -> !article.isDeleted())
 			.map(article -> new ArticleItem(article.getId(), article.getTitle(), article.getContent().getContent()))
 			.toList();
 		model.addAttribute("articles", items);

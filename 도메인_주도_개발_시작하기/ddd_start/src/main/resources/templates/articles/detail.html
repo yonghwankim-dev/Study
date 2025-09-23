@@ -13,5 +13,10 @@
 <p><strong>Content:</strong></p>
 <p th:text="${article.content}">Sample Content</p>
 <a th:href="@{'/articles/edit?id=' + ${article.id}}">Edit Article</a>
+<!-- delete button -->
+<form th:action="@{'/articles/delete?id=' + ${article.id}}" method="post" style="display:inline;">
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this article?');">Delete Article
+    </button>
+</form>
 </body>
 </html>
