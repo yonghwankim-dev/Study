@@ -26,7 +26,7 @@ public class WebSecurityConfig {
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 		http.formLogin(configurer -> {
 			configurer.loginProcessingUrl("/member/login")
-				.usernameParameter("memberId")
+				.usernameParameter("email")
 				.passwordParameter("password")
 				.permitAll();
 		});

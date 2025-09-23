@@ -35,6 +35,11 @@ public class JpaMemberRepository implements MemberRepository {
 	}
 
 	@Override
+	public Optional<Member> findByEmail(String email) {
+		return repository.findByEmail(email);
+	}
+
+	@Override
 	public int countsById(MemberId memberId) {
 		return repository.countById(memberId);
 	}

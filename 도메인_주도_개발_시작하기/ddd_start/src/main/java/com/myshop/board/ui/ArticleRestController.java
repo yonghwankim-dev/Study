@@ -2,7 +2,6 @@ package com.myshop.board.ui;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.board.application.CreateArticleService;
@@ -18,7 +17,7 @@ public class ArticleRestController {
 	}
 
 	@PostMapping("/articles")
-	public ResponseEntity<Void> createArticle(@RequestBody CreateArticleRequest request) {
+	public ResponseEntity<Void> createArticle(CreateArticleRequest request) {
 		createArticleService.create(request);
 		return ResponseEntity.ok().build();
 	}
