@@ -12,6 +12,8 @@ public interface OrderRepository {
 
 	Optional<Order> findByIdForUpdate(OrderNo id);
 
+	Optional<Order> findAndForceVersionIncrement(OrderNo id);
+
 	List<Order> findByOrdererId(String ordererId, int startRow, int size);
 
 	List<Order> findAll();

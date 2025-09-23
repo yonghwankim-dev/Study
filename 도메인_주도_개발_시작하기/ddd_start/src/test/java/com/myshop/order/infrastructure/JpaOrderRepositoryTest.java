@@ -3,6 +3,7 @@ package com.myshop.order.infrastructure;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
@@ -24,6 +26,9 @@ class JpaOrderRepositoryTest {
 
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@Autowired
+	private TransactionTemplate transactionTemplate;
 
 	@AfterEach
 	void tearDown() {
@@ -80,5 +85,19 @@ class JpaOrderRepositoryTest {
 		orderRepository.delete(order);
 
 		Assertions.assertThat(orderRepository.findById(orderNo)).isEmpty();
+	}
+
+	@Test
+	void findAndForceVersionIncrement() {
+		String orderId = "1234567890";
+		saveOrder(orderId);
+
+		Order findOrder = transactionTemplate.execute(status -> {
+			Optional<Order> order = orderRepository.findAndForceVersionIncrement(new OrderNo(orderId));
+			Assertions.assertThat(order).isPresent();
+			Assertions.assertThat(order.get().getVersion()).isEqualTo(1L);
+			return order.orElseThrow();
+		});
+		Assertions.assertThat(findOrder.getVersion()).isEqualTo(2L);
 	}
 }

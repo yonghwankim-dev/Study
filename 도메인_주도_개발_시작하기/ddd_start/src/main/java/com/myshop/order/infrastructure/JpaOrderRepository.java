@@ -38,6 +38,11 @@ public class JpaOrderRepository implements OrderRepository {
 	}
 
 	@Override
+	public Optional<Order> findAndForceVersionIncrement(OrderNo id) {
+		return repository.findAndForceVersionIncrement(id);
+	}
+
+	@Override
 	public List<Order> findAll() {
 		return repository.findAll();
 	}

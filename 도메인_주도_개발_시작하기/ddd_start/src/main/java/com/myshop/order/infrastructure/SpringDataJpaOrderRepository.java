@@ -33,5 +33,10 @@ public interface SpringDataJpaOrderRepository extends JpaRepository<Order, Order
 	@Query("SELECT o FROM Order o WHERE o.orderNo = :id")
 	Optional<Order> findByIdForUpdate(@Param("id") OrderNo id);
 
+	@Lock(LockModeType.OPTIMISTIC_FORCE_INCREMENT)
+	@QueryHints(@QueryHint(name = "javax.persistence.lock.timeout", value = "2000"))
+	@Query("SELECT o FROM Order o WHERE o.orderNo = :id")
+	Optional<Order> findAndForceVersionIncrement(@Param("id") OrderNo id);
+
 	List<Order> findAll(Specification<OrderSummary> spec);
 }
