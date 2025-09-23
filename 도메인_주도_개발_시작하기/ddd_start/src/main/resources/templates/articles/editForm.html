@@ -20,6 +20,7 @@
         <textarea id="content" name="content" rows="10" cols="50" required
                   th:text="${article.content}"></textarea>
     </p>
+    <input type="hidden" name="lockId" th:value="${lockId.value}"/>
     <button type="submit">Save Changes</button>
 </form>
 </body>

@@ -1,8 +1,8 @@
 package com.myshop.board.ui;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.myshop.board.application.UpdateArticleService;
 import com.myshop.board.query.dto.UpdateArticleRequest;
@@ -17,8 +17,9 @@ public class UpdateArticleRestController {
 	}
 
 	@PostMapping("/articles/edit")
-	public ResponseEntity<Void> updateArticle(UpdateArticleRequest request) {
+	public ModelAndView updateArticle(UpdateArticleRequest request) {
 		service.update(request);
-		return ResponseEntity.ok().build();
+		return new ModelAndView("articles/detail")
+			.addObject("id", request.getId());
 	}
 }
