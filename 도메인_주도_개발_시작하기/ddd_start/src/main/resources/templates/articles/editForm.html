@@ -23,5 +23,35 @@
     <input type="hidden" name="lockId" th:value="${lockId.value}"/>
     <button type="submit">Save Changes</button>
 </form>
+
+<!-- ajax를 이용하여 1분 주기로 /locks/extend 경로에 lockId를 전달하여 연장 요청함-->
+<script>
+    const lockId = "[[${lockId.value}]]";
+
+    function extendLock() {
+        fetch('/locks/extend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({'lockId': lockId})
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Lock extended successfully");
+                } else {
+                    console.error("Failed to extend lock");
+                    alert("Failed to extend lock. You may lose your editing session.");
+                }
+            })
+            .catch(error => {
+                console.error('Error extending lock:', error);
+                alert('Error extending lock. You may lose your editing session.');
+            });
+    }
+
+    // 60초(60000ms)마다 extendLock 함수 호출
+    setInterval(extendLock, 60000);
+</script>
 </body>
 </html>
