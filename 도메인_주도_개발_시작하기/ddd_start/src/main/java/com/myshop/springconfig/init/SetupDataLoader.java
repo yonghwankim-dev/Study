@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.myshop.catalog.application.product.NewProductRequest;
 import com.myshop.catalog.application.product.RegisterProductService;
+import com.myshop.member.application.FindMemberDataService;
 import com.myshop.member.application.JoinService;
 import com.myshop.member.query.dto.JoinRequest;
 import com.myshop.store.application.RegisterStoreService;
@@ -16,13 +17,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	private final JoinService joinService;
 	private final RegisterProductService registerProductService;
 	private final RegisterStoreService registerStoreService;
+	private final FindMemberDataService findMemberDataService;
 	private boolean alreadySetup = false;
 
 	public SetupDataLoader(JoinService joinService, RegisterProductService registerProductService,
-		RegisterStoreService registerStoreService) {
+		RegisterStoreService registerStoreService, FindMemberDataService findMemberDataService) {
 		this.joinService = joinService;
 		this.registerProductService = registerProductService;
 		this.registerStoreService = registerStoreService;
+		this.findMemberDataService = findMemberDataService;
 	}
 
 	@Override

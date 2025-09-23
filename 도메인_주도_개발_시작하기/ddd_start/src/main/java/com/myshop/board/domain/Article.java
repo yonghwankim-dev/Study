@@ -58,6 +58,14 @@ public class Article {
 		return memberId;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public ArticleContent getContent() {
+		return content;
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (this == object)

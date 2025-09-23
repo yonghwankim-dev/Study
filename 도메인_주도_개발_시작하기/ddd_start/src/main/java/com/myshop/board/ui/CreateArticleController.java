@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.myshop.member.query.dto.MemberAuthentication;
 
 @Controller
-public class ArticleController {
+public class CreateArticleController {
 
 	// 글 작성 폼
 	@GetMapping("/articles/new")
