@@ -43,6 +43,11 @@ public class MemoryOrderRepository implements OrderRepository {
 	}
 
 	@Override
+	public Optional<Order> findAndForceVersionIncrement(OrderNo id) {
+		return Optional.ofNullable(orderStore.get(id));
+	}
+
+	@Override
 	public List<Order> findAll() {
 		return orderStore.values().stream()
 			.sorted(orderNoAscComparator())
