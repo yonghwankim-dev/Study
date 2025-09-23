@@ -12,5 +12,6 @@
 <p><strong>Title:</strong> <span th:text="${article.title}">Sample Title</span></p>
 <p><strong>Content:</strong></p>
 <p th:text="${article.content}">Sample Content</p>
+<a th:href="@{'/articles/edit?id=' + ${article.id}}">Edit Article</a>
 </body>
 </html>

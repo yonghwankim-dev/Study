@@ -8,11 +8,11 @@ import com.myshop.board.application.CreateArticleService;
 import com.myshop.board.query.dto.CreateArticleRequest;
 
 @RestController
-public class ArticleRestController {
+public class CreateArticleRestController {
 
 	private final CreateArticleService createArticleService;
 
-	public ArticleRestController(CreateArticleService createArticleService) {
+	public CreateArticleRestController(CreateArticleService createArticleService) {
 		this.createArticleService = createArticleService;
 	}
 
