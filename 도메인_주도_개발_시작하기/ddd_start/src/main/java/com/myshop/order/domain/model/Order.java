@@ -147,8 +147,19 @@ public class Order {
 		this.paymentAmounts = totalAmounts.minus(discountAmounts);
 	}
 
+	public void startShipping() {
+		if (state != OrderState.PREPARING) {
+			throw new IllegalStateException("not in preparing state");
+		}
+		this.state = OrderState.SHIPPED;
+	}
+
 	public void addCoupon(Coupon coupon) {
 		this.coupons.add(coupon);
+	}
+
+	public boolean matchVersion(long version) {
+		return this.version == version;
 	}
 
 	public OrderNo getOrderNo() {

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -148,5 +150,12 @@ public class FixedDomainFactory {
 
 	public static OrderLine createOrderLine(String productId, int price, int quantity) {
 		return new OrderLine(new ProductId(productId), new Money(price), quantity);
+	}
+
+	public static Authentication createAdminAuthentication() {
+		return new UsernamePasswordAuthenticationToken(
+			"admin", "password",
+			java.util.List.of(() -> "ROLE_ADMIN")
+		);
 	}
 }
