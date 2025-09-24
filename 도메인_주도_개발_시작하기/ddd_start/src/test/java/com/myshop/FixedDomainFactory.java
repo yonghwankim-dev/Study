@@ -139,13 +139,15 @@ public class FixedDomainFactory {
 		);
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		Password password = new Password(passwordEncoder.encode("12345"));
-		return new Member(
+		Member member = new Member(
 			memberId,
 			name,
 			address,
 			password,
 			MemberGrade.basic()
 		);
+		member.addEmail("hong1234@gmail.com");
+		return member;
 	}
 
 	public static OrderLine createOrderLine(String productId, int price, int quantity) {

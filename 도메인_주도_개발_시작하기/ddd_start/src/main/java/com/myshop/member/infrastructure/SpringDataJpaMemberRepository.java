@@ -28,7 +28,7 @@ public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Mem
 	Optional<Member> findByIdForUpdate(@Param("id") MemberId id);
 
 	@Query("SELECT m FROM Member m WHERE m.emails like concat('%', :email, '%') ")
-	Optional<Member> findByEmail(@Param("email") String email);
+	List<Member> findByEmail(@Param("email") String email);
 
 	@Query("SELECT COUNT(m) FROM Member m WHERE m.id = :memberId")
 	int countById(@Param("memberId") MemberId memberId);
