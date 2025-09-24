@@ -220,6 +220,4 @@ class OrderTest {
 
 		assertEquals(OrderState.CANCELED, order.getState());
 	}
-
-	// todo: changeShippingInfo 메서드에 대한 이벤트 검증 테스트
 }
