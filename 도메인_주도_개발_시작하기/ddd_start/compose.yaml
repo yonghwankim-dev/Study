@@ -8,3 +8,16 @@ services:
       - 'MYSQL_USER=shopuser'
     ports:
       - '3306:3306'
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # AMQP (Spring Boot와 연결할 포트)
+      - "15672:15672"  # Management UI (http://localhost:15672)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+volumes:
+  rabbitmq_data:
