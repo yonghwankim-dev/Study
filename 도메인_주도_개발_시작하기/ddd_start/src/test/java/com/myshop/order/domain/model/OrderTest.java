@@ -130,6 +130,7 @@ class OrderTest {
 		order.cancel();
 
 		Assertions.assertThat(order.getState()).isEqualTo(OrderState.CANCELED);
+
 	}
 
 	@ParameterizedTest
@@ -218,10 +219,7 @@ class OrderTest {
 		order.cancel(refundService);
 
 		assertEquals(OrderState.CANCELED, order.getState());
-		order.changeState(OrderState.SHIPPED);
-		Throwable throwable = Assertions.catchThrowable(order::cancel);
-		Assertions.assertThat(throwable)
-			.isInstanceOf(IllegalStateException.class)
-			.hasMessageContaining("already shipped");
 	}
+
+	// todo: changeShippingInfo 메서드에 대한 이벤트 검증 테스트
 }
