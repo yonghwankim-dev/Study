@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.myshop.common.event.Events;
 import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
@@ -139,6 +140,7 @@ public class Order {
 	public void cancel() {
 		verifyNotYetShipped();
 		this.state = OrderState.CANCELED;
+		Events.raise(new OrderCanceledEvent(this.orderNo.getId()));
 	}
 
 	public void cancel(RefundService refundService) {
