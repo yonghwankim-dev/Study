@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,6 +19,7 @@ import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
+import com.myshop.order.application.RefundService;
 import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
 import com.myshop.order.domain.service.DiscountCalculationService;
 import com.myshop.order.infrastructure.RuleBasedDiscountCalculationService;
@@ -125,7 +127,9 @@ class OrderTest {
 	void shouldDoesNotThrow_whenOrderIsCanceled() {
 		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
 
-		assertDoesNotThrow(order::cancel);
+		order.cancel();
+
+		Assertions.assertThat(order.getState()).isEqualTo(OrderState.CANCELED);
 	}
 
 	@ParameterizedTest
@@ -203,5 +207,21 @@ class OrderTest {
 		order.calculateAmounts(service);
 
 		Assertions.assertThat(order.getPaymentAmounts()).isEqualTo(new Money(1800));
+	}
+
+	@DisplayName("주문을 취소하고 환불한다")
+	@Test
+	void cancelOrderAndRefund() {
+		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);
+
+		RefundService refundService = new RefundService();
+		order.cancel(refundService);
+
+		assertEquals(OrderState.CANCELED, order.getState());
+		order.changeState(OrderState.SHIPPED);
+		Throwable throwable = Assertions.catchThrowable(order::cancel);
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalStateException.class)
+			.hasMessageContaining("already shipped");
 	}
 }

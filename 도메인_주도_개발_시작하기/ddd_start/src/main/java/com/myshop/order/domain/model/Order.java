@@ -8,6 +8,7 @@ import java.util.Objects;
 import com.myshop.common.model.Money;
 import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
+import com.myshop.order.application.RefundService;
 import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
 import com.myshop.order.domain.service.DiscountCalculationService;
 
@@ -138,6 +139,24 @@ public class Order {
 	public void cancel() {
 		verifyNotYetShipped();
 		this.state = OrderState.CANCELED;
+	}
+
+	public void cancel(RefundService refundService) {
+		verifyNotYetShipped();
+		this.state = OrderState.CANCELED;
+
+		this.refundStatus = RefundState.REFUND_STARTED;
+		try {
+			refundService.refund(getPaymentId());
+			this.refundStatus = RefundState.REFUND_COMPLETED;
+		} catch (Exception e) {
+			this.refundStatus = RefundState.REFUND_FAILED;
+			throw e;
+		}
+	}
+
+	private String getPaymentId() {
+		return this.orderNo.getId();
 	}
 
 	public void calculateAmounts(CouponAndMemberShipDiscountCalculationService service, MemberGrade grade) {
