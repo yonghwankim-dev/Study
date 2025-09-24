@@ -58,6 +58,8 @@ public class Order {
 
 	private Money paymentAmounts;
 
+	private RefundState refundStatus;
+
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "coupon", joinColumns = @JoinColumn(name = "order_no"))
 	@OrderColumn(name = "coupon_idx")
@@ -75,6 +77,7 @@ public class Order {
 		this.state = state;
 		this.orderDate = LocalDateTime.now();
 		this.coupons = new ArrayList<>();
+		this.refundStatus = RefundState.NOT_REQUESTED;
 	}
 
 	private void setOrderNo(OrderNo id) {

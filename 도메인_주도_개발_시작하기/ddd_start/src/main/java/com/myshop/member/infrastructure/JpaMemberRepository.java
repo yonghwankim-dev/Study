@@ -36,7 +36,7 @@ public class JpaMemberRepository implements MemberRepository {
 
 	@Override
 	public Optional<Member> findByEmail(String email) {
-		return repository.findByEmail(email);
+		return repository.findByEmail(email).stream().findAny();
 	}
 
 	@Override

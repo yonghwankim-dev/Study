@@ -17,12 +17,14 @@ import com.myshop.FixedDomainFactory;
 import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
+import com.myshop.common.model.Email;
+import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.application.OrderProduct;
+import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.model.Receiver;
 import com.myshop.order.domain.model.ShippingInfo;
-import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.query.dto.OrderRequest;
 
@@ -57,8 +59,10 @@ class OrderControllerTest {
 
 		memberId = "member-1";
 		String password = "12345";
-		memberRepository.save(FixedDomainFactory.createMember(memberId));
-		sessionId = login(memberId, password);
+		Member member = FixedDomainFactory.createMember(memberId);
+		memberRepository.save(member);
+		Email email = member.getEmails().getEmails().stream().findAny().orElseThrow();
+		sessionId = login(email.getAddress(), password);
 
 		productRepository.save(FixedDomainFactory.createProduct(new ProductId("product-1"), new CategoryId(1L)));
 		productRepository.save(FixedDomainFactory.createProduct(new ProductId("product-2"), new CategoryId(2L)));
@@ -71,9 +75,9 @@ class OrderControllerTest {
 		orderRepository.deleteAll();
 	}
 
-	private String login(String id, String password) {
+	private String login(String email, String password) {
 		return RestAssured.given()
-			.param("memberId", id)
+			.param("email", email)
 			.param("password", password)
 			.when()
 			.post("/member/login")

@@ -102,4 +102,8 @@ public class Member {
 	public MemberGrade getGrade() {
 		return grade;
 	}
+
+	public EmailSet getEmails() {
+		return emails;
+	}
 }
