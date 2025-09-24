@@ -1,5 +1,6 @@
 package com.myshop.order.application;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myshop.order.domain.model.CancelPolicy;
@@ -9,6 +10,7 @@ import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.error.OrderNotFoundException;
 
+@Service
 public class CancelOrderService {
 
 	private final OrderRepository orderRepository;
