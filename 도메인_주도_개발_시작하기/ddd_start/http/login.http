@@ -1,5 +1,5 @@
 POST http://localhost:8080/member/login
 Content-Type: application/x-www-form-urlencoded
 
-memberId = 49b845e0-ec10-4562-a3d1-8055eb117fa7 &
-password = 1234
+email = hong1234@gmail.com &
+password = hong1234@

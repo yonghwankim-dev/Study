@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import com.myshop.message.domain.MessageClient;
 
 class ViewLogServiceTest {
 
@@ -12,7 +15,8 @@ class ViewLogServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		service = new ViewLogService();
+		MessageClient messageClient = Mockito.mock(MessageClient.class);
+		service = new ViewLogService(messageClient);
 	}
 
 	@Test

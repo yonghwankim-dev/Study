@@ -24,6 +24,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-docker-compose'
     implementation 'com.mysql:mysql-connector-j:9.4.0'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // add rabbit mq
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'io.rest-assured:rest-assured:5.3.0'
