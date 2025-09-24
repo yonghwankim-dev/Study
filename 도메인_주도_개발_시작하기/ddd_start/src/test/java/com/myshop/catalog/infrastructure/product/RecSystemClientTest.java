@@ -13,4 +13,11 @@ class RecSystemClientTest {
 
 		Assertions.assertThat(service).isNotNull();
 	}
+
+	@Test
+	void shouldEmptyList_whenProductIdIsNull() {
+		ProductRecommendationService service = new RecSystemClient();
+
+		Assertions.assertThat(service.getRecommendedProducts(null)).isEmpty();
+	}
 }
