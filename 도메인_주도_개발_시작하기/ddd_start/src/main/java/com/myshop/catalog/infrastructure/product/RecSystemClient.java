@@ -11,8 +11,8 @@ import com.myshop.catalog.query.product.dto.RecommendationItem;
 
 public class RecSystemClient implements ProductRecommendationService {
 
-	private ProductRepository productRepository;
-	private ExternalRecClient externalRecClient;
+	private final ProductRepository productRepository;
+	private final ExternalRecClient externalRecClient;
 
 	public RecSystemClient(ProductRepository productRepository, ExternalRecClient externalRecClient) {
 		this.productRepository = productRepository;
