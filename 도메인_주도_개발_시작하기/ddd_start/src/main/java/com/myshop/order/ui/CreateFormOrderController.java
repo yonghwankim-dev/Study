@@ -33,11 +33,11 @@ public class CreateFormOrderController {
 		modelMap.addAttribute("products", products);
 
 		Member orderer = service.search(getAuthenticatedMemberId());
-		modelMap.addAttribute("ordererMemberId", orderer.getId());
+		modelMap.addAttribute("ordererMemberId", orderer.getId().getId());
 		modelMap.addAttribute("receiverName", orderer.getName());
 		modelMap.addAttribute("address1", orderer.getAddress().getAddress1());
 		modelMap.addAttribute("address2", orderer.getAddress().getAddress2());
-		modelMap.addAttribute("zipcode", orderer.getAddress().getZipCode());
+		modelMap.addAttribute("zipCode", orderer.getAddress().getZipCode());
 
 		return "order/createForm";
 	}
