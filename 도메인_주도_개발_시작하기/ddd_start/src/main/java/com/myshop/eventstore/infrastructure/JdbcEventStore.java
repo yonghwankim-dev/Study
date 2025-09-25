@@ -1,5 +1,6 @@
 package com.myshop.eventstore.infrastructure;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,7 +35,7 @@ public class JdbcEventStore implements EventStore {
 				ps.setString(1, entry.getType());
 				ps.setString(2, entry.getContentType());
 				ps.setString(3, entry.getPayload());
-				ps.setLong(4, entry.getTimestamp());
+				ps.setTimestamp(4, new Timestamp(entry.getTimestamp()));
 			});
 	}
 
@@ -59,7 +60,7 @@ public class JdbcEventStore implements EventStore {
 				rs.getString("type"),
 				rs.getString("content_type"),
 				rs.getString("payload"),
-				rs.getLong("timestamp")
+				rs.getTimestamp("timestamp").getTime()
 			)
 		);
 	}

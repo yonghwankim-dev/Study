@@ -20,7 +20,7 @@ PREPARE stmt FROM @sql_text;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
-create table if not exists eventstore
+create table if not exists evententry
 (
     id             int not null AUTO_INCREMENT PRIMARY KEY,
     `type`         varchar(255),
