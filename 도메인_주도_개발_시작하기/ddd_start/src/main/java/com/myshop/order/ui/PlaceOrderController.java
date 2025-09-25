@@ -21,11 +21,11 @@ import com.myshop.order.error.ValidationErrorException;
 import com.myshop.order.query.dto.OrderRequest;
 
 @RestController
-public class OrderController {
+public class PlaceOrderController {
 
 	private final PlaceOrderService placeOrderService;
 
-	public OrderController(PlaceOrderService placeOrderService) {
+	public PlaceOrderController(PlaceOrderService placeOrderService) {
 		this.placeOrderService = placeOrderService;
 	}
 

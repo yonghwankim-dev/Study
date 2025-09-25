@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.myshop.catalog.domain.category.CategoryId;
 import com.myshop.catalog.domain.product.Image;
 import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductId;
@@ -36,6 +37,8 @@ public class RegisterProductService {
 		ProductInfo productInfo = new ProductInfo(request.getProductName(), price, detail);
 		List<Image> images = new ArrayList<>();
 		Product product = store.createProduct(id, productInfo, images);
+
+		product.addCategoryId(new CategoryId(request.getCategoryId()));
 		productRepository.save(product);
 		return id;
 	}
