@@ -13,17 +13,16 @@
     <tr>
         <th>Order Number</th>
         <th>Order State</th>
-        <th>Member Name</th>
-        <th>Member ID</th>
         <th>Product Name</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="order : ${orders}">
-        <td th:text="${order.number}">12345</td>
+        <td>
+            <a th:href="@{/orders/detail(id=${order.number})}"
+               th:text="${order.number}">12345</a>
+        </td>
         <td th:text="${order.state}">PENDING</td>
-        <td th:text="${order.memberName}">John Doe</td>
-        <td th:text="${order.memberId}">member123</td>
         <td th:text="${order.productName}">Product A</td>
     </tr>
     </tbody>

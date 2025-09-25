@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.myshop.order.query.dto.OrderView;
+import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.repository.OrderViewDao;
+import com.myshop.order.query.dto.OrderView;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -31,5 +32,20 @@ public class JpaOrderViewDao implements OrderViewDao {
 		TypedQuery<OrderView> query = em.createQuery(selectQuery, OrderView.class);
 		query.setParameter("ordererId", ordererId);
 		return query.getResultList();
+	}
+
+	@Override
+	public OrderView findByOrderNo(OrderNo orderNo) {
+		String selectQuery = """
+				select new com.myshop.order.query.dto.OrderView(o, m, p)
+				from Order o join o.orderLines ol, Member m, Product p
+				where o.orderNo = :orderNo
+				and o.orderer.memberId = m.id
+				and index(ol) = 0
+				and ol.productId = p.id
+			""";
+		TypedQuery<OrderView> query = em.createQuery(selectQuery, OrderView.class);
+		query.setParameter("orderNo", orderNo);
+		return query.getSingleResult();
 	}
 }
