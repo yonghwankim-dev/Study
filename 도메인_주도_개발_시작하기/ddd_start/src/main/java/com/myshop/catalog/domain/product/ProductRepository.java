@@ -8,6 +8,8 @@ public interface ProductRepository {
 
 	Product findById(ProductId id);
 
+	List<Product> findAll(int page, int size);
+
 	void save(Product product);
 
 	void delete(Product product);
@@ -19,4 +21,6 @@ public interface ProductRepository {
 	void deleteAll();
 
 	ProductId nextId();
+
+	long counts();
 }

@@ -52,6 +52,12 @@ public class JpaProductRepository implements ProductRepository {
 	}
 
 	@Override
+	public List<Product> findAll(int page, int size) {
+		PageRequest pageRequest = PageRequest.of(page - 1, size);
+		return repository.findAll(pageRequest).getContent();
+	}
+
+	@Override
 	public int countsByCategoryId(CategoryId id) {
 		return repository.countsByCategoryId(id);
 	}
@@ -64,5 +70,10 @@ public class JpaProductRepository implements ProductRepository {
 	@Override
 	public ProductId nextId() {
 		return generator.generate();
+	}
+
+	@Override
+	public long counts() {
+		return repository.count();
 	}
 }

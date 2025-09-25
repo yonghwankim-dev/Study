@@ -30,4 +30,10 @@ public class ProductListService {
 		int totalCount = productRepository.countsByCategoryId(category.getId());
 		return new PageImpl<>(products, PageRequest.of(page - 1, size), totalCount);
 	}
+
+	public Page<Product> getAllProducts(int page, int size) {
+		List<Product> products = productRepository.findAll(page, size);
+		long totalCount = productRepository.counts();
+		return new PageImpl<>(products, PageRequest.of(page - 1, size), totalCount);
+	}
 }
