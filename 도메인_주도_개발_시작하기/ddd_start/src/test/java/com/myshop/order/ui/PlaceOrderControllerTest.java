@@ -19,7 +19,6 @@ import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Email;
 import com.myshop.member.domain.Member;
-import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.application.OrderProduct;
 import com.myshop.order.domain.model.Address;
@@ -91,7 +90,7 @@ class PlaceOrderControllerTest {
 	@Test
 	void placeOrder() throws JsonProcessingException {
 		List<OrderProduct> orderProducts = createOrderProducts();
-		MemberId orderMemberId = new MemberId(memberId);
+		String orderMemberId = "member-1";
 		ShippingInfo shippingInfo = createShippingInfo();
 		OrderRequest request = new OrderRequest(orderProducts, orderMemberId, shippingInfo);
 
@@ -136,7 +135,7 @@ class PlaceOrderControllerTest {
 	@Test
 	void placeOrder_whenOrderProductsAreNull_thenResponseBadRequest() throws JsonProcessingException {
 		List<OrderProduct> orderProducts = null;
-		MemberId orderMemberId = new MemberId("member-1");
+		String orderMemberId = "member-1";
 		ShippingInfo shippingInfo = createShippingInfo();
 		OrderRequest request = new OrderRequest(orderProducts, orderMemberId, shippingInfo);
 
