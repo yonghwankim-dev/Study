@@ -58,6 +58,10 @@ public class Product {
 		this.images.addAll(images);
 	}
 
+	public void addCategoryId(CategoryId categoryId) {
+		categoryIds.add(categoryId);
+	}
+
 	public void changeImages(List<Image> newImages) {
 		images.clear();
 		images.addAll(newImages);

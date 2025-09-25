@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import com.myshop.catalog.application.product.NewProductRequest;
 import com.myshop.catalog.application.product.RegisterProductService;
-import com.myshop.member.application.FindMemberDataService;
+import com.myshop.catalog.domain.category.Category;
+import com.myshop.catalog.domain.category.CategoryId;
+import com.myshop.catalog.domain.category.CategoryRepository;
 import com.myshop.member.application.JoinService;
 import com.myshop.member.query.dto.JoinRequest;
 import com.myshop.store.application.RegisterStoreService;
@@ -17,15 +19,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 	private final JoinService joinService;
 	private final RegisterProductService registerProductService;
 	private final RegisterStoreService registerStoreService;
-	private final FindMemberDataService findMemberDataService;
+	private final CategoryRepository categoryRepository;
 	private boolean alreadySetup = false;
 
 	public SetupDataLoader(JoinService joinService, RegisterProductService registerProductService,
-		RegisterStoreService registerStoreService, FindMemberDataService findMemberDataService) {
+		RegisterStoreService registerStoreService, CategoryRepository categoryRepository) {
 		this.joinService = joinService;
 		this.registerProductService = registerProductService;
 		this.registerStoreService = registerStoreService;
-		this.findMemberDataService = findMemberDataService;
+		this.categoryRepository = categoryRepository;
 	}
 
 	@Override
@@ -35,8 +37,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		}
 		setupMember();
 		setupStore();
-		setupProducts();
+		Category category = setupCategory();
+		setupProducts(category.getId().getValue());
 		alreadySetup = true;
+	}
+
+	private Category setupCategory() {
+		Category category = new Category(new CategoryId(1L), "Electronics");
+		categoryRepository.save(category);
+		return category;
 	}
 
 	private void setupMember() {
@@ -54,13 +63,13 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 		registerStoreService.register("store-1");
 	}
 
-	private void setupProducts() {
+	private void setupProducts(Long categoryId) {
 		for (int i = 1; i <= 5; i++) {
 			StoreId storeId = new StoreId("store-1");
 			String productName = "Product " + i;
 			int price = 10_000;
 			String detail = "Product " + i + " detail description";
-			NewProductRequest request = new NewProductRequest(storeId, productName, price, detail);
+			NewProductRequest request = new NewProductRequest(storeId, categoryId, productName, price, detail);
 			registerProductService.registerNewProduct(request);
 		}
 	}

@@ -106,4 +106,8 @@ public class Member {
 	public EmailSet getEmails() {
 		return emails;
 	}
+
+	public Address getAddress() {
+		return address;
+	}
 }

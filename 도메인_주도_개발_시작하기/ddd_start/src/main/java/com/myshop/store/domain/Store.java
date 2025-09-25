@@ -1,6 +1,6 @@
 package com.myshop.store.domain;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +36,7 @@ public class Store {
 		if (isBlocked()) {
 			throw new IllegalStateException("Store is blocked, cannot create new product");
 		}
-		Set<CategoryId> categoryIds = Collections.emptySet();
+		Set<CategoryId> categoryIds = new HashSet<>();
 		return ProductFactory.create(newProductId, categoryIds, getStoreId(), productInfo, images);
 	}
 

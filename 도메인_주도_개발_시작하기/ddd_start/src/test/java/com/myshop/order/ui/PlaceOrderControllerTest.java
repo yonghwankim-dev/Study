@@ -33,7 +33,7 @@ import io.restassured.http.ContentType;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class OrderControllerTest {
+class PlaceOrderControllerTest {
 
 	@LocalServerPort
 	private int port;
