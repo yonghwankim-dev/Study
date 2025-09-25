@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order List</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Order Number</th>
+        <th>Order State</th>
+        <th>Member Name</th>
+        <th>Member ID</th>
+        <th>Product Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.number}">12345</td>
+        <td th:text="${order.state}">PENDING</td>
+        <td th:text="${order.memberName}">John Doe</td>
+        <td th:text="${order.memberId}">member123</td>
+        <td th:text="${order.productName}">Product A</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
