@@ -29,7 +29,6 @@ import com.myshop.member.domain.Password;
 import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.model.Receiver;
-import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.error.ValidationError;
 import com.myshop.order.error.ValidationErrorException;
@@ -102,14 +101,22 @@ class PlaceOrderServiceTest {
 		Receiver receiver = new Receiver("홍길동", "010-1234-5678");
 		String message = "문 앞에 놓아주세요.";
 		Address address = new Address("서울시 강남구 역삼동", "101동 202호", "12345");
-		ShippingInfo shippingInfo = new ShippingInfo(receiver, message, address);
 		List<OrderProduct> orderProducts = new ArrayList<>();
 		String productId1 = "product-1";
 		String productId2 = "product-2";
 		orderProducts.add(new OrderProduct(productId1, 2));
 		orderProducts.add(new OrderProduct(productId2, 3));
 		String memberId = "member-1";
-		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
+		OrderRequest request = new OrderRequest(
+			orderProducts,
+			memberId,
+			receiver.getName(),
+			receiver.getPhone(),
+			message,
+			address.getAddress1(),
+			address.getAddress2(),
+			address.getZipCode()
+		);
 
 		OrderNo orderNo = service.placeOrder(request);
 
@@ -129,10 +136,24 @@ class PlaceOrderServiceTest {
 
 	@Test
 	void placeOrder_whenInvalidInput_thenThrowException() {
-		ShippingInfo shippingInfo = null;
 		List<OrderProduct> orderProducts = null;
 		String memberId = null;
-		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
+		String receiverName = null;
+		String receiverPhone = null;
+		String message = null;
+		String address1 = null;
+		String address2 = null;
+		String zipCode = null;
+		OrderRequest request = new OrderRequest(
+			orderProducts,
+			memberId,
+			receiverName,
+			receiverPhone,
+			message,
+			address1,
+			address2,
+			zipCode
+		);
 
 		Throwable throwable = Assertions.catchThrowable(() -> service.placeOrder(request));
 
@@ -140,11 +161,15 @@ class PlaceOrderServiceTest {
 			.isInstanceOf(ValidationErrorException.class);
 		ValidationErrorException error = (ValidationErrorException)throwable;
 		Assertions.assertThat(error.getErrors())
-			.hasSize(3)
+			.hasSize(7)
 			.containsExactly(
 				ValidationError.of("ordererMemberId", "empty"),
 				ValidationError.of("orderProducts", "empty"),
-				ValidationError.of("shippingInfo", "empty")
+				ValidationError.of("receiverName", "empty"),
+				ValidationError.of("receiverPhone", "empty"),
+				ValidationError.of("address1", "empty"),
+				ValidationError.of("address2", "empty"),
+				ValidationError.of("zipCode", "empty")
 			);
 	}
 
@@ -153,10 +178,18 @@ class PlaceOrderServiceTest {
 		Receiver receiver = new Receiver("홍길동", "010-1234-5678");
 		String message = "문 앞에 놓아주세요.";
 		Address address = new Address("서울시 강남구 역삼동", "101동 202호", "12345");
-		ShippingInfo shippingInfo = new ShippingInfo(receiver, message, address);
 		List<OrderProduct> orderProducts = new ArrayList<>();
 		String memberId = "member-1";
-		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
+		OrderRequest request = new OrderRequest(
+			orderProducts,
+			memberId,
+			receiver.getName(),
+			receiver.getPhone(),
+			message,
+			address.getAddress1(),
+			address.getAddress2(),
+			address.getZipCode()
+		);
 
 		Throwable throwable = Assertions.catchThrowable(() -> service.placeOrder(request));
 

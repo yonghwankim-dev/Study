@@ -34,6 +34,10 @@ public class ShippingInfo {
 		return receiver;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
 	public Address getAddress() {
 		return address;
 	}

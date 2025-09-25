@@ -45,4 +45,12 @@ public class ValidationError {
 	public int hashCode() {
 		return Objects.hash(propertyName, code);
 	}
+
+	@Override
+	public String toString() {
+		return "ValidationError{" +
+			"propertyName='" + propertyName + '\'' +
+			", code='" + code + '\'' +
+			'}';
+	}
 }
