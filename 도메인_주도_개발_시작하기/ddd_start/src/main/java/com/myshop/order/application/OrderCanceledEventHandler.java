@@ -7,7 +7,7 @@ import com.myshop.order.domain.model.OrderCanceledEvent;
 
 @Service
 public class OrderCanceledEventHandler {
-	private RefundService refundService;
+	private final RefundService refundService;
 
 	public OrderCanceledEventHandler(RefundService refundService) {
 		this.refundService = refundService;
