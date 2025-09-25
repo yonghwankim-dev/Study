@@ -46,20 +46,6 @@
             <br><br>
         </div>
     </div>
-    <div id="productTemplate" style="display:none;">
-        <label>Product:</label>
-        <select name="orderProducts[__index__].productId" required>
-            <option value="">-- Select Product --</option>
-            <th:block th:each="product : ${products}">
-                <option th:value="${product.productId}"
-                        th:text="${product.productName}"></option>
-            </th:block>
-        </select>
-        <br>
-        <label>Quantity:</label>
-        <input type="number" name="orderProducts[__index__].quantity" min="1" required>
-        <br><br>
-    </div>
     <button type="button" onclick="addProduct()">➕ Add Product</button>
     <br><br>
 
@@ -97,5 +83,21 @@
 
     <button type="submit">Create Order</button>
 </form>
+
+<!-- 제품 선택 및 수량 입력 폼 템플릿 (숨김) -->
+<div id="productTemplate" style="display:none;">
+    <label>Product:</label>
+    <select name="orderProducts[__index__].productId" required>
+        <option value="">-- Select Product --</option>
+        <th:block th:each="product : ${products}">
+            <option th:value="${product.productId}"
+                    th:text="${product.productName}"></option>
+        </th:block>
+    </select>
+    <br>
+    <label>Quantity:</label>
+    <input type="number" name="orderProducts[__index__].quantity" min="1" required>
+    <br><br>
+</div>
 </body>
 </html>
