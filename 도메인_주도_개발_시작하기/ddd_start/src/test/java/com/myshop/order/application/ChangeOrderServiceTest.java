@@ -16,13 +16,12 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import com.myshop.FixedDomainFactory;
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
-import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.member.domain.Password;
 import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderLine;
@@ -63,7 +62,7 @@ class ChangeOrderServiceTest {
 	@BeforeEach
 	void setUp() {
 		id = new OrderNo("12345");
-		MemberId memberId = new MemberId("23456");
+		MemberId memberId = new MemberId("member-1");
 		Orderer orderer = new Orderer(memberId, "John Doe");
 		ProductId productId = new ProductId("9000000112298");
 		OrderLine orderLine = new OrderLine(productId, new Money(1000), 2);
@@ -73,9 +72,7 @@ class ChangeOrderServiceTest {
 		Address address = new Address("123 Main St", "City", "12345");
 		shippingInfo = new ShippingInfo(receiver, message, address);
 
-		String name = "John Doe";
-		Password password = new Password("password1234");
-		Member member = new Member(memberId, name, address, password, MemberGrade.basic());
+		Member member = FixedDomainFactory.createMember("member-1");
 		memberRepository.save(member);
 
 		Order order = new Order(id, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);

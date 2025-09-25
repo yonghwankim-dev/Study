@@ -50,13 +50,12 @@ class PlaceOrderControllerTest {
 	private OrderRepository orderRepository;
 
 	private String sessionId;
-	private String memberId;
 
 	@BeforeEach
 	void setUp() {
 		RestAssured.port = port;
 
-		memberId = "member-1";
+		String memberId = "member-1";
 		String password = "12345";
 		Member member = FixedDomainFactory.createMember(memberId);
 		memberRepository.save(member);
@@ -78,6 +77,7 @@ class PlaceOrderControllerTest {
 		return RestAssured.given()
 			.param("email", email)
 			.param("password", password)
+			.log().all()
 			.when()
 			.post("/member/login")
 			.then()

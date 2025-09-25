@@ -28,7 +28,7 @@ class ChangePasswordServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		memberId = "12345";
+		memberId = "member-1";
 		Member member = FixedDomainFactory.createMember(memberId);
 		memberRepository.save(member);
 	}
