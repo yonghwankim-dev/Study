@@ -59,7 +59,7 @@ public class PlaceOrderController {
 
 	private void setOrderer(OrderRequest orderRequest) {
 		Orderer orderer = createOrderer();
-		orderRequest.setOrdererMemberId(orderer.getMemberId());
+		orderRequest.setOrdererMemberId(orderer.getMemberId().getId());
 	}
 
 	private static Orderer createOrderer() {

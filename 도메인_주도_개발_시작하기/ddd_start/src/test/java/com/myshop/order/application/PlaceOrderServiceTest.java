@@ -108,7 +108,7 @@ class PlaceOrderServiceTest {
 		String productId2 = "product-2";
 		orderProducts.add(new OrderProduct(productId1, 2));
 		orderProducts.add(new OrderProduct(productId2, 3));
-		MemberId memberId = new MemberId("member-1");
+		String memberId = "member-1";
 		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
 
 		OrderNo orderNo = service.placeOrder(request);
@@ -131,7 +131,7 @@ class PlaceOrderServiceTest {
 	void placeOrder_whenInvalidInput_thenThrowException() {
 		ShippingInfo shippingInfo = null;
 		List<OrderProduct> orderProducts = null;
-		MemberId memberId = null;
+		String memberId = null;
 		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
 
 		Throwable throwable = Assertions.catchThrowable(() -> service.placeOrder(request));
@@ -155,7 +155,7 @@ class PlaceOrderServiceTest {
 		Address address = new Address("서울시 강남구 역삼동", "101동 202호", "12345");
 		ShippingInfo shippingInfo = new ShippingInfo(receiver, message, address);
 		List<OrderProduct> orderProducts = new ArrayList<>();
-		MemberId memberId = new MemberId("member-1");
+		String memberId = "member-1";
 		OrderRequest request = new OrderRequest(orderProducts, memberId, shippingInfo);
 
 		Throwable throwable = Assertions.catchThrowable(() -> service.placeOrder(request));

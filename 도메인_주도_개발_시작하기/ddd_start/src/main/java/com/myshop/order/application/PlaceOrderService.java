@@ -11,6 +11,7 @@ import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
+import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderLine;
@@ -73,7 +74,7 @@ public class PlaceOrderService {
 	}
 
 	private Order createOrder(OrderNo orderNo, OrderRequest orderRequest) {
-		Member member = memberRepository.findById(orderRequest.getOrdererMemberId());
+		Member member = memberRepository.findById(new MemberId(orderRequest.getOrdererMemberId()));
 		Orderer orderer = new Orderer(member.getId(), member.getName());
 		ShippingInfo shippingInfo = orderRequest.getShippingInfo();
 		List<OrderLine> orderLines = createOrderLines(orderRequest);
