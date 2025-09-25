@@ -27,6 +27,7 @@ public class ShippingInfo {
 
 	public ShippingInfo(Receiver receiver, String message, Address address) {
 		this.receiver = receiver;
+		this.message = message;
 		this.address = address;
 	}
 

@@ -22,11 +22,70 @@
             container.appendChild(wrapper);
             productIndex++;
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("orderForm");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // 기본 form 제출 막기
+
+                // orderProducts 수집
+                const orderProducts = [];
+                document.querySelectorAll(".order-product").forEach((productDiv, idx) => {
+                    const productId = productDiv.querySelector("select").value;
+                    const quantity = productDiv.querySelector("input[type='number']").value;
+                    orderProducts.push({productId, quantity: parseInt(quantity)});
+                });
+
+                // ordererMemberId
+                const ordererMemberId = document.getElementById("ordererMemberId").value;
+
+                // shippingInfo 수집
+                const receiverName = document.getElementById("receiverName").value;
+                const receiverPhone = document.getElementById("receiverPhone").value;
+                const message = document.getElementById("message").value;
+                const address1 = document.getElementById("address1").value;
+                const address2 = document.getElementById("address2").value;
+                const zipCode = document.getElementById("zipCode").value;
+
+                // 최종 JSON 요청 본문
+                const payload = {
+                    orderProducts,
+                    ordererMemberId,
+                    receiverName,
+                    receiverPhone,
+                    message,
+                    address1,
+                    address2,
+                    zipCode
+                };
+
+                fetch("/order/place", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("주문이 성공적으로 생성되었습니다!");
+                            window.location.href = "/orders"; // 필요시 리다이렉트
+                        } else {
+                            alert("주문 생성 실패!");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("서버 오류가 발생했습니다.");
+                    });
+            });
+        });
     </script>
 </head>
 <body>
 <h1>Order Create Form</h1>
-<form action="/order/place" method="post">
+<form id="orderForm">
     <label for="orderProducts">Order Products:</label>
     <div id="orderProducts">
         <!-- 기본 하나는 표시 -->
@@ -76,8 +135,8 @@
         <input type="text" id="address2" name="address2" th:value="${address2}">
         <br>
 
-        <label for="zipcode">Zipcode:</label>
-        <input type="text" id="zipcode" name="zipcode" th:value="${zipcode}" required>
+        <label for="zipCode">ZipCode:</label>
+        <input type="text" id="zipCode" name="zipCode" th:value="${zipCode}" required>
     </div>
     <br>
 
