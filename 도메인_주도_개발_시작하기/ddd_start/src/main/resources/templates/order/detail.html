@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Detail</title>
+</head>
+<body>
+<h1>Order Detail</h1>
+<p>Order Number: <span th:text="${order.number}">12345</span></p>
+<p>Order State: <span th:text="${order.state}">PENDING</span></p>
+<p>Orderer Name: <span th:text="${order.memberName}">Product A</span></p>
+<p>Orderer Id: <span th:text="${order.memberId}">memberId</span></p>
+<p>Product Name: <span th:text="${order.productName}">Product A</span></p>
+</body>
+</html>
