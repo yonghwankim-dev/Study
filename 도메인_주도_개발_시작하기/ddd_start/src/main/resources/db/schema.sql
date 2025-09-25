@@ -20,3 +20,11 @@ PREPARE stmt FROM @sql_text;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
+create table if not exists eventstore
+(
+    id             int not null AUTO_INCREMENT PRIMARY KEY,
+    `type`         varchar(255),
+    `content_type` varchar(255),
+    payload        MEDIUMTEXT,
+    `timestamp`    datetime
+) character set utf8mb4;
