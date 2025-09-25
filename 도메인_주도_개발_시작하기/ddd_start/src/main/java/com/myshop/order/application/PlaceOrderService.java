@@ -13,11 +13,13 @@ import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.order.domain.model.Address;
 import com.myshop.order.domain.model.Order;
 import com.myshop.order.domain.model.OrderLine;
 import com.myshop.order.domain.model.OrderNo;
 import com.myshop.order.domain.model.OrderState;
 import com.myshop.order.domain.model.Orderer;
+import com.myshop.order.domain.model.Receiver;
 import com.myshop.order.domain.model.ShippingInfo;
 import com.myshop.order.domain.repository.OrderRepository;
 import com.myshop.order.domain.service.CouponAndMemberShipDiscountCalculationService;
@@ -63,9 +65,22 @@ public class PlaceOrderService {
 			if (orderRequest.getOrderProducts() == null || orderRequest.getOrderProducts().isEmpty()) {
 				errors.add(ValidationError.of("orderProducts", "empty"));
 			}
-			if (orderRequest.getShippingInfo() == null) {
-				errors.add(ValidationError.of("shippingInfo", "empty"));
+			if (orderRequest.getReceiverName() == null || orderRequest.getReceiverName().isEmpty()) {
+				errors.add(ValidationError.of("receiverName", "empty"));
 			}
+			if (orderRequest.getReceiverPhone() == null || orderRequest.getReceiverPhone().isEmpty()) {
+				errors.add(ValidationError.of("receiverPhone", "empty"));
+			}
+			if (orderRequest.getAddress1() == null || orderRequest.getAddress1().isEmpty()) {
+				errors.add(ValidationError.of("address1", "empty"));
+			}
+			if (orderRequest.getAddress2() == null || orderRequest.getAddress2().isEmpty()) {
+				errors.add(ValidationError.of("address2", "empty"));
+			}
+			if (orderRequest.getZipCode() == null || orderRequest.getZipCode().isEmpty()) {
+				errors.add(ValidationError.of("zipCode", "empty"));
+			}
+
 		}
 
 		if (!errors.isEmpty()) {
@@ -76,7 +91,18 @@ public class PlaceOrderService {
 	private Order createOrder(OrderNo orderNo, OrderRequest orderRequest) {
 		Member member = memberRepository.findById(new MemberId(orderRequest.getOrdererMemberId()));
 		Orderer orderer = new Orderer(member.getId(), member.getName());
-		ShippingInfo shippingInfo = orderRequest.getShippingInfo();
+		Receiver receiver = new Receiver(orderRequest.getReceiverName(), orderRequest.getReceiverPhone());
+		String message = orderRequest.getMessage();
+		Address address = new Address(
+			orderRequest.getAddress1(),
+			orderRequest.getAddress2(),
+			orderRequest.getZipCode()
+		);
+		ShippingInfo shippingInfo = new ShippingInfo(
+			receiver,
+			message,
+			address
+		);
 		List<OrderLine> orderLines = createOrderLines(orderRequest);
 
 		Order order = new Order(orderNo, orderer, orderLines, shippingInfo, OrderState.PAYMENT_WAITING);

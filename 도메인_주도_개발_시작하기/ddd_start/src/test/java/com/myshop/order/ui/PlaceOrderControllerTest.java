@@ -92,7 +92,16 @@ class PlaceOrderControllerTest {
 		List<OrderProduct> orderProducts = createOrderProducts();
 		String orderMemberId = "member-1";
 		ShippingInfo shippingInfo = createShippingInfo();
-		OrderRequest request = new OrderRequest(orderProducts, orderMemberId, shippingInfo);
+		OrderRequest request = new OrderRequest(
+			orderProducts,
+			orderMemberId,
+			shippingInfo.getReceiver().getName(),
+			shippingInfo.getReceiver().getPhone(),
+			shippingInfo.getMessage(),
+			shippingInfo.getAddress().getAddress1(),
+			shippingInfo.getAddress().getAddress2(),
+			shippingInfo.getAddress().getZipCode()
+		);
 
 		RestAssured.given()
 			.contentType(ContentType.JSON)
@@ -137,7 +146,16 @@ class PlaceOrderControllerTest {
 		List<OrderProduct> orderProducts = null;
 		String orderMemberId = "member-1";
 		ShippingInfo shippingInfo = createShippingInfo();
-		OrderRequest request = new OrderRequest(orderProducts, orderMemberId, shippingInfo);
+		OrderRequest request = new OrderRequest(
+			orderProducts,
+			orderMemberId,
+			shippingInfo.getReceiver().getName(),
+			shippingInfo.getReceiver().getPhone(),
+			shippingInfo.getMessage(),
+			shippingInfo.getAddress().getAddress1(),
+			shippingInfo.getAddress().getAddress2(),
+			shippingInfo.getAddress().getZipCode()
+		);
 
 		RestAssured.given()
 			.contentType(ContentType.JSON)
