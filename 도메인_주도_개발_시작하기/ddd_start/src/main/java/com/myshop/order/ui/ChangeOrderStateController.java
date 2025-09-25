@@ -16,7 +16,7 @@ public class ChangeOrderStateController {
 	public ChangeOrderStateController(ChangeOrderStateService service) {
 		this.service = service;
 	}
-
+	
 	@PostMapping("/orders/change-state")
 	public String changeOrderState(@RequestParam("id") String orderId, @RequestParam("state") String state) {
 		OrderState orderState = OrderState.valueOf(state);

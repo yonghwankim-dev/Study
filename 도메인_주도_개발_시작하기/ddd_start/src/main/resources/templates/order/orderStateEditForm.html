@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change Order State Page</title>
+</head>
+<body>
+<h1>Change Order State Page</h1>
+<form th:action="@{/orders/change-state(id=${order.number})}" method="post">
+    <label for="state">Select new state:</label>
+    <select id="state" name="state">
+        <option value="PAYMENT_WAITING" th:selected="${order.state == 'PAYMENT_WAITING'}">PAYMENT_WAITING</option>
+        <option value="PREPARING" th:selected="${order.state == 'PREPARING'}">PREPARING</option>
+        <option value="SHIPPED" th:selected="${order.state == 'SHIPPED'}">SHIPPED</option>
+        <option value="DELIVERING" th:selected="${order.state == 'DELIVERING'}">DELIVERING</option>
+        <option value="DELIVERY_COMPLETED" th:selected="${order.state == 'DELIVERY_COMPLETED'}">DELIVERY_COMPLETED
+        </option>
+        <option value="CANCELED" th:selected="${order.state == 'CANCELED'}">CANCELED</option>
+    </select>
+    <button type="submit">Change State</button>
+</form>
+</body>
+</html>

@@ -15,13 +15,15 @@
 <p>Orderer Id: <span th:text="${order.memberId}">memberId</span></p>
 <p>Product Name: <span th:text="${order.productName}">Product A</span></p>
 
-<!-- Delete 버튼 (DELETE 요청) -->
+<!-- Delete 버튼 -->
 <form th:action="@{/orders/delete(id=${order.number})}" method="post">
     <button type="submit">Delete</button>
 </form>
-<!-- Cancel 버튼 (POST 요청) -->
+<!-- Cancel 버튼 -->
 <form th:action="@{/orders/cancel(id=${order.number})}" method="post">
     <button type="submit">Cancel</button>
 </form>
+<!-- Change Order State 페이지 이동 버튼 -->
+<a th:href="@{/orders/change-state(id=${order.number})}">Change Order State</a>
 </body>
 </html>
