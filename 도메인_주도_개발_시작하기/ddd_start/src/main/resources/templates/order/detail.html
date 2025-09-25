@@ -19,5 +19,9 @@
 <form th:action="@{/orders/delete(id=${order.number})}" method="post">
     <button type="submit">Delete</button>
 </form>
+<!-- Cancel 버튼 (POST 요청) -->
+<form th:action="@{/orders/cancel(id=${order.number})}" method="post">
+    <button type="submit">Cancel</button>
+</form>
 </body>
 </html>
