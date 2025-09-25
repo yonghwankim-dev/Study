@@ -122,11 +122,10 @@ class ChangeOrderServiceTest {
 		CountDownLatch operatorLockAcquired = new CountDownLatch(1);
 
 		Thread operatorThread = new Thread(() -> {
-			transactionTemplate.execute(status -> {
+			transactionTemplate.executeWithoutResult(status -> {
 				Order order = searchOrderService.search(id);
 				operatorLockAcquired.countDown(); // 운영자가 잠금을 획득했음을 알림
-				changeOrderStateService.changeOrderState(order, OrderState.SHIPPED);
-				return null;
+				changeOrderStateService.changeOrderState(order.getOrderNo(), OrderState.SHIPPED);
 			});
 		});
 
@@ -134,12 +133,11 @@ class ChangeOrderServiceTest {
 			try {
 				operatorLockAcquired.await(); // 운영자가 잠금을 획득할 때까지 대기
 
-				transactionTemplate.execute(status -> {
+				transactionTemplate.executeWithoutResult(status -> {
 					Throwable throwable = catchThrowable(() -> service.changeShippingInfo(id, newShippingInfo, false));
 					org.assertj.core.api.Assertions.assertThat(throwable)
 						.isInstanceOf(IllegalStateException.class)
 						.hasMessage("already shipped");
-					return null;
 				});
 			} catch (InterruptedException e) {
 				throw new RuntimeException(e);
