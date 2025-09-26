@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure;
+package com.myshop.order.command.infrastructure;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +10,7 @@ import com.myshop.order.command.domain.model.OrderNo;
 import com.myshop.order.command.domain.model.OrderNoGenerator;
 import com.myshop.order.command.domain.model.Specification;
 import com.myshop.order.command.domain.repository.OrderRepository;
+import com.myshop.order.infrastructure.SpringDataJpaOrderRepository;
 
 @Repository
 public class JpaOrderRepository implements OrderRepository {
