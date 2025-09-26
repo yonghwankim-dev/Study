@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure;
+package com.myshop.order.command.infrastructure;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

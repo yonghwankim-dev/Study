@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure.domain;
+package com.myshop.order.command.infrastructure.domain;
 
 import java.util.Collection;
 
