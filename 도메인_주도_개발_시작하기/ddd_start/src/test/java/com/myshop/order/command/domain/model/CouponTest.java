@@ -1,4 +1,4 @@
-package com.myshop.coupon.domain;
+package com.myshop.order.command.domain.model;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

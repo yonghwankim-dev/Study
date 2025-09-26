@@ -1,7 +1,6 @@
-package com.myshop.coupon.domain;
+package com.myshop.order.command.domain.model;
 
 import com.myshop.common.model.Money;
-import com.myshop.order.command.domain.model.OrderLine;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
