@@ -22,8 +22,8 @@ import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
 import com.myshop.order.command.domain.model.Address;
 import com.myshop.order.command.domain.model.Order;
-import com.myshop.order.command.domain.repository.OrderViewDao;
 import com.myshop.order.command.domain.repository.OrderRepository;
+import com.myshop.order.query.dao.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
 
 @SpringBootTest

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.myshop.order.command.domain.model.OrderNo;
-import com.myshop.order.command.domain.repository.OrderViewDao;
+import com.myshop.order.query.dao.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
 
 import jakarta.persistence.EntityManager;
