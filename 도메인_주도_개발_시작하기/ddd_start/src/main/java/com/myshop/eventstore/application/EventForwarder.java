@@ -30,7 +30,7 @@ public class EventForwarder {
 
 	@Scheduled(initialDelay = 1000L, fixedDelay = 1000L)
 	public void getAndSend() {
-		Long nextOffset = getNextOffset();
+		long nextOffset = getNextOffset();
 		List<EventEntry> events = eventStore.get(nextOffset, limitSize);
 		if (!events.isEmpty()) {
 			int processedCount = sendEvent(events);
