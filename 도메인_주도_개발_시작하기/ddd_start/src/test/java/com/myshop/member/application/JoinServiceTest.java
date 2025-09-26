@@ -11,11 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import com.myshop.FixedDomainFactory;
-import com.myshop.member.DuplicateIdException;
-import com.myshop.member.EmptyPropertyException;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
+import com.myshop.member.error.DuplicateIdException;
+import com.myshop.member.error.EmptyPropertyException;
 import com.myshop.member.query.dto.JoinRequest;
 
 @SpringBootTest

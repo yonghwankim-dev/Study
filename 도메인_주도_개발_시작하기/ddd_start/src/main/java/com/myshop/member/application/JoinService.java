@@ -4,13 +4,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myshop.member.DuplicateIdException;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
+import com.myshop.member.error.DuplicateIdException;
 import com.myshop.member.query.dto.JoinRequest;
 import com.myshop.order.command.domain.model.Address;
 

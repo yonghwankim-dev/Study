@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myshop.member.DuplicateIdException;
-import com.myshop.member.EmptyPropertyException;
-import com.myshop.member.InvalidPropertyException;
 import com.myshop.member.application.JoinService;
 import com.myshop.member.domain.MemberId;
+import com.myshop.member.error.DuplicateIdException;
+import com.myshop.member.error.EmptyPropertyException;
+import com.myshop.member.error.InvalidPropertyException;
 import com.myshop.member.query.dto.JoinErrorResponse;
 import com.myshop.member.query.dto.JoinRequest;
 

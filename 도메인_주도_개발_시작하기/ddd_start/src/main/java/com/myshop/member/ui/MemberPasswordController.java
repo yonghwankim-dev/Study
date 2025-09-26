@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myshop.member.NoMemberException;
 import com.myshop.member.application.ChangePasswordService;
+import com.myshop.member.error.NoMemberException;
 import com.myshop.member.query.dto.ChangePasswordRequest;
 import com.myshop.member.query.dto.MemberAuthentication;
 
