@@ -25,7 +25,6 @@ import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.command.domain.service.CouponAndMemberShipDiscountCalculationService;
 import com.myshop.order.error.ValidationError;
 import com.myshop.order.error.ValidationErrorException;
-import com.myshop.order.query.dto.OrderRequest;
 
 @Service
 public class PlaceOrderService {

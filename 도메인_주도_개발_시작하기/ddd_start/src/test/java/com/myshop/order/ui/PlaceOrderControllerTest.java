@@ -21,11 +21,11 @@ import com.myshop.common.model.Email;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.order.command.application.OrderProduct;
+import com.myshop.order.command.application.OrderRequest;
 import com.myshop.order.command.domain.model.Address;
 import com.myshop.order.command.domain.model.Receiver;
 import com.myshop.order.command.domain.model.ShippingInfo;
 import com.myshop.order.command.domain.repository.OrderRepository;
-import com.myshop.order.query.dto.OrderRequest;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
