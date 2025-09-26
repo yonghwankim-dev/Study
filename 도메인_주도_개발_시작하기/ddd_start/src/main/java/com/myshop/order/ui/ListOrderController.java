@@ -14,11 +14,11 @@ import com.myshop.order.query.dao.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
 
 @RestController
-public class OrderListController {
+public class ListOrderController {
 
 	private final OrderViewDao orderViewDao;
 
-	public OrderListController(OrderViewDao orderViewDao) {
+	public ListOrderController(OrderViewDao orderViewDao) {
 		this.orderViewDao = orderViewDao;
 	}
 
