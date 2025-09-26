@@ -1,5 +1,11 @@
 package com.myshop.order.infrastructure.domain;
 
+import java.util.Collection;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.myshop.order.command.domain.model.CancelPolicy;
@@ -10,7 +16,7 @@ import com.myshop.order.command.domain.model.Order;
 public class SecurityCancelPolicy implements CancelPolicy {
 	@Override
 	public boolean hasCancellationPermission(Order order, Canceller canceller) {
-		return isCancellerOrderer(order, canceller) || isCurrentUserAdminRole(canceller);
+		return isCancellerOrderer(order, canceller) || isCurrentUserAdminRole();
 	}
 
 	private boolean isCancellerOrderer(Order order, Canceller canceller) {
@@ -22,7 +28,19 @@ public class SecurityCancelPolicy implements CancelPolicy {
 	 * @param canceller
 	 * @return
 	 */
-	private boolean isCurrentUserAdminRole(Canceller canceller) {
-		return false;
+	private boolean isCurrentUserAdminRole() {
+		SecurityContext context = SecurityContextHolder.getContext();
+		if (context == null) {
+			return false;
+		}
+		Authentication authentication = context.getAuthentication();
+		if (authentication == null) {
+			return false;
+		}
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		if (authorities == null) {
+			return false;
+		}
+		return authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
 	}
 }
