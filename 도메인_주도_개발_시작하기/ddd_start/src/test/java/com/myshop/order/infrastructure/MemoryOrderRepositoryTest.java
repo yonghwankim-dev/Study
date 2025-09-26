@@ -14,9 +14,10 @@ import com.myshop.FixedDomainFactory;
 import com.myshop.order.command.domain.model.Order;
 import com.myshop.order.command.domain.model.OrderNo;
 import com.myshop.order.command.domain.model.OrderNoGenerator;
-import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.command.domain.model.OrdererSpec;
 import com.myshop.order.command.domain.model.Specification;
+import com.myshop.order.command.domain.repository.OrderRepository;
+import com.myshop.order.command.infrastructure.MemoryOrderRepository;
 
 class MemoryOrderRepositoryTest {
 
