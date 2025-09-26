@@ -11,11 +11,11 @@ import com.myshop.order.command.application.StartShippingService;
 import com.myshop.order.error.VersionConflictException;
 
 @RestController
-public class OrderAdminController {
+public class StartShippingOrderController {
 
 	private final StartShippingService startShippingService;
 
-	public OrderAdminController(StartShippingService startShippingService) {
+	public StartShippingOrderController(StartShippingService startShippingService) {
 		this.startShippingService = startShippingService;
 	}
 
