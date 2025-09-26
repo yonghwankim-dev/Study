@@ -1,4 +1,4 @@
-package com.myshop.order.query.dto;
+package com.myshop.order.command.application;
 
 public class StartShippingRequest {
 
