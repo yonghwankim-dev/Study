@@ -15,12 +15,12 @@ import com.myshop.member.domain.Member;
 import com.myshop.member.query.dto.MemberAuthentication;
 
 @Controller
-public class CreateFormOrderController {
+public class CreateOrderFormController {
 
 	private final SearchMemberService service;
 	private final ProductListService productListService;
 
-	public CreateFormOrderController(SearchMemberService service, ProductListService productListService) {
+	public CreateOrderFormController(SearchMemberService service, ProductListService productListService) {
 		this.service = service;
 		this.productListService = productListService;
 	}
