@@ -1,4 +1,4 @@
-package com.myshop.order.command.domain.repository;
+package com.myshop.order.query.dao;
 
 import java.util.List;
 
