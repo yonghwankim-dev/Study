@@ -1,4 +1,4 @@
-package com.myshop.order.command.application;
+package com.myshop.order.error;
 
 public class NoCancellablePermission extends RuntimeException {
 }
