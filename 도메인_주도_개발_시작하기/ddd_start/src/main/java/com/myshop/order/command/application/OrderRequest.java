@@ -1,8 +1,6 @@
-package com.myshop.order.query.dto;
+package com.myshop.order.command.application;
 
 import java.util.List;
-
-import com.myshop.order.command.application.OrderProduct;
 
 public class OrderRequest {
 	private List<OrderProduct> orderProducts;

@@ -26,15 +26,12 @@ import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
-import com.myshop.order.command.application.OrderProduct;
-import com.myshop.order.command.application.PlaceOrderService;
 import com.myshop.order.command.domain.model.Address;
 import com.myshop.order.command.domain.model.OrderNo;
 import com.myshop.order.command.domain.model.Receiver;
 import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.error.ValidationError;
 import com.myshop.order.error.ValidationErrorException;
-import com.myshop.order.query.dto.OrderRequest;
 import com.myshop.store.domain.StoreId;
 
 @SpringBootTest

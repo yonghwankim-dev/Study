@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.MemberAuthentication;
+import com.myshop.order.command.application.OrderRequest;
 import com.myshop.order.command.application.PlaceOrderService;
 import com.myshop.order.command.domain.model.OrderNo;
 import com.myshop.order.command.domain.model.Orderer;
 import com.myshop.order.error.PlaceOrderErrorResponse;
 import com.myshop.order.error.ValidationErrorException;
-import com.myshop.order.query.dto.OrderRequest;
 
 @RestController
 public class PlaceOrderController {

@@ -17,8 +17,8 @@ import com.myshop.member.application.JoinService;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.JoinRequest;
 import com.myshop.order.command.application.OrderProduct;
+import com.myshop.order.command.application.OrderRequest;
 import com.myshop.order.command.application.PlaceOrderService;
-import com.myshop.order.query.dto.OrderRequest;
 import com.myshop.store.application.RegisterStoreService;
 import com.myshop.store.domain.StoreId;
 
