@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure;
+package com.myshop.order.command.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
