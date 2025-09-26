@@ -9,7 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.myshop.member.query.dto.MemberAuthentication;
-import com.myshop.order.command.application.OrderViewListService;
+import com.myshop.order.query.application.OrderViewListService;
 import com.myshop.order.query.dto.OrderView;
 
 @Controller

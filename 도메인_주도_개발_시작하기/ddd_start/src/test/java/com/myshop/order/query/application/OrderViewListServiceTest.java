@@ -1,4 +1,4 @@
-package com.myshop.order.command.application;
+package com.myshop.order.query.application;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
