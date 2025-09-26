@@ -12,12 +12,12 @@ import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.error.OrderNotFoundException;
 
 @Service
-public class ChangeOrderService {
+public class ChangeShippingService {
 
 	private final OrderRepository orderRepository;
 	private final MemberRepository memberRepository;
 
-	public ChangeOrderService(OrderRepository orderRepository, MemberRepository memberRepository) {
+	public ChangeShippingService(OrderRepository orderRepository, MemberRepository memberRepository) {
 		this.orderRepository = orderRepository;
 		this.memberRepository = memberRepository;
 	}

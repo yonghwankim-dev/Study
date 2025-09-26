@@ -22,9 +22,6 @@ import com.myshop.common.model.Money;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.order.command.application.ChangeOrderService;
-import com.myshop.order.command.application.ChangeOrderStateService;
-import com.myshop.order.command.application.SearchOrderService;
 import com.myshop.order.command.domain.model.Address;
 import com.myshop.order.command.domain.model.Order;
 import com.myshop.order.command.domain.model.OrderLine;
@@ -38,11 +35,11 @@ import com.myshop.order.error.OrderNotFoundException;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class ChangeOrderServiceTest {
+class ChangeShippingServiceTest {
 
 	private OrderNo id;
 	@Autowired
-	private ChangeOrderService service;
+	private ChangeShippingService service;
 	@Autowired
 	private OrderRepository orderRepository;
 	@Autowired
