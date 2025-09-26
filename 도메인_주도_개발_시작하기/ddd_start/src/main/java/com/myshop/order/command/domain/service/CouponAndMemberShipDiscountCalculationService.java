@@ -3,8 +3,8 @@ package com.myshop.order.command.domain.service;
 import java.util.List;
 
 import com.myshop.common.model.Money;
-import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
+import com.myshop.order.command.domain.model.Coupon;
 import com.myshop.order.command.domain.model.OrderLine;
 
 public class CouponAndMemberShipDiscountCalculationService {

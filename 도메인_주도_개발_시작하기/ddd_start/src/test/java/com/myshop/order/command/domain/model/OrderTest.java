@@ -16,7 +16,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import com.myshop.catalog.domain.product.ProductId;
 import com.myshop.common.model.Money;
-import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.command.application.RefundService;
