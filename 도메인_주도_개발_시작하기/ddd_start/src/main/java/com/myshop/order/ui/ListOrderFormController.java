@@ -9,22 +9,22 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.myshop.member.query.dto.MemberAuthentication;
-import com.myshop.order.command.application.OrderListService;
+import com.myshop.order.command.application.OrderViewListService;
 import com.myshop.order.query.dto.OrderView;
 
 @Controller
 public class ListOrderFormController {
 
-	private final OrderListService orderListService;
+	private final OrderViewListService orderViewListService;
 
-	public ListOrderFormController(OrderListService orderListService) {
-		this.orderListService = orderListService;
+	public ListOrderFormController(OrderViewListService orderViewListService) {
+		this.orderViewListService = orderViewListService;
 	}
 
 	@GetMapping("/orders")
 	public String listOrderForm(ModelMap model) {
 		String ordererId = getAuthenticatedMemberId();
-		List<OrderView> orderViews = orderListService.getOrderList(ordererId);
+		List<OrderView> orderViews = orderViewListService.getOrderList(ordererId);
 		model.addAttribute("orders", orderViews);
 		return "order/list";
 	}

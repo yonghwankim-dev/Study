@@ -9,11 +9,11 @@ import com.myshop.order.command.domain.repository.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
 
 @Service
-public class OrderListService {
+public class OrderViewListService {
 
 	private final OrderViewDao orderViewDao;
 
-	public OrderListService(OrderViewDao orderViewDao) {
+	public OrderViewListService(OrderViewDao orderViewDao) {
 		this.orderViewDao = orderViewDao;
 	}
 
