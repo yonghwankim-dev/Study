@@ -1,10 +1,11 @@
-package com.myshop.order.command.application;
+package com.myshop.order.infrastructure;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
+import com.myshop.order.command.application.RefundService;
 import com.myshop.order.command.domain.model.OrderCanceledEvent;
 
 @Service
