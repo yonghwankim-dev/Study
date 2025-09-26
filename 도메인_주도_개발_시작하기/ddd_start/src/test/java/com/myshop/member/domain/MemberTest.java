@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.myshop.member.PasswordNotMatchException;
+import com.myshop.member.error.PasswordNotMatchException;
 import com.myshop.order.command.domain.model.Address;
 
 class MemberTest {

@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.myshop.common.jpa.EmailSetConverter;
 import com.myshop.common.model.EmailSet;
-import com.myshop.member.PasswordNotMatchException;
+import com.myshop.member.error.PasswordNotMatchException;
 import com.myshop.order.command.domain.model.Address;
 
 import jakarta.persistence.Column;

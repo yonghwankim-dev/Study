@@ -2,8 +2,8 @@ package com.myshop.member.application;
 
 import java.util.regex.Pattern;
 
-import com.myshop.member.EmptyPropertyException;
-import com.myshop.member.InvalidPropertyException;
+import com.myshop.member.error.EmptyPropertyException;
+import com.myshop.member.error.InvalidPropertyException;
 import com.myshop.member.query.dto.JoinRequest;
 
 public class JoinRequestValidator {

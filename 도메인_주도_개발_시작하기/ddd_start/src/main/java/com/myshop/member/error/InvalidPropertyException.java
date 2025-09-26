@@ -1,4 +1,4 @@
-package com.myshop.member;
+package com.myshop.member.error;
 
 public class InvalidPropertyException extends RuntimeException {
 
