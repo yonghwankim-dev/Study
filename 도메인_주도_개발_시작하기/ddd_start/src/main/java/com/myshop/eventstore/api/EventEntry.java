@@ -41,4 +41,14 @@ public class EventEntry {
 	public long getTimestamp() {
 		return timestamp;
 	}
+
+	@Override
+	public String toString() {
+		return "EventEntry{" +
+			"id=" + id +
+			", type='" + type + '\'' +
+			", contentType='" + contentType + '\'' +
+			", timestamp=" + timestamp +
+			'}';
+	}
 }
