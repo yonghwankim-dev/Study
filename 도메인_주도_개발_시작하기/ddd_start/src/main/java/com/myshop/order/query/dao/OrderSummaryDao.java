@@ -14,9 +14,7 @@ import com.myshop.order.query.dto.OrderView;
 
 public interface OrderSummaryDao extends Repository<OrderSummary, String> {
 	void save(OrderSummary orderSummary);
-
-	OrderSummary findByNumber(String number);
-
+	
 	List<OrderSummary> findAll(Specification<OrderSummary> spec);
 
 	List<OrderSummary> findAll(Specification<OrderSummary> spec, Pageable pageable);
