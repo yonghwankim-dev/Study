@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myshop.member.domain.MemberId;
 import com.myshop.member.query.dto.MemberAuthentication;
-import com.myshop.order.command.domain.model.Orderer;
 import com.myshop.order.query.dao.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
 
@@ -25,16 +24,14 @@ public class OrderListController {
 
 	@GetMapping("/myorders")
 	public ResponseEntity<List<OrderView>> list() {
-		MemberId memberId = createOrderer().getMemberId();
+		MemberId memberId = getAuthenticatedMemberId();
 		List<OrderView> orderViews = orderViewDao.selectByOrderer(memberId.getId());
 		return ResponseEntity.ok().body(orderViews);
 	}
 
-	private Orderer createOrderer() {
+	private MemberId getAuthenticatedMemberId() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		MemberAuthentication memberAuthentication = (MemberAuthentication)authentication.getPrincipal();
-		MemberId memberId = new MemberId(memberAuthentication.getMemberId());
-		String name = memberAuthentication.getMemberName();
-		return new Orderer(memberId, name);
+		return new MemberId(memberAuthentication.getMemberId());
 	}
 }
