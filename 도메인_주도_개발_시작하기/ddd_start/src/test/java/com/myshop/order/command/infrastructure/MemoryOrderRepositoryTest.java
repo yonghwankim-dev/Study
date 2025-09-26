@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure;
+package com.myshop.order.command.infrastructure;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +17,6 @@ import com.myshop.order.command.domain.model.OrderNoGenerator;
 import com.myshop.order.command.domain.model.OrdererSpec;
 import com.myshop.order.command.domain.model.Specification;
 import com.myshop.order.command.domain.repository.OrderRepository;
-import com.myshop.order.command.infrastructure.MemoryOrderRepository;
 
 class MemoryOrderRepositoryTest {
 
