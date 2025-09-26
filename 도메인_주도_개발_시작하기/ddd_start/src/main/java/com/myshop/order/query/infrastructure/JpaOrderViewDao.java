@@ -1,4 +1,4 @@
-package com.myshop.order.infrastructure;
+package com.myshop.order.query.infrastructure;
 
 import java.util.List;
 
