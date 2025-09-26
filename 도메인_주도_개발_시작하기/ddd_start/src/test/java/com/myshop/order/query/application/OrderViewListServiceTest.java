@@ -34,6 +34,10 @@ class OrderViewListServiceTest {
 
 	@BeforeEach
 	void setUp() {
+		productRepository.deleteAll();
+		orderRepository.deleteAll();
+		memberRepository.deleteAll();
+		
 		Member member = FixedDomainFactory.createMember("member-1");
 		memberRepository.save(member);
 
