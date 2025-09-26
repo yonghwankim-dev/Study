@@ -13,16 +13,15 @@ import com.myshop.catalog.domain.product.Product;
 import com.myshop.catalog.domain.product.ProductRepository;
 import com.myshop.member.domain.Member;
 import com.myshop.member.domain.MemberRepository;
-import com.myshop.order.command.application.OrderListService;
 import com.myshop.order.command.domain.model.Order;
 import com.myshop.order.command.domain.repository.OrderRepository;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class OrderListServiceTest {
+class OrderViewListServiceTest {
 
 	@Autowired
-	private OrderListService service;
+	private OrderViewListService service;
 
 	@Autowired
 	private OrderRepository orderRepository;
