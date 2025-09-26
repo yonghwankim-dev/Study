@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.myshop.order.application.ChangeOrderStateService;
-import com.myshop.order.domain.model.OrderNo;
-import com.myshop.order.domain.model.OrderState;
+import com.myshop.order.command.application.ChangeOrderStateService;
+import com.myshop.order.command.domain.model.OrderNo;
+import com.myshop.order.command.domain.model.OrderState;
 
 @Controller
 public class ChangeOrderStateController {
@@ -16,7 +16,7 @@ public class ChangeOrderStateController {
 	public ChangeOrderStateController(ChangeOrderStateService service) {
 		this.service = service;
 	}
-	
+
 	@PostMapping("/orders/change-state")
 	public String changeOrderState(@RequestParam("id") String orderId, @RequestParam("state") String state) {
 		OrderState orderState = OrderState.valueOf(state);

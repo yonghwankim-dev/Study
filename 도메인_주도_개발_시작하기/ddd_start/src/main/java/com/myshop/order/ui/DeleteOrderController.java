@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.myshop.order.application.DeleteOrderService;
+import com.myshop.order.command.application.DeleteOrderService;
 
 @Controller
 public class DeleteOrderController {

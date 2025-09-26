@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myshop.member.query.dto.MemberAuthentication;
-import com.myshop.order.application.CancelOrderService;
-import com.myshop.order.domain.model.Canceller;
-import com.myshop.order.domain.model.OrderNo;
+import com.myshop.order.command.application.CancelOrderService;
+import com.myshop.order.command.domain.model.Canceller;
+import com.myshop.order.command.domain.model.OrderNo;
 
 @Controller
 public class CancelOrderController {

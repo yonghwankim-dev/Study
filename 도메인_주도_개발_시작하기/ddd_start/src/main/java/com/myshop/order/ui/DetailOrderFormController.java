@@ -5,8 +5,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.myshop.order.domain.model.OrderNo;
-import com.myshop.order.domain.repository.OrderViewDao;
+import com.myshop.order.command.domain.model.OrderNo;
+import com.myshop.order.command.domain.repository.OrderViewDao;
 import com.myshop.order.query.dto.OrderView;
 
 @Controller

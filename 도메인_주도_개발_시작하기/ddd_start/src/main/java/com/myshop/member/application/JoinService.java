@@ -12,7 +12,7 @@ import com.myshop.member.domain.MemberIdGenerator;
 import com.myshop.member.domain.MemberRepository;
 import com.myshop.member.domain.Password;
 import com.myshop.member.query.dto.JoinRequest;
-import com.myshop.order.domain.model.Address;
+import com.myshop.order.command.domain.model.Address;
 
 @Service
 public class JoinService {
