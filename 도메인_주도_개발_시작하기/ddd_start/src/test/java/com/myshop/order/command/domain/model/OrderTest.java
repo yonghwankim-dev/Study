@@ -20,17 +20,9 @@ import com.myshop.coupon.domain.Coupon;
 import com.myshop.member.domain.MemberGrade;
 import com.myshop.member.domain.MemberId;
 import com.myshop.order.command.application.RefundService;
-import com.myshop.order.command.domain.model.Address;
-import com.myshop.order.command.domain.model.Order;
-import com.myshop.order.command.domain.model.OrderLine;
-import com.myshop.order.command.domain.model.OrderNo;
-import com.myshop.order.command.domain.model.OrderState;
-import com.myshop.order.command.domain.model.Orderer;
-import com.myshop.order.command.domain.model.Receiver;
-import com.myshop.order.command.domain.model.ShippingInfo;
 import com.myshop.order.command.domain.service.CouponAndMemberShipDiscountCalculationService;
 import com.myshop.order.command.domain.service.DiscountCalculationService;
-import com.myshop.order.infrastructure.RuleBasedDiscountCalculationService;
+import com.myshop.order.command.infrastructure.RuleBasedDiscountCalculationService;
 
 class OrderTest {
 

@@ -10,7 +10,6 @@ import com.myshop.order.command.domain.model.OrderNo;
 import com.myshop.order.command.domain.model.OrderNoGenerator;
 import com.myshop.order.command.domain.model.Specification;
 import com.myshop.order.command.domain.repository.OrderRepository;
-import com.myshop.order.infrastructure.SpringDataJpaOrderRepository;
 
 @Repository
 public class JpaOrderRepository implements OrderRepository {
