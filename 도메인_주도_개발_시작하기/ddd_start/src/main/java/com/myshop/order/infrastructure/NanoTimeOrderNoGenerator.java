@@ -2,7 +2,7 @@ package com.myshop.order.infrastructure;
 
 import org.springframework.stereotype.Component;
 
-import com.myshop.order.domain.model.OrderNoGenerator;
+import com.myshop.order.command.domain.model.OrderNoGenerator;
 
 @Component
 public class NanoTimeOrderNoGenerator implements OrderNoGenerator {

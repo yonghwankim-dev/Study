@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myshop.order.application.StartShippingService;
+import com.myshop.order.command.application.StartShippingService;
 import com.myshop.order.error.VersionConflictException;
 import com.myshop.order.query.dto.StartShippingRequest;
 

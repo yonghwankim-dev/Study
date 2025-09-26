@@ -11,12 +11,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.myshop.FixedDomainFactory;
-import com.myshop.order.domain.model.Order;
-import com.myshop.order.domain.model.OrderNo;
-import com.myshop.order.domain.model.OrderNoGenerator;
-import com.myshop.order.domain.repository.OrderRepository;
-import com.myshop.order.domain.model.OrdererSpec;
-import com.myshop.order.domain.model.Specification;
+import com.myshop.order.command.domain.model.Order;
+import com.myshop.order.command.domain.model.OrderNo;
+import com.myshop.order.command.domain.model.OrderNoGenerator;
+import com.myshop.order.command.domain.repository.OrderRepository;
+import com.myshop.order.command.domain.model.OrdererSpec;
+import com.myshop.order.command.domain.model.Specification;
 
 class MemoryOrderRepositoryTest {
 

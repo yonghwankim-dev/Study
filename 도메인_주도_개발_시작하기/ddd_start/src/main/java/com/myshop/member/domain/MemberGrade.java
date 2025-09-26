@@ -1,7 +1,7 @@
 package com.myshop.member.domain;
 
 import com.myshop.common.model.Money;
-import com.myshop.order.domain.model.OrderLine;
+import com.myshop.order.command.domain.model.OrderLine;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

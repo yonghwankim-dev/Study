@@ -2,9 +2,9 @@ package com.myshop.order.infrastructure.domain;
 
 import org.springframework.stereotype.Component;
 
-import com.myshop.order.domain.model.CancelPolicy;
-import com.myshop.order.domain.model.Canceller;
-import com.myshop.order.domain.model.Order;
+import com.myshop.order.command.domain.model.CancelPolicy;
+import com.myshop.order.command.domain.model.Canceller;
+import com.myshop.order.command.domain.model.Order;
 
 @Component
 public class SecurityCancelPolicy implements CancelPolicy {

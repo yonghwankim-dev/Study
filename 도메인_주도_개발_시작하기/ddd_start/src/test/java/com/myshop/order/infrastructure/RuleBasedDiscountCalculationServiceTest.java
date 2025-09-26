@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.domain.model.OrderLine;
-import com.myshop.order.domain.service.DiscountCalculationService;
+import com.myshop.order.command.domain.model.OrderLine;
+import com.myshop.order.command.domain.service.DiscountCalculationService;
 
 class RuleBasedDiscountCalculationServiceTest {
 

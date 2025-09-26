@@ -1,6 +1,6 @@
 package com.myshop.order.error;
 
-import com.myshop.order.domain.model.OrderNo;
+import com.myshop.order.command.domain.model.OrderNo;
 
 public class OrderNotFoundException extends RuntimeException {
 	public OrderNotFoundException(OrderNo id) {

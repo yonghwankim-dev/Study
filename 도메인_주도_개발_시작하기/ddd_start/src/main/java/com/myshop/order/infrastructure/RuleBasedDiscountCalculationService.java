@@ -6,8 +6,8 @@ import java.util.Map;
 
 import com.myshop.common.model.Money;
 import com.myshop.member.domain.MemberId;
-import com.myshop.order.domain.model.OrderLine;
-import com.myshop.order.domain.service.DiscountCalculationService;
+import com.myshop.order.command.domain.model.OrderLine;
+import com.myshop.order.command.domain.service.DiscountCalculationService;
 
 public class RuleBasedDiscountCalculationService implements DiscountCalculationService {
 

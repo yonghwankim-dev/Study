@@ -15,9 +15,9 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 import com.myshop.FixedDomainFactory;
 import com.myshop.common.model.Money;
-import com.myshop.order.domain.model.Order;
-import com.myshop.order.domain.model.OrderNo;
-import com.myshop.order.domain.repository.OrderRepository;
+import com.myshop.order.command.domain.model.Order;
+import com.myshop.order.command.domain.model.OrderNo;
+import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.error.OrderNotFoundException;
 
 @SpringBootTest
