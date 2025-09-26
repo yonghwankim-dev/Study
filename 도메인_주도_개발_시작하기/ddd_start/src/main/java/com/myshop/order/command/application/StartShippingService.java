@@ -8,7 +8,6 @@ import com.myshop.order.command.domain.model.Order;
 import com.myshop.order.command.domain.model.OrderNo;
 import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.error.VersionConflictException;
-import com.myshop.order.query.dto.StartShippingRequest;
 
 @Service
 public class StartShippingService {

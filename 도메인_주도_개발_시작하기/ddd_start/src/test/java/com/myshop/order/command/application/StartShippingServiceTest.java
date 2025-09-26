@@ -12,13 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.myshop.FixedDomainFactory;
-import com.myshop.order.command.application.SearchOrderService;
-import com.myshop.order.command.application.StartShippingService;
 import com.myshop.order.command.domain.model.Order;
 import com.myshop.order.command.domain.model.OrderState;
 import com.myshop.order.command.domain.repository.OrderRepository;
 import com.myshop.order.error.VersionConflictException;
-import com.myshop.order.query.dto.StartShippingRequest;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
