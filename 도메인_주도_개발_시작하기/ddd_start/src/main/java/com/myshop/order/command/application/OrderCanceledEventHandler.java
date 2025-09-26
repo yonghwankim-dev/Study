@@ -1,8 +1,9 @@
 package com.myshop.order.command.application;
 
-import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import com.myshop.order.command.domain.model.OrderCanceledEvent;
 
@@ -15,7 +16,7 @@ public class OrderCanceledEventHandler {
 	}
 
 	@Async
-	@EventListener(OrderCanceledEvent.class)
+	@TransactionalEventListener(classes = OrderCanceledEvent.class, phase = TransactionPhase.AFTER_COMMIT)
 	public void handle(OrderCanceledEvent event) {
 		refundService.refund(event.getOrderNumber());
 	}
