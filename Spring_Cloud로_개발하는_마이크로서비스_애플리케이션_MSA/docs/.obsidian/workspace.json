@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "60342c8e121fffb7",
+    "type": "split",
+    "children": [
+      {
+        "id": "1345ebce82252d28",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ddefefeedf7e296d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "chapter07/Users Microservice 2.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Users Microservice 2"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "11578cecc209d1c7",
+    "type": "split",
+    "children": [
+      {
+        "id": "28a8a5bc88e253fb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e5e855fcac9ca0fd",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "484fb7f5890432df",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "d2e5161ae05c6e50",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5836f2292d6a6691",
+    "type": "split",
+    "children": [
+      {
+        "id": "839e8414f2c6d173",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b1070efff8ccd953",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "chapter01/소프트웨어 아키텍처.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "소프트웨어 아키텍처 의 백링크"
+            }
+          },
+          {
+            "id": "019de6eaf04c27ff",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "chapter01/소프트웨어 아키텍처.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "소프트웨어 아키텍처 의 나가는 링크"
+            }
+          },
+          {
+            "id": "33bae2c3025e69a3",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "a146b13ef00cd951",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "chapter01/소프트웨어 아키텍처.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "소프트웨어 아키텍처 의 개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "ddefefeedf7e296d",
+  "lastOpenFiles": [
+    "chapter06/Catalogs and Order Microservice.md",
+    "chapter07/Users Microservice 2.md",
+    "chapter07",
+    "imgs/Pasted image 20251031133354.png",
+    "imgs/Pasted image 20251031133342.png",
+    "imgs/Pasted image 20251031133219.png",
+    "imgs/Pasted image 20251031132327.png",
+    "imgs/Pasted image 20251031131533.png",
+    "imgs/Pasted image 20251030165224.png",
+    "imgs/Pasted image 20251030165029.png",
+    "imgs/Pasted image 20251030164934.png",
+    "chapter04/E-commerce 애플리케이션.md",
+    "chapter05/Users Microservice.md",
+    "imgs/Pasted image 20251030154959.png",
+    "imgs/Pasted image 20251030154104.png",
+    "chapter06",
+    "chapter01/소프트웨어 아키텍처.md",
+    "chapter05",
+    "chapter03/API Gateway Service.md",
+    "chapter04",
+    "chapter02/Service Discovery.md",
+    "chapter03",
+    "chapter02",
+    "imgs",
+    "chapter01",
+    "환영합니다!.md"
+  ]
+}
