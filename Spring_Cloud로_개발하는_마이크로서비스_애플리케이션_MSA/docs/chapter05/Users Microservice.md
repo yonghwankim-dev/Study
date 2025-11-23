@@ -93,10 +93,10 @@ public class UserController {
 ```
 
 ### Eureka Discovery Service 등록
-![](imgs/Pasted%20image%2020251029170237.png)
+![](../imgs/Pasted%20image%2020251029170237.png)
 
 실행 결과를 보면 USER-SERVICE가 등록되었고 포트번호가 54886인것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251029170313.png)
+![](../imgs/Pasted%20image%2020251029170313.png)
 
 ### Confiugration 정보 추가
 application.yml 파일에 Welcome Message 추가
@@ -117,7 +117,7 @@ public String welcome(HttpServletRequest request){
 ```
 
 실행 결과
-![](imgs/Pasted%20image%2020251030113837.png)
+![](../imgs/Pasted%20image%2020251030113837.png)
 
 ### @Value를 사용한 Configuration 정보 추가
 application.yml 파일에 저장된 greeting.message 프로퍼티를 Environment 객체로 가져오는 것이 아니라 별도의 클래스를 선언하여 가져올 수 있습니다.
@@ -160,7 +160,7 @@ public class UserController {
 ```
 
 실행 결과
-![](imgs/Pasted%20image%2020251030114357.png)
+![](../imgs/Pasted%20image%2020251030114357.png)
 
 ### H2 Database
 - 자바로 작성된 오픈소스, RDBMS
@@ -206,8 +206,8 @@ spring:
 
 실행 결과 확인
 - 정상적으로 접속한 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251030120911.png)
-![](imgs/Pasted%20image%2020251030120853.png)
+![](../imgs/Pasted%20image%2020251030120911.png)
+![](../imgs/Pasted%20image%2020251030120853.png)
 
 
 ## Users Microservice - 사용자 추가 구현 (JPA)
@@ -307,5 +307,5 @@ spring:
 ```
 
 포스트맨과 같이 API로 테스트할때 Username=user, Password=password으로 입력하여 간단하게 인증 가능합니다.
-![](imgs/Pasted%20image%2020251030145135.png)
+![](../imgs/Pasted%20image%2020251030145135.png)
 

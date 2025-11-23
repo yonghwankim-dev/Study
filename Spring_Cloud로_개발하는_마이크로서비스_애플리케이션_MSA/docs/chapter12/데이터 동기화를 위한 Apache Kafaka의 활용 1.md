@@ -14,7 +14,7 @@
 - 다양한 테크 기업들에서 사용하고 있음
 
 Apache Kafka가 나오기 이전 아키텍처 모습
-![](imgs/Pasted%20image%2020251112154154.png)
+![](../imgs/Pasted%20image%2020251112154154.png)
 - End-to-End 연결 방식의 아키텍처
 - 데이터 연동의 복잡성 증가 (HW, OS, 장애 등)
 - 서로 다른 데이터 파이프라인(Pipeline) 연결 구조
@@ -28,7 +28,7 @@ Kafka 탄생 배경
 
 카프카를 도입하여 데이터 저장소에서 카프카로 데이터 전송하면 Kafka에서 시스템으로 데이터를 맞추어 전송한다.
 데이터 저장소 및 데이터를 전송받는 시스템에서는 누가 보내는지, 누가 받는지 신경쓰지 않아도 됩니다.
-![](imgs/Pasted%20image%2020251112154731.png)
+![](../imgs/Pasted%20image%2020251112154731.png)
 
 Kafka 도입시 효과
 - Producer/Consumer 분리
@@ -49,7 +49,7 @@ Kafka 도입시 효과
 		- 각 Brodker에게 담당 파티션 할당 수행
 		- Broker 정상 동작 모니터링 관리
 
-![](imgs/Pasted%20image%2020251112155707.png)
+![](../imgs/Pasted%20image%2020251112155707.png)
 
 ## Apache Kafka 설치
 ### docker 기반 kafka 설치
@@ -81,14 +81,14 @@ tar -xvf kafka_2.13-4.1.1.taz
 cd kafka_2.13-4.1.1
 ls
 ```
-![](imgs/Pasted%20image%2020251116152706.png)
+![](../imgs/Pasted%20image%2020251116152706.png)
 
 클러스터 ID 생성
 ```shell
 KAFKA_CLUSTER_ID=$($KAFKA_HOME/bin/kafka-storage.sh random-uuid)
 echo $KAFKA_CLUSTER_ID
 ```
-![](imgs/Pasted%20image%2020251116154641.png)
+![](../imgs/Pasted%20image%2020251116154641.png)
 
 log.dirs 포맷(format)
 server.properties 안에는 다음 속성이 있어야 합니다.
@@ -102,7 +102,7 @@ server.properties 안에는 다음 속성이 있어야 합니다.
 ```shell
 $KAFKA_HOME/bin/kafka-storage.sh format -t $KAFKA_CLUSTER_ID -c $KAFKA_HOME/config/server.properties
 ```
-![](imgs/Pasted%20image%2020251116155354.png)
+![](../imgs/Pasted%20image%2020251116155354.png)
 
 행
 ```shell
@@ -113,7 +113,7 @@ kafka 실행 확인
 ```shell
 nc -zv localhost 9092
 ```
-![](imgs/Pasted%20image%2020251116155643.png)
+![](../imgs/Pasted%20image%2020251116155643.png)
 ## Apache Kafka 사용 - Producer/Consumer
 ### Kafka Client
 - Kafaka와 데이터를 주고받기 위해 사용하는 자바 라이브러리
@@ -132,20 +132,20 @@ topic 생성
 ```shell
 $KAFKA_HOME/bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092 --partitions 1
 ```
-![](imgs/Pasted%20image%2020251116155845.png)
-![](imgs/Pasted%20image%2020251113125212.png)
+![](../imgs/Pasted%20image%2020251116155845.png)
+![](../imgs/Pasted%20image%2020251113125212.png)
 
 topic 목록 확인
 ```shell
 $KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 ```
-![](imgs/Pasted%20image%2020251116155906.png)
+![](../imgs/Pasted%20image%2020251116155906.png)
 
 topic 정보 확인
 ```shell
 $KAFKA_HOME/bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092 
 ```
-![](imgs/Pasted%20image%2020251116155938.png)
+![](../imgs/Pasted%20image%2020251116155938.png)
 
 ### Kafka Producer / Consumer 테스트
 메시지 생산
@@ -154,7 +154,7 @@ $KAFKA_HOME/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --to
 > Hello, World!
 > Hi, there.
 ```
-- `--broker-list` 옵션은 deprecated 되었음. 대체제로 `--bootstrap-server` 사용해야함![](imgs/Pasted%20image%2020251116160024.png)
+- `--broker-list` 옵션은 deprecated 되었음. 대체제로 `--bootstrap-server` 사용해야함![](../imgs/Pasted%20image%2020251116160024.png)
 
 메시지 소비
 ```shell
@@ -164,14 +164,14 @@ Hi, there.
 ```
 
 메시지 소비 실행 결과를 보면 Producer가 보낸 메시지를 수신받은 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251116160053.png)
+![](../imgs/Pasted%20image%2020251116160053.png)
 
 다음 실행 결과는 두번째 Consumer를 실행한 결과입니다.
 - `--from-beginning` 옵션 설정 덕분에 과거의 메시지도 가져올 수 있습니다.
-![](imgs/Pasted%20image%2020251116160123.png)
+![](../imgs/Pasted%20image%2020251116160123.png)
 
 다음 실행 결과를 보면 producer가 새로운 메시지를 송신하면 2개의 consumer가 메시지를 수신하는 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251116160153.png)
+![](../imgs/Pasted%20image%2020251116160153.png)
 
 ## Apache Kafka 사용 - Kafka Connect
 Kafka Connect 기능
@@ -185,7 +185,7 @@ Kafka Connect 기능
 
 데이터를 가져오는 쪽을 Kafka Connect Source(Import), 데이터를 보내는 쪽을 Kafka Connect Sink(Export)라고 합니다.
 다음 그림을 보면 Source System의 데이터를 Kafka Connect Source를 이용해서 가져오고 Kafka Connect Sink를 이용해서 목표로하는 시스템에 데이터를 전송한다.
-![](imgs/Pasted%20image%2020251113134237.png)
+![](../imgs/Pasted%20image%2020251113134237.png)
 
 ### MariaDB 설치 - MacOS
 ```shell
@@ -224,13 +224,13 @@ root 계정 접속
 mariadb -u root -p
 > test1234
 ```
-![](imgs/Pasted%20image%2020251113141913.png)
+![](../imgs/Pasted%20image%2020251113141913.png)
 
 mydb 데이터베이스 생성
 ```shell
 mariadb > create database mydb;
 ```
-![](imgs/Pasted%20image%2020251113143409.png)
+![](../imgs/Pasted%20image%2020251113143409.png)
 
 ## Orders Mircroservice에서 MariaDB 연동
 MariaDB Client로 Order Mircroservice의 H2 Console을 사용합니다.
@@ -246,7 +246,7 @@ order-service 프로젝트에 의존성 추가
 
 order-service를 실행한 다음에 h2-console을 통하여 mariadb에 접속해봅니다.
 - 실행 결과를 보면 성공적으로 접속한 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251113143438.png)
+![](../imgs/Pasted%20image%2020251113143438.png)
 
 mydb 스키마에 테이블 생성
 ```sql
@@ -258,7 +258,7 @@ create table users(
 	created_at datetime default NOW()
 );
 ```
-![](imgs/Pasted%20image%2020251113143504.png)
+![](../imgs/Pasted%20image%2020251113143504.png)
 
 ## Kafka Connect 설치
 ### Kafka Connect 설치 - MacOS
@@ -281,7 +281,7 @@ Kafka Connect 실행
 Topic 목록 확인
 - `$KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list`
 - 다음 실행 결과를 보면 kafka connect 관련 topic이 자동으로 생성된 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251117105730.png)
+![](../imgs/Pasted%20image%2020251117105730.png)
 
 ### JDBC Connector 설정 - MacOS
 **JDBC Connector 설치**
@@ -294,7 +294,7 @@ Topic 목록 확인
 ```
 plugin.path=/Users/yonghwankim/Documents/tool/kafka/confluentinc-kafka-connect-jdbc-10.9.0/lib
 ```
-![](imgs/Pasted%20image%2020251117110843.png)
+![](../imgs/Pasted%20image%2020251117110843.png)
 
 JdbcSourceConnector에서 MariaDB를 사용하기 위해서는 maraidb 드라이버가 필요합니다. maven 저장소에서 mariadb-java-client.jar 파일을 찾도록 하겠습니다.
 - 실행 결과를 보면 mariadb-java-client-3.5.6.jar 파일이 존재합니다.
@@ -303,7 +303,7 @@ JdbcSourceConnector에서 MariaDB를 사용하기 위해서는 maraidb 드라이
 cd ~/.m2/repository/org/mariadb/jdbc/mariadb-java-client/3.5.6/
 ls
 ```
-![](imgs/Pasted%20image%2020251117111701.png)
+![](../imgs/Pasted%20image%2020251117111701.png)
 
 **JdbcSourceConnector에서 MariaDB 사용하기 위해 mariadb 드라이버 복사**
 - 현재 디렉토리는 `~/.m2/repository/org/mariadb/jdbc/mariadb-java-client/3.5.6/` 경로의 디렉토리에 위치한다고 가정합니다.
@@ -361,39 +361,39 @@ echo '
 		- 병렬 실행할 태스크(task) 수
 
 Kafka Connector 등록 결과 확인
-![](imgs/Pasted%20image%2020251117125738.png)
+![](../imgs/Pasted%20image%2020251117125738.png)
 
 Kafka Connect 목록 확인
 ```shell
 curl http://localhost:8083/connectors
 ```
-![](imgs/Pasted%20image%2020251117120939.png)
+![](../imgs/Pasted%20image%2020251117120939.png)
 
 Kafka Connect 확인
 - 실행 결과를 보면 my-source-connect가 정상적으로 동작하는 것을 볼수 있음
 ```shell
 curl http://localhost:8083/connectors/my-source-connect/status
 ```
-![](imgs/Pasted%20image%2020251117131429.png)
+![](../imgs/Pasted%20image%2020251117131429.png)
 
 users 테이블에 데이터 삽입
 ```shell
 insert into users(user_id, pwd, name) values('user1', 'test1111', 'john');
 ```
-![](imgs/Pasted%20image%2020251117132545.png)
+![](../imgs/Pasted%20image%2020251117132545.png)
 
 topic 목록 확인
 - 실행 결과를 보면 "my_topic_users" 토픽이 생성된 것을 볼수 있습니다.
 ```shell
 $KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 ```
-![](imgs/Pasted%20image%2020251117132618.png)
+![](../imgs/Pasted%20image%2020251117132618.png)
 
 my_topic_users Topic 구독하기
 ```shell
 $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my_topic_users --from-beginning
 ```
-![](imgs/Pasted%20image%2020251117133152.png)
+![](../imgs/Pasted%20image%2020251117133152.png)
 ```json
 {
   "schema": {
@@ -467,7 +467,7 @@ echo '
 }
 ' | curl -X POST -d @- http://localhost:8083/connectors --header 'content-Type:application/json'
 ```
-![](imgs/Pasted%20image%2020251117135409.png)
+![](../imgs/Pasted%20image%2020251117135409.png)
 
 my-sink-connect 옵션 분석
 - auto.create : Sink 테이블이 존재하지 않으면 자동 생성
@@ -484,11 +484,11 @@ my-sink-connect 옵션 분석
 
 my_topic_users 테이블 확인
 - 이전 실습으로 인해서 한개의 데이터가 추가되었음
-![](imgs/Pasted%20image%2020251117135826.png)
+![](../imgs/Pasted%20image%2020251117135826.png)
 
 my_topic_users 테이블 데이터 확인
 - 실행 결과를 보면 정상적으로 user1 사용자가 추가(export)된 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251117135852.png)
+![](../imgs/Pasted%20image%2020251117135852.png)
 
 kafka producer를 이용해서 kafka topic에 데이터 직접 전송
 - kafka-console-producer에서 데이터 전송 -> topic에 추가 -> MariaDB에 추가
@@ -510,5 +510,5 @@ $KAFKA_HOME/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --to
 
 실행 결과 확인
 - console-producer를 통해서 직접적으로 json 데이터를 넣어도 성공적으로 데이터가 추가된 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251117144344.png)
+![](../imgs/Pasted%20image%2020251117144344.png)
 

@@ -172,14 +172,14 @@ http.authorizeHttpRequests(auth->auth
 );
 ```
 
-![](imgs/Pasted%20image%2020251031175641.png)
+![](../imgs/Pasted%20image%2020251031175641.png)
 
 로그인 실행 결과
-![](imgs/Pasted%20image%2020251102141104.png)
+![](../imgs/Pasted%20image%2020251102141104.png)
 
 #### 이슈1: 로그인 실패 문제
 배경 : 회원을 추가한 뒤에 API Gateway에 로그인을 시도시 404 오류가 발생합니다.
-![](imgs/Pasted%20image%2020251102141605.png)
+![](../imgs/Pasted%20image%2020251102141605.png)
 
 원인 : 경로를 RewritePath하는 것과 User-Service에서 인증을 성공하는 것까지는 성공이지만 인증 후에 처리에서 "/" 경로로 기본적으로 리다이렉트합니다. 하지만 현재 User-Service 서버에서는 "/" 경로에 대한 리소스나 컨트롤러 매핑이 없기 때문에 404 에러가 발생한 것입니다.
 
@@ -203,7 +203,7 @@ protected void successfulAuthentication(HttpServletRequest request, HttpServletR
 
 실행 결과 확인
 - 로그인에 성공(200 OK)한 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251102141104.png)
+![](../imgs/Pasted%20image%2020251102141104.png)
 
 ## AuthenticationFilter 추가
 Spring Security 로그인 수행과정
@@ -213,7 +213,7 @@ Spring Security 로그인 수행과정
 	- successfulAuthentication 메서드에서 JWT를 발급하고 클라이언트에게 전달하도록 합니다.
 
 위 수행과정을 그림으로 표현하면 다음과 같습니다.
-![](imgs/Pasted%20image%2020251102145732.png)
+![](../imgs/Pasted%20image%2020251102145732.png)
 
 ## successfulAuthentication 구현
 ```java
@@ -256,7 +256,7 @@ JWT란 무엇인가?
 - 두개의 시스템끼리 안전한 방법으로 통신 가능
 
 다음 화면을 보면 왼쪽의 JWT를 디코딩하면 오른쪽과 같은 헤더와 바디에서 정보를 얻을 수 있습니다. 토큰의 타입은 JWT이고 알고리즘 종류는 HS256입니다. 바디에서는 해당 토큰의 이름이 "John Doe"인 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251102154539.png)
+![](../imgs/Pasted%20image%2020251102154539.png)
 
 JWT 장점
 - 클라이언트 독립적인 서비스(stateless)
@@ -349,11 +349,11 @@ protected void successfulAuthentication(HttpServletRequest request, HttpServletR
 실행 결과 확인
 - 로그인 실행 결과를 보면 Response Header에 token과 userId 헤더가 포함된 것을 볼수 있습니다.
 - 다음 결과에 나온 token을 헤더에 담아서 요청해서 인가가 요구되는 API 응답을 받을 수 있습니다.
-![](imgs/Pasted%20image%2020251103132018.png)
+![](../imgs/Pasted%20image%2020251103132018.png)
 
 token 헤더의 값을 디코딩하면 다음과 같습니다.
 - 디코딩된 영역을 보면 헤더의 알고리즘이 HS256인 것을 볼수 있고 페이로드에서 sub에 userId의 값, exp, iat로써 유효기간, 발행일자를 타임스탬프로 표시된 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251103132330.png)
+![](../imgs/Pasted%20image%2020251103132330.png)
 
 
 ## API Gateway - Filter 추가
@@ -484,14 +484,14 @@ application.yaml
 
 테스트
 - 로그인하여 JWT를 발급받고 다른 API 요청시 Authorization 헤더에 토큰값을 설정합니다.
-![](imgs/Pasted%20image%2020251103144614.png)
+![](../imgs/Pasted%20image%2020251103144614.png)
 
 - 회원 상세 보기 및 주문 목록 조회 API 요청시 헤더에 JWT를 설정합니다.
 - pathVariable에 userId를 설정합니다.
-![](imgs/Pasted%20image%2020251103144736.png)
-![](imgs/Pasted%20image%2020251103144806.png)
+![](../imgs/Pasted%20image%2020251103144736.png)
+![](../imgs/Pasted%20image%2020251103144806.png)
 
 - Authorization 헤더에 발급받은 JWT 값을 설정하여 요청합니다.
 - 실행 결과 회원의 상세 정보가 응답된 것을 볼수 있습니다.
-![](imgs/Pasted%20image%2020251103145458.png)
+![](../imgs/Pasted%20image%2020251103145458.png)
 

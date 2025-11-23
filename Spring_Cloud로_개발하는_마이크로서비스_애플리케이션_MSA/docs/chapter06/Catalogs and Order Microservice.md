@@ -32,10 +32,10 @@ spring:
 ```
 
 Eureka 서버 확인
-![](imgs/Pasted%20image%2020251030150829.png)
+![](../imgs/Pasted%20image%2020251030150829.png)
 
 User Service 헬스 체크 확인
-![](imgs/Pasted%20image%2020251030150856.png)
+![](../imgs/Pasted%20image%2020251030150856.png)
 
 ## Users Microservice와 Spring Cloud Gateway 연동
 API Gateway를 통해서 요청을 전달할때 단순 "/welcome" 경로가 아닌 "/user-service/welcome"과 같이 요청해야 합니다. 물론 User Service의 Controller의 경로 또한 접두사에 "/user-service"가 설정되어야 합니다.
@@ -117,7 +117,7 @@ public ResponseEntity<List<ResponseUser>> getUsers(){
 ```
 
 실행 결과
-![](imgs/Pasted%20image%2020251030154104.png)
+![](../imgs/Pasted%20image%2020251030154104.png)
 
 UserController - 사용자 상세 보기 + 주문 목록 보기
 ```java
@@ -134,7 +134,7 @@ public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userI
 ```
 
 실행 결과
-![](imgs/Pasted%20image%2020251030154959.png)
+![](../imgs/Pasted%20image%2020251030154959.png)
 
 ## Catalogs Microservice - 개요
 상품 주문 기능을 구현하기 위해서 Catalog Service 구현이 요구됩니다.
@@ -322,11 +322,11 @@ routes:
 ```
 
 서버 실행
-![](imgs/Pasted%20image%2020251030164934.png)
+![](../imgs/Pasted%20image%2020251030164934.png)
 
 실행 결과
-![](imgs/Pasted%20image%2020251030165029.png)
-![](imgs/Pasted%20image%2020251030165224.png)
+![](../imgs/Pasted%20image%2020251030165029.png)
+![](../imgs/Pasted%20image%2020251030165224.png)
 
 ## Orders Microservice - 개요
 APIs
@@ -526,16 +526,16 @@ public class OrderController {
 ```
 
 API Gateway Service에 Order Service 등록
-![](imgs/Pasted%20image%2020251031131533.png)
+![](../imgs/Pasted%20image%2020251031131533.png)
 
 Eureka 실행 결과 확인
-![](imgs/Pasted%20image%2020251031132327.png)
+![](../imgs/Pasted%20image%2020251031132327.png)
 
 상품 주문 테스트
-![](imgs/Pasted%20image%2020251031133219.png)
+![](../imgs/Pasted%20image%2020251031133219.png)
 
 상품 주문 조회 테스트
-![](imgs/Pasted%20image%2020251031133354.png)
+![](../imgs/Pasted%20image%2020251031133354.png)
 
 
 위 테스트를 한후 사용자 정보를 조회하면, 해당 사용자의 주문 목록이 빈 리스트로 응답된 것을 볼수 있습니다. 이는 아직 상품 주문시 별도의 이벤트가 발생한 것을 구현하지 않았기 때문입니다. 이 문제를 해결하기 위해서 메시지 브로커를 추가하여 메시지를 전달할 수 있도록 합니다.

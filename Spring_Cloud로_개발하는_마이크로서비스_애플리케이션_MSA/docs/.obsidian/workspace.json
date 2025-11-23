@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "chapter14/장애 처리와 Mircoservice 분산 추적.md",
+                "file": "chapter01/소프트웨어 아키텍처.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "장애 처리와 Mircoservice 분산 추적"
+              "title": "소프트웨어 아키텍처"
             }
           },
           {
@@ -27,10 +27,10 @@
             "state": {
               "type": "image",
               "state": {
-                "file": "imgs/Pasted_image_20251123152721.png"
+                "file": "imgs/Pasted image 20251123152721.png"
               },
               "icon": "lucide-image",
-              "title": "Pasted_image_20251123152721"
+              "title": "Pasted image 20251123152721"
             }
           }
         ]
@@ -183,29 +183,30 @@
   },
   "active": "1b26b0f4d7d661ac",
   "lastOpenFiles": [
-    "imgs/Pasted image 20251123140502.png",
+    "chapter02/Service Discovery.md",
+    "chapter03/API Gateway Service.md",
+    "chapter04/E-commerce 애플리케이션.md",
+    "chapter05/Users Microservice.md",
+    "chapter06/Catalogs and Order Microservice.md",
+    "chapter07/Users Microservice 2.md",
+    "chapter08/Configuration Service.md",
+    "chapter09/Spring Cloud Bus.md",
+    "chapter10/설정 정보의 암호화 처리.md",
+    "chapter11/Mircoservice간 통신.md",
+    "chapter12/데이터 동기화를 위한 Apache Kafaka의 활용 1.md",
     "chapter13/데이터 동기화를 위한 Apache Kafaka의 활용 2.md",
-    "imgs/Pasted_image_20251123152721.png",
-    "imgs/Pasted image 20251006142612.png",
     "chapter14/장애 처리와 Mircoservice 분산 추적.md",
     "imgs/Pasted image 20251123152452.png",
+    "imgs/Pasted image 20251123140502.png",
+    "imgs/Pasted image 20251123152721.png",
+    "imgs/Pasted image 20251006142612.png",
     "imgs/Pasted image 20251123152425.png",
     "imgs/Pasted image 20251123152224.png",
     "imgs/Pasted image 20251123152206.png",
     "imgs/Pasted image 20251123151934.png",
     "imgs/Pasted image 20251123151831.png",
     "imgs/Pasted image 20251123151808.png",
-    "imgs/Pasted image 20251123151757.png",
-    "chapter09/Spring Cloud Bus.md",
-    "chapter10/설정 정보의 암호화 처리.md",
-    "chapter11/Mircoservice간 통신.md",
-    "chapter12/데이터 동기화를 위한 Apache Kafaka의 활용 1.md",
     "chapter14",
-    "chapter04/E-commerce 애플리케이션.md",
-    "chapter05/Users Microservice.md",
-    "chapter06/Catalogs and Order Microservice.md",
-    "chapter07/Users Microservice 2.md",
-    "chapter08/Configuration Service.md",
     "chapter13",
     "chapter12",
     "chapter11",
@@ -216,8 +217,6 @@
     "chapter06",
     "chapter01/소프트웨어 아키텍처.md",
     "chapter05",
-    "chapter03/API Gateway Service.md",
-    "chapter02/Service Discovery.md",
     "환영합니다!.md"
   ]
 }
