@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "1345ebce82252d28",
+        "id": "8dae3348f7efb785",
         "type": "tabs",
         "children": [
           {
-            "id": "ddefefeedf7e296d",
+            "id": "1b26b0f4d7d661ac",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "chapter07/Users Microservice 2.md",
+                "file": "chapter13/데이터 동기화를 위한 Apache Kafaka의 활용 2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Users Microservice 2"
+              "title": "데이터 동기화를 위한 Apache Kafaka의 활용 2"
+            }
+          },
+          {
+            "id": "4541c77f9c5ac2d3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "chapter14/장애 처리와 Mircoservice 분산 추적.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "장애 처리와 Mircoservice 분산 추적"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -169,33 +184,43 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "ddefefeedf7e296d",
+  "active": "4541c77f9c5ac2d3",
   "lastOpenFiles": [
-    "chapter06/Catalogs and Order Microservice.md",
-    "chapter07/Users Microservice 2.md",
-    "chapter07",
-    "imgs/Pasted image 20251031133354.png",
-    "imgs/Pasted image 20251031133342.png",
-    "imgs/Pasted image 20251031133219.png",
-    "imgs/Pasted image 20251031132327.png",
-    "imgs/Pasted image 20251031131533.png",
-    "imgs/Pasted image 20251030165224.png",
-    "imgs/Pasted image 20251030165029.png",
-    "imgs/Pasted image 20251030164934.png",
+    "imgs/Pasted image 20251123152721.png",
+    "imgs/Pasted image 20251123152452.png",
+    "imgs/Pasted image 20251123152425.png",
+    "imgs/Pasted image 20251123152224.png",
+    "imgs/Pasted image 20251123152206.png",
+    "imgs/Pasted image 20251123151934.png",
+    "imgs/Pasted image 20251123151831.png",
+    "imgs/Pasted image 20251123151808.png",
+    "imgs/Pasted image 20251123151757.png",
+    "imgs/Pasted image 20251123151742.png",
+    "imgs/Pasted image 20251123150617.png",
+    "chapter09/Spring Cloud Bus.md",
+    "chapter14/장애 처리와 Mircoservice 분산 추적.md",
+    "chapter10/설정 정보의 암호화 처리.md",
+    "chapter11/Mircoservice간 통신.md",
+    "chapter12/데이터 동기화를 위한 Apache Kafaka의 활용 1.md",
+    "chapter13/데이터 동기화를 위한 Apache Kafaka의 활용 2.md",
+    "chapter14",
     "chapter04/E-commerce 애플리케이션.md",
     "chapter05/Users Microservice.md",
-    "imgs/Pasted image 20251030154959.png",
-    "imgs/Pasted image 20251030154104.png",
+    "chapter06/Catalogs and Order Microservice.md",
+    "chapter07/Users Microservice 2.md",
+    "chapter08/Configuration Service.md",
+    "chapter13",
+    "chapter12",
+    "chapter11",
+    "chapter10",
+    "chapter09",
+    "chapter08",
+    "chapter07",
     "chapter06",
     "chapter01/소프트웨어 아키텍처.md",
     "chapter05",
     "chapter03/API Gateway Service.md",
-    "chapter04",
     "chapter02/Service Discovery.md",
-    "chapter03",
-    "chapter02",
-    "imgs",
-    "chapter01",
     "환영합니다!.md"
   ]
 }

@@ -1,6 +1,5 @@
 server:
   port: 8000
-
 spring:
   application:
     name: apigateway-service
@@ -15,10 +14,39 @@ spring:
                 preLogger: true
                 postLogger: true
           routes:
+            - id: user-service-register
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/user-service/users
+                - Method=POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - id: user-service-login
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/user-service/login
+                - Method=POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - id: user-service-actuator
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/user-service/actuator/**
+                - Method=GET,POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - id: user-service
               uri: lb://USER-SERVICE
               predicates:
                 - Path=/user-service/**
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+                - AuthorizationHeaderFilter
             - id: catalog-service
               uri: lb://CATALOG-SERVICE
               predicates:
@@ -52,9 +80,26 @@ spring:
   devtools:
     livereload:
       enabled: false
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - refresh
+          - beans
+          - httptrace
+          - busrefresh
