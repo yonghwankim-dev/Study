@@ -297,6 +297,6 @@ Order-Service 주문 목록 조회 로깅 결과 확인
 Zipkin을 이용한 Trace 추적
 위 실습에서 기록된 `6922a80904118fdcbdf76c64a2e3ec6a` 트레이스에 대한 추적을 해봅니다.
 다음 실행 결과를 보면 해당 트레이스가 어떻게 추적되는지 볼수 있습니다. user-service에서 order-service로 갔다가 되돌아 온것을 볼수 있습니다.
-![](imgs/Pasted_image_20251123152721.png)
+![](../imgs/Pasted_image_20251123152721.png)
 
 
