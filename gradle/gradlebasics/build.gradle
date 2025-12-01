@@ -1,19 +1,54 @@
 plugins {
     id 'java'
+    id 'java-library'
+    id 'org.springframework.boot' version '2.5.7'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
 }
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.9.1')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+allprojects {
+    group = 'org.nemo'
+    version = '1.0'
+
+    java.sourceCompatibility = JavaVersion.VERSION_17
+
+    java{
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    configurations{
+        compileOnly.extendsFrom annotationProcessor
+        testCompileOnly.extendsFrom testAnnotationProcessor
+        testAnnotationProcessor.extendsFrom annotationProcessor
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'com.google.guava:guava:31.0.1-jre'
+        testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.0"
+
+        annotationProcessor "org.projectlombok:lombok:1.18.22"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    tasks.register('hello') {
+        doLast {
+            println "I'm ${project.name}!"
+        }
+    }
 }
 
-test {
-    useJUnitPlatform()
-}
+
+
