@@ -22,6 +22,7 @@ import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.service.UserService;
 
+import io.micrometer.core.annotation.Timed;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,7 @@ public class UserController {
 
 
 	@GetMapping("/health-check")
+	@Timed(value = "users.status", longTask = true)
 	public String status(){
 		return String.format("It's Working in User Service"
 			+ ", port(local.server.port)=" + env.getProperty("local.server.port")
@@ -49,6 +51,7 @@ public class UserController {
 	}
 
 	@GetMapping("/welcome")
+	@Timed(value = "users.welcome", longTask = true)
 	public String welcome(HttpServletRequest request){
 		log.info("users.welcome ip: {}, {}, {}, {}", request.getRemoteAddr(),
 			request.getRemoteHost(), request.getRequestURI(), request.getRequestURL());

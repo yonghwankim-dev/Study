@@ -13,12 +13,24 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "chapter01/소프트웨어 아키텍처.md",
+                "file": "chapter17/애플리케이션 배포 - docker container.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "소프트웨어 아키텍처"
+              "title": "애플리케이션 배포 - docker container"
+            }
+          },
+          {
+            "id": "4223c10bcc77ce21",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.10.6"
+              },
+              "icon": "lucide-book-up",
+              "title": "릴리즈 노트 1.10.6"
             }
           },
           {
@@ -33,7 +45,8 @@
               "title": "Pasted image 20251123152721"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -181,8 +194,29 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "1b26b0f4d7d661ac",
+  "active": "4223c10bcc77ce21",
   "lastOpenFiles": [
+    "imgs/Pasted image 20251125163109.png",
+    "imgs/Pasted image 20251125160806.png",
+    "imgs/Pasted image 20251125160730.png",
+    "chapter16/애플리케이션 배포를 위한 컨테이너 가상화.md",
+    "chapter17/애플리케이션 배포 - docker container.md",
+    "chapter17",
+    "imgs/Pasted image 20251125152319.png",
+    "imgs/Pasted image 20251125152105.png",
+    "imgs/Pasted image 20251125151544.png",
+    "imgs/Pasted image 20251125151503.png",
+    "imgs/Pasted image 20251125151330.png",
+    "imgs/Pasted image 20251125151158.png",
+    "imgs/Pasted image 20251125150618.png",
+    "imgs/Pasted image 20251125145806.png",
+    "chapter15/Microservice 모니터링.md",
+    "chapter16",
+    "chapter09/Spring Cloud Bus.md",
+    "chapter14/장애 처리와 Mircoservice 분산 추적.md",
+    "chapter15",
+    "chapter11/Mircoservice간 통신.md",
+    "chapter01/소프트웨어 아키텍처.md",
     "chapter02/Service Discovery.md",
     "chapter03/API Gateway Service.md",
     "chapter04/E-commerce 애플리케이션.md",
@@ -190,22 +224,9 @@
     "chapter06/Catalogs and Order Microservice.md",
     "chapter07/Users Microservice 2.md",
     "chapter08/Configuration Service.md",
-    "chapter09/Spring Cloud Bus.md",
     "chapter10/설정 정보의 암호화 처리.md",
-    "chapter11/Mircoservice간 통신.md",
     "chapter12/데이터 동기화를 위한 Apache Kafaka의 활용 1.md",
     "chapter13/데이터 동기화를 위한 Apache Kafaka의 활용 2.md",
-    "chapter14/장애 처리와 Mircoservice 분산 추적.md",
-    "imgs/Pasted image 20251123152452.png",
-    "imgs/Pasted image 20251123140502.png",
-    "imgs/Pasted image 20251123152721.png",
-    "imgs/Pasted image 20251006142612.png",
-    "imgs/Pasted image 20251123152425.png",
-    "imgs/Pasted image 20251123152224.png",
-    "imgs/Pasted image 20251123152206.png",
-    "imgs/Pasted image 20251123151934.png",
-    "imgs/Pasted image 20251123151831.png",
-    "imgs/Pasted image 20251123151808.png",
     "chapter14",
     "chapter13",
     "chapter12",
@@ -213,10 +234,6 @@
     "chapter10",
     "chapter09",
     "chapter08",
-    "chapter07",
-    "chapter06",
-    "chapter01/소프트웨어 아키텍처.md",
-    "chapter05",
     "환영합니다!.md"
   ]
 }

@@ -83,7 +83,7 @@ RabbitMQ 설치
 RabbitMQ docker 실행
 ```shell
 # latest RabbitMQ 4.x
-docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management
+docker run -it -d --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:4-management
 ```
 ![](../imgs/Pasted%20image%2020251106134925.png)
 

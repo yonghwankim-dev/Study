@@ -299,4 +299,38 @@ Zipkin을 이용한 Trace 추적
 다음 실행 결과를 보면 해당 트레이스가 어떻게 추적되는지 볼수 있습니다. user-service에서 order-service로 갔다가 되돌아 온것을 볼수 있습니다.
 ![](../imgs/Pasted%20image%2020251123152721.png)
 
+서비스 이름으로 분산 추적하기
+다음과 같이 상단 메뉴의 "Find a trace" 메뉴를 통하여 특정한 서비스 이름을 선택하여 추적할 수 있습니다.
+![](../imgs/Pasted%20image%2020251123155109.png)
+
+다음과 같이 특정한 Trace를 선택하여 상세보기도 가능합니다.
+![](../imgs/Pasted%20image%2020251123155412.png)
+![](../imgs/Pasted%20image%2020251123155427.png)
+
+Dependencies를 이용한 분산 추적
+다음과 같이 서비스간에 의존성을 확인하고 Request 개수 또한 카운팅 된것을 확인할 수 있습니다.
+![](../imgs/Pasted%20image%2020251123155553.png)
+
+### 오류가 발생하는 경우 분산 추적하기
+OrderController 장애 발생하도록 수정
+- 주문 목록을 가져온 다음에 Exception 예외를 발생시켜서 클라이언트에 500 에러를 응답하도록 합니다.
+- InterruptedException 예외는 Exception 예외 발생시 캐치하지 못함
+![](../imgs/Pasted%20image%2020251123162421.png)
+
+상품 주문 테스트
+- 상품 주문시 별도의 예외 발생시 없기 때문에 성공적임
+![](../imgs/Pasted%20image%2020251123162625.png)
+
+사용자 정보 조회 및 주문 목록 조회
+- User-Service에서 Order-Service에 주문 목록 조회를 요청하고 실패 응답이 오면 빈 리스트를 응답하기로 하였기 때문에 다음과 같이 빈 주문 목록이 출력된 것을 볼수 있습니다.
+![](../imgs/Pasted%20image%2020251123162656.png)
+
+Order-Service 로깅 확인
+실행 결과를 보면 성공적으로 ERROR 로깅이 출력된 것을 볼수 있습니다.
+![](../imgs/Pasted%20image%2020251123162822.png)
+
+TraceID를 이용한 분산 추적하기
+TraceID=`6922b737122f49021346514f06d49c66`를 이용하여 Zipkin에서 트레이스 추적해봅니다.
+실행 결과를 보면 order-service에서 에러가 발생했음을 볼수 있습니다. 또한 예외의 종류와 에러 메시지 또한 확인할 수 있습니다.
+![](../imgs/Pasted%20image%2020251123162947.png)
 

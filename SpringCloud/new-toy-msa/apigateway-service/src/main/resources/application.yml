@@ -51,6 +51,14 @@ spring:
               uri: lb://CATALOG-SERVICE
               predicates:
                 - Path=/catalog-service/**
+            - id: order-service-actuator
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/order-service/actuator/**
+                - Method=GET,POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/order-service/(?<segment>.*), /$\{segment}
             - id: order-service
               uri: lb://ORDER-SERVICE
               predicates:
@@ -103,3 +111,5 @@ management:
           - beans
           - httptrace
           - busrefresh
+          - prometheus
+          - metrics
