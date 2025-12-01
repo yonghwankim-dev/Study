@@ -10,6 +10,8 @@ subprojects {
 }
 
 allprojects {
+    apply from: "$rootProject.projectDir/dependencies.gradle"
+
     group = 'org.nemo'
     version = '1.0'
 
@@ -31,12 +33,16 @@ allprojects {
         mavenCentral()
     }
 
-    dependencies {
-        implementation 'com.google.guava:guava:31.0.1-jre'
-        testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
-        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.0"
 
-        annotationProcessor "org.projectlombok:lombok:1.18.22"
+
+    dependencies {
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+
+        implementation libs.guava
+
+        testImplementation libsTest.junitJupiterApi
+        testRuntimeOnly libsTest.junitJupiterEngine
     }
 
     test {

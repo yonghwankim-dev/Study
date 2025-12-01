@@ -1,0 +1,9 @@
+ext.libs = [
+        'lombok': 'org.projectlombok:lombok:1.18.22',
+        'guava': 'com.google.guava:guava:31.1-jre',
+]
+
+ext.libsTest = [
+        'junitJupiterApi': 'org.junit.jupiter:junit-jupiter-api:5.6.0',
+        'junitJupiterEngine': 'org.junit.jupiter:junit-jupiter-engine:5.6.0',
+]
