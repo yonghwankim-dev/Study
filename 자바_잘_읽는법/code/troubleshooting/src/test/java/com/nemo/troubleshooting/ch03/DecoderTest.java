@@ -11,13 +11,12 @@ class DecoderTest {
 	void decode() {
 		Decoder decoder = new Decoder();
 		List<String> encoded = List.of(
-			"a1b2c3",
-			"a"
+			"ab1c"
 		);
 
 		Integer actual = decoder.decode(encoded);
 
-		assertEquals(6, actual);
+		assertEquals(1, actual);
 	}
 
 }

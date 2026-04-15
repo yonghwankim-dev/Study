@@ -1,0 +1,263 @@
+{
+  "main": {
+    "id": "a0d75ca8999f507a",
+    "type": "split",
+    "children": [
+      {
+        "id": "b2a95e1d4a77930d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "641ef2b076ea3b10",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "생활 코딩.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "생활 코딩"
+            }
+          },
+          {
+            "id": "9186f2d84113cd30",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "빠르게 시작하기.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "빠르게 시작하기"
+            }
+          },
+          {
+            "id": "45deb09f48d37848",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "자습서-틱택토 게임.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "자습서-틱택토 게임"
+            }
+          },
+          {
+            "id": "4a930cf9b6ed930e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "상호작용 추가하기.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "상호작용 추가하기"
+            }
+          },
+          {
+            "id": "28f3d032db341b5b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Typescript.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Typescript"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7add810143b41e2e",
+    "type": "split",
+    "children": [
+      {
+        "id": "4bde33aee3b96d35",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cc066dda3a459825",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "fb9b382046ce7bca",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "c0f787c66b53c6cf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6e12afaa8bd84be8",
+    "type": "split",
+    "children": [
+      {
+        "id": "494c2a67361055ae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6c1b7456356340d9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "react.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "react 의 백링크"
+            }
+          },
+          {
+            "id": "59dfe9434fc37bbc",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "react.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "react 의 나가는 링크"
+            }
+          },
+          {
+            "id": "add5b7be279daa64",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "99e47307dd7a251a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "68c807f375172d3c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "react.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "react 의 개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "28f3d032db341b5b",
+  "lastOpenFiles": [
+    "상호작용 추가하기.md",
+    "Typescript.md",
+    "자습서-틱택토 게임.md",
+    "빠르게 시작하기.md",
+    "생활 코딩.md",
+    "imgs/Pasted image 20260214220814.png",
+    "imgs/Pasted image 20260214220602.png",
+    "무제",
+    "imgs/Pasted image 20260210162302.png",
+    "imgs/Pasted image 20260210153422.png",
+    "imgs/Pasted image 20260210152006.png",
+    "imgs/Pasted image 20260210151845.png",
+    "imgs/Pasted image 20260210121018.png",
+    "imgs/Pasted image 20260210120931.png",
+    "imgs/Pasted image 20260210120915.png",
+    "imgs/Pasted image 20260210114211.png",
+    "imgs"
+  ]
+}
