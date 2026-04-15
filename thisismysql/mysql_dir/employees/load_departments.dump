@@ -1,1 +1,3 @@
-INSERT INTO `departments` VALUES ('d001','Marketing'),('d002','Finance'),('d003','Human Resources'),('d004','Production'),('d005','Development'),('d006','Quality Management'),('d007','Sales'),('d008','Research'),('d009','Customer Service');
+version https://git-lfs.github.com/spec/v1
+oid sha256:03c0bba9cf9cda030d8c73709338d3ea1dfbc635d043561cdfdb38773257e84b
+size 241
