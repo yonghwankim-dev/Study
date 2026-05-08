@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/my-new-toy-msa.iml" filepath="$PROJECT_DIR$/.idea/my-new-toy-msa.iml" />
-      <module fileurl="file://$PROJECT_DIR$/service-discovery/service-discovery.iml" filepath="$PROJECT_DIR$/service-discovery/service-discovery.iml" />
     </modules>
   </component>
 </project>
