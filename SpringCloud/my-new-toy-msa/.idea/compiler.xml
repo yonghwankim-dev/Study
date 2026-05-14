@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="first-service" />
         <module name="user-service" />
+        <module name="apigateway-service" />
         <module name="service-discovery" />
         <module name="second-service" />
       </profile>
@@ -16,6 +17,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="apigateway-service" options="-parameters" />
       <module name="first-service" options="-parameters" />
       <module name="second-service" options="-parameters" />
       <module name="service-discovery" options="-parameters" />
