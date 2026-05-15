@@ -33,6 +33,12 @@ spring:
                     baseMessage: Spring Cloud Gateway WebFlux Logging Filter
                     preLogger: true
                     postLogger: true
+            - id: user-service
+              uri: lb://MY-USER-SERVICE
+              predicates:
+                - Path=/user-service/**
+              filters:
+                - name: CustomFilter
 
 server:
   port: 8000

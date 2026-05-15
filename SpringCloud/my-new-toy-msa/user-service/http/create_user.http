@@ -1,0 +1,9 @@
+POST http://localhost:8000/user-service/users
+Content-Type: application/json
+Authorization: Basic dXNlcjp1c2VyMTIzNA==
+
+{
+  "name": "Dowon Lee",
+  "email": "edowon0623@gmail.com",
+  "pwd": "password"
+}
