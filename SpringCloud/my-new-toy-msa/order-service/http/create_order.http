@@ -1,0 +1,8 @@
+POST http://localhost:8000/order-service/{{userId}}/orders
+Content-Type: application/json
+
+{
+  "productId": "CATALOG-002",
+  "qty": 100,
+  "unitPrice": 1100
+}

@@ -45,6 +45,12 @@ spring:
                 - Path=/catalog-service/**
               filters:
                 - name: CustomFilter
+            - id: order-service
+              uri: lb://MY-ORDER-SERVICE
+              predicates:
+                - Path=/order-service/**
+              filters:
+                - name: CustomFilter
 
 server:
   port: 8000
