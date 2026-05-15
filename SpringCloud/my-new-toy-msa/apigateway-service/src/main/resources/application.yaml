@@ -39,6 +39,12 @@ spring:
                 - Path=/user-service/**
               filters:
                 - name: CustomFilter
+            - id: catalog-service
+              uri: lb://MY-CATALOG-SERVICE
+              predicates:
+                - Path=/catalog-service/**
+              filters:
+                - name: CustomFilter
 
 server:
   port: 8000

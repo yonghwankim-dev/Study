@@ -1,16 +1,16 @@
-package com.example.userservice.dto;
+package com.example.catalogservice.dto;
 
-import java.util.Date;
+import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class ResponseOrder {
+public class CatalogDto implements Serializable {
 	private String productId;
 	private Integer qty;
 	private Integer unitPrice;
 	private Integer totalPrice;
-	private Date createdAt;
 
 	private String orderId;
+	private String userId;
 }

@@ -1,0 +1,2 @@
+GET http://localhost:8000/catalog-service/catalogs
+Accept: application/json

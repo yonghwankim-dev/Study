@@ -1,0 +1,2 @@
+GET http://localhost:8000/catalog-service/health-check
+Accept: application/json
