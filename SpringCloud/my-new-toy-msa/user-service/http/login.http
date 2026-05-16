@@ -1,0 +1,7 @@
+POST http://127.0.0.1:8000/user-service/login
+Content-Type: application/json
+
+{
+  "email": "edowon0623@gmail.com",
+  "password": "password"
+}

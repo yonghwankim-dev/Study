@@ -33,12 +33,30 @@ spring:
                     baseMessage: Spring Cloud Gateway WebFlux Logging Filter
                     preLogger: true
                     postLogger: true
+            - id: user-service-register
+              uri: lb://MY-USER-SERVICE
+              predicates:
+                - Path=/user-service/users
+                - Method=POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - id: user-service-login
+              uri: lb://MY-USER-SERVICE
+              predicates:
+                - Path=/user-service/login
+                - Method=POST
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - id: user-service
               uri: lb://MY-USER-SERVICE
               predicates:
                 - Path=/user-service/**
+                - Method=GET
               filters:
-                - name: CustomFilter
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - id: catalog-service
               uri: lb://MY-CATALOG-SERVICE
               predicates:

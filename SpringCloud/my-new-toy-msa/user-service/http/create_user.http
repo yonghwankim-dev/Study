@@ -1,6 +1,5 @@
-POST http://localhost:8000/user-service/users
+POST http://127.0.0.1:8000/user-service/users
 Content-Type: application/json
-Authorization: Basic dXNlcjp1c2VyMTIzNA==
 
 {
   "name": "Dowon Lee",

@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,6 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
-
 
 	@Override
 	public UserDto createUser(UserDto userDto) {
@@ -55,5 +56,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Iterable<UserEntity> getUserByAll() {
 		return userRepository.findAll();
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserEntity entity = userRepository.findByEmail(username);
+		if (entity == null){
+			throw new UsernameNotFoundException(username + ": not found");
+		}
+
+		return new User(entity.getEmail(), entity.getEncryptedPwd(),
+			true, true, true, true,
+			new ArrayList<>());
 	}
 }
