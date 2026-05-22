@@ -47,7 +47,7 @@ public class WebSecurity {
 			.authorizeHttpRequests(auth-> auth
 				.requestMatchers("/h2-console/**").permitAll()
 				.requestMatchers("/**").access(
-					new WebExpressionAuthorizationManager("hasIpAddress('127.0.0.1') or hasIpAddress('::1') or hasIpAddress('172.30.1.13')")
+					new WebExpressionAuthorizationManager("hasIpAddress('127.0.0.1') or hasIpAddress('::1') or hasIpAddress('172.30.1.4')")
 				)
 				.anyRequest().authenticated()
 			)
@@ -60,7 +60,7 @@ public class WebSecurity {
 	}
 
 	private AuthenticationFilter getAuthenticationFilter(AuthenticationManager authenticationManager) {
-		AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+		AuthenticationFilter authenticationFilter = new AuthenticationFilter(userService, environment, authenticationManager);
 		authenticationFilter.setAuthenticationManager(authenticationManager);
 		return authenticationFilter;
 	}

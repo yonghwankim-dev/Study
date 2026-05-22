@@ -5,3 +5,18 @@ Content-Type: application/json
   "email": "edowon0623@gmail.com",
   "password": "password"
 }
+
+> {%
+    // 1. 응답 헤더에서 'token' 또는 'Authorization' 가져오기
+    // (서버가 주는 헤더명에 맞게 선택하세요. 대소문자 구분 없음)
+    var token = response.headers.valuesOf("token")[0];
+
+    // 2. 값이 정상적으로 존재할 경우 글로벌 환경 변수에 주입
+    if (token) {
+        client.global.set("token", token);
+        client.log(token);
+        client.log("성공: 토큰이 환경 변수(token)에 주입되었습니다.");
+    } else {
+        client.log("실패: 응답 헤더에서 토큰을 찾을 수 없습니다.");
+    }
+%}
