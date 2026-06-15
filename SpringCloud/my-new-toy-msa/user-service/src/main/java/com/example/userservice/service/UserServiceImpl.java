@@ -12,19 +12,25 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.userservice.client.OrderServiceClient;
 import com.example.userservice.vo.ResponseOrder;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.repository.UserRepository;
 
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final OrderServiceClient orderServiceClient;
+
 
 	@Override
 	public UserDto createUser(UserDto userDto) {
@@ -48,7 +54,7 @@ public class UserServiceImpl implements UserService {
 
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-		List<ResponseOrder> orderList = new ArrayList<>();
+		List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
 		userDto.setOrders(orderList);
 		return userDto;
 	}

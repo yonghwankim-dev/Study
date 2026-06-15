@@ -8,11 +8,11 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
-#  datasource:
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;
-#    username: sa
-#    password:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;
+    username: sa
+    password:
   jpa:
     hibernate:
       ddl-auto: update
@@ -20,13 +20,8 @@ spring:
     user:
       name: user
       password: $2a$10$GFLcqQxg1Isyw17LAF5Mf.SGXZEDqG1pKIwi1V5EB4QJwtLyjWFiG
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
 server:
-  port: 0
+  port: 60000
 eureka:
   client:
     fetch-registry: true
@@ -35,9 +30,6 @@ eureka:
       defaultZone: http://127.0.0.1:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-
-greeting:
-  message: Welcome to the Simple E-Commerce (Spring Boot)
 
 token:
   secret: my-very-long-secret-key-1234567890
@@ -51,9 +43,6 @@ management:
           - refresh
           - health
           - beans
-          - httptrace
           - info
-          - busrefresh
-logging:
-  level:
-    com.example.userservice.client : DEBUG
+greeting:
+  message: Welcome to the Simple E-Commerce (dev profile)
