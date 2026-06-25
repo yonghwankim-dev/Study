@@ -54,6 +54,14 @@ spring:
               filters:
                 - RemoveRequestHeader=Cookie
                 - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - id: user-service-actuator
+              uri: lb://MY-USER-SERVICE
+              predicates:
+                - Path=/user-service/actuator/**
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - id: user-service
               uri: lb://MY-USER-SERVICE
               predicates:
@@ -77,13 +85,20 @@ spring:
                 - Path=/catalog-service/**
               filters:
                 - name: CustomFilter
+            - id: order-service-actuator
+              uri: lb://MY-ORDER-SERVICE
+              predicates:
+                - Path=/order-service/actuator/**
+                - Method=GET
+              filters:
+                - RemoveRequestHeader=Cookie
+                - RewritePath=/order-service/(?<segment>.*), /$\{segment}
             - id: order-service
               uri: lb://MY-ORDER-SERVICE
               predicates:
                 - Path=/order-service/**
               filters:
                 - name: CustomFilter
-
 server:
   port: 8000
 eureka:
@@ -106,3 +121,5 @@ management:
           - httpexchanges
           - httptrace
           - busrefresh
+          - metrics
+          - prometheus

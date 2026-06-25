@@ -20,11 +20,11 @@ spring:
     user:
       name: user
       password: $2a$10$GFLcqQxg1Isyw17LAF5Mf.SGXZEDqG1pKIwi1V5EB4QJwtLyjWFiG
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    password: guest
 server:
   port: 0
 eureka:
@@ -54,6 +54,20 @@ management:
           - httptrace
           - info
           - busrefresh
+          - metrics
+          - prometheus
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3_multi
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans"
 logging:
   level:
     com.example.userservice.client : DEBUG
+#  pattern:
+#    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+

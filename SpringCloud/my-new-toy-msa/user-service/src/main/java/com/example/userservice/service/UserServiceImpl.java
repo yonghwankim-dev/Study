@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,6 +32,7 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final OrderServiceClient orderServiceClient;
+	private final CircuitBreakerFactory circuitBreakerFactory;
 
 
 	@Override
@@ -54,8 +57,16 @@ public class UserServiceImpl implements UserService {
 
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-		List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
-		userDto.setOrders(orderList);
+		/* ErrorDecoder */
+		// List<ResponseOrder> ordersList = orderServiceClient.getOrders(userId);
+
+		/* CircuitBreaker*/
+		log.info("Before call orders microservice");
+		CircuitBreaker circuitBreaker = circuitBreakerFactory.create("circuitbreaker");
+		List<ResponseOrder> ordersList = circuitBreaker.run(() -> orderServiceClient.getOrders(userId), throwable -> new ArrayList<>());
+		log.info("After called orders microservice");
+
+		userDto.setOrders(ordersList);
 		return userDto;
 	}
 

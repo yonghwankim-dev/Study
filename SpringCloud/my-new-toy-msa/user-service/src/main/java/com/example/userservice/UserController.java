@@ -21,6 +21,7 @@ import com.example.userservice.jpa.UserEntity;
 import com.example.userservice.service.UserService;
 import com.example.userservice.vo.RequestUser;
 
+import io.micrometer.core.annotation.Timed;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,7 @@ public class UserController {
 	}
 
 	@GetMapping("/health-check")
+	@Timed(value = "users.status", longTask = true)
 	public String status(){
 		return String.format("It's Working in User Service, "
 				+ "port(local.server.port)=%s, "
@@ -57,6 +59,7 @@ public class UserController {
 	}
 
 	@GetMapping("/welcome")
+	@Timed(value = "users.welcome", longTask = true)
 	public String welcome(HttpServletRequest request){
 		log.info("users.welcome ip: {}, {}, {}, {}", request.getRemoteAddr(), request.getRemoteHost(), request.getRequestURI(), request.getRequestURL());
 		return greeting.getMessage();
@@ -84,8 +87,10 @@ public class UserController {
 
 	@GetMapping("/users/{userId}")
 	public ResponseEntity<ResponseUser> getUser(@PathVariable("userId") String userId){
+		log.info("Before retrieve user data");
 		UserDto userDto = userService.getUserByUserId(userId);
 		ResponseUser responseUser = new ModelMapper().map(userDto, ResponseUser.class);
+		log.info("After retrieve user data");
 		return ResponseEntity.ok(responseUser);
 	}
 
