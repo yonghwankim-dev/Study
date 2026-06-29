@@ -8,13 +8,12 @@ spring:
         native:
           search-locations: file://${user.home}/Documents/native-file-repo
         git: # default
-#          uri: file:///Users/yonghwankim/Documents/git-local-repo
-          uri: https://github.com/joneconsulting/spring-cloud-config
+          uri: https://github.com/yonghwankim-dev/spring-cloud-config.git
           default-label: master
   profiles:
     active: native
   rabbitmq:
-    host: 127.0.0.1
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest
