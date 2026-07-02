@@ -1,0 +1,5 @@
+FROM mariadb
+ENV MARIADB_ROOT_PASSWORD test1357
+ENV MARIADB_DATABASE mydb
+COPY --chown=mysql:mysql ./mariadb /var/lib/mysql
+EXPOSE 3306

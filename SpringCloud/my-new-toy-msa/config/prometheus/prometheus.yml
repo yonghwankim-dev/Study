@@ -26,7 +26,7 @@ scrape_configs:
       # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ["localhost:9090"]
+      - targets: ["prometheus:9090"]
         # The label name is added as a label `label_name=<label_value>` to any ti
         labels:
           app: "prometheus"
@@ -34,14 +34,14 @@ scrape_configs:
     scrape_interval: 15s
     metrics_path: '/user-service/actuator/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:8000']
+      - targets: ['apigateway-service:8000']
   - job_name: "apigateway-service"
     scrape_interval: 15s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:8000']
+      - targets: ['apigateway-service:8000']
   - job_name: "order-service"
     scrape_interval: 15s
     metrics_path: '/order-service/actuator/prometheus'
     static_configs:
-      - targets: ['host.docker.internal:8000']
+      - targets: ['apigateway-service:8000']

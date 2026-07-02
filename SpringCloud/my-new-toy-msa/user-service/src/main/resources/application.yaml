@@ -20,11 +20,11 @@ spring:
     user:
       name: user
       password: $2a$10$GFLcqQxg1Isyw17LAF5Mf.SGXZEDqG1pKIwi1V5EB4QJwtLyjWFiG
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 5672
-#    username: guest
-#    password: guest
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
 server:
   port: 0
 eureka:

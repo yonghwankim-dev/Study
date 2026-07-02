@@ -49,7 +49,7 @@ public class WebSecurity {
 				.requestMatchers("/actuator/**").permitAll()
 				.requestMatchers("/health-check/**").permitAll()
 				.requestMatchers("/**").access(
-					new WebExpressionAuthorizationManager("hasIpAddress('127.0.0.1') or hasIpAddress('::1') or hasIpAddress('172.30.1.72')")
+					new WebExpressionAuthorizationManager("hasIpAddress('127.0.0.1') or hasIpAddress('::1') or hasIpAddress('172.19.0.0/16')")
 				)
 				.anyRequest().authenticated()
 			)
