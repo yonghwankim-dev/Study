@@ -52,6 +52,10 @@ public class KafkaConsumerConfig {
     }  
 }
 ```
+- `ConcurrentKafkaListenerContainerFactory` : topic에 변경사항이 있는지 주기적으로 리스닝하는 리스너를 생성하는 팩토리
+- `ConumserFactory` : kafka consumer를 생성하는 팩토리
+	- kafka topic에 저장된 key,value 값을 문자열로 역직렬화하는 것을 설정함
+	- 
 
 KafkaConumser 서비스 클래스 구현
 ![](../imgs/Pasted%20image%2020251117171021.png)

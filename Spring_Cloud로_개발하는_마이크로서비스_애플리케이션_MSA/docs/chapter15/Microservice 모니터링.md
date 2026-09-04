@@ -1,4 +1,4 @@
-
+널
 ## 섹션 소개
 - Hystrix Dashboard + Turbin Server
 - Micrometer
@@ -224,6 +224,68 @@ metrics 검사 - Graph
 - 해당 시간대에 호출된 API들을 시간대별로 확인할 수 있습니다.
 ![](../imgs/Pasted%20image%2020251124145925.png)
 
+#### 도커 기반 Prometheus 실행
+설정 파일 작성(prometheus.yml)
+```yml
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is eve
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evalua
+rule_files:
+# - "first_rules.yml"
+# - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped
+  - job_name: "prometheus"
+
+      # metrics_path defaults to '/metrics'
+      # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
+        # The label name is added as a label `label_name=<label_value>` to any ti
+        labels:
+          app: "prometheus"
+  - job_name: "user-service"
+    scrape_interval: 15s
+    metrics_path: '/user-service/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+  - job_name: "apigateway-service"
+    scrape_interval: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+  - job_name: "order-service"
+    scrape_interval: 15s
+    metrics_path: '/order-service/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+```
+
+도커 기반 컨테이너 실행
+- apigateway service, user service, order service 등은 호스트 운영체제에서 실행하기 때문에 타겟의 호스트를 host.docker.internal로 설정함
+```shell
+docker run -it -d \
+  -p 9090:9090 \
+  --name my-prometheus \
+  -v ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+  prom/prometheus
+```
+
 ### Grafana
 Grafana 다운로드 - MacOS
 ```shell
@@ -234,6 +296,11 @@ cd grafana-12.3.0
 ls
 ```
 ![](../imgs/Pasted%20image%2020251124151023.png)
+
+docker 실행
+```bash
+docker run -d --name=my-grafana -p 3000:3000 grafana/grafana
+```
 
 행
 - localhost:3000 주소로 대시보드 접속

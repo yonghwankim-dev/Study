@@ -58,7 +58,7 @@ docker 이미지 기반으로 kafka 설치
 
 kafka broker 시작
 ```shell
-docker run -d --name broker apache/kafka:latest
+docker run -d --name broker -p 9092:9092 apache/kafka:latest
 ```
 
 brodker 컨테이너에 쉘 접속
@@ -134,7 +134,10 @@ $KAFKA_HOME/bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-s
 ```
 ![](../imgs/Pasted%20image%2020251116155845.png)
 ![](../imgs/Pasted%20image%2020251113125212.png)
-
+- partitons : 토픽을 몇개의 분산 저장소(파티션)으로 쪼개서 개설할 것인가에 대한 옵션
+	- 예를 들어 partitions 옵션의 값이 1개이면 1차선 도로이고 4개이면 4차선 도로가 된다. 파티션 개수를 늘리면 데이터를 동시에 처리할 수 있는 통로를 넓혀서 병렬 처리 성능을 높힘
+	- 파티션을 여러개 지정하면 카프카가 이 파티션들을 여러 서버에 골고루 분산시켜 저장함
+
 topic 목록 확인
 ```shell
 $KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
@@ -143,9 +146,18 @@ $KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 topic 정보 확인
 ```shell
-$KAFKA_HOME/bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092 
+$KAFKA_HOME/bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092
 ```
 ![](../imgs/Pasted%20image%2020251116155938.png)
+- Topic : 토픽의 이름
+- TopicId : 토픽의 식별자 값
+- PartitionCount : 토픽의 파티션 개수
+- ReplicationFactor : 데이터 유실을 막기 위해서 토픽의 파티션들을 몇개의 카프카 서버에 복제하여 보관할 것인가에 대한 숫자
+	- 예를 들어 값이 3이면 토픽을 총 3개의 복제본을 서로 다른 카프카 서버에 쪼개서 저장함
+- Configs
+	- `min.insync.replicas=1` : 이 옵션은 프로듀서가 데이터를 보낼때, "완벽하게 복제가 완료되었다"고 인정할 수 있는 최소한의 서버 개수입니다. 즉, 1개의 서버에 데이터를 무사히 저장했다면 다른 서버들이 복제를 성공했는지 실패햇는지 확인하지 않고 저장 성공이라는 신호를 보냅니다.
+	- `segment.bytes` : 카프카 저장용 로그 파일 하나당  최대 크기
+		- 현재 결과에서는 1GB 크키가 로그 파일 하나의 최대 크기값 입니다.
 
 ### Kafka Producer / Consumer 테스트
 메시지 생산
@@ -162,6 +174,11 @@ $KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --to
 Hello, World!
 Hi, there.
 ```
+- `--from-beginning` : 이 옵션은 이 토픽에 저장되었던 데이터(가장 오래된 데이터)부터 누락없이 전부 다 읽어오는 옵션입니다.
+	- 이 옵션을 설정하지 않으면 consumer를 실행한 이후의 들어오는 데이터만 실시간으로 받습니다.
+
+
+
 
 메시지 소비 실행 결과를 보면 Producer가 보낸 메시지를 수신받은 것을 볼수 있습니다.
 ![](../imgs/Pasted%20image%2020251116160053.png)
@@ -275,8 +292,9 @@ Kafka Connect 설정 (기본으로 사용)
 
 Kafka Connect 실행
 - Kafka Connect 실행전에 카프카 서버와 topic(quickstart-events)을 미리 생성해두었습니다.
-- `$KAFKA_CONNECT_HOME/bin/connect-distributed $KAFKA_CONNECT_HOME/etc/kafka/connect-distributed.properties`
-
+```shell
+$KAFKA_CONNECT_HOME/bin/connect-distributed $KAFKA_CONNECT_HOME/etc/kafka/connect-distributed.properties
+```
 
 Topic 목록 확인
 - `$KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list`
@@ -511,4 +529,3 @@ $KAFKA_HOME/bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --to
 실행 결과 확인
 - console-producer를 통해서 직접적으로 json 데이터를 넣어도 성공적으로 데이터가 추가된 것을 볼수 있습니다.
 ![](../imgs/Pasted%20image%2020251117144344.png)
-
