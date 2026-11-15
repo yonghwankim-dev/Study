@@ -1,9 +1,10 @@
-package com.nemo.unit_test.ch06.ex05;
+package com.nemo.unit_test.ch06.ex06;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.api.Assertions;
@@ -41,40 +42,21 @@ class ArticleTests {
 			this.author = author;
 			this.dateCreated = dateCreated;
 		}
-	}
 
-	static class ArticleAssert extends AbstractAssert<ArticleAssert, Article>{
-
-		protected ArticleAssert(Article actual) {
-			super(actual, ArticleAssert.class);
+		@Override
+		public boolean equals(Object o) {
+			if (this == o)
+				return true;
+			if (!(o instanceof Comment comment))
+				return false;
+			return Objects.equals(text, comment.text) && Objects.equals(author, comment.author)
+				&& Objects.equals(dateCreated, comment.dateCreated);
 		}
 
-		public static ArticleAssert assertThat(Article actual){
-			return new ArticleAssert(actual);
+		@Override
+		public int hashCode() {
+			return Objects.hash(text, author, dateCreated);
 		}
-
-		public ArticleAssert shouldContainNumberOfComments(int expectedSize){
-			isNotNull();
-			if(actual.comments.size() != expectedSize){
-				failWithMessage("Expected number of comments to be <%s> but was <%s>",
-					expectedSize, actual.comments.size());
-			}
-			return this;
-		}
-
-		public ArticleAssert withComment(String text, String author, LocalDateTime dateCreated){
-			isNotNull();
-			boolean exists = actual.comments.stream()
-				.anyMatch(c->c.text.equals(text)
-					&& c.author.equals(author)
-					&& c.dateCreated.equals(dateCreated));
-			if(!exists){
-				failWithMessage("Expected article to contain comment with text <%s>, author <%s>, date <%s>, but found none",
-					text, author, dateCreated);
-			}
-			return this;
-		}
-
 	}
 
 	@Test
@@ -87,9 +69,8 @@ class ArticleTests {
 		// when
 		sut.addComment(text, author, dateCreated);
 		// then
-		// 검증문에 헬퍼 메서드 사용
-		ArticleAssert.assertThat(sut)
-				.shouldContainNumberOfComments(1)
-				.withComment(text, author, dateCreated);
+		// 값 객체로 변환해서 동등성(Equality) 검증
+		Comment expected = new Comment(text, author, dateCreated);
+		Assertions.assertThat(sut.comments).containsExactly(expected);
 	}
 }
